@@ -1,5 +1,5 @@
 {
-  "id": "btw.bitslayn.channelicons",
+  "id": "btw.bitslayn.channelIcons",
   "name": "Channel Icons",
   "description": "Customize channels using icons and a colors!",
   "author": {
@@ -15,6 +15,6 @@
   "license": "MIT",
   "type": "replugged-plugin",
   "renderer": "src/index.tsx",
-  "source": "https://github.com/zrodevkaan/RepluggedPlugins/tree/main/plugins/dev.kaan",
+  "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/plugins/btw.bitslayn.channelIcons",
   "image": ["https://i.imgur.com/66pKDq9.png"]
 }
