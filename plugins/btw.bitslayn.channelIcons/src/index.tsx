@@ -1,20 +1,23 @@
 import { Injector, components, settings, webpack } from "replugged";
 import { ContextMenuTypes } from "replugged/types";
 import { React, modal } from "replugged/common";
-import { Button, Clickable } from "replugged/components";
+import { Button } from "replugged/components";
 import "./example.css";
 import "./editor.css";
+import { injectChannelStyle } from "./helpers";
 
 const config = await settings.init("btw.bitslayn.channelicons");
-const ColorPicker = webpack.getByProps("CustomColorPicker");
+const ColorPicker = await webpack.waitForProps("CustomColorPicker")
 const inject = new Injector();
 const {
   ContextMenu: { MenuItem },
 } = components;
 const { openModal } = modal;
 const Modals = webpack.getByProps("ConfirmModal");
+const {int2hex}: {int2hex: (int: any) => string} = webpack.getByProps("int2hex")
 
-function openEditor(channel: any) {
+function openEditor(data: any, something: any) {
+  const {channel} = data;
   const RenderThis = (props) => {
     const [channelData, setChannelData] = React.useState({
       channelColor: config.get(channel.id, {})?.channelColor,
@@ -41,7 +44,7 @@ function openEditor(channel: any) {
         {...props}>
         <div style={{ display: "flex" }}>
           <div style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
+            <Button onClick={() => console.log(data, something)} />
             <Button size="tiny" onClick={() => console.log("Pressed!")} />
             <Button size="tiny" onClick={() => console.log("Pressed!")} />
             <Button size="tiny" onClick={() => console.log("Pressed!")} />
@@ -59,6 +62,7 @@ function openEditor(channel: any) {
               type={1}
               className="channelEditorColorPicker"
               width="220px"
+              onChange={(s: any) => {injectChannelStyle(channel.id, int2hex(s))}}
             />
           </div>
         </div>
@@ -70,17 +74,18 @@ function openEditor(channel: any) {
 }
 
 export function start() {
-  inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data) => {
+  inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data, something) => {
     const { channel } = data;
     return (
       <MenuItem
         id={`customize-channel-${channel.id}`}
         label="Customize Channel"
-        action={() => openEditor(channel)}
+        action={() => openEditor(data, something)}
       />
     );
   });
-}
+  }
+
 
 export function stop(): void {
   inject.uninjectAll();
