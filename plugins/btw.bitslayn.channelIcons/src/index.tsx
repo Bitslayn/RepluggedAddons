@@ -5,70 +5,70 @@ import { Button } from "replugged/components";
 import "./example.css";
 import "./editor.css";
 import { injectChannelStyle } from "./helpers";
-
+import { Icons } from "./icons";
 const config = await settings.init("btw.bitslayn.channelicons");
 const ColorPicker = await webpack.waitForProps("CustomColorPicker")
 const inject = new Injector();
+const {SearchableSelect}: {SearchableSelect: any} = webpack.getByProps("SearchableSelect")
 const {
   ContextMenu: { MenuItem },
 } = components;
 const { openModal } = modal;
 const Modals = webpack.getByProps("ConfirmModal");
 const {int2hex}: {int2hex: (int: any) => string} = webpack.getByProps("int2hex")
+const {FormSwitch}: any = webpack.getByProps("FormSwitch")
 
 function openEditor(data: any, something: any) {
-  const {channel} = data;
+  const { channel } = data;
   const RenderThis = (props) => {
-    const [channelData, setChannelData] = React.useState({
-      channelColor: config.get(channel.id, {})?.channelColor,
-      channelIcon: config.get(channel.id, {})?.channelIcon,
-      channelMention: config.get(channel.id, {})?.channelMention,
-    });
-
-    const handleChange = (event) => {
-      const { name, value } = event;
-      setChannelData({
-        ...channelData,
-        [name]: value,
-      });
-    };
-
-    const handleSubmit = () => {
-      config.set(channel.id, channelData);
-    };
+    const { channel } = data;
+    const [channelColor, setChannelColor] = React.useState<string>();
+    const [channelIcon, setChannelIcon] = React.useState({});
+    const [channelIconLabel, setChannelIconLabel] = React.useState<string>("");
 
     return (
       <Modals.ConfirmModal
         header={`Customize #${channel.name}`}
         className="channelEditor"
-        {...props}>
+        {...props}
+      >
         <div style={{ display: "flex" }}>
-          <div style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
-            <Button onClick={() => console.log(data, something)} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
-            <Button size="tiny" onClick={() => console.log("Pressed!")} />
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignContent: "flex-start",
+            }}
+          >
           </div>
           <div>
+            <SearchableSelect
+              options={Icons}
+              value={channelIconLabel}
+              onChange={(iconPath) => {
+                const Object = Icons.find(icon => icon.value === iconPath);
+                const Label = Object.name;
+
+                setChannelIcon(iconPath);
+                setChannelIconLabel(Label);
+                injectChannelStyle(channel.id, int2hex(channelColor), iconPath);
+              }}
+            />
             <ColorPicker.CustomColorPicker
               type={1}
               className="channelEditorColorPicker"
-              width="220px"
-              onChange={(s: any) => {injectChannelStyle(channel.id, int2hex(s))}}
+              value={channelColor}
+              onChange={(selectedColor: string) => {
+                setChannelColor(selectedColor);
+                injectChannelStyle(channel.id, int2hex(selectedColor), channelIcon);
+              }}
             />
           </div>
         </div>
       </Modals.ConfirmModal>
     );
   };
+
 
   openModal((x) => <RenderThis {...x} />);
 }
