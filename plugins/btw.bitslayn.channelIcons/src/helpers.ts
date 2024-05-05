@@ -6,7 +6,16 @@
 
   const styleElement = document.createElement("style");
   styleElement.setAttribute("data-channel-style", channelId);
-  styleElement.textContent = `
+  if (channelColor == "#ffffff" || channelColor == "#000000") {
+    styleElement.textContent = `
+    [data-list-item-id="channels___${channelId}"] > div > div > svg > path {
+      /* Icon */
+      d: path(
+        "${path}"
+      ) !important;
+    }`;
+  } else {
+    styleElement.textContent = `
       /* CSS for channel customization */
       [data-list-item-id="channels___${channelId}"] > div > div > svg > path,
       [data-list-item-id="NO_LIST___${channelId}"] > div > div > svg > path {
@@ -23,7 +32,7 @@
       [data-list-item-id="channels___${channelId}"] > div > [class^="children"] div > svg,
       [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="children"] div > svg {
         /* Misc buttons color */
-        color: ${channelColor} !important;
+        color: ${shadeColor(channelColor, 0.8)} !important;
       }
       [data-list-item-id="channels___${channelId}"] > div > [class^="children"] div > svg:hover,
       [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="children"] div > svg:hover {
@@ -38,7 +47,7 @@
       [data-list-item-id="channels___${channelId}"]:hover,
       [data-list-item-id="NO_LIST___${channelId}"]:hover {
         /* Hovered background color */
-        background: ${shadeColor(channelColor, 70, 0.1)} !important;
+        background: ${shadeColor(channelColor, 0.15)} !important;
       }
       [data-list-item-id="channels___${channelId}"]:hover > div > [class^="name"],
       [data-list-item-id="NO_LIST___${channelId}"]:hover > div > [class^="name"] {
@@ -53,20 +62,17 @@
       [class*="selected"] [data-list-item-id="channels___${channelId}"],
       [class*="selected"] [data-list-item-id="NO_LIST___${channelId}"] {
         /* Focused background color */
-        background: ${shadeColor(channelColor, 70, 0.1)} !important;
+        background: ${shadeColor(channelColor, 0.3)} !important;
       }
     `;
+  }
   document.head.appendChild(styleElement);
 }
 
-function shadeColor(color, percent, transparency) {
+function shadeColor(color, transparency) {
   var R = parseInt(color.substring(1, 3), 16);
   var G = parseInt(color.substring(3, 5), 16);
   var B = parseInt(color.substring(5, 7), 16);
-
-  R = parseInt((R * (100 + percent)) / 100);
-  G = parseInt((G * (100 + percent)) / 100);
-  B = parseInt((B * (100 + percent)) / 100);
 
   R = R < 255 ? R : 255;
   G = G < 255 ? G : 255;

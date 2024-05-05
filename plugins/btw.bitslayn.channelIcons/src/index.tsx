@@ -1,6 +1,5 @@
 import { components, Injector, settings, util, webpack } from "replugged";
 import { modal, React } from "replugged/common";
-import "./example.css";
 import "./editor.css";
 import { ContextMenuTypes } from "replugged/types";
 import { capitalizeWords, injectChannelStyle } from "./helpers";
