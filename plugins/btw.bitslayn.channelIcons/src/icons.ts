@@ -1,4 +1,5 @@
-﻿
+﻿import { settings } from "replugged";
+export const config = await settings.init("btw.bitslayn.channelIcons");
 async function fetchDataAndExtract() {
   const url = "https://davart154.github.io/Themes/Icon%20Revert%202023/2023%20Icon%20Revert.css";
 
@@ -20,5 +21,15 @@ async function fetchDataAndExtract() {
     console.error("Error fetching or parsing CSS:", error);
   }
 }
+let Icons;
 
-export const Icons = await fetchDataAndExtract();
+if (config.get('icons', undefined) === undefined) {
+  Icons = await fetchDataAndExtract();
+  config.set('icons', Icons);
+  console.log('Unfetched. Saving')
+} else {
+  Icons = config.get('icons');
+  console.log('Fetched. using Cache')
+}
+
+export { Icons };
