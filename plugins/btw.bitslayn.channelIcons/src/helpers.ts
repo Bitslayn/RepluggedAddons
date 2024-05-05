@@ -1,7 +1,10 @@
 ﻿import { config } from "./icons";
 
-export function injectChannelStyle(channelId, channelColor, path) {
-  config.set('coloredChannels', { ...config.get('coloredChannels', {}), [channelId]: { color: channelColor, icon: path }});
+export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {
+  config.set("coloredChannels", {
+    ...config.get("coloredChannels", {}),
+    [channelId]: { color: channelColor, icon: path },
+  });
   const existingStyle = document.querySelector(`[data-channel-style="${channelId}"]`);
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
@@ -73,7 +76,7 @@ export function injectChannelStyle(channelId, channelColor, path) {
   document.head.appendChild(styleElement);
 }
 
-function shadeColor(color: string, transparency: number) {
+function shadeColor(color: string, transparency: number): string {
   let R = parseInt(color.substring(1, 3), 16);
   let G = parseInt(color.substring(3, 5), 16);
   let B = parseInt(color.substring(5, 7), 16);
@@ -82,14 +85,14 @@ function shadeColor(color: string, transparency: number) {
   G = G < 255 ? G : 255;
   B = B < 255 ? B : 255;
 
-  let RR = R.toString(16).length == 1 ? `0${  R.toString(16)}` : R.toString(16);
-  let GG = G.toString(16).length == 1 ? `0${  G.toString(16)}` : G.toString(16);
-  let BB = B.toString(16).length == 1 ? `0${  B.toString(16)}` : B.toString(16);
+  let RR = R.toString(16).length == 1 ? `0${R.toString(16)}` : R.toString(16);
+  let GG = G.toString(16).length == 1 ? `0${G.toString(16)}` : G.toString(16);
+  let BB = B.toString(16).length == 1 ? `0${B.toString(16)}` : B.toString(16);
 
   let alpha = Math.round(transparency * 255);
-  let alphaHex = alpha.toString(16).length == 1 ? `0${  alpha.toString(16)}` : alpha.toString(16);
+  let alphaHex = alpha.toString(16).length == 1 ? `0${alpha.toString(16)}` : alpha.toString(16);
 
-  return `#${  RR  }${GG  }${BB  }${alphaHex}`;
+  return `#${RR}${GG}${BB}${alphaHex}`;
 }
 
 export function capitalizeWords(sentence: string): string {

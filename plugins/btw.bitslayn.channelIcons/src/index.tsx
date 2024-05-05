@@ -8,24 +8,26 @@ import { capitalizeWords, injectChannelStyle } from "./helpers";
 import { Icons, config } from "./icons";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
-const ColorPicker: {CustomColorPicker: any} = await webpack.waitForProps("CustomColorPicker");
+const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
 const inject: Injector = new Injector();
 const { SearchableSelect }: { SearchableSelect: any } = webpack.getByProps("SearchableSelect");
 const {
   ContextMenu: { MenuItem },
 } = components;
 const { openModal } = modal;
-const Modals: {ConfirmModal: any} = webpack.getByProps("ConfirmModal");
+const Modals: { ConfirmModal: any } = webpack.getByProps("ConfirmModal");
 export const { int2hex }: { int2hex: (int: any) => string } = webpack.getByProps("int2hex");
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
-const ChannelClass: {default: any} = webpack.getByProps("ChannelItemIcon");
-const ChannelStore: {getChannel: AnyFunction} & Store = webpack.getByStoreName("ChannelStore");
+const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
+const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
 
 function injectSavedChannelsStyles(): void {
-  const coloredChannels: any = config.get('coloredChannels', {});
-  Object.entries(coloredChannels).forEach(([channelId, { color, icon }]: [string, { color: string, icon: string }]) => {
-    injectChannelStyle(channelId, color, icon);
-  });
+  const coloredChannels: any = config.get("coloredChannels", {});
+  Object.entries(coloredChannels).forEach(
+    ([channelId, { color, icon }]: [string, { color: string; icon: string }]) => {
+      injectChannelStyle(channelId, color, icon);
+    },
+  );
 }
 
 function openEditor(data: any): void {
@@ -35,15 +37,27 @@ function openEditor(data: any): void {
     const [channelIcon, setChannelIcon] = useState<string>();
     const [channelIconLabel, setChannelIconLabel] = useState<string>("");
 
-    const [suggestedColors, setSuggestedColors] = useState<string[]>(["#dfaaa1", "#3d2921", "#c9a1df", "#a1d6df", "#b7dfa1"]);
+    const [suggestedColors, setSuggestedColors] = useState<string[]>([
+      "#dfaaa1",
+      "#3d2921",
+      "#c9a1df",
+      "#a1d6df",
+      "#b7dfa1",
+    ]);
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
       setChannelColor(selectedColor);
       const convertedColor: string = int2hex(selectedColor);
-      const updatedColors: string[] = [convertedColor, ...suggestedColors.filter(color => color !== convertedColor)].slice(0, 8);
+      const updatedColors: string[] = [
+        convertedColor,
+        ...suggestedColors.filter((color) => color !== convertedColor),
+      ].slice(0, 8);
       setSuggestedColors(updatedColors);
       injectChannelStyle(channel.id, convertedColor, channelIcon);
-      config.set('suggestedColors', updatedColors);
-      config.set('coloredChannels', { ...config.get('coloredChannels', {}), [channel.id]: { color: convertedColor, icon: channelIcon }});
+      config.set("suggestedColors", updatedColors);
+      config.set("coloredChannels", {
+        ...config.get("coloredChannels", {}),
+        [channel.id]: { color: convertedColor, icon: channelIcon },
+      });
     };
 
     return (
@@ -79,11 +93,12 @@ function openEditor(data: any): void {
           />
           <components.Divider className="channelEditorDivider" />
           {Icons.map((label: any) => (
-            <components.Clickable onClick={() => {
-              console.log(int2hex(channelColor))
-              setChannelIconLabel(label.value);
-              injectChannelStyle(channel.id, int2hex(channelColor), label.value);
-            }}>
+            <components.Clickable
+              onClick={() => {
+                console.log(int2hex(channelColor));
+                setChannelIconLabel(label.value);
+                injectChannelStyle(channel.id, int2hex(channelColor), label.value);
+              }}>
               <svg
                 className={label.label}
                 viewBox="0 0 24 24"
@@ -145,13 +160,15 @@ export function start(): void {
       }
     }
     if (!config.get("changeChannelNames", false)) {
-      changedChannelNames.forEach(({ channelid, oldName }: { channelid: string, oldName: string }) => {
-        const channel: any = ChannelStore.getChannel(channelid);
-        if (channel) {
-          channel.name = oldName;
-          // changedChannelNames.length -= 1;
-        }
-      });
+      changedChannelNames.forEach(
+        ({ channelid, oldName }: { channelid: string; oldName: string }) => {
+          const channel: any = ChannelStore.getChannel(channelid);
+          if (channel) {
+            channel.name = oldName;
+            // changedChannelNames.length -= 1;
+          }
+        },
+      );
     }
   });
 }
@@ -165,14 +182,14 @@ export function stop(): void {
 }
 
 export function Settings(): JSX.Element {
-  const [coloredChannels, setColoredChannels] = useState<any>(config.get('coloredChannels', {}));
+  const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", {}));
 
   // Function to remove a colored channel
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
     delete updatedChannels[channelId];
     setColoredChannels(updatedChannels);
-    config.set('coloredChannels', updatedChannels);
+    config.set("coloredChannels", updatedChannels);
     document.querySelector(`[data-channel-style="${channelId}"]`).remove();
   };
 
@@ -186,16 +203,24 @@ export function Settings(): JSX.Element {
       </FormSwitch>
 
       <div>
-        {Object.entries(coloredChannels).map(([channelId]: [string, { color: string, icon: string }]) => (
-          <div key={channelId} style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
-            <ChannelClass.default
-              className="channelExample"
-              channel={ChannelStore.getChannel(channelId)}
-              style={{ marginRight: "8px" }}
-            />
-            <button style={{background: "red", color: "white", borderRadius: '5px'}} onClick={() => removeColoredChannel(channelId)}>Remove</button>
-          </div>
-        ))}
+        {Object.entries(coloredChannels).map(
+          ([channelId]: [string, { color: string; icon: string }]) => (
+            <div
+              key={channelId}
+              style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
+              <ChannelClass.default
+                className="channelExample"
+                channel={ChannelStore.getChannel(channelId)}
+                style={{ marginRight: "8px" }}
+              />
+              <button
+                style={{ background: "red", color: "white", borderRadius: "5px" }}
+                onClick={() => removeColoredChannel(channelId)}>
+                Remove
+              </button>
+            </div>
+          ),
+        )}
       </div>
     </div>
   );
