@@ -184,7 +184,6 @@ export function stop(): void {
 export function Settings(): JSX.Element {
   const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", {}));
 
-  // Function to remove a colored channel
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
     delete updatedChannels[channelId];
@@ -197,9 +196,11 @@ export function Settings(): JSX.Element {
     <div>
       <FormSwitch
         {...util.useSetting(config, "changeChannelNames", false)}
-        note={"Pascal Case every channel name. Make it look nice"}>
-        {" "}
-        Pascal Case{" "}
+        note={
+          "Title every channel name in Pascal Case for a polished appearance. " +
+          "𝗪𝗔𝗥𝗡𝗜𝗡𝗚 Sometimes caching will NOT work right. Refreshing always works."
+        }>
+        Pascal Case
       </FormSwitch>
 
       <div>
@@ -211,10 +212,15 @@ export function Settings(): JSX.Element {
               <ChannelClass.default
                 className="channelExample"
                 channel={ChannelStore.getChannel(channelId)}
-                style={{ marginRight: "8px" }}
               />
               <button
-                style={{ background: "red", color: "white", borderRadius: "5px" }}
+                style={{
+                  background: "red",
+                  color: "white",
+                  borderRadius: "5px",
+                  position: "absolute",
+                  right: "0",
+                }}
                 onClick={() => removeColoredChannel(channelId)}>
                 Remove
               </button>

@@ -32,7 +32,8 @@ async function fetchDataAndExtract(): Promise<IconData[]> {
 
 let Icons: IconData[];
 
-if (config.get("icons")) {
+// eslint-disable-next-line no-undefined
+if (config.get("icons", undefined) === undefined) {
   Icons = await fetchDataAndExtract();
   config.set("icons", Icons);
   console.log("Unfetched. Saving");
