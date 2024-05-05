@@ -1,11 +1,11 @@
-import { Injector, components, settings, webpack } from "replugged";
-import { ContextMenuTypes } from "replugged/types";
-import { React, modal } from "replugged/common";
-import { Button } from "replugged/components";
+import { components, Injector, settings, util, webpack } from "replugged";
+import { modal, React } from "replugged/common";
 import "./example.css";
 import "./editor.css";
-import { injectChannelStyle } from "./helpers";
+import { ContextMenuTypes } from "replugged/types";
+import { capitalizeWords, injectChannelStyle } from "./helpers";
 import { Icons } from "./icons";
+
 const config = await settings.init("btw.bitslayn.channelicons");
 const ColorPicker = await webpack.waitForProps("CustomColorPicker")
 const inject = new Injector();
@@ -17,6 +17,8 @@ const { openModal } = modal;
 const Modals = webpack.getByProps("ConfirmModal");
 const {int2hex}: {int2hex: (int: any) => string} = webpack.getByProps("int2hex")
 const {FormSwitch}: any = webpack.getByProps("FormSwitch")
+const ChannelClass = webpack.getByProps("ChannelItemIcon")
+const ChannelStore = webpack.getByStoreName("ChannelStore");
 
 function openEditor(data: any, something: any) {
   const { channel } = data;
@@ -25,6 +27,7 @@ function openEditor(data: any, something: any) {
     const [channelColor, setChannelColor] = React.useState<string>();
     const [channelIcon, setChannelIcon] = React.useState({});
     const [channelIconLabel, setChannelIconLabel] = React.useState<string>("");
+
 
     return (
       <Modals.ConfirmModal
@@ -41,6 +44,7 @@ function openEditor(data: any, something: any) {
             }}
           >
           </div>
+
           <div>
             <SearchableSelect
               options={Icons}
@@ -54,6 +58,7 @@ function openEditor(data: any, something: any) {
                 injectChannelStyle(channel.id, int2hex(channelColor), iconPath);
               }}
             />
+            
             <ColorPicker.CustomColorPicker
               type={1}
               className="channelEditorColorPicker"
@@ -63,6 +68,7 @@ function openEditor(data: any, something: any) {
                 injectChannelStyle(channel.id, int2hex(selectedColor), channelIcon);
               }}
             />
+            <ChannelClass.default channel={ChannelStore.getChannel(channel.id)} />
           </div>
         </div>
       </Modals.ConfirmModal>
@@ -71,6 +77,12 @@ function openEditor(data: any, something: any) {
 
 
   openModal((x) => <RenderThis {...x} />);
+}
+
+const changedChannelNames = [];
+
+function isChannelIdExists(channelId) {
+  return changedChannelNames.some(entry => entry.channelid === channelId);
 }
 
 export function start() {
@@ -84,9 +96,38 @@ export function start() {
       />
     );
   });
-  }
+  inject.after(ChannelClass, 'default', (a) => {
+    const channelInstance = a?.[0];
+    if (channelInstance && config.get('changeChannelNames', false)) {
+      const channel = ChannelStore.getChannel(channelInstance.channel.id);
+      const oldName = channel.name;
+      if (!isChannelIdExists(channel.id)) {
+        channel.name = capitalizeWords(oldName);
+        changedChannelNames.push({ channelid: channel.id, oldName });
+      }
+    }
+    if (!config.get('changeChannelNames', false)) {
+      changedChannelNames.forEach(({ channelid, oldName }) => {
+        const channel = ChannelStore.getChannel(channelid);
+        if (channel) {
+          channel.name = oldName;
+          changedChannelNames.length -= 1;
+        }
+      });
+    }
+  })
+}
+
+export function getChangedChannelNames() {
+  return changedChannelNames;
+}
 
 
 export function stop(): void {
   inject.uninjectAll();
+}
+
+export function Settings()
+{
+  return <FormSwitch {...util.useSetting(config, 'changeChannelNames',false)} note={"Pascal Case every channel name. Make it look nice"}> Pascal Case </FormSwitch>
 }

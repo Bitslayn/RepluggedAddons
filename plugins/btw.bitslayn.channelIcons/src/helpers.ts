@@ -73,6 +73,9 @@ function shadeColor(color, percent, transparency) {
   return "#" + RR + GG + BB + alphaHex;
 }
 
-export function transformString(str) {
-  return str.replace(/[A-Z]/, ' $1').trim();
+export function capitalizeWords(sentence: string): string {
+  const words: string[] = sentence.split('-');
+  const capitalizedWords: string[] = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+  console.log(capitalizedWords)
+  return capitalizedWords.join(' ');
 }
