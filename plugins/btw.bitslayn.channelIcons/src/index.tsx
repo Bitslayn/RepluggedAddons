@@ -1,5 +1,5 @@
-import { components, Injector, settings, util, webpack } from "replugged";
-import { modal, React } from "replugged/common";
+import { Injector, components, settings, util, webpack } from "replugged";
+import { React, modal } from "replugged/common";
 import "./editor.css";
 import { ContextMenuTypes } from "replugged/types";
 import { capitalizeWords, injectChannelStyle } from "./helpers";
@@ -20,7 +20,6 @@ const ChannelClass = webpack.getByProps("ChannelItemIcon");
 const ChannelStore = webpack.getByStoreName("ChannelStore");
 
 function openEditor(data: any, something: any) {
-  const { channel } = data;
   const RenderThis = (props) => {
     const { channel } = data;
     const [channelColor, setChannelColor] = React.useState<string>();
@@ -62,6 +61,7 @@ function openEditor(data: any, something: any) {
                 setChannelColor(selectedColor);
                 injectChannelStyle(channel.id, int2hex(selectedColor), channelIcon);
               }}
+              suggestedColors={["#dfaaa1", "#3d2921", "#c9a1df", "#a1d6df", "#b7dfa1"]}
             />
             <ChannelClass.default channel={ChannelStore.getChannel(channel.id)} />
           </div>
