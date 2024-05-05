@@ -1,4 +1,7 @@
-﻿export function injectChannelStyle(channelId, channelColor, path) {
+﻿import { config } from "./icons";
+
+export function injectChannelStyle(channelId, channelColor, path) {
+  config.set('coloredChannels', { ...config.get('coloredChannels', {}), [channelId]: { color: channelColor, icon: path }});
   const existingStyle = document.querySelector(`[data-channel-style="${channelId}"]`);
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
@@ -9,7 +12,7 @@
   if (channelColor == "#ffffff" || channelColor == "#000000") {
     styleElement.textContent = `
     [data-list-item-id="channels___${channelId}"] > div > div > svg > path,
-    [data-list-item-id="channels___${channelId}"] > div > div > svg > path {
+    [data-list-item-id="NO_LIST___${channelId}"] > div > div > svg > path {
     /* Icon */
       d: path(
         "${path}"
@@ -70,23 +73,23 @@
   document.head.appendChild(styleElement);
 }
 
-function shadeColor(color, transparency) {
-  var R = parseInt(color.substring(1, 3), 16);
-  var G = parseInt(color.substring(3, 5), 16);
-  var B = parseInt(color.substring(5, 7), 16);
+function shadeColor(color: string, transparency: number) {
+  let R = parseInt(color.substring(1, 3), 16);
+  let G = parseInt(color.substring(3, 5), 16);
+  let B = parseInt(color.substring(5, 7), 16);
 
   R = R < 255 ? R : 255;
   G = G < 255 ? G : 255;
   B = B < 255 ? B : 255;
 
-  var RR = R.toString(16).length == 1 ? "0" + R.toString(16) : R.toString(16);
-  var GG = G.toString(16).length == 1 ? "0" + G.toString(16) : G.toString(16);
-  var BB = B.toString(16).length == 1 ? "0" + B.toString(16) : B.toString(16);
+  let RR = R.toString(16).length == 1 ? `0${  R.toString(16)}` : R.toString(16);
+  let GG = G.toString(16).length == 1 ? `0${  G.toString(16)}` : G.toString(16);
+  let BB = B.toString(16).length == 1 ? `0${  B.toString(16)}` : B.toString(16);
 
-  var alpha = Math.round(transparency * 255);
-  var alphaHex = alpha.toString(16).length == 1 ? "0" + alpha.toString(16) : alpha.toString(16);
+  let alpha = Math.round(transparency * 255);
+  let alphaHex = alpha.toString(16).length == 1 ? `0${  alpha.toString(16)}` : alpha.toString(16);
 
-  return "#" + RR + GG + BB + alphaHex;
+  return `#${  RR  }${GG  }${BB  }${alphaHex}`;
 }
 
 export function capitalizeWords(sentence: string): string {
