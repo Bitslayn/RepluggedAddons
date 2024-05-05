@@ -3,7 +3,22 @@
   border: unset;
   box-shadow: unset;
 }
-.channelEditor
-{
-  width: 920px
+.channelEditor {
+  width: 636px;
+  max-height: 488px;
+}
+.channelEditorSidebar {
+  position: fixed;
+  right: 16px;
+  top: 56px;
+}
+.channelEditor > [class^="content"] {
+  width: 384px;
+}
+.channelEditorDivider {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.channelEditorIcons > div > svg:hover {
+  background: #ffffff;
 }

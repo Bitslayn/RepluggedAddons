@@ -8,8 +8,9 @@
   styleElement.setAttribute("data-channel-style", channelId);
   if (channelColor == "#ffffff" || channelColor == "#000000") {
     styleElement.textContent = `
+    [data-list-item-id="channels___${channelId}"] > div > div > svg > path,
     [data-list-item-id="channels___${channelId}"] > div > div > svg > path {
-      /* Icon */
+    /* Icon */
       d: path(
         "${path}"
       ) !important;
