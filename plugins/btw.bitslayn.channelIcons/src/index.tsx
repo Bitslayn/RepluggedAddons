@@ -1,7 +1,7 @@
 import { SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
 import { React, modal } from "replugged/common";
-import "./editor.css";
+import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import { capitalizeWords, injectChannelStyle } from "./helpers";
@@ -50,7 +50,7 @@ function openEditor(data: any): void {
       const updatedColors: string[] = [
         convertedColor,
         ...suggestedColors.filter((color) => color !== convertedColor),
-      ].slice(0, 8);
+      ].slice(0, 10);
       setSuggestedColors(updatedColors);
       injectChannelStyle(channel.id, convertedColor, channelIcon);
       config.set("suggestedColors", updatedColors);
@@ -114,7 +114,13 @@ function openEditor(data: any): void {
 
         <div
           className="channelEditorSidebar"
-          style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "8px",
+            overflow: "hidden scroll",
+            maxHeight: "362px",
+          }}>
           <ColorPicker.CustomColorPicker
             type={1}
             className="channelEditorColorPicker"
@@ -122,7 +128,6 @@ function openEditor(data: any): void {
             onChange={handleColorChange}
             suggestedColors={suggestedColors}
           />
-          <components.Divider className="channelEditorDivider" />
         </div>
       </Modals.ConfirmModal>
     );
@@ -208,7 +213,12 @@ export function Settings(): JSX.Element {
           ([channelId]: [string, { color: string; icon: string }]) => (
             <div
               key={channelId}
-              style={{ display: "flex", alignItems: "center", marginBottom: "8px" }}>
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginBottom: "8px",
+                justifyContent: "space-between",
+              }}>
               <ChannelClass.default
                 className="channelExample"
                 channel={ChannelStore.getChannel(channelId)}
@@ -218,8 +228,6 @@ export function Settings(): JSX.Element {
                   background: "red",
                   color: "white",
                   borderRadius: "5px",
-                  position: "absolute",
-                  right: "0",
                 }}
                 onClick={() => removeColoredChannel(channelId)}>
                 Remove

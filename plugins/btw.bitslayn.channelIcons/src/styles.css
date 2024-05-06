@@ -1,11 +1,10 @@
 .channelEditorColorPicker {
-  padding: unset;
   border: unset;
   box-shadow: unset;
 }
 .channelEditor {
-  width: 636px;
-  max-height: 488px;
+  width: 652px;
+  max-height: 484px;
 }
 .channelEditorSidebar {
   position: fixed;
@@ -21,4 +20,14 @@
 }
 .channelEditorIcons > div > svg:hover {
   background: #ffffff;
+}
+.channelEditorIcons > div > svg > [fill="#000000"] {
+  fill: var(--channel-icon);
+}
+.channelExample {
+  align-self: center;
+  width: 110px;
+}
+.channelExample > div > a:hover {
+  background: var(--bg-overlay-hover, var(--background-modifier-hover));
 }

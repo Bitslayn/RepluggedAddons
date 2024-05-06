@@ -2,11 +2,18 @@
   "id": "btw.bitslayn.channelIcons",
   "name": "Channel Icons",
   "description": "Customize channels using icons and a colors!",
-  "author": {
-    "name": "Bitslayn",
-    "discordID": "",
-    "github": "Bitslayn"
-  },
+  "author": [
+    {
+      "name": "Bitslayn",
+      "discordID": "372268045927972864",
+      "github": "Bitslayn"
+    },
+    {
+      "name": "zrodevkaan",
+      "discordID": "917630027477159986",
+      "github": "zrodevkaan"
+    }
+  ],
   "version": "1.0.0",
   "updater": {
     "type": "store",
