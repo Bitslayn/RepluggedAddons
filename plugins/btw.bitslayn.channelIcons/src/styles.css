@@ -24,7 +24,7 @@
 .channelEditorIcons > div > svg > [fill="#000000"] {
   fill: var(--channel-icon);
 }
-.channelExample {
+.channelEditorIcons > .channelExample {
   align-self: center;
   width: 110px;
 }
