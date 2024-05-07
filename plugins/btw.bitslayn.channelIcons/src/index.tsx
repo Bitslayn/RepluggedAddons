@@ -1,6 +1,6 @@
 import { SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
-import { React, modal } from "replugged/common";
+import { modal } from "replugged/common";
 import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
@@ -38,11 +38,16 @@ function openEditor(data: any): void {
     const [channelIconLabel, setChannelIconLabel] = useState<string>("");
 
     const [suggestedColors, setSuggestedColors] = useState<string[]>([
-      "#dfaaa1",
-      "#3d2921",
-      "#c9a1df",
-      "#a1d6df",
-      "#b7dfa1",
+      "#1abc9c",
+      "#2ecc71",
+      "#3498db",
+      "#9b59b6",
+      "#e91e63",
+      "#f1c40f",
+      "#e67e22",
+      "#e74c3c",
+      "#95a5a6",
+      "#607d8b",
     ]);
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
       setChannelColor(selectedColor);
@@ -68,12 +73,14 @@ function openEditor(data: any): void {
         className="channelEditor"
         {...props}>
         <div
-          className="channelEditorIcons"
+          className="channelEditorHeader"
           style={{
             display: "flex",
             flexWrap: "wrap",
             alignContent: "flex-start",
-            gap: "8px",
+            gap: "8px 0px",
+            position: "fixed",
+            top: "56px",
           }}>
           <ChannelClass.default
             className="channelExample"
@@ -92,6 +99,15 @@ function openEditor(data: any): void {
             }}
           />
           <components.Divider className="channelEditorDivider" />
+        </div>
+
+        <div
+          className="channelEditorIcons"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignContent: "flex-start",
+          }}>
           {Icons.map((label: any) => (
             <components.Clickable
               onClick={() => {
@@ -101,10 +117,10 @@ function openEditor(data: any): void {
               }}>
               <svg
                 className={label.label}
-                viewBox="0 0 24 24"
+                viewBox="-4 -4 32 32"
                 style={{
-                  width: "24px",
-                  height: "24px",
+                  width: "32px",
+                  height: "32px",
                 }}>
                 <path fill={int2hex(channelColor)} d={label.value} />
               </svg>

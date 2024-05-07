@@ -1,10 +1,11 @@
 .channelEditorColorPicker {
   border: unset;
   box-shadow: unset;
+  padding-right: unset;
 }
 .channelEditor {
-  width: 652px;
-  max-height: 484px;
+  width: 668px;
+  height: 484px;
 }
 .channelEditorSidebar {
   position: fixed;
@@ -12,22 +13,33 @@
   top: 56px;
 }
 .channelEditor > [class^="content"] {
-  width: 384px;
+  width: 416px;
+  margin-top: 68px;
+  max-height: 358px;
 }
 .channelEditorDivider {
   margin-top: 8px;
   margin-bottom: 8px;
 }
 .channelEditorIcons > div > svg:hover {
-  background: #ffffff;
+  border-radius: var(--radius-xs);
 }
-.channelEditorIcons > div > svg > [fill="#000000"] {
+.channelEditorIcons > div > svg:hover:has([fill="#000000"]),
+.channelEditorIcons > div > svg:hover:has([fill="#ffffff"]) {
+  background: var(--bg-overlay-hover, var(--background-modifier-hover)) !important;
+}
+.channelEditorIcons > div > svg > [fill="#000000"],
+.channelEditorIcons > div > svg > [fill="#ffffff"] {
   fill: var(--channel-icon);
 }
-.channelEditorIcons > .channelExample {
+.channelEditorHeader > .channelExample {
   align-self: center;
-  width: 110px;
+  width: 142px;
+  padding-right: 8px;
 }
 .channelExample > div > a:hover {
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
+}
+.channelEditorSidebar > div > [class^="suggestedColors"] {
+  justify-content: "flex-start";
 }
