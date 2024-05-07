@@ -14,8 +14,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
   styleElement.setAttribute("data-channel-style", channelId);
   if (channelColor == "#ffffff" || channelColor == "#000000") {
     styleElement.textContent = `
-    [data-list-item-id="channels___${channelId}"] > div > div > svg > path,
-    [data-list-item-id="NO_LIST___${channelId}"] > div > div > svg > path {
+    [data-list-item-id$="_${channelId}"] > div > div > svg > path {
     /* Icon */
       d: path(
         "${path}"
@@ -24,51 +23,51 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
   } else {
     styleElement.textContent = `
       /* CSS for channel customization */
-      [data-list-item-id="channels___${channelId}"] > div > div > svg > path,
-      [data-list-item-id="NO_LIST___${channelId}"] > div > div > svg > path {
+
+      [data-list-item-id$="_${channelId}"] > div > div > svg > path {
         /* Icon */
         d: path(
           "${path}"
         ) !important;
       }
-      [data-list-item-id="channels___${channelId}"] > div > [class^="icon"] > svg,
-      [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="icon"] > svg {
+
+      [data-list-item-id$="_${channelId}"] > div > [class^="icon"] > svg {
         /* Icon color */
         color: ${channelColor} !important;
       }
-      [data-list-item-id="channels___${channelId}"] > div > [class^="children"] div > svg,
-      [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="children"] div > svg {
+
+      [data-list-item-id$="_${channelId}"] > div > [class^="children"] div > svg {
         /* Misc buttons color */
         color: ${shadeColor(channelColor, 0.8)} !important;
       }
-      [data-list-item-id="channels___${channelId}"] > div > [class^="children"] div > svg:hover,
-      [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="children"] div > svg:hover {
+
+      [data-list-item-id$="_${channelId}"] > div > [class^="children"] div > svg:hover {
         /* Hovered misc buttons color */
         color: ${channelColor} !important;
       }
-      [data-list-item-id="channels___${channelId}"] > div > [class^="name"],
-      [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="name"] {
+
+      [data-list-item-id$="_${channelId}"] > div > [class^="name"] {
         /* Name color */
         color: ${channelColor} !important;
       }
-      [data-list-item-id="channels___${channelId}"]:hover,
-      [data-list-item-id="NO_LIST___${channelId}"]:hover,
+
+      [data-list-item-id$="_${channelId}"]:hover,
       .channelEditorIcons > div > svg:hover {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)} !important;
       }
-      [data-list-item-id="channels___${channelId}"]:hover > div > [class^="name"],
-      [data-list-item-id="NO_LIST___${channelId}"]:hover > div > [class^="name"] {
+
+      [data-list-item-id$="_${channelId}"]:hover > div > [class^="name"] {
         /* Hovered name color */
         color: ${channelColor} !important;
       }
-      [class*="selected"] > div > div > [data-list-item-id="channels___${channelId}"] > div > [class^="name"],
-      [class*="selected"] > div > div > [data-list-item-id="NO_LIST___${channelId}"] > div > [class^="name"] {
+
+      [class*="selected"] > div > div > [data-list-item-id$="_${channelId}"] > div > [class^="name"] {
         /* Focused name color */
         color: var(--interactive-active) !important;
       }
-      [class*="selected"] [data-list-item-id="channels___${channelId}"],
-      [class*="selected"] [data-list-item-id="NO_LIST___${channelId}"] {
+
+      [class*="selected"] [data-list-item-id$="_${channelId}"] {
         /* Focused background color */
         background: ${shadeColor(channelColor, 0.3)} !important;
       }
