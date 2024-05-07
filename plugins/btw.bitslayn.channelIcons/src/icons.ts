@@ -1,4 +1,4 @@
-﻿import { settings } from "replugged";
+﻿import { settings, webpack } from "replugged";
 
 interface IconData {
   label: string;
@@ -42,4 +42,19 @@ if (config.get("icons", undefined) === undefined) {
   console.log("Fetched. using Cache");
 }
 
-export { Icons };
+const UpdatedIcons = webpack.getBySource("www.w3.org/2000/svg", { all: true });
+const group1Array = [];
+
+UpdatedIcons.forEach((icon) => {
+  const toStringResult = Object.values(icon)?.[0]?.toString?.();
+  const regex = /d:"([^"]*)"/g;
+
+  let matches = toStringResult?.matchAll?.(regex);
+
+  if (matches) {
+    matches = Array.from(matches);
+    group1Array.push(matches);
+  }
+});
+
+export { Icons, group1Array };

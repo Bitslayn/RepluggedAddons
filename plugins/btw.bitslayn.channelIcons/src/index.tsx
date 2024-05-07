@@ -5,7 +5,8 @@ import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import { capitalizeWords, injectChannelStyle } from "./helpers";
-import { Icons, config } from "./icons";
+import { Icons, config, group1Array } from "./icons";
+import path from "path";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -126,6 +127,34 @@ function openEditor(data: any): void {
               </svg>
             </components.Clickable>
           ))}
+          {group1Array.map((label: any, index: number) => {
+            const paths = Array.isArray(label) ? label.map((item: any) => item[1]) : [label];
+            console.log(paths);
+
+            return (
+              <components.Clickable
+                key={index}
+                onClick={() => {
+                  console.log(int2hex(channelColor), paths);
+                  // Uncomment the following lines if needed
+                  // setChannelIconLabel(paths);
+                  // injectChannelStyle(channel.id, int2hex(channelColor), paths);
+                }}>
+                <svg
+                  key={index}
+                  className="hghhgjgj"
+                  viewBox="-4 -4 32 32"
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                  }}>
+                  {paths.map((pathData: any, innerIndex: number) => (
+                    <path key={innerIndex} fill={int2hex(channelColor)} d={pathData} />
+                  ))}
+                </svg>
+              </components.Clickable>
+            );
+          })}
         </div>
 
         <div
