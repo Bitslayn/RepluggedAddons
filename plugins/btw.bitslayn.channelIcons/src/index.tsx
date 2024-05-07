@@ -112,7 +112,6 @@ function openEditor(data: any): void {
           {Icons.map((label: any) => (
             <components.Clickable
               onClick={() => {
-                console.log(int2hex(channelColor));
                 setChannelIconLabel(label.value);
                 injectChannelStyle(channel.id, int2hex(channelColor), label.value);
               }}>
@@ -128,17 +127,20 @@ function openEditor(data: any): void {
             </components.Clickable>
           ))}
           {group1Array.map((label: any, index: number) => {
-            const paths = Array.isArray(label) ? label.map((item: any) => item[1]) : [label];
-            console.log(paths);
+            const paths = Array.isArray(label.Matches)
+              ? label.Matches.map((item: any) => item[1])
+              : [label.Matches];
 
             return (
               <components.Clickable
                 key={index}
                 onClick={() => {
-                  console.log(int2hex(channelColor), paths);
-                  // Uncomment the following lines if needed
-                  // setChannelIconLabel(paths);
-                  // injectChannelStyle(channel.id, int2hex(channelColor), paths);
+                  let fullPathString = "";
+                  paths.forEach((x) => {
+                    fullPathString += x;
+                  });
+                  setChannelIconLabel(label.Name);
+                  injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                 }}>
                 <svg
                   key={index}

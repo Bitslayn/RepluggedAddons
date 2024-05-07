@@ -47,13 +47,14 @@ const group1Array = [];
 
 UpdatedIcons.forEach((icon) => {
   const toStringResult = Object.values(icon)?.[0]?.toString?.();
-  const regex = /d:"([^"]*)"/g;
+  const Name = Object.keys(icon)[0];
+  const regex = /,d:"([^"]*)"/g;
 
   let matches = toStringResult?.matchAll?.(regex);
 
   if (matches) {
     matches = Array.from(matches);
-    group1Array.push(matches);
+    group1Array.push({ Name, Matches: matches });
   }
 });
 
