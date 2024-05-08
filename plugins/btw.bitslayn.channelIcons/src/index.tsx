@@ -5,7 +5,8 @@ import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import { capitalizeWords, injectChannelStyle } from "./helpers";
-import { Icons, config } from "./icons";
+import { Icons, config, group1Array } from "./icons";
+import path from "path";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -111,7 +112,6 @@ function openEditor(data: any): void {
           {Icons.map((label: any) => (
             <components.Clickable
               onClick={() => {
-                console.log(int2hex(channelColor));
                 setChannelIconLabel(label.value);
                 injectChannelStyle(channel.id, int2hex(channelColor), label.value);
               }}>
@@ -126,6 +126,37 @@ function openEditor(data: any): void {
               </svg>
             </components.Clickable>
           ))}
+          {group1Array.map((label: any, index: number) => {
+            const paths = Array.isArray(label.Matches)
+              ? label.Matches.map((item: any) => item[1])
+              : [label.Matches];
+
+            return (
+              <components.Clickable
+                key={index}
+                onClick={() => {
+                  let fullPathString = "";
+                  paths.forEach((x) => {
+                    fullPathString += x;
+                  });
+                  setChannelIconLabel(label.Name);
+                  injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
+                }}>
+                <svg
+                  key={index}
+                  className="hghhgjgj"
+                  viewBox="-4 -4 32 32"
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                  }}>
+                  {paths.map((pathData: any, innerIndex: number) => (
+                    <path key={innerIndex} fill={int2hex(channelColor)} d={pathData} />
+                  ))}
+                </svg>
+              </components.Clickable>
+            );
+          })}
         </div>
 
         <div
