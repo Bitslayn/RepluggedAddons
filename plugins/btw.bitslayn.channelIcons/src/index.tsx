@@ -54,7 +54,7 @@ function openEditor(data: any): void {
     const icons = [
       {
         id: 1,
-        label: "Old",
+        label: "Classic Icons",
         element: () => (
           <div
             className="channelEditorIcons"
@@ -64,6 +64,7 @@ function openEditor(data: any): void {
                 onClick={() => {
                   setChannelIconLabel(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
+                  //MenuItem.scrollTo({ top: 0 });
                 }}>
                 <svg
                   className={label.label}
@@ -78,7 +79,7 @@ function openEditor(data: any): void {
       },
       {
         id: 2,
-        label: "Modern",
+        label: "Modern Icons",
         element: () => (
           <div
             className="channelEditorIcons"
@@ -99,10 +100,12 @@ function openEditor(data: any): void {
                     setChannelIconLabel(label.Name);
                     console.log(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
+                    //scrollTo({ top: 0 })
                   }}>
                   <svg
                     key={index}
                     className="hghhgjgj"
+                    // Are you okay are you having a stroke?
                     viewBox="-4 -4 32 32"
                     style={{
                       width: "32px",
@@ -153,7 +156,7 @@ function openEditor(data: any): void {
             display: "flex",
             flexWrap: "wrap",
             alignContent: "flex-start",
-            gap: "8px 0px",
+            gap: "26px 0px",
             position: "fixed",
             top: "56px",
           }}>

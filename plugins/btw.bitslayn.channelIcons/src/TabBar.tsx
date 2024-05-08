@@ -18,33 +18,38 @@ export const TabBar = ({ tabs }) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      {tabs.map((tab) => (
-        <div key={tab.id} style={{ display: "inline-block" }}>
-          <button
-            className={`channelTabBarItem ${activeTab === tab.id ? "selected" : ""}`}
-            onClick={() => handleTabClick(tab.id)}
-            onMouseEnter={() => handleMouseEnter(tab.id)}
-            onMouseLeave={handleMouseLeave}
-            style={{ position: "relative" }}>
-            {tab.label}
-            {activeTab === tab.id && <div className="highlight"></div>}
-            {(hoveredTab === tab.id || activeTab === tab.id) && (
-              <div
-                className="hoverIndicator"
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  width: "100%",
-                  height: 2,
-                  borderRadius: 3,
-                  backgroundColor: activeTab === tab.id ? "darkblue" : "lightblue",
-                }}
-              />
-            )}
-          </button>
-        </div>
-      ))}
+      <div /*class="channelTabBar"*/ style={{ position: "fixed", top: "106px", left: "103px" }}>
+        {tabs.map((tab) => (
+          <div key={tab.id} style={{ display: "inline-block" }}>
+            <button
+              className={`channelTabBarItem ${activeTab === tab.id ? "selected" : ""}`}
+              onClick={() => handleTabClick(tab.id)}
+              onMouseEnter={() => handleMouseEnter(tab.id)}
+              onMouseLeave={handleMouseLeave}
+              style={{ position: "relative" }}>
+              {tab.label}
+              {activeTab === tab.id && <div className="highlight"></div>}
+              {(hoveredTab === tab.id || activeTab === tab.id) && (
+                <div
+                  className="hoverIndicator"
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    width: "100%",
+                    height: 2,
+                    borderRadius: 3,
+                    backgroundColor:
+                      activeTab === tab.id
+                        ? "var(--control-brand-foreground)"
+                        : "var(--brand-experiment)",
+                  }}
+                />
+              )}
+            </button>
+          </div>
+        ))}
+      </div>
       <div>{tabs.map((tab) => activeTab === tab.id && tab.element())}</div>
     </div>
   );

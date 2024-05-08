@@ -14,8 +14,9 @@
 }
 .channelEditor > [class^="content"] {
   width: 416px;
-  margin-top: 68px;
+  margin-top: 85px;
   max-height: 358px;
+  padding-bottom: 0px;
 }
 .channelEditorDivider {
   margin-top: 8px;
