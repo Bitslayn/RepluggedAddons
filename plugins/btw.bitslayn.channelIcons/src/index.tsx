@@ -11,7 +11,6 @@ import { TabBar } from "./TabBar";
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
 const inject: Injector = new Injector();
-const { SearchableSelect }: { SearchableSelect: any } = webpack.getByProps("SearchableSelect");
 const {
   ContextMenu: { MenuItem },
 } = components;
@@ -50,6 +49,8 @@ function openEditor(data: any): void {
       "#95a5a6",
       "#607d8b",
     ]);
+
+    const iconBuffer = "M 0,0 V 0 "; // Add at front of SVG d= to prevent icon revert snippet from selecting custom icons
 
     const icons = [
       {
@@ -150,35 +151,13 @@ function openEditor(data: any): void {
         header={`Customize #${channel.name}`}
         className="channelEditor"
         {...props}>
-        <div
-          className="channelEditorHeader"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignContent: "flex-start",
-            gap: "26px 0px",
-            position: "fixed",
-            top: "56px",
-          }}>
+        <div class="channelEditorHeader">
           <ChannelClass.default
             className="channelExample"
             channel={ChannelStore.getChannel(channel.id)}
           />
-          <SearchableSelect
-            options={Icons}
-            value={channelIconLabel}
-            onChange={(iconPath: string) => {
-              const Object: any = Icons.find((icon: any) => icon.value === iconPath);
-              const Label: string = Object.name;
-
-              setChannelIcon(iconPath);
-              setChannelIconLabel(Label);
-              injectChannelStyle(channel.id, int2hex(channelColor), channelIcon);
-            }}
-          />
-          <components.Divider className="channelEditorDivider" />
+          <TabBar tabs={icons} />
         </div>
-        <TabBar tabs={icons} />
         <div
           className="channelEditorSidebar"
           style={{
@@ -292,8 +271,8 @@ export function Settings(): JSX.Element {
               />
               <button
                 style={{
-                  background: "red",
-                  color: "white",
+                  background: "var(--old-red)",
+                  color: "var(--button-outline-danger-text)",
                   borderRadius: "5px",
                 }}
                 onClick={() => removeColoredChannel(channelId)}>
