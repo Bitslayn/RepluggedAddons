@@ -1,10 +1,10 @@
-import { SetStateAction, useState } from "react";
+import { ComponentType, SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
 import { modal } from "replugged/common";
 import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
-import { capitalizeWords, injectChannelStyle } from "./helpers";
+import { capitalizeWords, injectChannelStyle, randomNumber } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
 
@@ -35,7 +35,6 @@ function openEditor(data: any): void {
     const { channel } = data;
     const [channelColor, setChannelColor] = useState<string>();
     const [channelIcon, setChannelIcon] = useState<string>();
-    const [channelIconLabel, setChannelIconLabel] = useState<string>("");
 
     const [suggestedColors, setSuggestedColors] = useState<string[]>([
       "#1abc9c",
@@ -50,7 +49,7 @@ function openEditor(data: any): void {
       "#607d8b",
     ]);
 
-    const iconBuffer = "M 0,0 V 0 "; // Add at front of SVG d= to prevent icon revert snippet from selecting custom icons
+    const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 
     const icons = [
       {
@@ -63,9 +62,8 @@ function openEditor(data: any): void {
             {Icons.map((label: any) => (
               <components.Clickable
                 onClick={() => {
-                  setChannelIconLabel(label.value);
+                  setChannelIcon(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
-                  //MenuItem.scrollTo({ top: 0 });
                 }}>
                 <svg
                   className={label.label}
@@ -98,15 +96,14 @@ function openEditor(data: any): void {
                     paths.forEach((x) => {
                       fullPathString += x;
                     });
-                    setChannelIconLabel(label.Name);
-                    console.log(fullPathString);
+                    setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
-                    //scrollTo({ top: 0 })
                   }}>
                   <svg
                     key={index}
                     className="hghhgjgj"
                     // Are you okay are you having a stroke?
+                    // yes ma'am :3
                     viewBox="-4 -4 32 32"
                     style={{
                       width: "32px",
@@ -114,7 +111,13 @@ function openEditor(data: any): void {
                     }}>
                     {paths.map((pathData: any, innerIndex: number) => {
                       if (pathData && pathData.length > 0) {
-                        return <path key={innerIndex} fill={int2hex(channelColor)} d={pathData} />;
+                        return (
+                          <path
+                            key={innerIndex}
+                            fill={int2hex(channelColor)}
+                            d={`${iconBuffer}${pathData}`}
+                          />
+                        );
                       } else {
                         return null;
                       }
@@ -147,11 +150,19 @@ function openEditor(data: any): void {
     return (
       <Modals.ConfirmModal
         confirmButtonColor={colorBrands.colorBrand}
-        confirmText="Okay"
+        cancelButtonColor={colorBrands.colorRed}
+        confirmText={"Okay"}
+        cancelText={"Remove"}
+        onCancel={() => {
+          const existingStyle = document.querySelector(`[data-channel-style="${channel.id}"]`);
+          if (existingStyle) {
+            existingStyle.remove();
+          }
+        }}
         header={`Customize #${channel.name}`}
         className="channelEditor"
         {...props}>
-        <div class="channelEditorHeader">
+        <div className="channelEditorHeader">
           <ChannelClass.default
             className="channelExample"
             channel={ChannelStore.getChannel(channel.id)}
@@ -192,10 +203,22 @@ export function start(): void {
   injectSavedChannelsStyles();
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;
+    // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
+    const Object = group1Array[randomNumber(Icons.length)];
+    let RandomIcon: ComponentType<any>;
+    // shut up.
+    // eslint-disable-next-line no-undefined
+    if (Object.Name !== undefined){
+      RandomIcon = webpack.getByProps(Object.Name)?.[Object?.Name]
+    }
+    // the code above gives a random modern icon uwu ;3 rawr x3 *waggles tail*
     return (
       <MenuItem
         id={`customize-channel-${channel.id}`}
         label="Customize Channel"
+        /* the code below gives discord an icon to display */
+        icon={RandomIcon}
+        /* the code above gives discord an icon to display */
         action={() => openEditor(data)}
       />
     );
