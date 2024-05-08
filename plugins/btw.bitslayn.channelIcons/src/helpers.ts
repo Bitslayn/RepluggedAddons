@@ -104,7 +104,7 @@ export function capitalizeWords(sentence: string): string {
   return capitalizedWords.join(" ");
 }
 
-export function randomNumber(max) {
+export function randomNumber(max): number {
   const buffer = new Uint32Array(1);
   window.crypto.getRandomValues(buffer);
   return buffer[0] % max;

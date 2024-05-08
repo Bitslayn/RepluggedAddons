@@ -37,8 +37,8 @@ console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
 
 const UpdatedIcons = webpack.getBySource("www.w3.org/2000/svg", { all: true });
 const group1Array = [];
-UpdatedIcons.forEach(iconObject => {
-  const iconKey = Object.keys(iconObject).find(key => key.includes("Icon"));
+UpdatedIcons.forEach((iconObject) => {
+  const iconKey = Object.keys(iconObject).find((key) => key.includes("Icon"));
   if (!iconKey) return;
   const iconValueString = iconObject[iconKey]?.toString?.();
   if (!iconValueString) return;

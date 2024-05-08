@@ -208,8 +208,8 @@ export function start(): void {
     let RandomIcon: ComponentType<any>;
     // shut up.
     // eslint-disable-next-line no-undefined
-    if (Object.Name !== undefined){
-      RandomIcon = webpack.getByProps(Object.Name)?.[Object?.Name]
+    if (Object.Name !== undefined) {
+      RandomIcon = webpack.getByProps(Object.Name)?.[Object?.Name];
     }
     // the code above gives a random modern icon uwu ;3 rawr x3 *waggles tail*
     return (
