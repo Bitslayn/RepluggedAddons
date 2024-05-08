@@ -25,8 +25,7 @@ export const TabBar = ({ tabs }) => {
             onClick={() => handleTabClick(tab.id)}
             onMouseEnter={() => handleMouseEnter(tab.id)}
             onMouseLeave={handleMouseLeave}
-            style={{ position: "relative" }}
-          >
+            style={{ position: "relative" }}>
             {tab.label}
             {activeTab === tab.id && <div className="highlight"></div>}
             {(hoveredTab === tab.id || activeTab === tab.id) && (
@@ -46,11 +45,7 @@ export const TabBar = ({ tabs }) => {
           </button>
         </div>
       ))}
-      <div>
-        {tabs.map((tab) => (
-          activeTab === tab.id && tab.element()
-        ))}
-      </div>
+      <div>{tabs.map((tab) => activeTab === tab.id && tab.element())}</div>
     </div>
   );
 };

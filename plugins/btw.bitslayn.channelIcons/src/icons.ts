@@ -1,4 +1,4 @@
-﻿import {settings, webpack} from "replugged";
+﻿import { settings, webpack } from "replugged";
 
 interface IconData {
   label: string;
@@ -44,10 +44,9 @@ if (config.get("icons", undefined) === undefined) {
 
 const UpdatedIcons = webpack.getBySource("www.w3.org/2000/svg", { all: true });
 const group1Array = [];
-let iconIndex = -1;
-UpdatedIcons.forEach((icon, index) => {
+UpdatedIcons.forEach((icon) => {
   const keys = Object.keys(icon);
-  const iconKeyIndex = keys.findIndex(key => key.includes('Icon'));
+  const iconKeyIndex = keys.findIndex((key) => key.includes("Icon"));
 
   const toStringResult = Object.values(icon)?.[iconKeyIndex]?.toString?.();
   const Name = keys[iconKeyIndex];
