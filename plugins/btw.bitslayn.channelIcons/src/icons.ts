@@ -32,15 +32,8 @@ async function fetchDataAndExtract(): Promise<IconData[]> {
 
 let Icons: IconData[];
 
-// eslint-disable-next-line no-undefined
-if (config.get("icons", undefined) === undefined) {
-  Icons = await fetchDataAndExtract();
-  config.set("icons", Icons);
-  console.log("Unfetched. Saving");
-} else {
-  Icons = config.get("icons");
-  console.log("Fetched. using Cache");
-}
+Icons = config.get("icons", await fetchDataAndExtract());
+console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
 
 const UpdatedIcons = webpack.getBySource("www.w3.org/2000/svg", { all: true });
 const group1Array = [];
