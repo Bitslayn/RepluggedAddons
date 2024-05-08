@@ -18,7 +18,7 @@ export const TabBar = ({ tabs }) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <div /*class="channelTabBar"*/ style={{ position: "fixed", top: "106px", left: "103px" }}>
+      <div /*class="channelTabBar"*/ style={{ position: "fixed", top: "106px" /*left: "103px"*/ }}>
         {tabs.map((tab) => (
           <div key={tab.id} style={{ display: "inline-block" }}>
             <button
