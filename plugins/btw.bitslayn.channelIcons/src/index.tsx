@@ -6,7 +6,7 @@ import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import { capitalizeWords, injectChannelStyle } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
-import path from "path";
+import { TabBar } from "./TabBar";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -50,6 +50,83 @@ function openEditor(data: any): void {
       "#95a5a6",
       "#607d8b",
     ]);
+
+    const icons = [
+      {
+        id: 1,
+        label: "Classic Icons",
+        element: () => (
+          <div
+            className="channelEditorIcons"
+            style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
+            {Icons.map((label: any) => (
+              <components.Clickable
+                onClick={() => {
+                  setChannelIconLabel(label.value);
+                  injectChannelStyle(channel.id, int2hex(channelColor), label.value);
+                  //MenuItem.scrollTo({ top: 0 });
+                }}>
+                <svg
+                  className={label.label}
+                  viewBox="-4 -4 32 32"
+                  style={{ width: "32px", height: "32px" }}>
+                  <path fill={int2hex(channelColor)} d={label.value} />
+                </svg>
+              </components.Clickable>
+            ))}
+          </div>
+        ),
+      },
+      {
+        id: 2,
+        label: "Modern Icons",
+        element: () => (
+          <div
+            className="channelEditorIcons"
+            style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
+            {group1Array.map((label: any, index: number) => {
+              const paths = Array.isArray(label.Matches)
+                ? label.Matches.map((item: any) => item[1])
+                : [label.Matches];
+
+              return (
+                <components.Clickable
+                  key={index}
+                  onClick={() => {
+                    let fullPathString = "";
+                    paths.forEach((x) => {
+                      fullPathString += x;
+                    });
+                    setChannelIconLabel(label.Name);
+                    console.log(fullPathString);
+                    injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
+                    //scrollTo({ top: 0 })
+                  }}>
+                  <svg
+                    key={index}
+                    className="hghhgjgj"
+                    // Are you okay are you having a stroke?
+                    viewBox="-4 -4 32 32"
+                    style={{
+                      width: "32px",
+                      height: "32px",
+                    }}>
+                    {paths.map((pathData: any, innerIndex: number) => {
+                      if (pathData && pathData.length > 0) {
+                        return <path key={innerIndex} fill={int2hex(channelColor)} d={pathData} />;
+                      } else {
+                        return null;
+                      }
+                    })}
+                  </svg>
+                </components.Clickable>
+              );
+            })}
+          </div>
+        ),
+      },
+    ];
+
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
       setChannelColor(selectedColor);
       const convertedColor: string = int2hex(selectedColor);
@@ -79,7 +156,7 @@ function openEditor(data: any): void {
             display: "flex",
             flexWrap: "wrap",
             alignContent: "flex-start",
-            gap: "8px 0px",
+            gap: "26px 0px",
             position: "fixed",
             top: "56px",
           }}>
@@ -101,64 +178,7 @@ function openEditor(data: any): void {
           />
           <components.Divider className="channelEditorDivider" />
         </div>
-
-        <div
-          className="channelEditorIcons"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignContent: "flex-start",
-          }}>
-          {Icons.map((label: any) => (
-            <components.Clickable
-              onClick={() => {
-                setChannelIconLabel(label.value);
-                injectChannelStyle(channel.id, int2hex(channelColor), label.value);
-              }}>
-              <svg
-                className={label.label}
-                viewBox="-4 -4 32 32"
-                style={{
-                  width: "32px",
-                  height: "32px",
-                }}>
-                <path fill={int2hex(channelColor)} d={label.value} />
-              </svg>
-            </components.Clickable>
-          ))}
-          {group1Array.map((label: any, index: number) => {
-            const paths = Array.isArray(label.Matches)
-              ? label.Matches.map((item: any) => item[1])
-              : [label.Matches];
-
-            return (
-              <components.Clickable
-                key={index}
-                onClick={() => {
-                  let fullPathString = "";
-                  paths.forEach((x) => {
-                    fullPathString += x;
-                  });
-                  setChannelIconLabel(label.Name);
-                  injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
-                }}>
-                <svg
-                  key={index}
-                  className="hghhgjgj"
-                  viewBox="-4 -4 32 32"
-                  style={{
-                    width: "32px",
-                    height: "32px",
-                  }}>
-                  {paths.map((pathData: any, innerIndex: number) => (
-                    <path key={innerIndex} fill={int2hex(channelColor)} d={pathData} />
-                  ))}
-                </svg>
-              </components.Clickable>
-            );
-          })}
-        </div>
-
+        <TabBar tabs={icons} />
         <div
           className="channelEditorSidebar"
           style={{

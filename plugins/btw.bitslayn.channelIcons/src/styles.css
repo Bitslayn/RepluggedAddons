@@ -14,8 +14,9 @@
 }
 .channelEditor > [class^="content"] {
   width: 416px;
-  margin-top: 68px;
+  margin-top: 85px;
   max-height: 358px;
+  padding-bottom: 0px;
 }
 .channelEditorDivider {
   margin-top: 8px;
@@ -43,3 +44,30 @@
 .channelEditorSidebar > div > [class^="suggestedColors"] {
   justify-content: "flex-start";
 }
+.channelTabBarItem {
+  margin-right: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+  background: transparent;
+  position: relative;
+}
+
+.highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: transparent;
+}
+
+.channelTabBarItem.selected {
+  background-color: transparent;
+}
+
+/*
+.channelTabBarItem:hover:not(.selected) {
+  background-color: lightblue;
+}
+ */
