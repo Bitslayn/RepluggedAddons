@@ -37,20 +37,13 @@ console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
 
 const UpdatedIcons = webpack.getBySource("www.w3.org/2000/svg", { all: true });
 const group1Array = [];
-UpdatedIcons.forEach((icon) => {
-  const keys = Object.keys(icon);
-  const iconKeyIndex = keys.findIndex((key) => key.includes("Icon"));
-
-  const toStringResult = Object.values(icon)?.[iconKeyIndex]?.toString?.();
-  const Name = keys[iconKeyIndex];
-  const regex = /,d:"([^"]*)"/g;
-
-  let matches = toStringResult?.matchAll?.(regex);
-
-  if (matches) {
-    matches = Array.from(matches);
-    group1Array.push({ Name, Matches: matches });
-  }
+UpdatedIcons.forEach((iconObject) => {
+  const iconKey = Object.keys(iconObject).find((key) => key.includes("Icon"));
+  if (!iconKey) return;
+  const iconValueString = iconObject[iconKey]?.toString?.();
+  if (!iconValueString) return;
+  const matches = [...iconValueString.matchAll(/,d:"([^"]*)"/g)];
+  if (matches.length) group1Array.push({ Name: iconKey, Matches: matches });
 });
 
 export { Icons, group1Array };

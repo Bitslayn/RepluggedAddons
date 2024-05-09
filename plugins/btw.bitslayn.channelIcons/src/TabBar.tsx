@@ -19,37 +19,48 @@ export const TabBar = ({ tabs }) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <div class="channelTabBar" style={{ position: "fixed", top: "97px" }}>
-        {tabs.map((tab) => (
-          <div key={tab.id} style={{ display: "inline-block" }}>
-            <button
-              className={`channelTabBarItem${activeTab === tab.id ? " selected" : ""}`}
-              onClick={() => handleTabClick(tab.id)}
-              onMouseEnter={() => handleMouseEnter(tab.id)}
-              onMouseLeave={handleMouseLeave}
-              style={{ position: "relative" }}>
-              {tab.label}
-              {activeTab === tab.id && <div className="highlight"></div>}
-              {(hoveredTab === tab.id || activeTab === tab.id) && (
-                <div
-                  className="hoverIndicator"
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    width: "100%",
-                    height: 2,
-                    borderRadius: 3,
-                    backgroundColor:
-                      activeTab === tab.id
-                        ? "var(--control-brand-foreground)"
-                        : "var(--brand-experiment)",
-                  }}
-                />
-              )}
-            </button>
-          </div>
-        ))}
+      <div className="channelTabBar" style={{ position: "fixed", top: "97px" }}>
+        {tabs.map(
+          (tab: {
+            id: React.Key;
+            label:
+              | string
+              | number
+              | boolean
+              | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+              | Iterable<React.ReactNode>
+              | React.ReactPortal;
+          }) => (
+            <div key={tab.id} style={{ display: "inline-block" }}>
+              <button
+                className={`channelTabBarItem${activeTab === tab.id ? " selected" : ""}`}
+                onClick={() => handleTabClick(tab.id)}
+                onMouseEnter={() => handleMouseEnter(tab.id)}
+                onMouseLeave={handleMouseLeave}
+                style={{ position: "relative" }}>
+                {tab.label}
+                {activeTab === tab.id && <div className="highlight"></div>}
+                {(hoveredTab === tab.id || activeTab === tab.id) && (
+                  <div
+                    className="hoverIndicator"
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      height: 2,
+                      borderRadius: 3,
+                      backgroundColor:
+                        activeTab === tab.id
+                          ? "var(--control-brand-foreground)"
+                          : "var(--brand-experiment)",
+                    }}
+                  />
+                )}
+              </button>
+            </div>
+          ),
+        )}
         <Divider.Divider style={{ width: "384px" }}></Divider.Divider>
       </div>
       <div>{tabs.map((tab) => activeTab === tab.id && tab.element())}</div>
