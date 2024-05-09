@@ -1,4 +1,5 @@
 ﻿import React, { useState } from "react";
+import Divider from "replugged/components";
 
 export const TabBar = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -18,11 +19,11 @@ export const TabBar = ({ tabs }) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <div /*class="channelTabBar"*/ style={{ position: "fixed", top: "106px" /*left: "103px"*/ }}>
+      <div class="channelTabBar" style={{ position: "fixed", top: "97px" }}>
         {tabs.map((tab) => (
           <div key={tab.id} style={{ display: "inline-block" }}>
             <button
-              className={`channelTabBarItem ${activeTab === tab.id ? "selected" : ""}`}
+              className={`channelTabBarItem${activeTab === tab.id ? " selected" : ""}`}
               onClick={() => handleTabClick(tab.id)}
               onMouseEnter={() => handleMouseEnter(tab.id)}
               onMouseLeave={handleMouseLeave}
@@ -49,6 +50,7 @@ export const TabBar = ({ tabs }) => {
             </button>
           </div>
         ))}
+        <Divider.Divider style={{ width: "384px" }}></Divider.Divider>
       </div>
       <div>{tabs.map((tab) => activeTab === tab.id && tab.element())}</div>
     </div>

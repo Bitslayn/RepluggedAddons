@@ -14,13 +14,9 @@
 }
 .channelEditor > [class^="content"] {
   width: 416px;
-  margin-top: 85px;
+  margin-top: 76px;
   max-height: 358px;
   padding-bottom: 0px;
-}
-.channelEditorDivider {
-  margin-top: 8px;
-  margin-bottom: 8px;
 }
 .channelEditorIcons > div > svg:hover {
   border-radius: var(--radius-xs);
@@ -34,15 +30,24 @@
   fill: var(--channel-icon);
 }
 .channelEditorHeader > .channelExample {
-  align-self: center;
-  width: 142px;
-  padding-right: 8px;
+  position: fixed;
+  top: 56px;
+  width: 384px;
+  display: flex;
+  justify-content: center;
+}
+.channelExample > div {
+  min-width: 224px;
 }
 .channelExample > div > a:hover {
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
 }
 .channelEditorSidebar > div > [class^="suggestedColors"] {
   justify-content: "flex-start";
+}
+.channelTabBar > div:last-child > .channelTabBarItem {
+  /* OCD, problem? */
+  margin-right: unset;
 }
 .channelTabBarItem {
   margin-right: 10px;
