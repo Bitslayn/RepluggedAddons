@@ -76,3 +76,7 @@
   background-color: lightblue;
 }
  */
+
+[id*="customize-channel-"] > div > svg > path {
+  fill: var(--interactive-normal) !important;
+}
