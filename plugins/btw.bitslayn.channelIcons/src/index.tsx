@@ -69,7 +69,7 @@ function openEditor(data: any): void {
                   className={label.label}
                   viewBox="-4 -4 32 32"
                   style={{ width: "32px", height: "32px" }}>
-                  <path fill={int2hex(channelColor)} d={label.value} />
+                  <path fill={int2hex(channelColor)} d={label.value} fill-rule="evenodd" />
                 </svg>
               </components.Clickable>
             ))}
@@ -104,6 +104,7 @@ function openEditor(data: any): void {
                     className="hghhgjgj"
                     // Are you okay are you having a stroke?
                     // yes ma'am :3
+                    // ᓚᘏᗢ
                     viewBox="-4 -4 32 32"
                     style={{
                       width: "32px",
@@ -115,6 +116,7 @@ function openEditor(data: any): void {
                           <path
                             key={innerIndex}
                             fill={int2hex(channelColor)}
+                            fill-rule="evenodd"
                             d={`${iconBuffer}${pathData}`}
                           />
                         );
