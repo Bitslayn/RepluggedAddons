@@ -9,7 +9,8 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
   }
-
+  // class*="titleWrapper"] > h1
+  // members___{channelId}
   const styleElement = document.createElement("style");
   styleElement.setAttribute("data-channel-style", channelId);
   if (channelColor == "#ffffff" || channelColor == "#000000") {
@@ -108,4 +109,8 @@ export function randomNumber(max): number {
   const buffer = new Uint32Array(1);
   window.crypto.getRandomValues(buffer);
   return buffer[0] % max;
+}
+
+export function getChannelColor(channelId: string) {
+  return config.get("channelColors")[channelId].color;
 }

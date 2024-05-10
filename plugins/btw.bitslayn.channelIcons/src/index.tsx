@@ -246,6 +246,15 @@ export function start(): void {
         },
       );
     }
+    if (channelInstance && config.get("changeChannelNamesReddit", false)) {
+      const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
+      const oldName: string = channel.name;
+      if (!oldName.startsWith("r/")) {
+        channel.name = `r/${oldName}`;
+        console.log(`r/${oldName}`);
+        changedChannelNames.push({ channelid: channel.id, oldName });
+      }
+    }
   });
 }
 
@@ -277,6 +286,15 @@ export function Settings(): JSX.Element {
           "𝗪𝗔𝗥𝗡𝗜𝗡𝗚 Sometimes caching will NOT work right. Refreshing always works."
         }>
         Pascal Case
+      </FormSwitch>
+
+      <FormSwitch
+        {...util.useSetting(config, "changeChannelNamesReddit", false)}
+        note={
+          "Title every channel name in r/channel name for a reddity appearance. " +
+          "𝗪𝗔𝗥𝗡𝗜𝗡𝗚 Sometimes caching will NOT work right. Refreshing always works."
+        }>
+        r/
       </FormSwitch>
 
       <div>
