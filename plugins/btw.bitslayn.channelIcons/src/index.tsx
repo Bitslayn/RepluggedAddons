@@ -5,10 +5,13 @@ import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import {
-  capitalizeWords, EditedChannelIcon,
+  capitalizeWords,
+  EditedChannelIcon,
   getCurrentChannelObject,
   injectChannelStyle,
-  randomNumber, SelectedChannelStore,
+  randomNumber,
+  SelectedChannelStore,
+  selectedIcon,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
@@ -70,6 +73,7 @@ function openEditor(data: any): void {
                 onClick={() => {
                   setChannelIcon(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
+                  selectedIcon(int2hex(channelColor), label.value);
                 }}>
                 <components.Tooltip text={label.label} style={{ display: "inline-block" }}>
                   <svg
@@ -233,23 +237,22 @@ export function start(): void {
       />
     );
   });
-  inject.after(Header, 'Title', (a) => {
+  inject.after(Header, "Title", (a) => {
     const headerObj = a?.[0]?.children?.props?.children;
-    if (headerObj && getCurrentChannelObject()?.color)
-    {
+    if (headerObj && getCurrentChannelObject()?.color) {
       const ChannelObject = getCurrentChannelObject();
       headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
       // clearChildrenAddPath(ChannelObject.icon)
     }
   });
 
-  inject.before(Header, 'Icon', (a) => {
+  inject.before(Header, "Icon", (a) => {
     const ChannelObject = getCurrentChannelObject();
     // const CurrentChannel = ChannelStore.getChannel(SelectedChannelStore.getCurrentlySelectedChannelId())
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
-        return <EditedChannelIcon channel={getCurrentChannelObject()}/>
-      }
+        return <EditedChannelIcon channel={getCurrentChannelObject()} />;
+      };
     }
   });
 

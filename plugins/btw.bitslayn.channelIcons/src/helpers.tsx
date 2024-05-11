@@ -8,18 +8,33 @@ interface ColoredChannel {
   icon: string;
 }
 
-interface IconClass
-{
+interface IconClass {
   icon: string;
 }
 
-interface SelectedChannel
-{
+interface SelectedChannel {
   getCurrentlySelectedChannelId: () => string;
 }
 
-export const SelectedChannelStore: SelectedChannel & Store = webpack.getByStoreName('SelectedChannelStore');
-const Classes: IconClass = webpack.getByProps(['icon','hamburger']);
+export const SelectedChannelStore: SelectedChannel & Store =
+  webpack.getByStoreName("SelectedChannelStore");
+const Classes: IconClass = webpack.getByProps(["icon", "hamburger"]);
+
+export function selectedIcon(channelColor: string, path: string): void {
+  const existingStyle = document.querySelector(`[selected-icon="owo"]`);
+  if (existingStyle) {
+    existingStyle.remove(); // Remove existing style if found
+  }
+  const styleElement = document.createElement("style");
+  styleElement.setAttribute("selected-icon", "owo");
+  styleElement.textContent = `
+    .channelEditorIcons div > span > svg:has([d="${path}"]) {
+      background: ${shadeColor(channelColor, 0.3)} !important;
+      border-radius: var(--radius-xs);
+    }
+  `;
+  document.head.appendChild(styleElement);
+}
 
 export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {
   config.set("coloredChannels", {
@@ -74,9 +89,10 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
 
       [data-list-item-id$="_${channelId}"]:hover,
       .channelEditorIcons > div > svg:hover,
-      .channelEditorIcons > div > span > svg:hover { {
+      .channelEditorIcons > div > span > svg:hover {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)} !important;
+        border-radius: var(--radius-xs);
       }
 
       [data-list-item-id$="_${channelId}"]:hover > div > [class^="name"] {
@@ -133,21 +149,36 @@ export function randomNumber(max: number): number {
 }
 
 export function getCurrentChannelObject(): ColoredChannel {
-  return config.get('coloredChannels')[SelectedChannelStore.getCurrentlySelectedChannelId()];
+  return config.get("coloredChannels")[SelectedChannelStore.getCurrentlySelectedChannelId()];
 }
 
 export function getChannelObject(channelId: string): ColoredChannel {
-  return config.get('coloredChannels')[channelId];
+  return config.get("coloredChannels")[channelId];
 }
 
 interface EditedChannelIconProps {
   channel: ColoredChannel | undefined;
 }
 
-export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({channel}) => {
+export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({ channel }) => {
   return (
-    <svg x="0" y="0" className={Classes.icon} aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-      <path fill={channel?.color} fillRule="evenodd" d={channel?.icon} clipRule="evenodd" className=""></path>
+    <svg
+      x="0"
+      y="0"
+      className={Classes.icon}
+      aria-hidden="true"
+      role="img"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24">
+      <path
+        fill={channel?.color}
+        fillRule="evenodd"
+        d={channel?.icon}
+        clipRule="evenodd"
+        className=""></path>
     </svg>
-  )
-}
+  );
+};
