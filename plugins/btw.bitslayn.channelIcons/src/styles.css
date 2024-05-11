@@ -82,6 +82,11 @@
 }
  */
 
-[id*="customize-channel-"] > div > svg > path {
-  fill: var(--interactive-normal) !important;
+[aria-label="Channel header"] > div > div > div > svg > [fill="#000000"],
+[aria-label="Channel header"] > div > div > div > svg > [fill="#ffffff"] {
+  fill: var(--channel-icon);
+}
+[aria-label="Channel header"] > div > div > div > h1 > [style^="color: rgb(0, 0, 0)"],
+[aria-label="Channel header"] > div > div > div > h1 > [style^="color: rgb(255, 255, 255)"] {
+  color: var(--font-display) !important;
 }
