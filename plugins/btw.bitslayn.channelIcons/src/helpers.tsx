@@ -27,12 +27,21 @@ export function selectedIcon(channelColor: string, path: string): void {
   }
   const styleElement = document.createElement("style");
   styleElement.setAttribute("selected-icon", "owo");
-  styleElement.textContent = `
+  if (channelColor === "#ffffff" || channelColor === "#000000") {
+    styleElement.textContent = `
     .channelEditorIcons div > span > svg:has([d="${path}"]) {
-      background: ${shadeColor(channelColor, 0.3)} !important;
+      background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
+  } else {
+    styleElement.textContent = `
+      .channelEditorIcons div > span > svg:has([d="${path}"]) {
+        background: ${shadeColor(channelColor, 0.3)} !important;
+        border-radius: var(--radius-xs);
+      }
+    `;
+  }
   document.head.appendChild(styleElement);
 }
 
@@ -91,7 +100,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       .channelEditorIcons > div > svg:hover,
       .channelEditorIcons > div > span > svg:hover {
         /* Hovered background color */
-        background: ${shadeColor(channelColor, 0.15)} !important;
+        background: ${shadeColor(channelColor, 0.15)};
         border-radius: var(--radius-xs);
       }
 

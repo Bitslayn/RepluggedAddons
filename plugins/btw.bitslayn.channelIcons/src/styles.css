@@ -4,7 +4,7 @@
   padding-right: unset;
 }
 .channelEditor {
-  width: 668px;
+  width: 701px;
   height: 484px;
 }
 .channelEditorSidebar {
@@ -13,7 +13,7 @@
   top: 56px;
 }
 .channelEditor > [class^="content"] {
-  width: 416px;
+  width: 449px;
   margin-top: 76px;
   max-height: 358px;
   padding-bottom: 0px;
@@ -22,11 +22,14 @@
 .channelEditorIcons > div > span > svg:hover {
   border-radius: var(--radius-xs);
 }*/
+.channelEditorIcons {
+  column-gap: 3px;
+}
 .channelEditorIcons > div > svg:hover:has([fill="#000000"]),
 .channelEditorIcons > div > svg:hover:has([fill="#ffffff"]),
 .channelEditorIcons > div > span > svg:hover:has([fill="#000000"]),
 .channelEditorIcons > div > span > svg:hover:has([fill="#ffffff"]) {
-  background: var(--bg-overlay-hover, var(--background-modifier-hover)) !important;
+  background: var(--bg-overlay-hover, var(--background-modifier-hover));
 }
 .channelEditorIcons > div > svg > [fill="#000000"],
 .channelEditorIcons > div > svg > [fill="#ffffff"],
@@ -37,7 +40,7 @@
 .channelEditorHeader > .channelExample {
   position: fixed;
   top: 56px;
-  width: 384px;
+  width: 417px;
   display: flex;
   justify-content: center;
 }
