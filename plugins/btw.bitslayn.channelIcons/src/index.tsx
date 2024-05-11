@@ -65,12 +65,14 @@ function openEditor(data: any): void {
                   setChannelIcon(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
                 }}>
-                <svg
-                  className={label.label}
-                  viewBox="-4 -4 32 32"
-                  style={{ width: "32px", height: "32px" }}>
-                  <path fill={int2hex(channelColor)} d={label.value} fill-rule="evenodd" />
-                </svg>
+                <components.Tooltip text={label.label} style={{ display: "inline-block" }}>
+                  <svg
+                    className={label.label}
+                    viewBox="-4 -4 32 32"
+                    style={{ width: "32px", height: "32px" }}>
+                    <path fill={int2hex(channelColor)} d={label.value} fill-rule="evenodd" />
+                  </svg>
+                </components.Tooltip>
               </components.Clickable>
             ))}
           </div>

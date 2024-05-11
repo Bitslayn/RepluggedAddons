@@ -18,15 +18,20 @@
   max-height: 358px;
   padding-bottom: 0px;
 }
-.channelEditorIcons > div > svg:hover {
+.channelEditorIcons > div > svg:hover,
+.channelEditorIcons > div > span > svg:hover {
   border-radius: var(--radius-xs);
 }
 .channelEditorIcons > div > svg:hover:has([fill="#000000"]),
-.channelEditorIcons > div > svg:hover:has([fill="#ffffff"]) {
+.channelEditorIcons > div > svg:hover:has([fill="#ffffff"]),
+.channelEditorIcons > div > span > svg:hover:has([fill="#000000"]),
+.channelEditorIcons > div > span > svg:hover:has([fill="#ffffff"]) {
   background: var(--bg-overlay-hover, var(--background-modifier-hover)) !important;
 }
 .channelEditorIcons > div > svg > [fill="#000000"],
-.channelEditorIcons > div > svg > [fill="#ffffff"] {
+.channelEditorIcons > div > svg > [fill="#ffffff"],
+.channelEditorIcons > div > span > svg > [fill="#000000"],
+.channelEditorIcons > div > span > svg > [fill="#ffffff"] {
   fill: var(--channel-icon);
 }
 .channelEditorHeader > .channelExample {

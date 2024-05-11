@@ -52,7 +52,8 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       }
 
       [data-list-item-id$="_${channelId}"]:hover,
-      .channelEditorIcons > div > svg:hover {
+      .channelEditorIcons > div > svg:hover,
+      .channelEditorIcons > div > span > svg:hover {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)} !important;
       }
