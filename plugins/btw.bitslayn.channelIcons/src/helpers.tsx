@@ -1,4 +1,5 @@
-﻿import { webpack } from "replugged";
+﻿import React from "react";
+import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
 
@@ -17,7 +18,7 @@ interface SelectedChannel
   getCurrentlySelectedChannelId: () => string;
 }
 
-const SelectedChannelStore: SelectedChannel & Store = webpack.getByStoreName('SelectedChannelStore');
+export const SelectedChannelStore: SelectedChannel & Store = webpack.getByStoreName('SelectedChannelStore');
 const Classes: IconClass = webpack.getByProps(['icon','hamburger']);
 
 export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {
@@ -72,7 +73,8 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       }
 
       [data-list-item-id$="_${channelId}"]:hover,
-      .channelEditorIcons > div > svg:hover {
+      .channelEditorIcons > div > svg:hover,
+      .channelEditorIcons > div > span > svg:hover { {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)} !important;
       }

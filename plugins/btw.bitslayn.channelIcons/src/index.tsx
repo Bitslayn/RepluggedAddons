@@ -5,10 +5,10 @@ import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import {
-  capitalizeWords, clearChildrenAddPath, EditedChannelIcon,
+  capitalizeWords, EditedChannelIcon,
   getCurrentChannelObject,
   injectChannelStyle,
-  randomNumber,
+  randomNumber, SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
@@ -71,12 +71,14 @@ function openEditor(data: any): void {
                   setChannelIcon(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
                 }}>
-                <svg
-                  className={label.label}
-                  viewBox="-4 -4 32 32"
-                  style={{ width: "32px", height: "32px" }}>
-                  <path fill={int2hex(channelColor)} d={label.value} fill-rule="evenodd" />
-                </svg>
+                <components.Tooltip text={label.label} style={{ display: "inline-block" }}>
+                  <svg
+                    className={label.label}
+                    viewBox="-4 -4 32 32"
+                    style={{ width: "32px", height: "32px" }}>
+                    <path fill={int2hex(channelColor)} d={label.value} fillRule="evenodd" />
+                  </svg>
+                </components.Tooltip>
               </components.Clickable>
             ))}
           </div>
@@ -231,7 +233,7 @@ export function start(): void {
       />
     );
   });
-  inject.after(Header, 'Title', (a, b) => {
+  inject.after(Header, 'Title', (a) => {
     const headerObj = a?.[0]?.children?.props?.children;
     if (headerObj && getCurrentChannelObject()?.color)
     {
@@ -241,8 +243,9 @@ export function start(): void {
     }
   });
 
-  inject.before(Header, 'Icon', (a, b) => {
+  inject.before(Header, 'Icon', (a) => {
     const ChannelObject = getCurrentChannelObject();
+    // const CurrentChannel = ChannelStore.getChannel(SelectedChannelStore.getCurrentlySelectedChannelId())
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()}/>
