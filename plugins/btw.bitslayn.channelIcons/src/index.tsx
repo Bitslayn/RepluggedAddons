@@ -4,7 +4,12 @@ import { modal } from "replugged/common";
 import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
-import { capitalizeWords, injectChannelStyle, randomNumber } from "./helpers";
+import {
+  capitalizeWords, clearChildrenAddPath, EditedChannelIcon,
+  getCurrentChannelObject,
+  injectChannelStyle,
+  randomNumber,
+} from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
 
@@ -20,6 +25,7 @@ export const { int2hex }: { int2hex: (int: any) => string } = webpack.getByProps
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
+const Header = webpack.getBySource("toolbar:function()")?.default;
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", {});
@@ -65,14 +71,12 @@ function openEditor(data: any): void {
                   setChannelIcon(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
                 }}>
-                <components.Tooltip text={label.label} style={{ display: "inline-block" }}>
-                  <svg
-                    className={label.label}
-                    viewBox="-4 -4 32 32"
-                    style={{ width: "32px", height: "32px" }}>
-                    <path fill={int2hex(channelColor)} d={label.value} fill-rule="evenodd" />
-                  </svg>
-                </components.Tooltip>
+                <svg
+                  className={label.label}
+                  viewBox="-4 -4 32 32"
+                  style={{ width: "32px", height: "32px" }}>
+                  <path fill={int2hex(channelColor)} d={label.value} fill-rule="evenodd" />
+                </svg>
               </components.Clickable>
             ))}
           </div>
@@ -227,6 +231,25 @@ export function start(): void {
       />
     );
   });
+  inject.after(Header, 'Title', (a, b) => {
+    const headerObj = a?.[0]?.children?.props?.children;
+    if (headerObj && getCurrentChannelObject()?.color)
+    {
+      const ChannelObject = getCurrentChannelObject();
+      headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
+      // clearChildrenAddPath(ChannelObject.icon)
+    }
+  });
+
+  inject.before(Header, 'Icon', (a, b) => {
+    const ChannelObject = getCurrentChannelObject();
+    if (a && a[0] && ChannelObject?.icon) {
+      a[0].icon = () => {
+        return <EditedChannelIcon channel={getCurrentChannelObject()}/>
+      }
+    }
+  });
+
   inject.after(ChannelClass, "default", (a: any) => {
     const channelInstance: any = a?.[0];
     if (channelInstance && config.get("changeChannelNames", false)) {

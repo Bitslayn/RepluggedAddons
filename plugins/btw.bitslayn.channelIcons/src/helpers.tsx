@@ -1,4 +1,24 @@
-﻿import { config } from "./icons";
+﻿import { webpack } from "replugged";
+import { Store } from "replugged/dist/renderer/modules/common/flux";
+import { config } from "./icons";
+
+interface ColoredChannel {
+  color: string;
+  icon: string;
+}
+
+interface IconClass
+{
+  icon: string;
+}
+
+interface SelectedChannel
+{
+  getCurrentlySelectedChannelId: () => string;
+}
+
+const SelectedChannelStore: SelectedChannel & Store = webpack.getByStoreName('SelectedChannelStore');
+const Classes: IconClass = webpack.getByProps(['icon','hamburger']);
 
 export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {
   config.set("coloredChannels", {
@@ -12,7 +32,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
 
   const styleElement = document.createElement("style");
   styleElement.setAttribute("data-channel-style", channelId);
-  if (channelColor == "#ffffff" || channelColor == "#000000") {
+  if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
     [data-list-item-id$="_${channelId}"] > div > div > svg > path {
     /* Icon */
@@ -52,8 +72,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       }
 
       [data-list-item-id$="_${channelId}"]:hover,
-      .channelEditorIcons > div > svg:hover,
-      .channelEditorIcons > div > span > svg:hover {
+      .channelEditorIcons > div > svg:hover {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)} !important;
       }
@@ -86,12 +105,12 @@ function shadeColor(color: string, transparency: number): string {
   G = G < 255 ? G : 255;
   B = B < 255 ? B : 255;
 
-  let RR = R.toString(16).length == 1 ? `0${R.toString(16)}` : R.toString(16);
-  let GG = G.toString(16).length == 1 ? `0${G.toString(16)}` : G.toString(16);
-  let BB = B.toString(16).length == 1 ? `0${B.toString(16)}` : B.toString(16);
+  let RR = R.toString(16).length === 1 ? `0${R.toString(16)}` : R.toString(16);
+  let GG = G.toString(16).length === 1 ? `0${G.toString(16)}` : G.toString(16);
+  let BB = B.toString(16).length === 1 ? `0${B.toString(16)}` : B.toString(16);
 
   let alpha = Math.round(transparency * 255);
-  let alphaHex = alpha.toString(16).length == 1 ? `0${alpha.toString(16)}` : alpha.toString(16);
+  let alphaHex = alpha.toString(16).length === 1 ? `0${alpha.toString(16)}` : alpha.toString(16);
 
   return `#${RR}${GG}${BB}${alphaHex}`;
 }
@@ -105,8 +124,28 @@ export function capitalizeWords(sentence: string): string {
   return capitalizedWords.join(" ");
 }
 
-export function randomNumber(max): number {
+export function randomNumber(max: number): number {
   const buffer = new Uint32Array(1);
   window.crypto.getRandomValues(buffer);
   return buffer[0] % max;
+}
+
+export function getCurrentChannelObject(): ColoredChannel {
+  return config.get('coloredChannels')[SelectedChannelStore.getCurrentlySelectedChannelId()];
+}
+
+export function getChannelObject(channelId: string): ColoredChannel {
+  return config.get('coloredChannels')[channelId];
+}
+
+interface EditedChannelIconProps {
+  channel: ColoredChannel | undefined;
+}
+
+export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({channel}) => {
+  return (
+    <svg x="0" y="0" className={Classes.icon} aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+      <path fill={channel?.color} fillRule="evenodd" d={channel?.icon} clipRule="evenodd" className=""></path>
+    </svg>
+  )
 }
