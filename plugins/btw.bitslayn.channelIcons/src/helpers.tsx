@@ -222,7 +222,7 @@ export function generateInterface<T>(
     let valueType: string = typeof (data || {})[key];
 
     if (valueType === "function") {
-      valueType = "any";
+      valueType = "() => never";
     }
 
     if (valueType === "object" && !Array.isArray((data || {})[key])) {
