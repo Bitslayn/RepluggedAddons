@@ -15,7 +15,7 @@ import {
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
-import { int2hexModule } from "./types";
+import { int2hexModule, ModalsModule } from "./types";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -24,7 +24,7 @@ const {
   ContextMenu: { MenuItem },
 } = components;
 const { openModal } = modal;
-const Modals: { ConfirmModal: any } = webpack.getByProps("ConfirmModal");
+const Modals: ModalsModule = webpack.getByProps("ConfirmModal");
 export const { int2hex }: int2hexModule = webpack.getByProps("int2hex");
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
