@@ -171,6 +171,7 @@ function openEditor(data: any): void {
           const existingStyle = document.querySelector(`[data-channel-style="${channel.id}"]`);
           if (existingStyle) {
             existingStyle.remove();
+            delete config.get("coloredChannels")[channel.id]; // this was that fix
           }
         }}
         header={`Customize #${channel.name}`}
