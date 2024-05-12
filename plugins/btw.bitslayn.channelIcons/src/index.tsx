@@ -15,6 +15,7 @@ import {
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
+import { int2hexModule } from "./types";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -24,10 +25,11 @@ const {
 } = components;
 const { openModal } = modal;
 const Modals: { ConfirmModal: any } = webpack.getByProps("ConfirmModal");
-export const { int2hex }: { int2hex: (int: any) => string } = webpack.getByProps("int2hex");
+export const { int2hex }: int2hexModule = webpack.getByProps("int2hex");
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
+const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
 
 function injectSavedChannelsStyles(): void {
@@ -57,8 +59,7 @@ function openEditor(data: any): void {
       "#95a5a6",
       "#607d8b",
     ]);
-
-    const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
+    
     // uwu
     selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
     console.log(`${int2hex(channelColor)}, ${iconBuffer}${channelIcon}`);
@@ -157,7 +158,7 @@ function openEditor(data: any): void {
 
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
       setChannelColor(selectedColor);
-      const convertedColor: string = int2hex(selectedColor);
+      const convertedColor: string = int2hex(channelColor);
       const updatedColors: string[] = [
         convertedColor,
         ...suggestedColors.filter((color) => color !== convertedColor),

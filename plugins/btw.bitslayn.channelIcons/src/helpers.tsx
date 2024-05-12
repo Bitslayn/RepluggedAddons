@@ -191,3 +191,76 @@ export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({ channel })
     </svg>
   );
 };
+
+export function generateInterface<T>(
+  data: T | undefined = undefined,
+  maxDepth: number = 3,
+  currentDepth: number = 0,
+  visited = new Set<any>(),
+  isTopLevel = true,
+): string {
+  if (data === null) {
+    return "";
+  }
+
+  if (visited.has(data) || currentDepth >= maxDepth) {
+    return "";
+  }
+
+  visited.add(data);
+
+  const keys = Object.keys(data || {});
+  let interfaceString = "";
+
+  keys.forEach((key) => {
+    if (key.includes("-")) {
+      const parts = key.split("-");
+      parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
+      key = parts.join("");
+    }
+
+    let valueType: string = typeof (data || {})[key];
+
+    if (valueType === "function") {
+      valueType = "any";
+    }
+
+    if (valueType === "object" && !Array.isArray((data || {})[key])) {
+      interfaceString += `  ${key}: {\n`;
+      const nestedInterface = generateInterface(
+        (data || {})[key],
+        maxDepth,
+        currentDepth + 1,
+        visited,
+        false,
+      );
+      interfaceString += nestedInterface;
+      interfaceString += "};\n";
+    } else if (Array.isArray((data || {})[key])) {
+      interfaceString += `  ${key}: Array<{\n`;
+      const nestedInterface = generateInterface(
+        (data || {})[key],
+        maxDepth,
+        currentDepth + 1,
+        visited,
+        false,
+      );
+      interfaceString += nestedInterface;
+      interfaceString += "}>;\n";
+    } else {
+      interfaceString += `  ${key}: ${valueType};\n`;
+    }
+  });
+
+  const proto = Object.getPrototypeOf(data || {});
+  if (proto !== null && currentDepth < maxDepth) {
+    interfaceString += generateInterface(proto, maxDepth, currentDepth + 1, visited, false);
+  }
+
+  if (isTopLevel) {
+    interfaceString = `interface MyInterface {\n${interfaceString}`;
+    interfaceString += "}";
+  }
+
+  return interfaceString;
+}
