@@ -1,19 +1,18 @@
 import { ComponentType, SetStateAction, useState } from "react";
-import { Injector, components, util, webpack } from "replugged";
+import { components, Injector, util, webpack } from "replugged";
 import { modal } from "replugged/common";
 import "./styles.css";
-import { Tooltip } from "replugged/components";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import {
-  EditedChannelIcon,
   capitalizeWords,
+  EditedChannelIcon,
   getCurrentChannelObject,
   injectChannelStyle,
   randomNumber,
   selectedIcon,
 } from "./helpers";
-import { Icons, config, group1Array } from "./icons";
+import { config, group1Array, Icons } from "./icons";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
 
@@ -81,7 +80,8 @@ function openEditor(data: any): void {
                     className={label.label}
                     viewBox="-4 -4 32 32"
                     style={{ width: "32px", height: "32px" }}>
-                    <path fill={int2hex(channelColor) ?? '--channel-icon'} d={`${iconBuffer}${label.value}`} fillRule="evenodd" />
+                    <path fill={int2hex(channelColor) ?? "--channel-icon"} d={`${iconBuffer}${label.value}`}
+                          fillRule="evenodd" />
                   </svg>
                 </CustomTooltip>
               </components.Clickable>
@@ -112,32 +112,34 @@ function openEditor(data: any): void {
                     setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                   }}>
-                  <svg
-                    key={index}
-                    className="hghhgjgj"
-                    // Are you okay are you having a stroke?
-                    // yes ma'am :3
-                    // ᓚᘏᗢ
-                    viewBox="-4 -4 32 32"
-                    style={{
-                      width: "32px",
-                      height: "32px",
-                    }}>
-                    {paths.map((pathData: any, innerIndex: number) => {
-                      if (pathData && pathData.length > 0) {
-                        return (
-                          <path
-                            key={innerIndex}
-                            fill={int2hex(channelColor) ?? '--channel-icon'}
-                            fillRule="evenodd"
-                            d={`${iconBuffer}${pathData}`}
-                          />
-                        );
-                      } else {
-                        return null;
-                      }
-                    })}
-                  </svg>
+                  <CustomTooltip text={label.label}>
+                    <svg
+                      key={index}
+                      className="hghhgjgj"
+                      // Are you okay are you having a stroke?
+                      // yes ma'am :3
+                      // ᓚᘏᗢ
+                      viewBox="-4 -4 32 32"
+                      style={{
+                        width: "32px",
+                        height: "32px",
+                      }}>
+                      {paths.map((pathData: any, innerIndex: number) => {
+                        if (pathData && pathData.length > 0) {
+                          return (
+                            <path
+                              key={innerIndex}
+                              fill={int2hex(channelColor) ?? "--channel-icon"}
+                              fillRule="evenodd"
+                              d={`${iconBuffer}${pathData}`}
+                            />
+                          );
+                        } else {
+                          return null;
+                        }
+                      })}
+                    </svg>
+                  </CustomTooltip>
                 </components.Clickable>
               );
             })}
@@ -288,10 +290,10 @@ export function getChangedChannelNames(): any[] {
 
 export function stop(): void {
   inject.uninjectAll();
-  const Channels = Object.keys(config.get("coloredChannels"))
+  const Channels = Object.keys(config.get("coloredChannels"));
   Channels.forEach((channelId: string) => {
     document.querySelector(`[data-channel-style="${channelId}"]`).remove();
-  })
+  });
 }
 
 export function Settings(): JSX.Element {
