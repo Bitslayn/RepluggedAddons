@@ -1,18 +1,18 @@
 import { ComponentType, SetStateAction, useState } from "react";
-import { components, Injector, util, webpack } from "replugged";
+import { Injector, components, util, webpack } from "replugged";
 import { modal } from "replugged/common";
 import "./styles.css";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import {
-  capitalizeWords,
   EditedChannelIcon,
+  capitalizeWords,
   getCurrentChannelObject,
   injectChannelStyle,
   randomNumber,
   selectedIcon,
 } from "./helpers";
-import { config, group1Array, Icons } from "./icons";
+import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
 
@@ -60,6 +60,8 @@ function openEditor(data: any): void {
 
     const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
     // uwu
+    selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
+    console.log(`${int2hex(channelColor)}, ${iconBuffer}${channelIcon}`);
     const icons = [
       {
         id: 1,
@@ -114,6 +116,7 @@ function openEditor(data: any): void {
                     });
                     setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
+                    selectedIcon(int2hex(channelColor), fullPathString);
                   }}>
                   <CustomTooltip text={label.label}>
                     <svg
