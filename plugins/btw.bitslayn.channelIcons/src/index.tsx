@@ -28,7 +28,7 @@ export const { int2hex }: { int2hex: (int: any) => string } = webpack.getByProps
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
-const Header = webpack.getBySource("toolbar:function()")?.default;
+const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", {});
@@ -248,7 +248,7 @@ export function start(): void {
       />
     );
   });
-  inject.after(Header, "Title", (a) => {
+  inject.after(Header.default, "Title", (a: any) => {
     const headerObj = a?.[0]?.children?.props?.children;
     if (headerObj && getCurrentChannelObject()?.color) {
       const ChannelObject = getCurrentChannelObject();
@@ -257,7 +257,7 @@ export function start(): void {
     }
   });
 
-  inject.before(Header, "Icon", (a) => {
+  inject.before(Header.default, "Icon", (a: any) => {
     const ChannelObject = getCurrentChannelObject();
     // const CurrentChannel = ChannelStore.getChannel(SelectedChannelStore.getCurrentlySelectedChannelId())
     if (a && a[0] && ChannelObject?.icon) {

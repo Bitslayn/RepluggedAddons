@@ -16,8 +16,7 @@ const CustomTooltip = ({ text, children }) => {
       <div
         className="tooltip-trigger"
         onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+        onMouseLeave={handleMouseLeave}>
         {children}
       </div>
       {showTooltip && <div className="tooltip">{text}</div>}
