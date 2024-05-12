@@ -59,7 +59,7 @@ function openEditor(data: any): void {
     ]);
 
     const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
-    // uwu 
+    // uwu
     const icons = [
       {
         id: 1,
@@ -73,15 +73,18 @@ function openEditor(data: any): void {
                 onClick={() => {
                   setChannelIcon(label.value);
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
-                  selectedIcon(int2hex(channelColor), label.value);
+                  selectedIcon(int2hex(channelColor), `${iconBuffer}${label.value}`);
                 }}>
                 <CustomTooltip text={label.label}>
                   <svg
                     className={label.label}
                     viewBox="-4 -4 32 32"
                     style={{ width: "32px", height: "32px" }}>
-                    <path fill={int2hex(channelColor) ?? "--channel-icon"} d={`${iconBuffer}${label.value}`}
-                          fillRule="evenodd" />
+                    <path
+                      fill={int2hex(channelColor) ?? "--channel-icon"}
+                      d={`${iconBuffer}${label.value}`}
+                      fillRule="evenodd"
+                    />
                   </svg>
                 </CustomTooltip>
               </components.Clickable>

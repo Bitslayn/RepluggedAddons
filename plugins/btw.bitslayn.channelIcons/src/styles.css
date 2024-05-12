@@ -25,17 +25,15 @@
 .channelEditorIcons {
   column-gap: 3px;
 }
-.channelEditorIcons > div > svg:hover:has([fill="#000000"]),
-.channelEditorIcons > div > svg:hover:has([fill="#ffffff"]),
-.channelEditorIcons > div > span > svg:hover:has([fill="#000000"]),
-.channelEditorIcons > div > span > svg:hover:has([fill="#ffffff"]) {
+.channelEditorIcons > div > div > div > svg:hover:has([fill="#000000"]),
+.channelEditorIcons > div > div > div > svg:hover:has([fill="#ffffff"]) {
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
+  border-radius: var(--radius-xs);
 }
-.channelEditorIcons > div > svg > [fill="#000000"],
-.channelEditorIcons > div > svg > [fill="#ffffff"],
-.channelEditorIcons > div > span > svg > [fill="#000000"],
-.channelEditorIcons > div > span > svg > [fill="#ffffff"] {
+.channelEditorIcons > div > div > div > svg > [fill="#000000"],
+.channelEditorIcons > div > div > div > svg > [fill="#ffffff"] {
   fill: var(--channel-icon);
+  border-radius: var(--radius-xs);
 }
 .channelEditorHeader > .channelExample {
   position: fixed;
@@ -111,12 +109,12 @@
   bottom: 120%;
   left: 50%;
   transform: translateX(-50%);
-  padding:  8px 12px;
+  padding: 8px 12px;
   font-size: 14px;
 }
 
 .tooltip::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 100%;
   left: 50%;

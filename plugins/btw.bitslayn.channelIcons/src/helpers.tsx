@@ -29,14 +29,14 @@ export function selectedIcon(channelColor: string, path: string): void {
   styleElement.setAttribute("selected-icon", "owo");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
-    .channelEditorIcons div > span > svg:has([d="${path}"]) {
+    .channelEditorIcons > div > div > div > svg:has([d="${path}"]) {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
   } else {
     styleElement.textContent = `
-      .channelEditorIcons div > span > svg:has([d="${path}"]) {
+      .channelEditorIcons > div > div > div > svg:has([d="${path}"]) {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
