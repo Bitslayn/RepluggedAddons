@@ -93,3 +93,39 @@
 [aria-label="Channel header"] > div > div > div > h1 > [style^="color: rgb(255, 255, 255)"] {
   color: var(--font-display) !important;
 }
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip {
+  visibility: visible;
+  background-color: var(--background-floating);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding:  8px 12px;
+  font-size: 14px;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip-trigger {
+  cursor: pointer;
+}

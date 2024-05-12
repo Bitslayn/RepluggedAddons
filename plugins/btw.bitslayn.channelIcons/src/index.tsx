@@ -2,19 +2,20 @@ import { ComponentType, SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
 import { modal } from "replugged/common";
 import "./styles.css";
+import { Tooltip } from "replugged/components";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import {
-  capitalizeWords,
   EditedChannelIcon,
+  capitalizeWords,
   getCurrentChannelObject,
   injectChannelStyle,
   randomNumber,
-  SelectedChannelStore,
   selectedIcon,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
+import CustomTooltip from "./Tooltip";
 
 const colorBrands: any = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -59,7 +60,7 @@ function openEditor(data: any): void {
     ]);
 
     const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
-
+    // uwu 
     const icons = [
       {
         id: 1,
@@ -75,14 +76,14 @@ function openEditor(data: any): void {
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
                   selectedIcon(int2hex(channelColor), label.value);
                 }}>
-                <components.Tooltip text={label.label} style={{ display: "inline-block" }}>
+                <CustomTooltip text={label.label}>
                   <svg
                     className={label.label}
                     viewBox="-4 -4 32 32"
                     style={{ width: "32px", height: "32px" }}>
-                    <path fill={int2hex(channelColor)} d={label.value} fillRule="evenodd" />
+                    <path fill={int2hex(channelColor) ?? '--channel-icon'} d={`${iconBuffer}${label.value}`} fillRule="evenodd" />
                   </svg>
-                </components.Tooltip>
+                </CustomTooltip>
               </components.Clickable>
             ))}
           </div>
@@ -127,8 +128,8 @@ function openEditor(data: any): void {
                         return (
                           <path
                             key={innerIndex}
-                            fill={int2hex(channelColor)}
-                            fill-rule="evenodd"
+                            fill={int2hex(channelColor) ?? '--channel-icon'}
+                            fillRule="evenodd"
                             d={`${iconBuffer}${pathData}`}
                           />
                         );
