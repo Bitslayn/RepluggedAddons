@@ -288,6 +288,10 @@ export function getChangedChannelNames(): any[] {
 
 export function stop(): void {
   inject.uninjectAll();
+  const Channels = Object.keys(config.get("coloredChannels"))
+  Channels.forEach((channnel) => {
+    document.querySelector(`[data-channel-style="${channnel}"]`).remove();
+  })
 }
 
 export function Settings(): JSX.Element {
