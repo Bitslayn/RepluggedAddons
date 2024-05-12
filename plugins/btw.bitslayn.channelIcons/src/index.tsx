@@ -59,7 +59,7 @@ function openEditor(data: any): void {
       "#95a5a6",
       "#607d8b",
     ]);
-    
+
     // uwu
     selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
     console.log(`${int2hex(channelColor)}, ${iconBuffer}${channelIcon}`);
