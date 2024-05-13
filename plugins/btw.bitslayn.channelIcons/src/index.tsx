@@ -18,7 +18,7 @@ import {
   SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
-import { RaccoonSVG } from "./RaccoonSVG";
+import { RaccoonSVG } from "./specialSVGs";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
 import {
