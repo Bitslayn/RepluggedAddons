@@ -196,7 +196,7 @@ export function generateInterface<T>(
 
   visited.add(data);
 
-  const keys = Object.keys(data || {});
+  const keys = Object.keys(data || []);
   let interfaceString = "";
 
   keys.forEach((key) => {
@@ -206,20 +206,20 @@ export function generateInterface<T>(
       key = parts.join("");
     }
 
-    let valueType: string = typeof (data || {})[key];
+    const value = data[key];
+
+    let valueType: string = typeof value;
 
     if (valueType === "function") {
-      valueType = "() => never";
+      valueType = "() => unknown";
     }
 
-    if ((data || {})[key] === undefined) {
+    if (value === undefined || value === null) {
       interfaceString += `  ${key}: NonNullable<unknown>;\n`;
-    } else if ((data || {})[key] === null) {
-      interfaceString += `  ${key}: NonNullable<unknown>;\n`;
-    } else if (valueType === "object" && !Array.isArray((data || {})[key])) {
+    } else if (valueType === "object" && !Array.isArray(value)) {
       interfaceString += `  ${key}: {\n`;
       const nestedInterface = generateInterface(
-        (data || {})[key],
+        value,
         maxDepth,
         currentDepth + 1,
         visited,
@@ -227,10 +227,10 @@ export function generateInterface<T>(
       );
       interfaceString += nestedInterface;
       interfaceString += "};\n";
-    } else if (Array.isArray((data || {})[key])) {
+    } else if (Array.isArray(value)) {
       interfaceString += `  ${key}: Array<{\n`;
       const nestedInterface = generateInterface(
-        (data || {})[key],
+        value,
         maxDepth,
         currentDepth + 1,
         visited,
@@ -242,6 +242,7 @@ export function generateInterface<T>(
       interfaceString += `  ${key}: ${valueType};\n`;
     }
   });
+
 
   const proto = Object.getPrototypeOf(data || {});
   if (proto !== null && currentDepth < maxDepth) {

@@ -1,3 +1,4 @@
+import * as repl from "node:repl";
 import { ComponentType, SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
 import { modal } from "replugged/common";
@@ -11,7 +12,7 @@ import {
   injectChannelStyle,
   randomNumber,
   selectedIcon,
-  generateInterface,
+  generateInterface, getChannelObject,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
@@ -45,8 +46,8 @@ function injectSavedChannelsStyles(): void {
 function openEditor(data: any): void {
   const RenderThis: React.FC<any> = (props) => {
     const { channel } = data;
-    const [channelColor, setChannelColor] = useState<string>();
-    const [channelIcon, setChannelIcon] = useState<string>();
+    const [channelColor, setChannelColor] = useState<string>(getChannelObject(channel.id)?.color ?? '');
+    const [channelIcon, setChannelIcon] = useState<string>(getChannelObject(channel.id)?.icon);
 
     const [suggestedColors, setSuggestedColors] = useState<string[]>([
       "#1abc9c",
@@ -62,7 +63,7 @@ function openEditor(data: any): void {
     ]);
 
     // uwu
-    // selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
+    selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
     const icons = [
       {
         id: 1,
@@ -119,7 +120,7 @@ function openEditor(data: any): void {
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                     selectedIcon(int2hex(channelColor), fullPathString);
                   }}>
-                  <CustomTooltip text={label.label}>
+                  <CustomTooltip text={label.Name}>
                     <svg
                       key={index}
                       className="hghhgjgj"
@@ -225,9 +226,9 @@ const changedChannelNames: any[] = [];
 function isChannelIdExists(channelId: string): boolean {
   return changedChannelNames.some((entry: any) => entry.channelid === channelId);
 }
-
+ 
 export function start(): void {
-  // console.log(generateInterface(webpack.getByProps("colorBrand")))
+  // console.log(generateInterface(webpack.getModule(x=>x,{all:true })))
   injectSavedChannelsStyles();
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;
