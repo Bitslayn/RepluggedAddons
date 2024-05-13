@@ -28,6 +28,10 @@ export function selectedIcon(channelColor: string, path: string): void {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
+      .channelEditorIcons > div > div > div > svg:hover {
+        background: ${shadeColor(channelColor, 0.15)};
+        border-radius: var(--radius-xs);
+      }
     `;
   }
   document.head.appendChild(styleElement);
@@ -84,8 +88,8 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
         color: ${channelColor} !important;
       }
 
-      [data-list-item-id$="_${channelId}"]:hover,
-      .channelEditorIcons > div > div > div > svg:hover {
+      [data-list-item-id$="_${channelId}"]:hover
+      /*.channelEditorIcons > div > div > div > svg:hover*/ {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)};
         border-radius: var(--radius-xs);

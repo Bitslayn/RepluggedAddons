@@ -18,6 +18,9 @@
   max-height: 358px;
   padding-bottom: 0px;
 }
+.channelEditor > [class^="content"]::-webkit-scrollbar-thumb {
+  transform: translateX(-100px);
+}
 /*.channelEditorIcons > div > svg:hover,
 .channelEditorIcons > div > span > svg:hover {
   border-radius: var(--radius-xs);
@@ -116,12 +119,12 @@
 .tooltip::after {
   content: "";
   position: absolute;
-  bottom: 100%;
+  top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: transparent transparent black transparent;
+  border-color: black transparent transparent transparent;
 }
 
 .tooltip-trigger {
