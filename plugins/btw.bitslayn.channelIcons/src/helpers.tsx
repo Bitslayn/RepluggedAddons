@@ -18,7 +18,7 @@ interface SelectedChannel {
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
-const Classes: IconClass = webpack.getByProps(["icon", "hamburger"]);
+const Classes: IconClass = await webpack.waitForProps(["icon", "hamburger"]);
 
 export function selectedIcon(channelColor: string, path: string): void {
   const existingStyle = document.querySelector(`[selected-icon="owo"]`);
