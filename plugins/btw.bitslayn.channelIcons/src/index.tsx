@@ -12,12 +12,13 @@ import {
   injectChannelStyle,
   randomNumber,
   selectedIcon,
-  generateInterface, getChannelObject,
+  generateInterface, getChannelObject, SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
+import { RaccoonSVG } from "./RaccoonSVG";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
-import { BrandColors, int2hexModule, ModalsModule } from "./types";
+import { BrandColors, ColoredChannel, int2hexModule, ModalsModule } from "./types";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -33,6 +34,8 @@ const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
 const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
+
+const ChannelMention = webpack.getBySource(/let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/)
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -116,6 +119,7 @@ function openEditor(data: any): void {
                     paths.forEach((x) => {
                       fullPathString += x;
                     });
+                    console.log(fullPathString)
                     setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                     selectedIcon(int2hex(channelColor), fullPathString);
@@ -158,9 +162,9 @@ function openEditor(data: any): void {
     ];
 
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
-      selectedIcon(int2hex(selectedColor), `${iconBuffer}${channelIcon}`);
-      setChannelColor(selectedColor);
       const convertedColor: string = int2hex(selectedColor);
+      selectedIcon(convertedColor, `${iconBuffer}${channelIcon}`);
+      setChannelColor(selectedColor);
       injectChannelStyle(channel.id, convertedColor, channelIcon);
       const updatedColors: string[] = [
         convertedColor,
@@ -263,10 +267,15 @@ export function start(): void {
 
   inject.before(Header.default, "Icon", (a: any) => {
     const ChannelObject = getCurrentChannelObject();
-    // const CurrentChannel = ChannelStore.getChannel(SelectedChannelStore.getCurrentlySelectedChannelId())
+    const CurrentChannel = ChannelStore.getChannel(SelectedChannelStore.getCurrentlySelectedChannelId())
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()} />;
+      };
+    } else if (CurrentChannel?.name?.includes('rac'))
+    {
+      a[0].icon = () => {
+        return <RaccoonSVG></RaccoonSVG>
       };
     }
   });
@@ -331,7 +340,7 @@ export function Settings(): JSX.Element {
 
       <div>
         {Object.entries(coloredChannels).map(
-          ([channelId]: [string, { color: string; icon: string }]) => (
+          ([channelId]: [string, ColoredChannel]) => (
             <div
               key={channelId}
               style={{
