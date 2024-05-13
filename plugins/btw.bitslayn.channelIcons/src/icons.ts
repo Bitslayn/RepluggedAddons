@@ -1,11 +1,7 @@
 ﻿import { settings, webpack } from "replugged";
+import {IconData, Settings} from "./types";
 
-interface IconData {
-  label: string;
-  value: string;
-}
-
-export const config = await settings.init("btw.bitslayn.channelIcons");
+export const config = await settings.init<Settings>("btw.bitslayn.channelIcons");
 
 async function fetchDataAndExtract(): Promise<IconData[]> {
   const url = "https://davart154.github.io/Themes/Icon%20Revert%202023/2023%20Icon%20Revert.css";

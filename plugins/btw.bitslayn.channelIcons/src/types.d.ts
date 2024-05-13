@@ -1,3 +1,28 @@
+export interface ColoredChannel {
+  color: string;
+  icon: string;
+}
+
+export interface IconData {
+  label: string;
+  value: string;
+}
+
+export interface IconClass {
+  icon: string;
+}
+
+export interface Settings {
+  coloredChannels: []
+  changeChannelNames: []
+  suggestedColors: []
+  icons: IconData[]
+}
+
+export interface SelectedChannel {
+  getCurrentlySelectedChannelId: () => string;
+}
+
 export interface int2hexModule {
   getDarkness: () => never;
   hex2int: () => never;

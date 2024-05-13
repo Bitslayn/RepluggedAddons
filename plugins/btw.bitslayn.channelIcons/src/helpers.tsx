@@ -2,19 +2,7 @@
 import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
-
-interface ColoredChannel {
-  color: string;
-  icon: string;
-}
-
-interface IconClass {
-  icon: string;
-}
-
-interface SelectedChannel {
-  getCurrentlySelectedChannelId: () => string;
-}
+import {ColoredChannel, IconClass, SelectedChannel} from "./types";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
@@ -47,7 +35,7 @@ export function selectedIcon(channelColor: string, path: string): void {
 
 export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {
   config.set("coloredChannels", {
-    ...config.get("coloredChannels", {}),
+    ...config.get("coloredChannels", []),
     [channelId]: { color: channelColor, icon: path },
   });
   const existingStyle = document.querySelector(`[data-channel-style="${channelId}"]`);
