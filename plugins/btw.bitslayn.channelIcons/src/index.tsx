@@ -10,7 +10,7 @@ import {
   getCurrentChannelObject,
   injectChannelStyle,
   randomNumber,
-  selectedIcon,
+  selectedIcon, generateInterface,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
