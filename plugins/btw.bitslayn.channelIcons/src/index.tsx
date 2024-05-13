@@ -34,7 +34,7 @@ const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
 
 function injectSavedChannelsStyles(): void {
-  const coloredChannels: any = config.get("coloredChannels", {});
+  const coloredChannels: any = config.get("coloredChannels", []);
   Object.entries(coloredChannels).forEach(
     ([channelId, { color, icon }]: [string, { color: string; icon: string }]) => {
       injectChannelStyle(channelId, color, icon);
@@ -168,7 +168,7 @@ function openEditor(data: any): void {
       injectChannelStyle(channel.id, convertedColor, channelIcon);
       config.set("suggestedColors", updatedColors);
       config.set("coloredChannels", {
-        ...config.get("coloredChannels", {}),
+        ...config.get("coloredChannels", []),
         [channel.id]: { color: convertedColor, icon: channelIcon },
       });
     };
@@ -271,7 +271,7 @@ export function start(): void {
 
   inject.after(ChannelClass, "default", (a: any) => {
     const channelInstance: any = a?.[0];
-    if (channelInstance && config.get("changeChannelNames", false)) {
+    if (channelInstance && config.get("changeChannelNames", [])) {
       const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
       const oldName: string = channel.name;
       if (!isChannelIdExists(channel.id)) {
@@ -279,7 +279,7 @@ export function start(): void {
         changedChannelNames.push({ channelid: channel.id, oldName });
       }
     }
-    if (!config.get("changeChannelNames", false)) {
+    if (!config.get("changeChannelNames", [])) {
       changedChannelNames.forEach(
         ({ channelid, oldName }: { channelid: string; oldName: string }) => {
           const channel: any = ChannelStore.getChannel(channelid);
@@ -306,7 +306,7 @@ export function stop(): void {
 }
 
 export function Settings(): JSX.Element {
-  const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", {}));
+  const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", []));
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
@@ -319,7 +319,7 @@ export function Settings(): JSX.Element {
   return (
     <div>
       <FormSwitch
-        {...util.useSetting(config, "changeChannelNames", false)}
+        {...util.useSetting(config, "changeChannelNames", [])}
         note={
           "Title every channel name in Pascal Case for a polished appearance. " +
           "𝗪𝗔𝗥𝗡𝗜𝗡𝗚 Sometimes caching will NOT work right. Refreshing always works."
