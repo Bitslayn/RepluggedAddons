@@ -3,6 +3,22 @@ export interface ColoredChannel {
   icon: string;
 }
 
+export interface ChannelStoreChannel {
+  id: string;
+  type: number;
+  name: string;
+  guild_id: string;
+  topic_: string;
+  position_: number;
+  permissionOverwrites_: NonNullable<unknown>;
+  nsfw_: boolean;
+  parent_id: NonNullable<unknown>;
+  rateLimitPerUser_: number;
+  flags_: number;
+  lastMessageId: NonNullable<unknown>;
+  version: string;
+}
+
 export interface IconData {
   label: string;
   value: string;
@@ -14,9 +30,9 @@ export interface IconClass {
 
 export interface Settings {
   coloredChannels: ColoredChannel[];
-  changeChannelNames: []
-  suggestedColors: string[]
-  icons: IconData[]
+  changeChannelNames: [];
+  suggestedColors: string[];
+  icons: IconData[];
 }
 export interface BrandColors {
   button: string;

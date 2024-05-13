@@ -1,5 +1,5 @@
 ﻿import { settings, webpack } from "replugged";
-import {IconData, Settings} from "./types";
+import { IconData, Settings } from "./types";
 
 export const config = await settings.init<Settings>("btw.bitslayn.channelIcons");
 

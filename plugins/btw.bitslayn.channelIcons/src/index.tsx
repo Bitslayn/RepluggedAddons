@@ -1,3 +1,4 @@
+import { Channel } from "node:diagnostics_channel";
 import * as repl from "node:repl";
 import { ComponentType, SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
@@ -12,13 +13,21 @@ import {
   injectChannelStyle,
   randomNumber,
   selectedIcon,
-  generateInterface, getChannelObject, SelectedChannelStore,
+  generateInterface,
+  getChannelObject,
+  SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { RaccoonSVG } from "./RaccoonSVG";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
-import { BrandColors, ColoredChannel, int2hexModule, ModalsModule } from "./types";
+import {
+  BrandColors,
+  ChannelStoreChannel,
+  ColoredChannel,
+  int2hexModule,
+  ModalsModule,
+} from "./types";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -35,7 +44,9 @@ const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName
 const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
 
-const ChannelMention = webpack.getBySource(/let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/)
+const ChannelMention = webpack.getBySource(
+  /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/,
+);
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -49,7 +60,9 @@ function injectSavedChannelsStyles(): void {
 function openEditor(data: any): void {
   const RenderThis: React.FC<any> = (props) => {
     const { channel } = data;
-    const [channelColor, setChannelColor] = useState<string>(getChannelObject(channel.id)?.color ?? '');
+    const [channelColor, setChannelColor] = useState<string>(
+      getChannelObject(channel.id)?.color ?? "",
+    );
     const [channelIcon, setChannelIcon] = useState<string>(getChannelObject(channel.id)?.icon);
 
     const [suggestedColors, setSuggestedColors] = useState<string[]>([
@@ -119,7 +132,7 @@ function openEditor(data: any): void {
                     paths.forEach((x) => {
                       fullPathString += x;
                     });
-                    console.log(fullPathString)
+                    console.log(fullPathString);
                     setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                     selectedIcon(int2hex(channelColor), fullPathString);
@@ -230,9 +243,9 @@ const changedChannelNames: any[] = [];
 function isChannelIdExists(channelId: string): boolean {
   return changedChannelNames.some((entry: any) => entry.channelid === channelId);
 }
- 
+
 export function start(): void {
-  // console.log(generateInterface(webpack.getModule(x=>x,{all:true })))
+  // console.log(generateInterface());
   injectSavedChannelsStyles();
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;
@@ -267,15 +280,16 @@ export function start(): void {
 
   inject.before(Header.default, "Icon", (a: any) => {
     const ChannelObject = getCurrentChannelObject();
-    const CurrentChannel = ChannelStore.getChannel(SelectedChannelStore.getCurrentlySelectedChannelId())
+    const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
+      SelectedChannelStore.getCurrentlySelectedChannelId(),
+    ) as ChannelStoreChannel;
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()} />;
       };
-    } else if (CurrentChannel?.name?.includes('rac'))
-    {
+    } else if (CurrentChannel?.name?.includes("rac")) {
       a[0].icon = () => {
-        return <RaccoonSVG></RaccoonSVG>
+        return <RaccoonSVG />;
       };
     }
   });
@@ -339,32 +353,30 @@ export function Settings(): JSX.Element {
       </FormSwitch>
 
       <div>
-        {Object.entries(coloredChannels).map(
-          ([channelId]: [string, ColoredChannel]) => (
-            <div
-              key={channelId}
+        {Object.entries(coloredChannels).map(([channelId]: [string, ColoredChannel]) => (
+          <div
+            key={channelId}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "8px",
+              justifyContent: "space-between",
+            }}>
+            <ChannelClass.default
+              className="channelExample"
+              channel={ChannelStore.getChannel(channelId)}
+            />
+            <button
               style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "8px",
-                justifyContent: "space-between",
-              }}>
-              <ChannelClass.default
-                className="channelExample"
-                channel={ChannelStore.getChannel(channelId)}
-              />
-              <button
-                style={{
-                  background: "var(--old-red)",
-                  color: "var(--button-outline-danger-text)",
-                  borderRadius: "5px",
-                }}
-                onClick={() => removeColoredChannel(channelId)}>
-                Remove
-              </button>
-            </div>
-          ),
-        )}
+                background: "var(--old-red)",
+                color: "var(--button-outline-danger-text)",
+                borderRadius: "5px",
+              }}
+              onClick={() => removeColoredChannel(channelId)}>
+              Remove
+            </button>
+          </div>
+        ))}
       </div>
     </div>
   );

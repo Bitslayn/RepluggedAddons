@@ -2,7 +2,7 @@
 import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
-import {ColoredChannel, IconClass, SelectedChannel} from "./types";
+import { ColoredChannel, IconClass, SelectedChannel } from "./types";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
@@ -218,31 +218,18 @@ export function generateInterface<T>(
       interfaceString += `  ${key}: NonNullable<unknown>;\n`;
     } else if (valueType === "object" && !Array.isArray(value)) {
       interfaceString += `  ${key}: {\n`;
-      const nestedInterface = generateInterface(
-        value,
-        maxDepth,
-        currentDepth + 1,
-        visited,
-        false,
-      );
+      const nestedInterface = generateInterface(value, maxDepth, currentDepth + 1, visited, false);
       interfaceString += nestedInterface;
       interfaceString += "};\n";
     } else if (Array.isArray(value)) {
       interfaceString += `  ${key}: Array<{\n`;
-      const nestedInterface = generateInterface(
-        value,
-        maxDepth,
-        currentDepth + 1,
-        visited,
-        false,
-      );
+      const nestedInterface = generateInterface(value, maxDepth, currentDepth + 1, visited, false);
       interfaceString += nestedInterface;
       interfaceString += "}>;\n";
     } else {
       interfaceString += `  ${key}: ${valueType};\n`;
     }
   });
-
 
   const proto = Object.getPrototypeOf(data || {});
   if (proto !== null && currentDepth < maxDepth) {
