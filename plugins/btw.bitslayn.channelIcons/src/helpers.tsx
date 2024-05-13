@@ -225,7 +225,11 @@ export function generateInterface<T>(
       valueType = "() => never";
     }
 
-    if (valueType === "object" && !Array.isArray((data || {})[key])) {
+    if ((data || {})[key] === undefined) {
+      interfaceString += `  ${key}?: undefined;\n`;
+    } else if ((data || {})[key] === null) {
+      interfaceString += `  ${key}?: null;\n`;
+    } else if (valueType === "object" && !Array.isArray((data || {})[key])) {
       interfaceString += `  ${key}: {\n`;
       const nestedInterface = generateInterface(
         (data || {})[key],
