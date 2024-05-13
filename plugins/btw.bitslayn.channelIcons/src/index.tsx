@@ -16,9 +16,9 @@ import {
 import { Icons, config, group1Array } from "./icons";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
-import { int2hexModule, ModalsModule } from "./types";
+import { BrandColors, int2hexModule, ModalsModule } from "./types";
 
-const colorBrands: any = webpack.getByProps("colorBrand");
+const colorBrands: BrandColors = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
 const inject: Injector = new Injector();
 const {
@@ -62,8 +62,7 @@ function openEditor(data: any): void {
     ]);
 
     // uwu
-    selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
-    console.log(`${int2hex(channelColor)}, ${iconBuffer}${channelIcon}`);
+    // selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
     const icons = [
       {
         id: 1,
@@ -158,14 +157,15 @@ function openEditor(data: any): void {
     ];
 
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
+      selectedIcon(int2hex(selectedColor), `${iconBuffer}${channelIcon}`);
       setChannelColor(selectedColor);
-      const convertedColor: string = int2hex(channelColor);
+      const convertedColor: string = int2hex(selectedColor);
+      injectChannelStyle(channel.id, convertedColor, channelIcon);
       const updatedColors: string[] = [
         convertedColor,
         ...suggestedColors.filter((color) => color !== convertedColor),
       ].slice(0, 10);
       setSuggestedColors(updatedColors);
-      injectChannelStyle(channel.id, convertedColor, channelIcon);
       config.set("suggestedColors", updatedColors);
       config.set("coloredChannels", {
         ...config.get("coloredChannels", []),
@@ -176,7 +176,7 @@ function openEditor(data: any): void {
     return (
       <Modals.ConfirmModal
         confirmButtonColor={colorBrands.colorBrand}
-        cancelButtonColor={colorBrands.colorRed}
+        cancelButtonColor={colorBrands.colorDanger}
         confirmText={"Okay"}
         cancelText={"Remove"}
         onCancel={() => {
@@ -227,6 +227,7 @@ function isChannelIdExists(channelId: string): boolean {
 }
 
 export function start(): void {
+  // console.log(generateInterface(webpack.getByProps("colorBrand")))
   injectSavedChannelsStyles();
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;

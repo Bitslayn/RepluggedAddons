@@ -18,7 +18,30 @@ export interface Settings {
   suggestedColors: string[]
   icons: IconData[]
 }
-
+export interface BrandColors {
+  button: string;
+  buttonMinor: string;
+  closeButton: string;
+  closeIcon: string;
+  colorBrand: string;
+  colorCustom: string;
+  colorDanger: string;
+  colorDefault: string;
+  colorInfo: string;
+  colorNeutral: string;
+  colorPlayStation: string;
+  colorPremium: string;
+  colorPremiumTier0: string;
+  colorPremiumTier1: string;
+  colorPremiumTier2: string;
+  colorSpotify: string;
+  colorStreamerMode: string;
+  colorSuccess: string;
+  colorWarning: string;
+  isMobile: string;
+  notice: string;
+  platformIcon: string;
+}
 export interface SelectedChannel {
   getCurrentlySelectedChannelId: () => string;
 }
@@ -27,7 +50,7 @@ export interface int2hexModule {
   getDarkness: () => never;
   hex2int: () => never;
   hex2rgb: () => never;
-  int2hex: (channelColor: string) => never;
+  int2hex: (channelColor: React.SetStateAction<string>) => never;
   int2hsl: () => never;
   int2hslRaw: () => never;
   int2rgbArray: () => never;
