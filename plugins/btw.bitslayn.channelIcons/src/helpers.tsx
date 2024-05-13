@@ -226,9 +226,9 @@ export function generateInterface<T>(
     }
 
     if ((data || {})[key] === undefined) {
-      interfaceString += `  ${key}?: undefined;\n`;
+      interfaceString += `  ${key}: NonNullable<unknown>;\n`;
     } else if ((data || {})[key] === null) {
-      interfaceString += `  ${key}?: null;\n`;
+      interfaceString += `  ${key}: NonNullable<unknown>;\n`;
     } else if (valueType === "object" && !Array.isArray((data || {})[key])) {
       interfaceString += `  ${key}: {\n`;
       const nestedInterface = generateInterface(
