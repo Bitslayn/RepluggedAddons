@@ -140,7 +140,8 @@ function openEditor(data: any): void {
                   <CustomTooltip text={label.Name}>
                     <svg
                       key={index}
-                      className="hghhgjgj"
+                      className={label.Name}
+                      // className="hghhgjgj"
                       // Are you okay are you having a stroke?
                       // yes ma'am :3
                       // ᓚᘏᗢ

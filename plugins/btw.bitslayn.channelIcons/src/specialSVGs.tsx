@@ -1,5 +1,3 @@
-//import { getCurrentChannelObject } from "./helpers";
-
 import { getCurrentChannelObject } from "./helpers";
 
 export const RaccoonSVG = () => {
