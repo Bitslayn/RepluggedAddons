@@ -79,7 +79,6 @@ function openEditor(data: any): void {
     ]);
 
     // uwu
-    selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`);
     const icons = [
       {
         id: 1,
@@ -132,7 +131,7 @@ function openEditor(data: any): void {
                     paths.forEach((x) => {
                       fullPathString += x;
                     });
-                    console.log(fullPathString);
+                    // console.log(fullPathString);
                     setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                     selectedIcon(int2hex(channelColor), fullPathString);
@@ -143,6 +142,7 @@ function openEditor(data: any): void {
                       className={label.Name}
                       // className="hghhgjgj"
                       // why >:((
+                      // Was going to use the class name as a selector to edit icons but decided not to
 
                       // Are you okay are you having a stroke?
                       // yes ma'am :3
@@ -200,6 +200,7 @@ function openEditor(data: any): void {
         cancelButtonColor={colorBrands.colorDanger}
         confirmText={"Okay"}
         cancelText={"Remove"}
+        onAnimationEnd={() => selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`)}
         onCancel={() => {
           const existingStyle = document.querySelector(`[data-channel-style="${channel.id}"]`);
           if (existingStyle) {

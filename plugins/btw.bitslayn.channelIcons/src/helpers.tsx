@@ -19,7 +19,7 @@ export function selectedIcon(channelColor: string, path: string): void {
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
     .channelEditorIcons > div > div > div > svg:has([d="${path}"]),
-    .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split("Z", 1)[0]}"]) {
+    .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split("Z", 1)[0]}Z"]) {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
@@ -27,7 +27,7 @@ export function selectedIcon(channelColor: string, path: string): void {
   } else {
     styleElement.textContent = `
       .channelEditorIcons > div > div > div > svg:has([d="${path}"]),
-      .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split('Z', 1)[0]}"]) {
+      .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split('Z', 1)[0]}Z"]) {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
@@ -141,7 +141,7 @@ export function capitalizeWords(sentence: string): string {
   const capitalizedWords: string[] = words.map(
     (word) => word.charAt(0).toUpperCase() + word.slice(1),
   );
-  console.log(capitalizedWords);
+  // console.log(capitalizedWords);
   return capitalizedWords.join(" ");
 }
 
