@@ -41,7 +41,7 @@ export const { int2hex }: int2hexModule = webpack.getByProps("int2hex");
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
-const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
+export const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
 
 const ChannelMention = webpack.getBySource(

@@ -3,6 +3,7 @@ import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
 import { ColoredChannel, IconClass, SelectedChannel } from "./types";
+import { iconBuffer } from "./index";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
@@ -17,14 +18,16 @@ export function selectedIcon(channelColor: string, path: string): void {
   styleElement.setAttribute("selected-icon", "owo");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
-    .channelEditorIcons > div > div > div > svg:has([d="${path}"]) {
+    .channelEditorIcons > div > div > div > svg:has([d="${path}"]),
+    .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split("Z", 1)[0]}"]) {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
   } else {
     styleElement.textContent = `
-      .channelEditorIcons > div > div > div > svg:has([d="${path}"]) {
+      .channelEditorIcons > div > div > div > svg:has([d="${path}"]),
+      .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split('Z', 1)[0]}"]) {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
@@ -91,7 +94,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       [data-list-item-id$="_${channelId}"]:hover
       /*.channelEditorIcons > div > div > div > svg:hover*/ {
         /* Hovered background color */
-        background: ${shadeColor(channelColor, 0.15)};
+        background: ${shadeColor(channelColor, 0.15)} !important;
         border-radius: var(--radius-xs);
       }
 
