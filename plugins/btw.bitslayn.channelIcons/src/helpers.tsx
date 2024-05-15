@@ -3,7 +3,6 @@ import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
 import { ColoredChannel, IconClass, SelectedChannel } from "./types";
-import { iconBuffer } from "./index";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
@@ -14,20 +13,24 @@ export function selectedIcon(channelColor: string, path: string): void {
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
   }
+  const splitPaths = (path: string): string[] => {
+    const paths = path.replaceAll("Z", "Z~").split("~").filter(Boolean); // This works but not Regex???
+    return paths.map(p => `:has(>[d*="${p}"])`);
+  }
+  const selectors = splitPaths(path);
+  console.log(`.channelEditorIcons > div > div > div > svg${selectors.join('')}`);
   const styleElement = document.createElement("style");
   styleElement.setAttribute("selected-icon", "owo");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
-    .channelEditorIcons > div > div > div > svg:has([d="${path}"]),
-    .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split("Z", 1)[0]}Z"]) {
+    .channelEditorIcons > div > div > div > svg${selectors.join('')} {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
   } else {
     styleElement.textContent = `
-      .channelEditorIcons > div > div > div > svg:has([d="${path}"]),
-      .channelEditorIcons > div > div > div > svg:has([d^="${iconBuffer}${path.split('Z', 1)[0]}Z"]) {
+      .channelEditorIcons > div > div > div > svg${selectors.join('')} {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
