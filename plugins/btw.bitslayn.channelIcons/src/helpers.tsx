@@ -84,6 +84,11 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
         color: ${shadeColor(channelColor, 0.8)} !important;
       }
 
+      [data-list-item-id$="_${channelId}"] > div > [class^="children"] div > svg > path {
+        /* Misc buttons color patch */
+        fill: currentColor;
+      }
+
       [data-list-item-id$="_${channelId}"] > div > [class^="children"] div > svg:hover {
         /* Hovered misc buttons color */
         color: ${channelColor} !important;
