@@ -18,7 +18,7 @@ import {
   SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
-import { RaccoonSVG } from "./specialSVGs";
+import { ChannelNames, RaccoonSVG } from "./specialSVGs";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
 import {
@@ -287,13 +287,15 @@ export function start(): void {
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore.getCurrentlySelectedChannelId(),
     ) as ChannelStoreChannel;
+    const CustomIcon = ChannelNames.find(x=>CurrentChannel.name.includes(x.name));
+    console.log(CustomIcon)
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()} />;
       };
-    } else if (CurrentChannel?.name?.includes("rac")) {
+    } else if (CustomIcon) {
       a[0].icon = () => {
-        return <RaccoonSVG />;
+        return <CustomIcon.icon/>
       };
     }
   });
