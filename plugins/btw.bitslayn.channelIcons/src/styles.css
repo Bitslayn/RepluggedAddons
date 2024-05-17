@@ -5,7 +5,8 @@
 }
 .channelEditor {
   width: 701px;
-  height: 484px;
+  height: 456px;
+  justify-content: space-between;
 }
 .channelEditorSidebar {
   position: fixed;
@@ -13,10 +14,15 @@
   top: 56px;
 }
 .channelEditor > [class^="content"] {
-  width: 449px;
-  margin-top: 76px;
-  max-height: 358px;
-  padding-bottom: 0px;
+  position: fixed;
+  width: 553px;
+  max-height: 456px;
+  padding: 92px 64px 70px 64px;
+  border-radius: unset;
+  left: -48px;
+}
+.channelEditor > [class^="flex"]:last-child {
+  bottom: 0px;
 }
 .channelEditor > [class^="content"]::-webkit-scrollbar-thumb {
   transform: translateX(-100px);
@@ -52,7 +58,21 @@
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
 }
 .channelEditorSidebar > div > [class^="suggestedColors"] {
-  justify-content: "flex-start";
+  justify-content: flex-start;
+  align-self: flex-end;
+  width: 158px;
+}
+.channelEditorSidebar > div > [class^="suggestedColors"] > [class^="suggestedColor"]:first-child {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 17px;
+  left: 16px;
+}
+.channelEditorSidebar > div > [class^="suggestedColors"] > [class^="suggestedColor"] {
+  width: 20px;
+  height: 20px;
+  border: none;
 }
 .channelTabBar > div:last-child > .channelTabBarItem {
   /* OCD, problem? */
@@ -114,6 +134,7 @@
   transform: translateX(-50%);
   padding: 8px 12px;
   font-size: 14px;
+  z-index: 3;
 }
 
 .tooltip::after {
@@ -124,7 +145,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: black transparent transparent transparent;
+  border-color: var(--background-floating) transparent transparent transparent;
 }
 
 .tooltip-trigger {

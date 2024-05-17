@@ -66,6 +66,7 @@ function openEditor(data: any): void {
     const [channelIcon, setChannelIcon] = useState<string>(getChannelObject(channel.id)?.icon);
 
     const [suggestedColors, setSuggestedColors] = useState<string[]>([
+      channelColor || "#000000",
       "#1abc9c",
       "#2ecc71",
       "#3498db",
@@ -185,7 +186,7 @@ function openEditor(data: any): void {
       const updatedColors: string[] = [
         convertedColor,
         ...suggestedColors.filter((color) => color !== convertedColor),
-      ].slice(0, 10);
+      ].slice(0, 11);
       setSuggestedColors(updatedColors);
       config.set("suggestedColors", updatedColors);
       config.set("coloredChannels", {
@@ -211,11 +212,12 @@ function openEditor(data: any): void {
         header={`Customize #${channel.name}`}
         className="channelEditor"
         {...props}>
+        <div style={{ backgroundColor: "var(--primary-600)", width: "100%", height: "92px", position: "fixed", top: "0px", left: "0px", borderRadius: "5px 5px 0 0", zIndex: "1" }}></div>
         <div className="channelEditorHeader">
-          <ChannelClass.default
+          {/* <ChannelClass.default
             className="channelExample"
             channel={ChannelStore.getChannel(channel.id)}
-          />
+          /> */}
           <TabBar tabs={icons} />
         </div>
         <div
@@ -226,6 +228,7 @@ function openEditor(data: any): void {
             gap: "8px",
             overflow: "hidden scroll",
             maxHeight: "362px",
+            zIndex: "2"
           }}>
           <ColorPicker.CustomColorPicker
             type={1}
@@ -287,7 +290,7 @@ export function start(): void {
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore.getCurrentlySelectedChannelId(),
     ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames.find(x=>CurrentChannel.name.includes(x.name));
+    const CustomIcon = ChannelNames?.find(x=>CurrentChannel?.name?.includes(x?.name));
     console.log(CustomIcon)
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
