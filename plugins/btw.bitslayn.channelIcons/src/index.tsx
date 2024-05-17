@@ -212,12 +212,38 @@ function openEditor(data: any): void {
         header={`Customize #${channel.name}`}
         className="channelEditor"
         {...props}>
-        <div style={{ backgroundColor: "var(--primary-600)", width: "100%", height: "92px", position: "fixed", top: "0px", left: "0px", borderRadius: "5px 5px 0 0", zIndex: "1" }}></div>
+        <div
+          className="top thing"
+          style={{
+            backgroundColor: "var(--primary-600)",
+            width: "441px",
+            height: "92px",
+            position: "fixed",
+            top: "0px",
+            left: "0px",
+            borderRadius: "5px 5px 0 0",
+            zIndex: "1",
+          }}></div>
+        <div
+          className="bottom thing"
+          style={{
+            backgroundColor: "var(--modal-footer-background)",
+            width: "441px",
+            height: "70px",
+            position: "fixed",
+            bottom: "0px",
+            left: "0px",
+            borderRadius: "0 0 5px 5px",
+            zIndex: "1",
+          }}></div>
+        <ChannelClass.default
+          className="channelExample"
+          channel={ChannelStore.getChannel(channel.id)}
+        />
         <div className="channelEditorHeader">
-          {/* <ChannelClass.default
-            className="channelExample"
-            channel={ChannelStore.getChannel(channel.id)}
-          /> */}
+          <components.FormItem>
+            <components.TextInput placeholder="Search icons" {...util} />
+          </components.FormItem>
           <TabBar tabs={icons} />
         </div>
         <div
@@ -228,7 +254,7 @@ function openEditor(data: any): void {
             gap: "8px",
             overflow: "hidden scroll",
             maxHeight: "362px",
-            zIndex: "2"
+            zIndex: "2",
           }}>
           <ColorPicker.CustomColorPicker
             type={1}
@@ -290,15 +316,15 @@ export function start(): void {
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore.getCurrentlySelectedChannelId(),
     ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.find(x=>CurrentChannel?.name?.includes(x?.name));
-    console.log(CustomIcon)
+    const CustomIcon = ChannelNames?.find((x) => CurrentChannel?.name?.includes(x?.name));
+    console.log(CustomIcon);
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()} />;
       };
     } else if (CustomIcon) {
       a[0].icon = () => {
-        return <CustomIcon.icon/>
+        return <CustomIcon.icon />;
       };
     }
   });

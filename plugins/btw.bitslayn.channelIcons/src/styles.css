@@ -23,6 +23,7 @@
 }
 .channelEditor > [class^="flex"]:last-child {
   bottom: 0px;
+  z-index: -1;
 }
 .channelEditor > [class^="content"]::-webkit-scrollbar-thumb {
   transform: translateX(-100px);
@@ -33,6 +34,7 @@
 }*/
 .channelEditorIcons {
   column-gap: 3px;
+  padding-top: 8px;
 }
 .channelEditorIcons > div > div > div > svg:hover:has([fill="#000000"]),
 .channelEditorIcons > div > div > div > svg:hover:has([fill="#ffffff"]) {
@@ -44,12 +46,12 @@
   fill: var(--channel-icon);
   border-radius: var(--radius-xs);
 }
-.channelEditorHeader > .channelExample {
+.channelExample {
   position: fixed;
-  top: 56px;
+  bottom: 19px;
   width: 417px;
   display: flex;
-  justify-content: center;
+  z-index: 2;
 }
 .channelExample > div {
   min-width: 224px;
