@@ -5,8 +5,7 @@
 }
 .channelEditor {
   width: 701px;
-  height: 456px;
-  justify-content: space-between;
+  height: 484px;
 }
 .channelEditorSidebar {
   position: fixed;
@@ -14,12 +13,10 @@
   top: 56px;
 }
 .channelEditor > [class^="content"] {
-  position: fixed;
-  width: 553px;
-  max-height: 456px;
-  padding: 92px 64px 70px 64px;
-  border-radius: unset;
-  left: -48px;
+  width: 449px;
+  margin-top: 76px;
+  max-height: 358px;
+  padding-bottom: 0px;
 }
 .channelEditor > [class^="flex"]:last-child {
   bottom: 0px;
@@ -136,7 +133,6 @@
   transform: translateX(-50%);
   padding: 8px 12px;
   font-size: 14px;
-  z-index: 3;
 }
 
 .tooltip::after {
