@@ -16,21 +16,21 @@ export function selectedIcon(channelColor: string, path: string): void {
   const splitPaths = (path: string): string[] => {
     const paths = path.replaceAll("Z", "Z~").split("~").filter(Boolean); // This works but not Regex???
     return paths.map(p => `:has(>[d*="${p}"])`);
-  }
+  };
   const selectors = splitPaths(path);
-  console.log(`.channelEditorIcons > div > div > div > svg${selectors.join('')}`);
+  console.log(`.channelEditorIcons > div > div > div > svg${selectors.join("")}`);
   const styleElement = document.createElement("style");
   styleElement.setAttribute("selected-icon", "owo");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
-    .channelEditorIcons > div > div > div > svg${selectors.join('')} {
+    .channelEditorIcons > div > div > div > svg${selectors.join("")} {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
   } else {
     styleElement.textContent = `
-      .channelEditorIcons > div > div > div > svg${selectors.join('')} {
+      .channelEditorIcons > div > div > div > svg${selectors.join("")} {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
@@ -147,7 +147,7 @@ function shadeColor(color: string, transparency: number): string {
 export function capitalizeWords(sentence: string): string {
   const words: string[] = sentence.split("-");
   const capitalizedWords: string[] = words.map(
-    (word) => word.charAt(0).toUpperCase() + word.slice(1),
+    word => word.charAt(0).toUpperCase() + word.slice(1)
   );
   // console.log(capitalizedWords);
   return capitalizedWords.join(" ");
@@ -199,7 +199,7 @@ export function generateInterface<T>(
   maxDepth: number = 3,
   currentDepth: number = 0,
   visited = new Set<any>(),
-  isTopLevel = true,
+  isTopLevel = true
 ): string {
   if (data === null) {
     return "";
@@ -214,7 +214,7 @@ export function generateInterface<T>(
   const keys = Object.keys(data || []);
   let interfaceString = "";
 
-  keys.forEach((key) => {
+  keys.forEach(key => {
     if (key.includes("-")) {
       const parts = key.split("-");
       parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);

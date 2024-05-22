@@ -11,8 +11,8 @@ function fetchDataAndExtract(): IconData[] {
 
   const extractedData: IconData[] = [];
   let match: RegExpExecArray | null;
-  // eslint-disable-next-line no-cond-assign
   //while ((match = pattern.exec(cssContent)) !== null) {
+  // eslint-disable-next-line no-cond-assign
   while ((match = pattern.exec(classicIcons)) !== null) {
     extractedData.push({ label: match[1], value: match[3] });
   }
