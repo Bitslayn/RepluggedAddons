@@ -45,7 +45,7 @@ export const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
 
 const ChannelMention = webpack.getBySource(
-  /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/,
+  /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
 
 function injectSavedChannelsStyles(): void {
@@ -53,15 +53,15 @@ function injectSavedChannelsStyles(): void {
   Object.entries(coloredChannels).forEach(
     ([channelId, { color, icon }]: [string, { color: string; icon: string }]) => {
       injectChannelStyle(channelId, color, icon);
-    },
+    }
   );
 }
 
 function openEditor(data: any): void {
-  const RenderThis: React.FC<any> = (props) => {
+  const RenderThis: React.FC<any> = props => {
     const { channel } = data;
     const [channelColor, setChannelColor] = useState<string>(
-      getChannelObject(channel.id)?.color ?? "",
+      getChannelObject(channel.id)?.color ?? ""
     );
     const [channelIcon, setChannelIcon] = useState<string>(getChannelObject(channel.id)?.icon);
 
@@ -129,7 +129,7 @@ function openEditor(data: any): void {
                   key={index}
                   onClick={() => {
                     let fullPathString = "";
-                    paths.forEach((x) => {
+                    paths.forEach(x => {
                       fullPathString += x;
                     });
                     // console.log(fullPathString);
@@ -185,7 +185,7 @@ function openEditor(data: any): void {
       injectChannelStyle(channel.id, convertedColor, channelIcon);
       const updatedColors: string[] = [
         convertedColor,
-        ...suggestedColors.filter((color) => color !== convertedColor),
+        ...suggestedColors.filter(color => color !== convertedColor),
       ].slice(0, 11);
       setSuggestedColors(updatedColors);
       config.set("suggestedColors", updatedColors);
@@ -212,7 +212,7 @@ function openEditor(data: any): void {
         header={`Customize #${channel.name}`}
         className="channelEditor"
         {...props}>
-        <div
+        {/*<div
           className="top thing"
           style={{
             backgroundColor: "var(--primary-600)",
@@ -223,7 +223,7 @@ function openEditor(data: any): void {
             left: "0px",
             borderRadius: "5px 5px 0 0",
             zIndex: "1",
-          }}></div>
+          }}></div>*/}
         <div
           className="bottom thing"
           style={{
@@ -242,7 +242,17 @@ function openEditor(data: any): void {
         />
         <div className="channelEditorHeader">
           <components.FormItem>
-            <components.TextInput placeholder="Search icons" {...util} />
+            <components.TextInput
+              placeholder="Search icons"
+              style={{
+                display: "flex",
+                position: "fixed",
+                width: "417px",
+                height: "30px",
+                top: "56px",
+              }}
+              {...util}
+            />
           </components.FormItem>
           <TabBar tabs={icons} />
         </div>
@@ -314,9 +324,9 @@ export function start(): void {
   inject.before(Header.default, "Icon", (a: any) => {
     const ChannelObject = getCurrentChannelObject();
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
-      SelectedChannelStore.getCurrentlySelectedChannelId(),
+      SelectedChannelStore.getCurrentlySelectedChannelId()
     ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.find((x) => CurrentChannel?.name?.includes(x?.name));
+    const CustomIcon = ChannelNames?.find(x => CurrentChannel?.name?.includes(x?.name));
     console.log(CustomIcon);
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
@@ -347,7 +357,7 @@ export function start(): void {
             channel.name = oldName;
             // changedChannelNames.length -= 1;
           }
-        },
+        }
       );
     }
   });
