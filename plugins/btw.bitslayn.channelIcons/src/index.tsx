@@ -212,30 +212,6 @@ function openEditor(data: any): void {
         header={`Customize #${channel.name}`}
         className="channelEditor"
         {...props}>
-        {/*<div
-          className="top thing"
-          style={{
-            backgroundColor: "var(--primary-600)",
-            width: "441px",
-            height: "92px",
-            position: "fixed",
-            top: "0px",
-            left: "0px",
-            borderRadius: "5px 5px 0 0",
-            zIndex: "1",
-          }}></div>*/}
-        <div
-          className="bottom thing"
-          style={{
-            backgroundColor: "var(--modal-footer-background)",
-            width: "441px",
-            height: "70px",
-            position: "fixed",
-            bottom: "0px",
-            left: "0px",
-            borderRadius: "0 0 5px 5px",
-            zIndex: "1",
-          }}></div>
         <ChannelClass.default
           className="channelExample"
           channel={ChannelStore.getChannel(channel.id)}
