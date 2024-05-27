@@ -127,11 +127,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: fixed;
-  transform: translate(calc(-50% + 16px), -75px);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 8px 12px;
   font-size: 14px;
-  z-index: 3;
 }
 
 .tooltip::after {
