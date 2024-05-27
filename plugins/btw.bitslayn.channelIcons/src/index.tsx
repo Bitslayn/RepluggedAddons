@@ -64,7 +64,6 @@ function openEditor(data: any): void {
       getChannelObject(channel.id)?.color ?? ""
     );
     const [channelIcon, setChannelIcon] = useState<string>(getChannelObject(channel.id)?.icon);
-
     const [suggestedColors, setSuggestedColors] = useState<string[]>([
       channelColor || "#000000",
       "#1abc9c",
@@ -78,8 +77,16 @@ function openEditor(data: any): void {
       "#95a5a6",
       "#607d8b",
     ]);
+    const [searchQuery, setSearchQuery] = useState<string>("");
 
-    // uwu
+    const filteredClassicIcons = Icons.filter(icon =>
+      icon.label.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const filteredModernIcons = group1Array.filter(icon =>
+      icon.Name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     const icons = [
       {
         id: 1,
@@ -88,7 +95,7 @@ function openEditor(data: any): void {
           <div
             className="channelEditorIcons"
             style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
-            {Icons.map((label: any) => (
+            {filteredClassicIcons.map((label: any) => (
               <components.Clickable
                 onClick={() => {
                   setChannelIcon(label.value);
@@ -119,7 +126,7 @@ function openEditor(data: any): void {
           <div
             className="channelEditorIcons"
             style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
-            {group1Array.map((label: any, index: number) => {
+            {filteredModernIcons.map((label: any, index: number) => {
               const paths = Array.isArray(label.Matches)
                 ? label.Matches.map((item: any) => item[1])
                 : [label.Matches];
@@ -132,7 +139,6 @@ function openEditor(data: any): void {
                     paths.forEach(x => {
                       fullPathString += x;
                     });
-                    // console.log(fullPathString);
                     setChannelIcon(fullPathString);
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                     selectedIcon(int2hex(channelColor), fullPathString);
@@ -141,14 +147,6 @@ function openEditor(data: any): void {
                     <svg
                       key={index}
                       className={label.Name}
-                      // className="hghhgjgj"
-                      // why >:((
-                      // Was going to use the class name as a selector to edit icons but decided not to
-
-                      // Are you okay are you having a stroke?
-                      // yes ma'am :3
-                      // ᓚᘏᗢ
-                      // media.tenor.com/jPuT2agIs5YAAAPo/caseoh-cat.mp4
                       viewBox="-4 -4 32 32"
                       style={{
                         width: "32px",
@@ -227,6 +225,8 @@ function openEditor(data: any): void {
                 height: "30px",
                 top: "56px",
               }}
+              value={searchQuery}
+              onChange={e => setSearchQuery(e)}
               {...util}
             />
           </components.FormItem>
@@ -256,7 +256,6 @@ function openEditor(data: any): void {
 
   openModal((x: any) => <RenderThis {...x} />);
 }
-
 const changedChannelNames: any[] = [];
 
 function isChannelIdExists(channelId: string): boolean {
