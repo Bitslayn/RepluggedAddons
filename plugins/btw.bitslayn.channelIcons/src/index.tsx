@@ -94,7 +94,17 @@ function openEditor(data: any): void {
         element: () => (
           <div
             className="channelEditorIcons"
-            style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignContent: "flex-start",
+              width: "449px",
+              marginTop: "76px",
+              //maxHeight: "358px",
+              maxHeight: "243px",
+              paddingBottom: "3px",
+              overflow: "hidden scroll",
+            }}>
             {filteredClassicIcons.map((label: any) => (
               <components.Clickable
                 onClick={() => {
@@ -125,7 +135,16 @@ function openEditor(data: any): void {
         element: () => (
           <div
             className="channelEditorIcons"
-            style={{ display: "flex", flexWrap: "wrap", alignContent: "flex-start" }}>
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignContent: "flex-start",
+              width: "449px",
+              marginTop: "76px",
+              maxHeight: "243px",
+              paddingBottom: "3px",
+              overflow: "hidden scroll",
+            }}>
             {filteredModernIcons.map((label: any, index: number) => {
               const paths = Array.isArray(label.Matches)
                 ? label.Matches.map((item: any) => item[1])
@@ -230,6 +249,8 @@ function openEditor(data: any): void {
               {...util}
             />
           </components.FormItem>
+        </div>
+        <div className="channelEditorSelector">
           <TabBar tabs={icons} />
         </div>
         <div
@@ -241,6 +262,9 @@ function openEditor(data: any): void {
             overflow: "hidden scroll",
             maxHeight: "362px",
             zIndex: "2",
+            position: "fixed",
+            right: "16px",
+            top: "56px",
           }}>
           <ColorPicker.CustomColorPicker
             type={1}

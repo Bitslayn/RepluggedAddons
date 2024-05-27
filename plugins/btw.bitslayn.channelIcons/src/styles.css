@@ -7,24 +7,25 @@
   width: 701px;
   height: 456px;
 }
-.channelEditorSidebar {
+/*.channelEditorSidebar {
   position: fixed;
   right: 16px;
   top: 56px;
-}
+}*/
 .channelEditor > [class^="content"] {
-  width: 449px;
+  overflow: hidden !important;
+  /*width: 449px;
   margin-top: 76px;
   max-height: 358px;
-  padding-bottom: 0px;
+  padding-bottom: 0px;*/
 }
 .channelEditor > [class^="flex"]:last-child {
   bottom: 0px;
   z-index: -1;
 }
-.channelEditor > [class^="content"]::-webkit-scrollbar-thumb {
+/*.channelEditor > [class^="content"]::-webkit-scrollbar-thumb {
   transform: translateX(-100px);
-}
+}*/
 /*.channelEditorIcons > div > svg:hover,
 .channelEditorIcons > div > span > svg:hover {
   border-radius: var(--radius-xs);
@@ -57,16 +58,20 @@
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
 }
 .channelEditorSidebar > div > [class^="suggestedColors"] {
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  /*justify-content: flex-start;
   align-self: flex-end;
-  width: 158px;
+  width: 158px;*/
 }
 .channelEditorSidebar > div > [class^="suggestedColors"] > [class^="suggestedColor"]:first-child {
   width: 50px;
   height: 50px;
-  position: absolute;
+  grid-row: 1 / 3;
+  /*position: absolute;
   bottom: 17px;
-  left: 16px;
+  left: 16px;*/
 }
 .channelEditorSidebar > div > [class^="suggestedColors"] > [class^="suggestedColor"] {
   width: 20px;
@@ -128,7 +133,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 120%;
+  bottom: 130%;
   left: 50%;
   transform: translateX(-50%);
   padding: 8px 12px;
