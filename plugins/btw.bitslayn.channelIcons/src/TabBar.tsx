@@ -5,11 +5,11 @@ export const TabBar = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [hoveredTab, setHoveredTab] = useState(null);
 
-  const handleTabClick = (tabId) => {
+  const handleTabClick = tabId => {
     setActiveTab(tabId);
   };
 
-  const handleMouseEnter = (tabId) => {
+  const handleMouseEnter = tabId => {
     setHoveredTab(tabId);
   };
 
@@ -39,7 +39,7 @@ export const TabBar = ({ tabs }) => {
                 onMouseLeave={handleMouseLeave}
                 style={{ position: "relative" }}>
                 {tab.label}
-                {activeTab === tab.id && <div className="highlight"></div>}
+                {activeTab === tab.id && <div className="obscureHighlight"></div>}
                 {(hoveredTab === tab.id || activeTab === tab.id) && (
                   <div
                     className="hoverIndicator"
@@ -59,11 +59,11 @@ export const TabBar = ({ tabs }) => {
                 )}
               </button>
             </div>
-          ),
+          )
         )}
         <Divider.Divider style={{ width: "417px" }}></Divider.Divider>
       </div>
-      <div>{tabs.map((tab) => activeTab === tab.id && tab.element())}</div>
+      <div>{tabs.map(tab => activeTab === tab.id && tab.element())}</div>
     </div>
   );
 };
