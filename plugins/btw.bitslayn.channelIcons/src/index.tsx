@@ -18,15 +18,15 @@ import {
   SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
-import { ChannelNames, RaccoonSVG } from "./specialSVGs";
+import { ChannelNames } from "./specialSVGs";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
 import {
   BrandColors,
   ChannelStoreChannel,
   ColoredChannel,
-  int2hexModule,
   ModalsModule,
+  int2hexModule,
 } from "./types";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
@@ -218,7 +218,7 @@ function openEditor(data: any): void {
         cancelButtonColor={colorBrands.colorDanger}
         confirmText={"Okay"}
         cancelText={"Remove"}
-        onAnimationEnd={() => selectedIcon(int2hex(channelColor), `${iconBuffer}${channelIcon}`)}
+        onAnimationEnd={selectedIcon("#000000", `${iconBuffer}${channelIcon}`)}
         onCancel={() => {
           const existingStyle = document.querySelector(`[data-channel-style="${channel.id}"]`);
           if (existingStyle) {
@@ -325,7 +325,8 @@ export function start(): void {
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore.getCurrentlySelectedChannelId()
     ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.find(x => CurrentChannel?.name?.includes(x?.name));
+    const CustomIcon = ChannelNames?.find(x => CurrentChannel?.name?.match(x?.name));
+    console.log(CurrentChannel.name);
     console.log(CustomIcon);
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {

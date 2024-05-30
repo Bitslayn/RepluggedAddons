@@ -44,7 +44,7 @@
   fill: var(--channel-icon);
   border-radius: var(--radius-xs);
 }
-.channelExample {
+.channelEditor > div > .channelExample {
   position: fixed;
   bottom: 19px;
   width: 417px;
