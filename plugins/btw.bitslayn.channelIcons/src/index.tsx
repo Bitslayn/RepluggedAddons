@@ -98,11 +98,11 @@ function openEditor(data: any): void {
               display: "flex",
               flexWrap: "wrap",
               alignContent: "flex-start",
-              width: "449px",
+              width: "431px",
               marginTop: "76px",
-              //maxHeight: "358px",
-              maxHeight: "243px",
+              maxHeight: "251px",
               paddingBottom: "3px",
+              columnGap: "3px",
               overflow: "hidden scroll",
             }}>
             {filteredClassicIcons.map((label: any) => (
@@ -139,10 +139,11 @@ function openEditor(data: any): void {
               display: "flex",
               flexWrap: "wrap",
               alignContent: "flex-start",
-              width: "449px",
+              width: "431px",
               marginTop: "76px",
-              maxHeight: "243px",
+              maxHeight: "251px",
               paddingBottom: "3px",
+              columnGap: "3px",
               overflow: "hidden scroll",
             }}>
             {filteredModernIcons.map((label: any, index: number) => {
@@ -240,9 +241,10 @@ function openEditor(data: any): void {
               style={{
                 display: "flex",
                 position: "fixed",
-                width: "417px",
+                width: "300px",
                 height: "30px",
                 top: "56px",
+                left: "74px",
               }}
               value={searchQuery}
               onChange={e => setSearchQuery(e)}

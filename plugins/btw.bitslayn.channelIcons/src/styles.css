@@ -30,9 +30,12 @@
 .channelEditorIcons > div > span > svg:hover {
   border-radius: var(--radius-xs);
 }*/
-.channelEditorIcons {
-  column-gap: 3px;
-  padding-top: 8px;
+.channelEditorIcons::-webkit-scrollbar {
+  width: 0.3em;
+}
+.channelEditorIcons::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thin-thumb);
+  border-radius: 25px;
 }
 .channelEditorIcons > div > div > div > svg:hover:has([fill="#000000"]),
 .channelEditorIcons > div > div > div > svg:hover:has([fill="#ffffff"]) {
