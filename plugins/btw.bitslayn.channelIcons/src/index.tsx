@@ -99,9 +99,7 @@ function openEditor(data: any): void {
               display: "flex",
               flexWrap: "wrap",
               alignContent: "flex-start",
-              width: "431px",
               maxHeight: "251px",
-              paddingBottom: "3px",
               columnGap: "3px",
               overflow: "hidden scroll",
             }}>
@@ -139,10 +137,7 @@ function openEditor(data: any): void {
               display: "flex",
               flexWrap: "wrap",
               alignContent: "flex-start",
-              width: "431px",
-              marginTop: "76px",
               maxHeight: "251px",
-              paddingBottom: "3px",
               columnGap: "3px",
               overflow: "hidden scroll",
             }}>
@@ -232,7 +227,7 @@ function openEditor(data: any): void {
         {...props}>
         <div // Content
           className="channelEditorContent"
-          style={{ width: "431px" }}>
+          style={{ display: "flex", flexDirection: "column", width: "431px", maxHeight: "330px" }}>
           <components.FormItem>
             <components.TextInput
               placeholder="Search icons"
@@ -249,23 +244,6 @@ function openEditor(data: any): void {
               {...util}
             />
           </components.FormItem>
-          <div style={{ position: "absolute" }}>
-            <svg
-              aria-label="Search"
-              aria-hidden="false"
-              role="img"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="none"
-              viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                fill-rule="evenodd"
-                d="M15.62 17.03a9 9 0 1 1 1.41-1.41l4.68 4.67a1 1 0 0 1-1.42 1.42l-4.67-4.68ZM17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </div>
           <div className="channelEditorSelector">
             <TabBar tabs={icons} />
           </div>

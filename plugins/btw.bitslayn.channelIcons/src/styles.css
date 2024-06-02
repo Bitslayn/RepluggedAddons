@@ -13,11 +13,8 @@
   top: 56px;
 }*/
 .channelEditor > [class^="content"] {
-  overflow: hidden !important;
-  /*width: 449px;
-  margin-top: 76px;
-  max-height: 358px;
-  padding-bottom: 0px;*/
+  display: flex;
+  padding-bottom: unset;
 }
 .channelEditor > [class^="flex"]:last-child {
   bottom: 0px;

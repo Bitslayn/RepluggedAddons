@@ -63,7 +63,7 @@ export const TabBar = ({ tabs }) => {
         )}
         <Divider.Divider></Divider.Divider>
       </div>
-      <div>{tabs.map(tab => activeTab === tab.id && tab.element())}</div>
+      {tabs.map(tab => activeTab === tab.id && tab.element())}
     </div>
   );
 };
