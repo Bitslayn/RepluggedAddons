@@ -19,7 +19,7 @@ export const TabBar = ({ tabs }) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <div className="channelTabBar" style={{ position: "fixed", top: "97px" }}>
+      <div className="channelTabBar">
         {tabs.map(
           (tab: {
             id: React.Key;
@@ -61,7 +61,7 @@ export const TabBar = ({ tabs }) => {
             </div>
           )
         )}
-        <Divider.Divider style={{ width: "417px" }}></Divider.Divider>
+        <Divider.Divider></Divider.Divider>
       </div>
       <div>{tabs.map(tab => activeTab === tab.id && tab.element())}</div>
     </div>
