@@ -8,14 +8,14 @@ import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { AnyFunction, ContextMenuTypes } from "replugged/types";
 import {
   EditedChannelIcon,
+  SelectedChannelStore,
   capitalizeWords,
+  generateInterface,
+  getChannelObject,
   getCurrentChannelObject,
   injectChannelStyle,
   randomNumber,
   selectedIcon,
-  generateInterface,
-  getChannelObject,
-  SelectedChannelStore,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
@@ -28,6 +28,7 @@ import {
   ModalsModule,
   int2hexModule,
 } from "./types";
+import { Divider } from "replugged/components";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
@@ -241,10 +242,11 @@ function openEditor(data: any): void {
               style={{
                 display: "flex",
                 position: "fixed",
-                width: "300px",
+                width: "417px",
+                //width: "300px",
                 height: "30px",
                 top: "56px",
-                left: "74px",
+                //left: "74px",
               }}
               value={searchQuery}
               onChange={e => setSearchQuery(e)}
@@ -328,13 +330,13 @@ export function start(): void {
       SelectedChannelStore.getCurrentlySelectedChannelId()
     ) as ChannelStoreChannel;
     const CustomIcon = ChannelNames?.find(x => CurrentChannel?.name?.match(x?.name));
-    console.log(CurrentChannel.name);
-    console.log(CustomIcon);
+    //console.log(CurrentChannel?.name);
+    //console.log(CustomIcon);
     if (a && a[0] && ChannelObject?.icon) {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()} />;
       };
-    } else if (CustomIcon) {
+    } else if (CustomIcon && config.get("presetChannelIcons", [])) {
       a[0].icon = () => {
         return <CustomIcon.icon />;
       };
@@ -398,33 +400,42 @@ export function Settings(): JSX.Element {
         }>
         Pascal Case
       </FormSwitch>
-
-      <div>
-        {Object.entries(coloredChannels).map(([channelId]: [string, ColoredChannel]) => (
-          <div
-            key={channelId}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginBottom: "8px",
-              justifyContent: "space-between",
-            }}>
-            <ChannelClass.default
-              className="channelExample"
-              channel={ChannelStore.getChannel(channelId)}
-            />
-            <button
-              style={{
-                background: "var(--old-red)",
-                color: "var(--button-outline-danger-text)",
-                borderRadius: "5px",
-              }}
-              onClick={() => removeColoredChannel(channelId)}>
-              Remove
-            </button>
-          </div>
-        ))}
-      </div>
+      <FormSwitch
+        {...util.useSetting(config, "presetChannelIcons", [])}
+        note={"Apply icons to channels automatically based on a predefined list of names."}>
+        Preset Icons WIP
+      </FormSwitch>
+      <components.Category title="Customized Channels" note="View or remove customized channels.">
+        <div>
+          {Object.entries(coloredChannels).map(([channelId]: [string, ColoredChannel]) => (
+            <div style={{ marginBottom: "20px" }}>
+              <div
+                key={channelId}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "8px",
+                  justifyContent: "space-between",
+                }}>
+                <ChannelClass.default
+                  className="channelExample"
+                  channel={ChannelStore.getChannel(channelId)}
+                />
+                <button
+                  style={{
+                    background: "var(--old-red)",
+                    color: "var(--button-outline-danger-text)",
+                    borderRadius: "5px",
+                  }}
+                  onClick={() => removeColoredChannel(channelId)}>
+                  Remove
+                </button>
+              </div>
+              <Divider style={{ marginTop: "20px" }}></Divider>
+            </div>
+          ))}
+        </div>
+      </components.Category>
     </div>
   );
 }
