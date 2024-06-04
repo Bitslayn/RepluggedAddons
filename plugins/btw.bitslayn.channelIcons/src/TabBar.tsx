@@ -19,7 +19,7 @@ export const TabBar = ({ tabs }) => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <div className="channelTabBar">
+      <div className="channelTabBar" style={{ padding: "8px 8px 0px 8px" }}>
         {tabs.map(
           (tab: {
             id: React.Key;

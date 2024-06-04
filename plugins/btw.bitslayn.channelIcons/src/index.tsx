@@ -16,6 +16,7 @@ import {
   injectChannelStyle,
   randomNumber,
   selectedIcon,
+  injectNamedChannelStyles,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
@@ -93,16 +94,7 @@ function openEditor(data: any): void {
         id: 1,
         label: "Classic Icons",
         element: () => (
-          <div
-            className="channelEditorIcons"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignContent: "flex-start",
-              maxHeight: "251px",
-              columnGap: "3px",
-              overflow: "hidden scroll",
-            }}>
+          <div className="channelEditorIcons">
             {filteredClassicIcons.map((label: any) => (
               <components.Clickable
                 onClick={() => {
@@ -131,16 +123,7 @@ function openEditor(data: any): void {
         id: 2,
         label: "Modern Icons",
         element: () => (
-          <div
-            className="channelEditorIcons"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignContent: "flex-start",
-              maxHeight: "251px",
-              columnGap: "3px",
-              overflow: "hidden scroll",
-            }}>
+          <div className="channelEditorIcons">
             {filteredModernIcons.map((label: any, index: number) => {
               const paths = Array.isArray(label.Matches)
                 ? label.Matches.map((item: any) => item[1])
@@ -231,14 +214,6 @@ function openEditor(data: any): void {
           <components.FormItem>
             <components.TextInput
               placeholder="Search icons"
-              style={{
-                display: "flex",
-                width: "417px",
-                //width: "300px",
-                height: "34px",
-                top: "56px",
-                //left: "74px",
-              }}
               value={searchQuery}
               onChange={e => setSearchQuery(e)}
               {...util}
@@ -290,8 +265,13 @@ function isChannelIdExists(channelId: string): boolean {
 export function start(): void {
   // console.log(generateInterface());
   injectSavedChannelsStyles();
+  /*ChannelNames.forEach(channel => { AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    injectNamedChannelStyles(channel.name, channel.icon);
+  });*/
+
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;
+    console.log(channel);
     // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
     const Object = group1Array[randomNumber(Icons.length)];
     let RandomIcon: ComponentType<any>;
@@ -301,16 +281,18 @@ export function start(): void {
       RandomIcon = webpack.getByProps(Object.Name)?.[Object?.Name];
     }
     // the code above gives a random modern icon uwu ;3 rawr x3 *waggles tail*
-    return (
-      <MenuItem
-        id={`customize-channel-${channel.id}`}
-        label="Customize Channel"
-        /* the code below gives discord an icon to display */
-        icon={RandomIcon}
-        /* the code above gives discord an icon to display */
-        action={() => openEditor(data)}
-      />
-    );
+    if (channel.type !== 4) {
+      return (
+        <MenuItem
+          id={`customize-channel-${channel.id}`}
+          label="Customize Channel"
+          /* the code below gives discord an icon to display */
+          icon={RandomIcon}
+          /* the code above gives discord an icon to display */
+          action={() => openEditor(data)}
+        />
+      );
+    }
   });
   inject.after(Header.default, "Title", (a: any) => {
     const headerObj = a?.[0]?.children?.props?.children;

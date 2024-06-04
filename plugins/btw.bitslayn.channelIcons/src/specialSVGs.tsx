@@ -502,6 +502,7 @@ export const ChannelNames = [
   { name: "role", icon: role },
   { name: "rule", icon: rule },
   { name: "star", icon: star },
+  //pin
   { name: "vc|voice|mute|mic", icon: voice },
 
   //  { name: "discord", icon: discord },

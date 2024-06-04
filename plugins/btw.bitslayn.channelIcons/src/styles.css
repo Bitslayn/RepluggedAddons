@@ -27,6 +27,14 @@
 .channelEditorIcons > div > span > svg:hover {
   border-radius: var(--radius-xs);
 }*/
+.channelEditorIcons {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  max-height: 254px;
+  column-gap: 3px;
+  overflow: hidden scroll;
+}
 .channelEditorIcons::-webkit-scrollbar {
   width: 0.3em;
 }
