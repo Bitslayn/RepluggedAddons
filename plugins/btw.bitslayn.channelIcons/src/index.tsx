@@ -51,7 +51,6 @@ const ChannelMention = webpack.getBySource(
 );
 
 const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
-console.log(ChannelAutocomplete);
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -99,6 +98,7 @@ function openEditor(data: any): void {
         label: "Classic Icons",
         element: () => (
           <div className="channelEditorIcons">
+            <div className="channelEditorScroller" id="classic"></div>
             {filteredClassicIcons.map((label: any) => (
               <components.Clickable
                 onClick={() => {
@@ -128,6 +128,7 @@ function openEditor(data: any): void {
         label: "Modern Icons",
         element: () => (
           <div className="channelEditorIcons">
+            <div className="channelEditorScroller" id="modern"></div>
             {filteredModernIcons.map((label: any, index: number) => {
               const paths = Array.isArray(label.Matches)
                 ? label.Matches.map((item: any) => item[1])
@@ -213,10 +214,11 @@ function openEditor(data: any): void {
         {...props}>
         <div // Content
           className="channelEditorContent"
-          style={{ display: "flex", flexDirection: "column", width: "431px", maxHeight: "330px" }}>
+          style={{ display: "flex", flexDirection: "column", width: "417px", maxHeight: "330px" }}>
           <components.FormItem>
             <components.TextInput
-              placeholder="Search icons"
+              style={{ height: "34px", zIndex: "1" }}
+              placeholder="Search Icons"
               value={searchQuery}
               onChange={e => setSearchQuery(e)}
               {...util}
@@ -237,7 +239,6 @@ function openEditor(data: any): void {
             maxHeight: "362px",
             position: "fixed",
             right: "16px",
-            top: "56px",
           }}>
           <ColorPicker.CustomColorPicker
             type={1}
