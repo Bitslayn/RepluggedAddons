@@ -63,6 +63,7 @@ function injectSavedChannelsStyles(): void {
 }
 
 function openEditor(data: any): void {
+  selectedIcon("#000000", `${iconBuffer}${getChannelObject(data.channel.id)?.icon}`);
   const RenderThis: React.FC<any> = props => {
     const { channel } = data;
     const [channelColor, setChannelColor] = useState<string>(
@@ -200,7 +201,6 @@ function openEditor(data: any): void {
         cancelButtonColor={colorBrands.colorDanger}
         confirmText={"Okay"}
         cancelText={"Remove"}
-        onAnimationEnd={selectedIcon("#000000", `${iconBuffer}${channelIcon}`)}
         onCancel={() => {
           const existingStyle = document.querySelector(`[data-channel-style="${channel.id}"]`);
           if (existingStyle) {
@@ -235,7 +235,6 @@ function openEditor(data: any): void {
             gap: "8px",
             overflow: "hidden scroll",
             maxHeight: "362px",
-            zIndex: "2",
             position: "fixed",
             right: "16px",
             top: "56px",
