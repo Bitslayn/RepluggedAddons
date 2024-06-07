@@ -21,6 +21,10 @@
   left: -100px;
   width: 801px;
   padding-left: 116px;
+  pointer-events: none;
+}
+.channelEditor > [class^="content"] > * {
+  pointer-events: initial;
 }
 .channelEditor > [class^="flex"]:last-child {
   bottom: 0px;
@@ -49,6 +53,10 @@
   top: -70px;
   left: -100px;
   width: 417px;
+  pointer-events: none;
+}
+.channelEditorIcons > * {
+  pointer-events: initial;
 }
 .channelTabBar {
   padding: 8px 8px 0px 8px;
