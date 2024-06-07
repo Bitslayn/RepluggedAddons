@@ -44,7 +44,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   max-height: 260px;
-  column-gap: 3px;
+  /*column-gap: 3px;*/
   overflow: hidden scroll;
 }
 .channelEditorIcons {
@@ -52,7 +52,7 @@
   padding: 70px 100px 0px 100px;
   top: -70px;
   left: -100px;
-  width: 417px;
+  width: 420px;
   pointer-events: none;
 }
 .channelEditorIcons > * {
@@ -155,6 +155,7 @@
 .tooltip-container {
   position: relative;
   display: inline-block;
+  width: 35px;
 }
 
 .tooltip {
