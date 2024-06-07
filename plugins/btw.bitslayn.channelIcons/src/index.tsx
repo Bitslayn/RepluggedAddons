@@ -50,6 +50,9 @@ const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
 
+const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
+console.log(ChannelAutocomplete);
+
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
   Object.entries(coloredChannels).forEach(
@@ -176,9 +179,9 @@ function openEditor(data: any): void {
 
     const handleColorChange = (selectedColor: SetStateAction<string>): void => {
       const convertedColor: string = int2hex(selectedColor);
-      selectedIcon(convertedColor, `${iconBuffer}${channelIcon}`);
       setChannelColor(selectedColor);
       injectChannelStyle(channel.id, convertedColor, channelIcon);
+      selectedIcon(convertedColor, `${iconBuffer}${channelIcon}`);
       const updatedColors: string[] = [
         convertedColor,
         ...suggestedColors.filter(color => color !== convertedColor),
