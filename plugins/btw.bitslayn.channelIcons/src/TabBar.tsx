@@ -1,5 +1,5 @@
 ﻿import React, { useState } from "react";
-import Divider from "replugged/components";
+import { Divider, Text } from "replugged/components";
 
 export const TabBar = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
@@ -61,7 +61,21 @@ export const TabBar = ({ tabs }) => {
             </div>
           )
         )}
-        <Divider.Divider></Divider.Divider>
+        {/* <Text.Normal
+          style={{
+            position: "absolute",
+            top: "52px",
+            right: "254px",
+            color: "var(--control-brand-foreground)",
+          }}>
+          {
+            tabs.map(tab => activeTab === tab.id && tab.element().props.children.length)[
+              activeTab - 1
+            ]
+          }{" "}
+          icons
+        </Text.Normal> */}
+        <Divider></Divider>
       </div>
       {tabs.map(tab => activeTab === tab.id && tab.element())}
     </div>

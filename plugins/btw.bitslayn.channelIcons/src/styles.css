@@ -86,12 +86,8 @@
   height: 20px;
   border: none;
 }
-.channelTabBar > div:last-child > .channelTabBarItem {
-  /* OCD, problem? */
-  margin-right: unset;
-}
 .channelTabBarItem {
-  margin-right: 10px;
+  margin: 0px 5px 0px 5px;
   padding: 5px 10px;
   cursor: pointer;
   color: white;

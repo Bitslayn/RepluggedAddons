@@ -208,7 +208,7 @@ function openEditor(data: any): void {
             delete config.get("coloredChannels")[channel.id]; // this was that fix
           }
         }}
-        header={`Customize #${channel.name}`}
+        header={`Personalize #${channel.name}`}
         className="channelEditor"
         {...props}>
         <div // Content
@@ -271,9 +271,9 @@ export function start(): void {
     injectNamedChannelStyles(channel.name, channel.icon);
   });*/
 
+  // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;
-    console.log(channel);
     // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
     const Object = group1Array[randomNumber(Icons.length)];
     let RandomIcon: ComponentType<any>;
@@ -287,7 +287,7 @@ export function start(): void {
       return (
         <MenuItem
           id={`customize-channel-${channel.id}`}
-          label="Customize Channel"
+          label="Personalize Channel"
           /* the code below gives discord an icon to display */
           icon={RandomIcon}
           /* the code above gives discord an icon to display */
@@ -296,6 +296,7 @@ export function start(): void {
       );
     }
   });
+
   inject.after(Header.default, "Title", (a: any) => {
     const headerObj = a?.[0]?.children?.props?.children;
     if (headerObj && getCurrentChannelObject()?.color) {
@@ -386,7 +387,7 @@ export function Settings(): JSX.Element {
         note={"Apply icons to channels automatically based on a predefined list of names."}>
         Preset Icons WIP
       </FormSwitch>
-      <components.Category title="Customized Channels" note="View or remove customized channels.">
+      <components.Category title="Personalized Channels" note="View or remove channel styles.">
         <div>
           {Object.entries(coloredChannels).map(([channelId]: [string, ColoredChannel]) => (
             <div style={{ marginBottom: "20px" }}>
