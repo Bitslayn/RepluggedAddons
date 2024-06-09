@@ -51,6 +51,7 @@ const ChannelMention = webpack.getBySource(
 );
 
 const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
+console.log(ChannelAutocomplete);
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -98,7 +99,6 @@ function openEditor(data: any): void {
         label: "Classic Icons",
         element: () => (
           <div className="channelEditorIcons">
-            <div className="channelEditorScroller" id="classic"></div>
             {filteredClassicIcons.map((label: any) => (
               <components.Clickable
                 onClick={() => {
@@ -128,7 +128,6 @@ function openEditor(data: any): void {
         label: "Modern Icons",
         element: () => (
           <div className="channelEditorIcons">
-            <div className="channelEditorScroller" id="modern"></div>
             {filteredModernIcons.map((label: any, index: number) => {
               const paths = Array.isArray(label.Matches)
                 ? label.Matches.map((item: any) => item[1])
@@ -214,45 +213,14 @@ function openEditor(data: any): void {
         {...props}>
         <div // Content
           className="channelEditorContent"
-          style={{ display: "flex", flexDirection: "column", width: "417px", maxHeight: "330px" }}>
+          style={{ display: "flex", flexDirection: "column", width: "431px", maxHeight: "330px" }}>
           <components.FormItem>
             <components.TextInput
-              style={{ height: "34px", zIndex: "1" }}
-              placeholder="Search Icons"
+              placeholder="Search icons"
               value={searchQuery}
               onChange={e => setSearchQuery(e)}
               {...util}
             />
-            <div
-              style={{
-                position: "absolute",
-                zIndex: "2",
-                width: "34px",
-                height: "34px",
-                color: "var(--interactive-normal)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                top: "0px",
-                left: "498px",
-                pointerEvents: "none",
-              }}>
-              <svg
-                aria-label="Search"
-                aria-hidden="false"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="none"
-                viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                  d="M15.62 17.03a9 9 0 1 1 1.41-1.41l4.68 4.67a1 1 0 0 1-1.42 1.42l-4.67-4.68ZM17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </div>
           </components.FormItem>
           <div className="channelEditorSelector">
             <TabBar tabs={icons} />
@@ -269,6 +237,7 @@ function openEditor(data: any): void {
             maxHeight: "362px",
             position: "fixed",
             right: "16px",
+            top: "56px",
           }}>
           <ColorPicker.CustomColorPicker
             type={1}

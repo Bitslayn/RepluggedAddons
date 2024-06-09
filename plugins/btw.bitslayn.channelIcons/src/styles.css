@@ -15,22 +15,10 @@
 .channelEditor > [class^="content"] {
   display: flex;
   padding-bottom: unset;
-  overflow: hidden !important;
-  position: absolute;
-  top: 56px;
-  left: -100px;
-  width: 801px;
-  padding-left: 116px;
-  pointer-events: none;
-}
-.channelEditor > [class^="content"] > * {
-  pointer-events: initial;
 }
 .channelEditor > [class^="flex"]:last-child {
   bottom: 0px;
   z-index: -1;
-  position: absolute;
-  width: calc(100% - 32px);
 }
 /*.channelEditor > [class^="content"]::-webkit-scrollbar-thumb {
   transform: translateX(-100px);
@@ -43,34 +31,17 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  max-height: 260px;
-  /*column-gap: 3px;*/
+  max-height: 254px;
+  column-gap: 3px;
   overflow: hidden scroll;
 }
-.channelEditorIcons {
-  position: relative;
-  padding: 70px 100px 0px 100px;
-  top: -70px;
-  left: -100px;
-  width: 420px;
-  pointer-events: none;
-}
-.channelEditorIcons > * {
-  pointer-events: initial;
-}
-.channelTabBar {
-  padding: 8px 8px 0px 8px;
-  position: relative;
-  z-index: 1;
-  background-color: var(--modal-background);
-}
-/*.channelEditorIcons::-webkit-scrollbar {
+.channelEditorIcons::-webkit-scrollbar {
   width: 0.3em;
 }
 .channelEditorIcons::-webkit-scrollbar-thumb {
   background: var(--scrollbar-thin-thumb);
   border-radius: 25px;
-}*/
+}
 .channelEditorIcons > div > div > div > svg:hover:has([fill="#000000"]),
 .channelEditorIcons > div > div > div > svg:hover:has([fill="#ffffff"]) {
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
@@ -155,7 +126,6 @@
 .tooltip-container {
   position: relative;
   display: inline-block;
-  width: 35px;
 }
 
 .tooltip {
@@ -172,7 +142,6 @@
   transform: translateX(-50%);
   padding: 8px 12px;
   font-size: 14px;
-  z-index: 2;
 }
 
 .tooltip::after {
@@ -188,49 +157,4 @@
 
 .tooltip-trigger {
   cursor: pointer;
-}
-
-.channelEditorIcons {
-  scroll-timeline: --squareTimeline y;
-}
-
-.channelEditorScroller {
-  background-color: var(--scrollbar-thin-thumb);
-  border-radius: 25px;
-  width: 4px;
-  animation-timeline: --squareTimeline;
-  animation-timing-function: linear;
-  position: fixed;
-  top: 130px;
-  left: 443px;
-}
-
-.channelEditorScroller:is(#classic) {
-  height: 74px;
-  animation-name: classicScroller;
-}
-
-.channelEditorScroller:is(#modern) {
-  height: 84px;
-  animation-name: modernScroller;
-}
-
-@keyframes classicScroller {
-  from {
-    transform: translateY(0px);
-  }
-
-  to {
-    transform: translateY(178px);
-  }
-}
-
-@keyframes modernScroller {
-  from {
-    transform: translateY(0px);
-  }
-
-  to {
-    transform: translateY(168px);
-  }
 }
