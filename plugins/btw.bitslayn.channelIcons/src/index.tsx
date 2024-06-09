@@ -414,7 +414,7 @@ export function Settings(): JSX.Element {
       <FormSwitch
         {...util.useSetting(config, "presetChannelIcons", [])}
         note={"Apply icons to channels automatically based on a predefined list of names."}>
-        Preset Icons WIP
+        Preset Icons
       </FormSwitch>
       <components.Category title="Personalized Channels" note="View or remove channel styles.">
         <div>

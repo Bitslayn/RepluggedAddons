@@ -37,7 +37,13 @@ export const TabBar = ({ tabs }) => {
                 onClick={() => handleTabClick(tab.id)}
                 onMouseEnter={() => handleMouseEnter(tab.id)}
                 onMouseLeave={handleMouseLeave}
-                style={{ position: "relative" }}>
+                style={{
+                  position: "relative",
+                  color:
+                    hoveredTab === tab.id || activeTab === tab.id
+                      ? "var(--interactive-active)"
+                      : "var(--interactive-normal)",
+                }}>
                 {tab.label}
                 {activeTab === tab.id && <div className="obscureHighlight"></div>}
                 {(hoveredTab === tab.id || activeTab === tab.id) && (
@@ -53,7 +59,7 @@ export const TabBar = ({ tabs }) => {
                       backgroundColor:
                         activeTab === tab.id
                           ? "var(--control-brand-foreground)"
-                          : "var(--brand-experiment)",
+                          : "var(--brand-500)",
                     }}
                   />
                 )}
