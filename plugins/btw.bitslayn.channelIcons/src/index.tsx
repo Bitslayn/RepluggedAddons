@@ -214,13 +214,42 @@ function openEditor(data: any): void {
         <div // Content
           className="channelEditorContent"
           style={{ display: "flex", flexDirection: "column", width: "431px", maxHeight: "330px" }}>
-          <components.FormItem>
+          <components.FormItem style={{ display: "flex", flexDirection: "column" }}>
             <components.TextInput
-              placeholder="Search icons"
+              style={{ height: "34px" }}
+              placeholder="Search Icons"
               value={searchQuery}
               onChange={e => setSearchQuery(e)}
               {...util}
             />
+            <div
+              style={{
+                position: "fixed",
+                width: "34px",
+                height: "34px",
+                color: "var(--interactive-normal)",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                alignSelf: "flex-end",
+                pointerEvents: "none",
+              }}>
+              <svg
+                aria-label="Search"
+                aria-hidden="false"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="none"
+                viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                  d="M15.62 17.03a9 9 0 1 1 1.41-1.41l4.68 4.67a1 1 0 0 1-1.42 1.42l-4.67-4.68ZM17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </div>
           </components.FormItem>
           <div className="channelEditorSelector">
             <TabBar tabs={icons} />

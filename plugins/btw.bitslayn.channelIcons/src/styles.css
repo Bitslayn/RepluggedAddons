@@ -33,6 +33,7 @@
   align-content: flex-start;
   max-height: 254px;
   column-gap: 3px;
+  padding-top: 6px;
   overflow: hidden scroll;
 }
 .channelEditorIcons::-webkit-scrollbar {
