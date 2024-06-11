@@ -22,6 +22,7 @@ import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
+import ChannelExample from "./Example";
 import {
   BrandColors,
   ChannelStoreChannel,
@@ -50,8 +51,8 @@ const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
 
-const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
-console.log(ChannelAutocomplete);
+/*const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
+console.log(ChannelAutocomplete);*/
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -187,6 +188,9 @@ function openEditor(data: any): void {
         convertedColor,
         ...suggestedColors.filter(color => color !== convertedColor),
       ].slice(0, 11);
+      while (updatedColors.length < 11) {
+        updatedColors.splice(1, 0, convertedColor);
+      }
       setSuggestedColors(updatedColors);
       config.set("suggestedColors", updatedColors);
       config.set("coloredChannels", {
@@ -213,7 +217,12 @@ function openEditor(data: any): void {
         {...props}>
         <div // Content
           className="channelEditorContent"
-          style={{ display: "flex", flexDirection: "column", width: "431px", maxHeight: "330px" }}>
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "420px",
+            maxHeight: "330px",
+          }}>
           <components.FormItem style={{ display: "flex", flexDirection: "column" }}>
             <components.TextInput
               style={{ height: "34px" }}
@@ -264,9 +273,7 @@ function openEditor(data: any): void {
             gap: "8px",
             overflow: "hidden scroll",
             maxHeight: "362px",
-            position: "fixed",
-            right: "16px",
-            top: "56px",
+            width: "252px",
           }}>
           <ColorPicker.CustomColorPicker
             type={1}
@@ -281,6 +288,7 @@ function openEditor(data: any): void {
           className="channelExample"
           channel={ChannelStore.getChannel(channel.id)}
         />
+        {/*<ChannelExample id={channel.id} name={channel.name}></ChannelExample>*/}
       </Modals.ConfirmModal>
     );
   };
@@ -415,6 +423,11 @@ export function Settings(): JSX.Element {
         {...util.useSetting(config, "presetChannelIcons", [])}
         note={"Apply icons to channels automatically based on a predefined list of names."}>
         Preset Icons
+      </FormSwitch>
+      <FormSwitch
+        {...util.useSetting(config, "coloredChannelPills", [])}
+        note={"Changes the color used for channel mention and new thread pills to red and blue."}>
+        Colored Pills
       </FormSwitch>
       <components.Category title="Personalized Channels" note="View or remove channel styles.">
         <div>

@@ -67,21 +67,7 @@ export const TabBar = ({ tabs }) => {
             </div>
           )
         )}
-        {/* <Text.Normal
-          style={{
-            position: "absolute",
-            top: "52px",
-            right: "254px",
-            color: "var(--control-brand-foreground)",
-          }}>
-          {
-            tabs.map(tab => activeTab === tab.id && tab.element().props.children.length)[
-              activeTab - 1
-            ]
-          }{" "}
-          icons
-        </Text.Normal> */}
-        <Divider></Divider>
+        <Divider style={{ height: "unset" }}></Divider>
       </div>
       {tabs.map(tab => activeTab === tab.id && tab.element())}
     </div>

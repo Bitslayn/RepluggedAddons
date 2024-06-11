@@ -32,6 +32,7 @@ export interface Settings {
   coloredChannels: ColoredChannel[];
   changeChannelNames: [];
   presetChannelIcons: [];
+  coloredChannelPills: [];
   suggestedColors: string[];
   icons: IconData[];
 }

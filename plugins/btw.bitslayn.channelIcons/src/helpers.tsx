@@ -74,6 +74,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       d: path(
         "${path}"
       ) !important;
+      fill-rule: evenodd;
     }`;
   } else {
     styleElement.textContent = `
@@ -84,6 +85,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
         d: path(
           "${path}"
         ) !important;
+        fill-rule: evenodd;
       }
 
       [data-list-item-id$="_${channelId}"] > div > [class^="icon"] > svg {
