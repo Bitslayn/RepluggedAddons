@@ -301,16 +301,26 @@ function isChannelIdExists(channelId: string): boolean {
   return changedChannelNames.some((entry: any) => entry.channelid === channelId);
 }
 
-export function start(): void {
-  // console.log(generateInterface());
-  injectSavedChannelsStyles();
+function injectNamedChannelsStyles() {
   if (config.get("presetChannelIcons", [])) {
     ChannelNames.forEach(channel =>
       channel.name.forEach(x =>
         injectNamedChannelStyles(x, Icons.find(i => i.label === channel.query).value)
       )
     );
+  } else {
+    ChannelNames.forEach(channel =>
+      channel.name.forEach(x =>
+        document.querySelector(`[data-channel-named-style="${x}"]`).remove()
+      )
+    );
   }
+}
+
+export function start(): void {
+  // console.log(generateInterface());
+  injectSavedChannelsStyles();
+  injectNamedChannelsStyles();
 
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
@@ -402,6 +412,9 @@ export function stop(): void {
   Channels.forEach((channelId: string) => {
     document.querySelector(`[data-channel-style="${channelId}"]`).remove();
   });
+  ChannelNames.forEach(channel =>
+    channel.name.forEach(x => document.querySelector(`[data-channel-named-style="${x}"]`).remove())
+  );
 }
 
 export function Settings(): JSX.Element {
@@ -426,8 +439,9 @@ export function Settings(): JSX.Element {
         Pascal Case
       </FormSwitch>
       <FormSwitch
-        {...util.useSetting(config, "presetChannelIcons", [])}
-        note={"Apply icons to channels automatically based on a predefined list of names."}>
+        {...util.useSetting(config, "changeChannelNames", [])}
+        note={"Apply icons to channels automatically based on a predefined list of names."}
+        onChange={injectNamedChannelsStyles}>
         Preset Icons
       </FormSwitch>
       <FormSwitch

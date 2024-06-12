@@ -167,9 +167,14 @@ function shadeColor(color: string, transparency: number): string {
 
 export function capitalizeWords(sentence: string): string {
   const words: string[] = sentence.split("-");
-  const capitalizedWords: string[] = words.map(
-    word => word.charAt(0).toUpperCase() + word.slice(1)
-  );
+  const capitalizedWords: string[] = words.map(word => {
+    for (let a = 0; a < word.length; a++) {
+      if (/[a-zA-Z]/.test(word[a])) {
+        return word.slice(0, a) + word[a].toUpperCase() + word.slice(a + 1);
+      }
+    }
+    return word;
+  });
   // console.log(capitalizedWords);
   return capitalizedWords.join(" ");
 }
