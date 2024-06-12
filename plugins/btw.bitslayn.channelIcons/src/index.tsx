@@ -33,7 +33,8 @@ import {
 import { Divider } from "replugged/components";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
-const ColorPicker: { CustomColorPicker: any } = await webpack.waitForProps("CustomColorPicker");
+const ColorPicker: { CustomColorPickerButton: any } =
+  await webpack.waitForProps("CustomColorPickerButton");
 const inject: Injector = new Injector();
 const {
   ContextMenu: { MenuItem },
@@ -275,7 +276,7 @@ function openEditor(data: any): void {
             maxHeight: "362px",
             width: "252px",
           }}>
-          <ColorPicker.CustomColorPicker
+          <ColorPicker.CustomColorPickerButton
             type={1}
             className="channelEditorColorPicker"
             value={channelColor}
