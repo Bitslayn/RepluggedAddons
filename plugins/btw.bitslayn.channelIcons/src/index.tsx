@@ -304,9 +304,13 @@ function isChannelIdExists(channelId: string): boolean {
 export function start(): void {
   // console.log(generateInterface());
   injectSavedChannelsStyles();
-  /*ChannelNames.forEach(channel => { AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    injectNamedChannelStyles(channel.name, channel.icon);
-  });*/
+  if (config.get("presetChannelIcons", [])) {
+    ChannelNames.forEach(channel =>
+      channel.name.forEach(x =>
+        injectNamedChannelStyles(x, Icons.find(i => i.label === channel.query).value)
+      )
+    );
+  }
 
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
@@ -348,7 +352,9 @@ export function start(): void {
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore.getCurrentlySelectedChannelId()
     ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.find(x => CurrentChannel?.name?.match(x?.name));
+    const CustomIcon = ChannelNames?.find(
+      x => x?.name?.includes(CurrentChannel?.name.toLowerCase())
+    );
     //console.log(CurrentChannel?.name);
     //console.log(CustomIcon);
     if (a && a[0] && ChannelObject?.icon) {
