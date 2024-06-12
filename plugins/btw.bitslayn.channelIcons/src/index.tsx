@@ -419,6 +419,7 @@ export function stop(): void {
 
 export function Settings(): JSX.Element {
   const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", []));
+  const { value, onChange } = util.useSetting(config, "presetChannelIcons", []);
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
@@ -439,9 +440,13 @@ export function Settings(): JSX.Element {
         Pascal Case
       </FormSwitch>
       <FormSwitch
-        {...util.useSetting(config, "changeChannelNames", [])}
-        note={"Apply icons to channels automatically based on a predefined list of names."}
-        onChange={injectNamedChannelsStyles}>
+        value={value}
+        onChange={value => {
+          injectNamedChannelsStyles();
+          console.log(value);
+          onChange(value);
+        }}
+        note={"Apply icons to channels automatically based on a predefined list of names."}>
         Preset Icons
       </FormSwitch>
       <FormSwitch

@@ -3,7 +3,7 @@ import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
 import { ColoredChannel, IconClass, SelectedChannel } from "./types";
-import { ChannelNames } from "./specialSVGs";
+import { iconBuffer } from "./index";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
@@ -55,7 +55,7 @@ export function injectNamedChannelStyles(name: string, icon: any): void {
   styleElement.textContent = `
   [aria-label*="${name}" i] > div > div > svg > path {
     d: path(
-      "${icon}"
+      "${iconBuffer}${icon}"
     );
     fill-rule: evenodd;
   }`;
