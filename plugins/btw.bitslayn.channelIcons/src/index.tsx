@@ -352,8 +352,8 @@ export function start(): void {
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore.getCurrentlySelectedChannelId()
     ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.find(
-      x => x?.name?.includes(CurrentChannel?.name.toLowerCase())
+    const CustomIcon = ChannelNames?.find(x =>
+      x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))
     );
     //console.log(CurrentChannel?.name);
     //console.log(CustomIcon);

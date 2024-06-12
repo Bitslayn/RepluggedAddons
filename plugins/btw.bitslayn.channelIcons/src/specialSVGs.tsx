@@ -505,6 +505,6 @@ export const ChannelNames = [
   //pin
   { name: ["vc", "voice", "mute", "mic"], icon: voice, query: "Microphone" },
 
-  { name: ["racc"], icon: RaccoonSVG, query: "undefined" },
-  { name: ["bitsl"], icon: Bitslayn, query: "undefined" },
+  { name: ["racc"], icon: RaccoonSVG, query: "ChannelText" },
+  { name: ["bitsl"], icon: Bitslayn, query: "ChannelText" },
 ];
