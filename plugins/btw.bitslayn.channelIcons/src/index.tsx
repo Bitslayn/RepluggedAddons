@@ -33,8 +33,7 @@ import {
 import { Divider } from "replugged/components";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
-const ColorPicker: { CustomColorPickerButton: any } =
-  await webpack.waitForProps("CustomColorPickerButton");
+const ColorPicker: { CustomColorPicker: any } = webpack.getByProps("CustomColorPicker");
 const inject: Injector = new Injector();
 const {
   ContextMenu: { MenuItem },
@@ -276,7 +275,7 @@ function openEditor(data: any): void {
             maxHeight: "362px",
             width: "252px",
           }}>
-          <ColorPicker.CustomColorPickerButton
+          <ColorPicker.CustomColorPicker
             type={1}
             className="channelEditorColorPicker"
             value={channelColor}
@@ -309,13 +308,13 @@ function injectNamedChannelsStyles() {
         injectNamedChannelStyles(x, Icons.find(i => i.label === channel.query).value)
       )
     );
-  } else {
+  } /*  else {
     ChannelNames.forEach(channel =>
       channel.name.forEach(x =>
         document.querySelector(`[data-channel-named-style="${x}"]`).remove()
       )
     );
-  }
+  } */
 }
 
 export function start(): void {
