@@ -4,6 +4,7 @@ import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
 import { ColoredChannel, IconClass, SelectedChannel } from "./types";
 import { iconBuffer } from "./index";
+import exp from "node:constants";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");
@@ -60,6 +61,28 @@ export function injectNamedChannelStyles(name: string, icon: any): void {
     fill-rule: evenodd;
   }`;
   document.head.appendChild(styleElement);
+}
+
+export function injectChannelPillStyle(): void {
+  const existingStyle = document.querySelector(`[colored-channel-pills="owo"]`);
+  if (existingStyle) {
+    existingStyle.remove(); // Remove existing style if found
+  }
+
+  if (config.get("coloredChannelPills")) {
+    const styleElement = document.createElement("style");
+    styleElement.setAttribute("colored-channel-pills", "owo");
+    styleElement.textContent = `
+  /*=====Blue Pill=====*/
+  [class^="iconVisibility_"]:has([style="color: var(--text-brand);"]) > [class^="unread_"] {
+    background-color: var(--text-brand);
+  }
+  /*=====Red Pill=====*/
+  [class^="iconVisibility_"]:has([class^="mentionsBadge_"]) > [class^="unread_"] {
+    background-color: var(--status-danger);
+  }`;
+    document.head.appendChild(styleElement);
+  }
 }
 
 export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {

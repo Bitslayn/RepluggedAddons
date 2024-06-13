@@ -17,6 +17,7 @@ import {
   randomNumber,
   selectedIcon,
   injectNamedChannelStyles,
+  injectChannelPillStyle,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
@@ -302,25 +303,28 @@ function isChannelIdExists(channelId: string): boolean {
 }
 
 function injectNamedChannelsStyles() {
-  if (config.get("presetChannelIcons", [])) {
+  if (config.get("presetChannelIcons")) {
     ChannelNames.forEach(channel =>
       channel.name.forEach(x =>
         injectNamedChannelStyles(x, Icons.find(i => i.label === channel.query).value)
       )
     );
-  } /*  else {
+  } else {
     ChannelNames.forEach(channel =>
-      channel.name.forEach(x =>
-        document.querySelector(`[data-channel-named-style="${x}"]`).remove()
-      )
+      channel.name.forEach(x => {
+        if (document.querySelector(`[data-channel-named-style="${x}"]`)) {
+          document.querySelector(`[data-channel-named-style="${x}"]`).remove();
+        }
+      })
     );
-  } */
+  }
 }
 
 export function start(): void {
   // console.log(generateInterface());
   injectSavedChannelsStyles();
   injectNamedChannelsStyles();
+  injectChannelPillStyle();
 
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
@@ -371,7 +375,7 @@ export function start(): void {
       a[0].icon = () => {
         return <EditedChannelIcon channel={getCurrentChannelObject()} />;
       };
-    } else if (CustomIcon && config.get("presetChannelIcons", [])) {
+    } else if (CustomIcon && config.get("presetChannelIcons")) {
       a[0].icon = () => {
         return <CustomIcon.icon />;
       };
@@ -413,13 +417,18 @@ export function stop(): void {
     document.querySelector(`[data-channel-style="${channelId}"]`).remove();
   });
   ChannelNames.forEach(channel =>
-    channel.name.forEach(x => document.querySelector(`[data-channel-named-style="${x}"]`).remove())
+    channel.name.forEach(x => {
+      if (document.querySelector(`[data-channel-named-style="${x}"]`)) {
+        document.querySelector(`[data-channel-named-style="${x}"]`).remove();
+      }
+    })
   );
 }
 
 export function Settings(): JSX.Element {
   const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", []));
-  const { value, onChange } = util.useSetting(config, "presetChannelIcons", []);
+  const presetChannelIcons: { value; onChange } = util.useSetting(config, "presetChannelIcons");
+  const coloredChannelPills: { value; onChange } = util.useSetting(config, "coloredChannelPills");
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
@@ -432,6 +441,15 @@ export function Settings(): JSX.Element {
   return (
     <div>
       <FormSwitch
+        value={presetChannelIcons.value}
+        onChange={value => {
+          presetChannelIcons.onChange(value);
+          injectNamedChannelsStyles();
+        }}
+        note={"Apply icons to channels automatically based on their names."}>
+        Recommended Icons
+      </FormSwitch>
+      <FormSwitch
         {...util.useSetting(config, "changeChannelNames", [])}
         note={
           "Title every channel name in Pascal Case for a polished appearance. " +
@@ -440,21 +458,19 @@ export function Settings(): JSX.Element {
         Pascal Case
       </FormSwitch>
       <FormSwitch
-        value={value}
+        value={coloredChannelPills.value}
         onChange={value => {
-          injectNamedChannelsStyles();
-          console.log(value);
-          onChange(value);
+          coloredChannelPills.onChange(value);
+          injectChannelPillStyle();
         }}
-        note={"Apply icons to channels automatically based on a predefined list of names."}>
-        Preset Icons
-      </FormSwitch>
-      <FormSwitch
-        {...util.useSetting(config, "coloredChannelPills", [])}
-        note={"Changes the color used for channel mention and new thread pills to red and blue."}>
+        note={
+          "Changes the color used for channel mention and new thread pills (dots on the left of channels) to red and blue."
+        }>
         Colored Pills
       </FormSwitch>
-      <components.Category title="Personalized Channels" note="View or remove channel styles.">
+      <components.Category
+        title="Personalized Channels"
+        note="View and modify your channel styles.">
         <div>
           {Object.entries(coloredChannels).map(([channelId]: [string, ColoredChannel]) => (
             <div style={{ marginBottom: "20px" }}>
