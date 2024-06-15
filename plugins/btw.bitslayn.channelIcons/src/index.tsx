@@ -365,7 +365,7 @@ export function start(): void {
     }
   });
 
-  inject.before(Header?.default, "Icon", (a: any) => {
+  inject.before(Header.default, "Icon", (a: any) => {
     const ChannelObject = getCurrentChannelObject();
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
       SelectedChannelStore?.getCurrentlySelectedChannelId()

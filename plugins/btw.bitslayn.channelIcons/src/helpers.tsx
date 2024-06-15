@@ -229,8 +229,11 @@ export function getCurrentChannelObject(): ColoredChannel {
   }
 }
 
+// eslint-disable-next-line consistent-return
 export function getChannelObject(channelId: string): ColoredChannel {
-  return config.get("coloredChannels")[channelId];
+  if (config.get("coloredChannels")) {
+    return config.get("coloredChannels")[channelId];
+  }
 }
 
 interface EditedChannelIconProps {
