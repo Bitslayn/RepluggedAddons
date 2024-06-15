@@ -44,7 +44,8 @@ const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
 export const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
-const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
+const Header: { default: { Icon: any; Title: any } } =
+  await webpack.getBySource("toolbar:function()");
 const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
@@ -355,55 +356,56 @@ export function start(): void {
   injectSavedChannelsStyles();
   injectNamedChannelsStyles();
   injectChannelPillStyle();
+  if (Header !== undefined) {
+    inject.after(Header.default, "Title", (a: any) => {
+      const headerObj = a?.[0]?.children?.props?.children;
+      if (headerObj && getCurrentChannelObject()?.color) {
+        const ChannelObject = getCurrentChannelObject();
+        headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
+        // clearChildrenAddPath(ChannelObject.icon)
+      }
+    });
 
-  inject.after(Header.default, "Title", (a: any) => {
-    const headerObj = a?.[0]?.children?.props?.children;
-    if (headerObj && getCurrentChannelObject()?.color) {
+    inject.before(Header.default, "Icon", (a: any) => {
       const ChannelObject = getCurrentChannelObject();
-      headerObj[2] = <span style={{ color: ChannelObject?.color }}>{headerObj[2]}</span>;
-      // clearChildrenAddPath(ChannelObject.icon)
-    }
-  });
-
-  inject.before(Header.default, "Icon", (a: any) => {
-    const ChannelObject = getCurrentChannelObject();
-    const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
-      SelectedChannelStore?.getCurrentlySelectedChannelId()
-    ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.slice()
-      .reverse()
-      .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
-    //console.log(CurrentChannel?.name);
-    //console.log(CustomIcon);
-    //console.log(CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons"));
-    if (a && a[0] && ChannelObject?.icon) {
-      a[0].icon = () => {
-        return <EditedChannelIcon channel={getCurrentChannelObject()} />;
-      };
-    } else if (CustomIcon && CustomIcon.icon !== "none" && config.get("presetChannelIcons")) {
-      a[0].icon = () => {
-        return <CustomIcon.icon />;
-      };
-    } else if (CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons")) {
-      a[0].icon = () => {
-        return (
-          <svg
-            version="1.0"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24">
-            <g fill={getCurrentChannelObject()?.color ?? "var(--channel-icon)"}>
-              <path
-                d={`${iconBuffer}${Icons.find(i => i.label === CustomIcon.query).value}`}
-                fillRule="evenodd"
-              />
-            </g>
-          </svg>
-        );
-      };
-    }
-  });
+      const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
+        SelectedChannelStore?.getCurrentlySelectedChannelId()
+      ) as ChannelStoreChannel;
+      const CustomIcon = ChannelNames?.slice()
+        .reverse()
+        .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
+      //console.log(CurrentChannel?.name);
+      //console.log(CustomIcon);
+      //console.log(CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons"));
+      if (a && a[0] && ChannelObject?.icon) {
+        a[0].icon = () => {
+          return <EditedChannelIcon channel={getCurrentChannelObject()} />;
+        };
+      } else if (CustomIcon && CustomIcon.icon !== "none" && config.get("presetChannelIcons")) {
+        a[0].icon = () => {
+          return <CustomIcon.icon />;
+        };
+      } else if (CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons")) {
+        a[0].icon = () => {
+          return (
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24">
+              <g fill={getCurrentChannelObject()?.color ?? "var(--channel-icon)"}>
+                <path
+                  d={`${iconBuffer}${Icons.find(i => i.label === CustomIcon.query).value}`}
+                  fillRule="evenodd"
+                />
+              </g>
+            </svg>
+          );
+        };
+      }
+    });
+  }
 
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
