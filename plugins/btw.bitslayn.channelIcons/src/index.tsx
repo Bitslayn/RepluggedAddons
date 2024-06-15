@@ -27,9 +27,11 @@ import {
   ChannelStoreChannel,
   ColoredChannel,
   ModalsModule,
+  WordConfig,
   int2hexModule,
 } from "./types";
 import { Divider } from "replugged/components";
+import { stringify } from "querystring";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = webpack.getByProps("CustomColorPicker");
@@ -48,6 +50,49 @@ const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("tool
 const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
+
+if (!config.get("advancedChannelNames")) {
+  function fetchDataAndExtract(): WordConfig {
+    const extractedData: WordConfig = {
+      specialCases: {
+        css: "CSS",
+        js: "JS",
+        html: "HTML",
+        xml: "XML",
+        json: "JSON",
+        sql: "SQL",
+        php: "PHP",
+
+        faq: "FAQ",
+        qotd: "QOTD",
+      },
+      lowercaseExceptions: new Set([
+        "a",
+        "ad",
+        "an",
+        "and",
+        "as",
+        "at",
+        "but",
+        "by",
+        "for",
+        "in",
+        "is",
+        "nor",
+        "of",
+        "on",
+        "or",
+        "so",
+        "the",
+        "to",
+        "up",
+        "yet",
+      ]),
+    };
+    return extractedData;
+  }
+  config.set("advancedChannelNames", fetchDataAndExtract());
+}
 
 /*const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
 console.log(ChannelAutocomplete);*/
@@ -403,7 +448,12 @@ export function start(): void {
       const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
       const oldName: string = channel.name;
       if (!isChannelIdExists(channel.id)) {
-        channel.name = capitalizeWords(oldName);
+        const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
+        channel.name = capitalizeWords(
+          oldName,
+          advancedChannelNames.specialCases,
+          advancedChannelNames.lowercaseExceptions
+        );
         changedChannelNames.push({ channelid: channel.id, oldName });
       }
     }
@@ -444,6 +494,7 @@ export function Settings(): JSX.Element {
   const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", []));
   const presetChannelIcons: { value; onChange } = util.useSetting(config, "presetChannelIcons");
   const coloredChannelPills: { value; onChange } = util.useSetting(config, "coloredChannelPills");
+  const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
@@ -512,6 +563,28 @@ export function Settings(): JSX.Element {
             </div>
           ))}
         </div>
+      </components.Category>
+      <components.Category
+        title="Advanced Settings"
+        note="Do not touch unless you know what you're doing. These can crash the plugin if used incorrectly.">
+        <components.FormItem title="Recommended Icons">
+          <components.TextArea rows={10} />
+        </components.FormItem>
+        <components.FormItem title="Abbreviation Wordlist (All capitals)">
+          <components.TextArea rows={10} value={advancedChannelNames.specialCases} />
+        </components.FormItem>
+        <components.FormItem title="Blacklisted Words (All lowercase)">
+          <components.TextArea
+            rows={10}
+            value={Array.from(advancedChannelNames.lowercaseExceptions.entries.toString()).join("")}
+          />
+        </components.FormItem>
+        <components.ButtonItem
+          button="Reset"
+          color={colorBrands.colorDanger}></components.ButtonItem>
+        <components.ButtonItem
+          button="Confirm"
+          color={colorBrands.colorBrand}></components.ButtonItem>
       </components.Category>
     </div>
   );

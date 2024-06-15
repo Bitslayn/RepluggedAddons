@@ -156,7 +156,7 @@ export const ChannelNames = [
   { name: ["rule"], icon: "none", query: "BookCheck" },
   { name: ["star"], icon: "none", query: "StarGuildList" },
   { name: ["pin"], icon: "none", query: "Pin" },
-  { name: ["vc", "voice", "mute", "mic"], icon: "none", query: "Microphone" },
+  { name: ["vc", "voice", "mute", "mic"], icon: "none", query: "ChatSpeech" },
   { name: ["verify", "verification"], icon: "none", query: "AuditLogs" },
   { name: ["poll", "vote", "voting"], icon: "none", query: "ListBullets" },
   { name: ["change", "log"], icon: "none", query: "Summaries" },

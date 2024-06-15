@@ -2,7 +2,7 @@
 import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
-import { ColoredChannel, IconClass, SelectedChannel } from "./types";
+import { ColoredChannel, IconClass, SelectedChannel, WordConfig } from "./types";
 import { iconBuffer } from "./index";
 
 export const SelectedChannelStore: SelectedChannel & Store =
@@ -53,7 +53,7 @@ export function injectNamedChannelStyles(name: string, icon: any): void {
   const styleElement = document.createElement("style");
   styleElement.setAttribute("data-channel-named-style", name);
   styleElement.textContent = `
-  [aria-label*="${name}" i] > div > div:not([aria-label^="Voice"], [aria-label^="Stage"]) > svg > path {
+  [aria-label*="${name}" i] > div > div:not([aria-label^="Voice"], [aria-label^="Stage"], [class*="Folder"]) > svg > path {
     d: path(
       "${iconBuffer}${icon}"
     );
@@ -187,17 +187,32 @@ function shadeColor(color: string, transparency: number): string {
   return `#${RR}${GG}${BB}${alphaHex}`;
 }
 
-export function capitalizeWords(sentence: string): string {
+export function capitalizeWords(
+  sentence: string,
+  specialCases: any,
+  lowercaseExceptions: any
+): string {
   const words: string[] = sentence.split("-");
-  const capitalizedWords: string[] = words.map(word => {
-    for (let a = 0; a < word.length; a++) {
-      if (/[a-zA-Z]/.test(word[a])) {
-        return word.slice(0, a) + word[a].toUpperCase() + word.slice(a + 1);
+  const capitalizedWords: string[] = words.map((word, index) => {
+    if (specialCases[word]) {
+      return specialCases[word];
+    }
+
+    if (word.length === 2 && (index === 0 || !lowercaseExceptions?.has(word))) {
+      return word.toUpperCase();
+    }
+
+    if (index === 0 || !lowercaseExceptions?.has(word)) {
+      for (let a = 0; a < word.length; a++) {
+        if (/[a-zA-Z]/.test(word[a])) {
+          return word.slice(0, a) + word[a].toUpperCase() + word.slice(a + 1);
+        }
       }
     }
-    return word;
+
+    return word.toLowerCase();
   });
-  // console.log(capitalizedWords);
+
   return capitalizedWords.join(" ");
 }
 
