@@ -1,12 +1,20 @@
 import { capitalizeWords } from "./helpers";
 import { config } from "./icons";
+import { WordConfig } from "./types";
+
+const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
 
 const ChannelExample = ({ id, name }) => {
   let channelName;
   if (config.get("changeChannelNames", [])) {
-    channelName = capitalizeWords(name);
+    channelName = capitalizeWords(
+      name,
+      advancedChannelNames.specialCases,
+      advancedChannelNames.lowercaseExceptions
+    );
   } else {
-    channelName = decapitalizeWords(name);
+    channelName = decapitalizeWords(name, advancedChannelNames.specialCases);
+    console.log(advancedChannelNames);
   }
   return (
     <div className="channelExample">
@@ -81,9 +89,18 @@ const ChannelExample = ({ id, name }) => {
 
 export default ChannelExample;
 
-function decapitalizeWords(sentence: string): string {
+function decapitalizeWords(sentence: string, specialCases: any): string {
+  const lowerCaseSpecialCases: { [key: string]: string } = {};
+  for (const key in specialCases) {
+    lowerCaseSpecialCases[key.toLowerCase()] = specialCases[key].toLowerCase();
+  }
+
   const words: string[] = sentence.split(" ");
   const decapitalizedWords: string[] = words.map(word => {
+    if (lowerCaseSpecialCases[word.toLowerCase()]) {
+      return lowerCaseSpecialCases[word.toLowerCase()];
+    }
+
     for (let a = 0; a < word.length; a++) {
       if (/[a-zA-Z]/.test(word[a])) {
         return word.slice(0, a) + word[a].toLowerCase() + word.slice(a + 1);
