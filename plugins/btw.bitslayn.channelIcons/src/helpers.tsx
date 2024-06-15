@@ -2,7 +2,7 @@
 import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
-import { ColoredChannel, IconClass, SelectedChannel, WordConfig } from "./types";
+import { ColoredChannel, IconClass, SelectedChannel } from "./types";
 import { iconBuffer } from "./index";
 
 export const SelectedChannelStore: SelectedChannel & Store =

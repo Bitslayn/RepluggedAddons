@@ -1,10 +1,18 @@
 import { capitalizeWords } from "./helpers";
 import { config } from "./icons";
-import { lowercaseExceptions, specialCases } from "./index";
+import { ChannelStore, lowercaseExceptions, specialCases } from "./index";
 
 const ChannelExample = ({ id, name }) => {
-  let channelName;
-  if (config.get("changeChannelNames", [])) {
+  let channelName: any;
+  let owo: any = ChannelStore.getChannel(id);
+  if (id === name) {
+    const uwu = owo.name;
+    if (config.get("changeChannelNames", [])) {
+      channelName = capitalizeWords(uwu, specialCases, lowercaseExceptions);
+    } else {
+      channelName = decapitalizeWords(uwu, specialCases);
+    }
+  } else if (config.get("changeChannelNames", [])) {
     channelName = capitalizeWords(name, specialCases, lowercaseExceptions);
   } else {
     channelName = decapitalizeWords(name, specialCases);

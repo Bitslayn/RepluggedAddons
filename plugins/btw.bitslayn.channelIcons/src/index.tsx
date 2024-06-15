@@ -11,11 +11,11 @@ import {
   generateInterface,
   getChannelObject,
   getCurrentChannelObject,
+  injectChannelPillStyle,
   injectChannelStyle,
+  injectNamedChannelStyles,
   randomNumber,
   selectedIcon,
-  injectNamedChannelStyles,
-  injectChannelPillStyle,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
@@ -42,7 +42,8 @@ const Modals: ModalsModule = webpack.getByProps("ConfirmModal");
 export const { int2hex }: int2hexModule = webpack.getByProps("int2hex");
 const { FormSwitch }: any = webpack.getByProps("FormSwitch");
 const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
-const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
+export const ChannelStore: { getChannel: AnyFunction } & Store =
+  webpack.getByStoreName("ChannelStore");
 export const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } =
   await webpack.getBySource("toolbar:function()");
@@ -538,9 +539,7 @@ export function Settings(): JSX.Element {
                   marginBottom: "8px",
                   justifyContent: "space-between",
                 }}>
-                <ChannelExample
-                  id={channelId}
-                  name={ChannelStore.getChannel(channelId).name}></ChannelExample>
+                <ChannelExample id={channelId} name={channelId}></ChannelExample>
                 <button
                   style={{
                     background: "var(--old-red)",
