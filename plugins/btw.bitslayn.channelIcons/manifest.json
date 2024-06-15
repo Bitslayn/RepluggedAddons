@@ -14,7 +14,7 @@
       "github": "zrodevkaan"
     }
   ],
-  "version": "1.0.3",
+  "version": "1.0.4",
   "updater": {
     "type": "store",
     "id": "btw.bitslayn.channelIcons"
@@ -23,5 +23,8 @@
   "type": "replugged-plugin",
   "renderer": "src/index.tsx",
   "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/plugins/btw.bitslayn.channelIcons",
-  "image": ["https://i.imgur.com/juPgF9z.png", "https://i.imgur.com/9h3UiVb.png"]
+  "image": [
+    "https://i.imgur.com/juPgF9z.png",
+    "https://i.imgur.com/9h3UiVb.png"
+  ]
 }
