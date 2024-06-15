@@ -23,7 +23,7 @@ import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
 import { TabBar } from "./TabBar";
 import CustomTooltip from "./Tooltip";
-import ChannelExample from "./Example";
+import ChannelExample from "./ChannelExample";
 import {
   BrandColors,
   ChannelStoreChannel,
@@ -47,7 +47,6 @@ const ChannelClass: { default: any } = webpack.getByProps("ChannelItemIcon");
 const ChannelStore: { getChannel: AnyFunction } & Store = webpack.getByStoreName("ChannelStore");
 export const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } = webpack.getBySource("toolbar:function()");
-
 const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
@@ -108,7 +107,7 @@ function openEditor(data: any): void {
                   injectChannelStyle(channel.id, int2hex(channelColor), label.value);
                   selectedIcon(int2hex(channelColor), `${iconBuffer}${label.value}`);
                 }}>
-                <CustomTooltip text={label.label}>
+                <components.Tooltip text={label.label} spacing={24}>
                   <svg
                     className={label.label}
                     viewBox="-4 -4 32 32"
@@ -119,7 +118,7 @@ function openEditor(data: any): void {
                       fillRule="evenodd"
                     />
                   </svg>
-                </CustomTooltip>
+                </components.Tooltip>
               </components.Clickable>
             ))}
           </div>
@@ -147,7 +146,7 @@ function openEditor(data: any): void {
                     injectChannelStyle(channel.id, int2hex(channelColor), fullPathString);
                     selectedIcon(int2hex(channelColor), fullPathString);
                   }}>
-                  <CustomTooltip text={label.Name}>
+                  <components.Tooltip text={label.Name} spacing={24}>
                     <svg
                       key={index}
                       className={label.Name}
@@ -171,7 +170,7 @@ function openEditor(data: any): void {
                         }
                       })}
                     </svg>
-                  </CustomTooltip>
+                  </components.Tooltip>
                 </components.Clickable>
               );
             })}
@@ -285,11 +284,7 @@ function openEditor(data: any): void {
           />
         </div>
 
-        <ChannelClass.default
-          className="channelExample"
-          channel={ChannelStore.getChannel(channel.id)}
-        />
-        {/*<ChannelExample id={channel.id} name={channel.name}></ChannelExample>*/}
+        <ChannelExample id={channel.id} name={channel.name}></ChannelExample>
       </Modals.ConfirmModal>
     );
   };
@@ -304,11 +299,13 @@ function isChannelIdExists(channelId: string): boolean {
 
 function injectNamedChannelsStyles() {
   if (config.get("presetChannelIcons")) {
-    ChannelNames.forEach(channel =>
-      channel.name.forEach(x =>
-        injectNamedChannelStyles(x, Icons.find(i => i.label === channel.query).value)
-      )
-    );
+    ChannelNames.forEach(channel => {
+      if (channel.query !== "none") {
+        channel.name.forEach(x =>
+          injectNamedChannelStyles(x, Icons.find(i => i.label === channel.query).value)
+        );
+      }
+    });
   } else {
     ChannelNames.forEach(channel =>
       channel.name.forEach(x => {
@@ -321,16 +318,66 @@ function injectNamedChannelsStyles() {
 }
 
 export function start(): void {
+  inject.uninjectAll();
   // console.log(generateInterface());
   injectSavedChannelsStyles();
   injectNamedChannelsStyles();
   injectChannelPillStyle();
 
+  inject.after(Header.default, "Title", (a: any) => {
+    const headerObj = a?.[0]?.children?.props?.children;
+    if (headerObj && getCurrentChannelObject()?.color) {
+      const ChannelObject = getCurrentChannelObject();
+      headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
+      // clearChildrenAddPath(ChannelObject.icon)
+    }
+  });
+
+  inject.before(Header.default, "Icon", (a: any) => {
+    const ChannelObject = getCurrentChannelObject();
+    const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
+      SelectedChannelStore.getCurrentlySelectedChannelId()
+    ) as ChannelStoreChannel;
+    const CustomIcon = ChannelNames?.slice()
+      .reverse()
+      .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
+    //console.log(CurrentChannel?.name);
+    //console.log(CustomIcon);
+    //console.log(CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons"));
+    if (a && a[0] && ChannelObject?.icon) {
+      a[0].icon = () => {
+        return <EditedChannelIcon channel={getCurrentChannelObject()} />;
+      };
+    } else if (CustomIcon && CustomIcon.icon !== "none" && config.get("presetChannelIcons")) {
+      a[0].icon = () => {
+        return <CustomIcon.icon />;
+      };
+    } else if (CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons")) {
+      a[0].icon = () => {
+        return (
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24">
+            <g fill={getCurrentChannelObject()?.color ?? "var(--channel-icon)"}>
+              <path
+                d={`${iconBuffer}${Icons.find(i => i.label === CustomIcon.query).value}`}
+                fillRule="evenodd"
+              />
+            </g>
+          </svg>
+        );
+      };
+    }
+  });
+
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
     const { channel } = data;
     // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
-    const Object = group1Array[randomNumber(Icons.length)];
+    const Object = group1Array[randomNumber(group1Array.length)];
     let RandomIcon: ComponentType<any>;
     // shut up.
     // eslint-disable-next-line no-undefined
@@ -349,36 +396,6 @@ export function start(): void {
           action={() => openEditor(data)}
         />
       );
-    }
-  });
-
-  inject.after(Header.default, "Title", (a: any) => {
-    const headerObj = a?.[0]?.children?.props?.children;
-    if (headerObj && getCurrentChannelObject()?.color) {
-      const ChannelObject = getCurrentChannelObject();
-      headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
-      // clearChildrenAddPath(ChannelObject.icon)
-    }
-  });
-
-  inject.before(Header.default, "Icon", (a: any) => {
-    const ChannelObject = getCurrentChannelObject();
-    const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
-      SelectedChannelStore.getCurrentlySelectedChannelId()
-    ) as ChannelStoreChannel;
-    const CustomIcon = ChannelNames?.find(x =>
-      x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))
-    );
-    //console.log(CurrentChannel?.name);
-    //console.log(CustomIcon);
-    if (a && a[0] && ChannelObject?.icon) {
-      a[0].icon = () => {
-        return <EditedChannelIcon channel={getCurrentChannelObject()} />;
-      };
-    } else if (CustomIcon && config.get("presetChannelIcons")) {
-      a[0].icon = () => {
-        return <CustomIcon.icon />;
-      };
     }
   });
 
@@ -446,7 +463,7 @@ export function Settings(): JSX.Element {
           presetChannelIcons.onChange(value);
           injectNamedChannelsStyles();
         }}
-        note={"Apply icons to channels automatically based on their names."}>
+        note={"Apply icons to channels automatically based on their name."}>
         Recommended Icons
       </FormSwitch>
       <FormSwitch
@@ -463,10 +480,8 @@ export function Settings(): JSX.Element {
           coloredChannelPills.onChange(value);
           injectChannelPillStyle();
         }}
-        note={
-          "Changes the color used for channel mention and new thread pills (dots on the left of channels) to red and blue."
-        }>
-        Colored Pills
+        note={"Changes the color used for channel mention and new thread pills to red and blue."}>
+        Color Unread Indicators
       </FormSwitch>
       <components.Category
         title="Personalized Channels"
@@ -482,10 +497,9 @@ export function Settings(): JSX.Element {
                   marginBottom: "8px",
                   justifyContent: "space-between",
                 }}>
-                <ChannelClass.default
-                  className="channelExample"
-                  channel={ChannelStore.getChannel(channelId)}
-                />
+                <ChannelExample
+                  id={channelId}
+                  name={ChannelStore.getChannel(channelId).name}></ChannelExample>
                 <button
                   style={{
                     background: "var(--old-red)",

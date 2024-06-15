@@ -20,23 +20,23 @@ export function selectedIcon(channelColor: string, path: string): void {
     return paths.map(p => `:has(>[d*="${p}"])`);
   };
   const selectors = splitPaths(path);
-  //console.log(`.channelEditorIcons > div > div > div > svg${selectors.join("")}`);
+  //console.log(`.channelEditorIcons > div > span > svg${selectors.join("")}`);
   const styleElement = document.createElement("style");
   styleElement.setAttribute("selected-icon", "owo");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
-    .channelEditorIcons > div > div > div > svg${selectors.join("")} {
+    .channelEditorIcons > div > span > svg${selectors.join("")} {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
   } else {
     styleElement.textContent = `
-      .channelEditorIcons > div > div > div > svg${selectors.join("")} {
+      .channelEditorIcons > div > span > svg${selectors.join("")} {
         background: ${shadeColor(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
-      .channelEditorIcons > div > div > div > svg:hover {
+      .channelEditorIcons > div > span > svg:hover {
         background: ${shadeColor(channelColor, 0.15)};
         border-radius: var(--radius-xs);
       }
@@ -54,7 +54,7 @@ export function injectNamedChannelStyles(name: string, icon: any): void {
   const styleElement = document.createElement("style");
   styleElement.setAttribute("data-channel-named-style", name);
   styleElement.textContent = `
-  [aria-label*="${name}" i] > div > div > svg > path {
+  [aria-label*="${name}" i] > div > div:not([aria-label^="Voice"], [aria-label^="Stage"]) > svg > path {
     d: path(
       "${iconBuffer}${icon}"
     );
@@ -144,7 +144,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       }
 
       [data-list-item-id$="_${channelId}"]:hover
-      /*.channelEditorIcons > div > div > div > svg:hover*/ {
+      /*.channelEditorIcons > div > span > svg:hover*/ {
         /* Hovered background color */
         background: ${shadeColor(channelColor, 0.15)} !important;
         border-radius: var(--radius-xs);

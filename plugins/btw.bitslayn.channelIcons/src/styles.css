@@ -36,13 +36,13 @@
   margin: 1px;
   height: 32px;
 }
-.channelEditorIcons > div > div > div > svg:hover:has([fill="#000000"]),
-.channelEditorIcons > div > div > div > svg:hover:has([fill="#ffffff"]) {
+.channelEditorIcons > div > span > svg:hover:has([fill="#000000"]),
+.channelEditorIcons > div > span > svg:hover:has([fill="#ffffff"]) {
   background: var(--bg-overlay-hover, var(--background-modifier-hover));
   border-radius: var(--radius-xs);
 }
-.channelEditorIcons > div > div > div > svg > [fill="#000000"],
-.channelEditorIcons > div > div > div > svg > [fill="#ffffff"] {
+.channelEditorIcons > div > span > svg > [fill="#000000"],
+.channelEditorIcons > div > span > svg > [fill="#ffffff"] {
   fill: var(--channel-icon);
   border-radius: var(--radius-xs);
 }
