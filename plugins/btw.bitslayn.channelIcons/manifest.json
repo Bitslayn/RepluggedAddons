@@ -23,5 +23,5 @@
   "type": "replugged-plugin",
   "renderer": "src/index.tsx",
   "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/plugins/btw.bitslayn.channelIcons",
-  "image": ["https://i.imgur.com/ia7wdt3.png", "https://i.imgur.com/00IzH3p.png"]
+  "image": ["https://i.imgur.com/juPgF9z.png", "https://i.imgur.com/9h3UiVb.png"]
 }

@@ -31,7 +31,6 @@ import {
   int2hexModule,
 } from "./types";
 import { Divider } from "replugged/components";
-import { stringify } from "querystring";
 
 const colorBrands: BrandColors = webpack.getByProps("colorBrand");
 const ColorPicker: { CustomColorPicker: any } = webpack.getByProps("CustomColorPicker");
@@ -51,7 +50,11 @@ const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
 );
 
+/*const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
+console.log(ChannelAutocomplete);*/
+
 if (!config.get("advancedChannelNames")) {
+  // I'll figure this out another time. It works locally so that's all that matters.
   function fetchDataAndExtract(): WordConfig {
     const extractedData: WordConfig = {
       specialCases: {
@@ -93,9 +96,6 @@ if (!config.get("advancedChannelNames")) {
   }
   config.set("advancedChannelNames", fetchDataAndExtract());
 }
-
-/*const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
-console.log(ChannelAutocomplete);*/
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -140,7 +140,7 @@ function openEditor(data: any): void {
     const icons = [
       {
         id: 1,
-        label: "Classic Icons",
+        label: "Legacy Icons",
         element: () => (
           <div className="channelEditorIcons">
             {filteredClassicIcons.map((label: any) => (
@@ -244,7 +244,7 @@ function openEditor(data: any): void {
 
     return (
       <Modals.ConfirmModal
-        confirmButtonColor={colorBrands.colorBrand}
+        confirmButtonColor={components.Button.Colors.BRAND}
         cancelButtonColor={colorBrands.colorDanger}
         confirmText={"Okay"}
         cancelText={"Remove"}
@@ -263,7 +263,7 @@ function openEditor(data: any): void {
           style={{
             display: "flex",
             flexDirection: "column",
-            width: "420px",
+            width: "422px",
             maxHeight: "330px",
           }}>
           <components.FormItem style={{ display: "flex", flexDirection: "column" }}>
@@ -494,7 +494,7 @@ export function Settings(): JSX.Element {
   const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", []));
   const presetChannelIcons: { value; onChange } = util.useSetting(config, "presetChannelIcons");
   const coloredChannelPills: { value; onChange } = util.useSetting(config, "coloredChannelPills");
-  const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
+  //const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
@@ -564,7 +564,7 @@ export function Settings(): JSX.Element {
           ))}
         </div>
       </components.Category>
-      <components.Category
+      {/* <components.Category // I'll figure that out another time
         title="Advanced Settings"
         note="Do not touch unless you know what you're doing. These can crash the plugin if used incorrectly.">
         <components.FormItem title="Recommended Icons">
@@ -585,7 +585,7 @@ export function Settings(): JSX.Element {
         <components.ButtonItem
           button="Confirm"
           color={colorBrands.colorBrand}></components.ButtonItem>
-      </components.Category>
+      </components.Category> */}
     </div>
   );
 }
