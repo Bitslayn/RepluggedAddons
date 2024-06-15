@@ -1,27 +1,33 @@
 ﻿import { settings, webpack } from "replugged";
 import { IconData, Settings } from "./types";
-import { classicIcons } from "./classicIcons";
 
 export const config = await settings.init<Settings>("btw.bitslayn.channelIcons");
 
-function fetchDataAndExtract(): IconData[] {
-  //const url = "https://davart154.github.io/Themes/Icon%20Revert%202023/2023%20Icon%20Revert.css";
+async function fetchDataAndExtract(): Promise<IconData[]> {
+  const url = "https://github.com/Bitslayn/RepluggedPlugins/tree/main/assets/classicIcons.ts";
+  try {
+    // Fetch CSS file
+    const response: Response = await fetch(url);
+    const cssContent: string = await response.text();
 
-  const pattern = /\/\*(.+?)\*\/ {[\s\S]*?d: path\("(.*?)"\);\}/g;
+    const pattern = /\/\*(.+?)\*\/ {[\s\S]*?d: path\("(.*?)"\);\}/g;
 
-  const extractedData: IconData[] = [];
-  let match: RegExpExecArray | null;
-  //while ((match = pattern.exec(cssContent)) !== null) {
-  // eslint-disable-next-line no-cond-assign
-  while ((match = pattern.exec(classicIcons)) !== null) {
-    extractedData.push({ label: match[1], value: match[2] });
+    const extractedData: IconData[] = [];
+    let match: RegExpExecArray | null;
+    // eslint-disable-next-line no-cond-assign
+    while ((match = pattern.exec(cssContent)) !== null) {
+      extractedData.push({ label: match[1], value: match[2] });
+    }
+
+    return extractedData;
+  } catch (error) {
+    console.error("Error fetching or parsing CSS:", error);
   }
-  return extractedData;
 }
 
-config.set("icons", fetchDataAndExtract());
-
 const Icons: IconData[] = config.get("icons");
+
+config.set("icons", await fetchDataAndExtract());
 
 const UpdatedIcons = webpack.getBySource("www.w3.org/2000/svg", { all: true });
 const group1Array = [];
