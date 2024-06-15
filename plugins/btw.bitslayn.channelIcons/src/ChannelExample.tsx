@@ -1,20 +1,13 @@
 import { capitalizeWords } from "./helpers";
 import { config } from "./icons";
-import { WordConfig } from "./types";
-
-const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
+import { lowercaseExceptions, specialCases } from "./index";
 
 const ChannelExample = ({ id, name }) => {
   let channelName;
   if (config.get("changeChannelNames", [])) {
-    channelName = capitalizeWords(
-      name,
-      advancedChannelNames.specialCases,
-      advancedChannelNames.lowercaseExceptions
-    );
+    channelName = capitalizeWords(name, specialCases, lowercaseExceptions);
   } else {
-    channelName = decapitalizeWords(name, advancedChannelNames.specialCases);
-    console.log(advancedChannelNames);
+    channelName = decapitalizeWords(name, specialCases);
   }
   return (
     <div className="channelExample">

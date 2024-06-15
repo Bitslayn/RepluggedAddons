@@ -222,8 +222,11 @@ export function randomNumber(max: number): number {
   return buffer[0] % max;
 }
 
+// eslint-disable-next-line consistent-return
 export function getCurrentChannelObject(): ColoredChannel {
-  return config.get("coloredChannels")[SelectedChannelStore.getCurrentlySelectedChannelId()];
+  if (config.get("coloredChannels")) {
+    return config.get("coloredChannels")[SelectedChannelStore.getCurrentlySelectedChannelId()];
+  }
 }
 
 export function getChannelObject(channelId: string): ColoredChannel {

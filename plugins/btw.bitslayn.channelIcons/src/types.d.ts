@@ -3,11 +3,6 @@ export interface ColoredChannel {
   icon: string;
 }
 
-export interface WordConfig {
-  specialCases: { [key: string]: string };
-  lowercaseExceptions: Set<string>;
-}
-
 export interface ChannelStoreChannel {
   id: string;
   type: number;
@@ -40,7 +35,6 @@ export interface Settings {
   coloredChannelPills: boolean;
   suggestedColors: string[];
   icons: IconData[];
-  advancedChannelNames: WordConfig;
 }
 export interface BrandColors {
   button: string;

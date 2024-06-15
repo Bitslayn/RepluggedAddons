@@ -27,7 +27,6 @@ import {
   ChannelStoreChannel,
   ColoredChannel,
   ModalsModule,
-  WordConfig,
   int2hexModule,
 } from "./types";
 import { Divider } from "replugged/components";
@@ -53,49 +52,40 @@ const ChannelMention = webpack.getBySource(
 /*const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
 console.log(ChannelAutocomplete);*/
 
-if (!config.get("advancedChannelNames")) {
-  // I'll figure this out another time. It works locally so that's all that matters.
-  function fetchDataAndExtract(): WordConfig {
-    const extractedData: WordConfig = {
-      specialCases: {
-        css: "CSS",
-        js: "JS",
-        html: "HTML",
-        xml: "XML",
-        json: "JSON",
-        sql: "SQL",
-        php: "PHP",
+export const specialCases: { [key: string]: string } = {
+  css: "CSS",
+  js: "JS",
+  html: "HTML",
+  xml: "XML",
+  json: "JSON",
+  sql: "SQL",
+  php: "PHP",
 
-        faq: "FAQ",
-        qotd: "QOTD",
-      },
-      lowercaseExceptions: new Set([
-        "a",
-        "ad",
-        "an",
-        "and",
-        "as",
-        "at",
-        "but",
-        "by",
-        "for",
-        "in",
-        "is",
-        "nor",
-        "of",
-        "on",
-        "or",
-        "so",
-        "the",
-        "to",
-        "up",
-        "yet",
-      ]),
-    };
-    return extractedData;
-  }
-  config.set("advancedChannelNames", fetchDataAndExtract());
-}
+  faq: "FAQ",
+  qotd: "QOTD",
+};
+export const lowercaseExceptions: Set<string> = new Set([
+  "a",
+  "ad",
+  "an",
+  "and",
+  "as",
+  "at",
+  "but",
+  "by",
+  "for",
+  "in",
+  "is",
+  "nor",
+  "of",
+  "on",
+  "or",
+  "so",
+  "the",
+  "to",
+  "up",
+  "yet",
+]);
 
 function injectSavedChannelsStyles(): void {
   const coloredChannels: any = config.get("coloredChannels", []);
@@ -370,15 +360,15 @@ export function start(): void {
     const headerObj = a?.[0]?.children?.props?.children;
     if (headerObj && getCurrentChannelObject()?.color) {
       const ChannelObject = getCurrentChannelObject();
-      headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
+      headerObj[2] = <span style={{ color: ChannelObject?.color }}>{headerObj[2]}</span>;
       // clearChildrenAddPath(ChannelObject.icon)
     }
   });
 
-  inject.before(Header.default, "Icon", (a: any) => {
+  inject.before(Header?.default, "Icon", (a: any) => {
     const ChannelObject = getCurrentChannelObject();
     const CurrentChannel: ChannelStoreChannel = ChannelStore.getChannel(
-      SelectedChannelStore.getCurrentlySelectedChannelId()
+      SelectedChannelStore?.getCurrentlySelectedChannelId()
     ) as ChannelStoreChannel;
     const CustomIcon = ChannelNames?.slice()
       .reverse()
@@ -447,12 +437,7 @@ export function start(): void {
       const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
       const oldName: string = channel.name;
       if (!isChannelIdExists(channel.id)) {
-        const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
-        channel.name = capitalizeWords(
-          oldName,
-          advancedChannelNames.specialCases,
-          advancedChannelNames.lowercaseExceptions
-        );
+        channel.name = capitalizeWords(oldName, specialCases, lowercaseExceptions);
         changedChannelNames.push({ channelid: channel.id, oldName });
       }
     }
@@ -476,10 +461,12 @@ export function getChangedChannelNames(): any[] {
 
 export function stop(): void {
   inject.uninjectAll();
-  const Channels = Object.keys(config.get("coloredChannels"));
-  Channels.forEach((channelId: string) => {
-    document.querySelector(`[data-channel-style="${channelId}"]`).remove();
-  });
+  if (config.get("coloredChannels")) {
+    const Channels = Object.keys(config.get("coloredChannels"));
+    Channels.forEach((channelId: string) => {
+      document.querySelector(`[data-channel-style="${channelId}"]`).remove();
+    });
+  }
   ChannelNames.forEach(channel =>
     channel.name.forEach(x => {
       if (document.querySelector(`[data-channel-named-style="${x}"]`)) {
@@ -563,28 +550,6 @@ export function Settings(): JSX.Element {
           ))}
         </div>
       </components.Category>
-      {/* <components.Category // I'll figure that out another time
-        title="Advanced Settings"
-        note="Do not touch unless you know what you're doing. These can crash the plugin if used incorrectly.">
-        <components.FormItem title="Recommended Icons">
-          <components.TextArea rows={10} />
-        </components.FormItem>
-        <components.FormItem title="Abbreviation Wordlist (All capitals)">
-          <components.TextArea rows={10} value={advancedChannelNames.specialCases} />
-        </components.FormItem>
-        <components.FormItem title="Blacklisted Words (All lowercase)">
-          <components.TextArea
-            rows={10}
-            value={Array.from(advancedChannelNames.lowercaseExceptions.entries.toString()).join("")}
-          />
-        </components.FormItem>
-        <components.ButtonItem
-          button="Reset"
-          color={colorBrands.colorDanger}></components.ButtonItem>
-        <components.ButtonItem
-          button="Confirm"
-          color={colorBrands.colorBrand}></components.ButtonItem>
-      </components.Category> */}
     </div>
   );
 }
