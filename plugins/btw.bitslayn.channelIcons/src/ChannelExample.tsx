@@ -1,4 +1,13 @@
+import { capitalizeWords } from "./helpers";
+import { config } from "./icons";
+
 const ChannelExample = ({ id, name }) => {
+  let channelName;
+  if (config.get("changeChannelNames", [])) {
+    channelName = capitalizeWords(name);
+  } else {
+    channelName = decapitalizeWords(name);
+  }
   return (
     <div className="channelExample">
       <div>
@@ -61,7 +70,7 @@ const ChannelExample = ({ id, name }) => {
 
                 position: "relative",
               }}>
-              {name}
+              {channelName}
             </div>
           </div>
         </a>
@@ -71,3 +80,16 @@ const ChannelExample = ({ id, name }) => {
 };
 
 export default ChannelExample;
+
+function decapitalizeWords(sentence: string): string {
+  const words: string[] = sentence.split(" ");
+  const decapitalizedWords: string[] = words.map(word => {
+    for (let a = 0; a < word.length; a++) {
+      if (/[a-zA-Z]/.test(word[a])) {
+        return word.slice(0, a) + word[a].toLowerCase() + word.slice(a + 1);
+      }
+    }
+    return word;
+  });
+  return decapitalizedWords.join("-");
+}

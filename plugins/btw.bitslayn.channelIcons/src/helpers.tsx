@@ -4,7 +4,6 @@ import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
 import { ColoredChannel, IconClass, SelectedChannel } from "./types";
 import { iconBuffer } from "./index";
-import exp from "node:constants";
 
 export const SelectedChannelStore: SelectedChannel & Store =
   webpack.getByStoreName("SelectedChannelStore");

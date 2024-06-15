@@ -1,5 +1,3 @@
-import { Channel } from "node:diagnostics_channel";
-import * as repl from "node:repl";
 import { ComponentType, SetStateAction, useState } from "react";
 import { Injector, components, util, webpack } from "replugged";
 import { modal } from "replugged/common";
