@@ -407,54 +407,58 @@ export function start(): void {
     });
   }
 
-  // eslint-disable-next-line consistent-return
-  inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
-    const { channel } = data;
-    // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
-    const Object = group1Array[randomNumber(group1Array.length)];
-    let RandomIcon: ComponentType<any>;
-    // shut up.
-    // eslint-disable-next-line no-undefined
-    if (Object.Name !== undefined) {
-      RandomIcon = webpack.getByProps(Object.Name)?.[Object?.Name];
-    }
-    // the code above gives a random modern icon uwu ;3 rawr x3 *waggles tail*
-    if (channel.type !== 4) {
-      return (
-        <MenuItem
-          id={`customize-channel-${channel.id}`}
-          label="Personalize Channel"
-          /* the code below gives discord an icon to display */
-          icon={RandomIcon}
-          /* the code above gives discord an icon to display */
-          action={() => openEditor(data)}
-        />
-      );
-    }
-  });
-
-  inject.after(ChannelClass, "default", (a: any) => {
-    const channelInstance: any = a?.[0];
-    if (channelInstance && config.get("changeChannelNames", [])) {
-      const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
-      const oldName: string = channel.name;
-      if (!isChannelIdExists(channel.id)) {
-        channel.name = capitalizeWords(oldName, specialCases, lowercaseExceptions);
-        changedChannelNames.push({ channelid: channel.id, oldName });
+  if (ContextMenuTypes.ChannelContext !== undefined) {
+    // eslint-disable-next-line consistent-return
+    inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
+      const { channel } = data;
+      // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
+      const Object = group1Array[randomNumber(group1Array.length)];
+      let RandomIcon: ComponentType<any>;
+      // shut up.
+      // eslint-disable-next-line no-undefined
+      if (Object.Name !== undefined) {
+        RandomIcon = webpack.getByProps(Object.Name)?.[Object?.Name];
       }
-    }
-    if (!config.get("changeChannelNames", [])) {
-      changedChannelNames.forEach(
-        ({ channelid, oldName }: { channelid: string; oldName: string }) => {
-          const channel: any = ChannelStore.getChannel(channelid);
-          if (channel) {
-            channel.name = oldName;
-            // changedChannelNames.length -= 1;
-          }
+      // the code above gives a random modern icon uwu ;3 rawr x3 *waggles tail*
+      if (channel.type !== 4) {
+        return (
+          <MenuItem
+            id={`customize-channel-${channel.id}`}
+            label="Personalize Channel"
+            /* the code below gives discord an icon to display */
+            icon={RandomIcon}
+            /* the code above gives discord an icon to display */
+            action={() => openEditor(data)}
+          />
+        );
+      }
+    });
+  }
+
+  if (ChannelClass !== undefined) {
+    inject.after(ChannelClass, "default", (a: any) => {
+      const channelInstance: any = a?.[0];
+      if (channelInstance && config.get("changeChannelNames", [])) {
+        const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
+        const oldName: string = channel.name;
+        if (!isChannelIdExists(channel.id)) {
+          channel.name = capitalizeWords(oldName, specialCases, lowercaseExceptions);
+          changedChannelNames.push({ channelid: channel.id, oldName });
         }
-      );
-    }
-  });
+      }
+      if (!config.get("changeChannelNames", [])) {
+        changedChannelNames.forEach(
+          ({ channelid, oldName }: { channelid: string; oldName: string }) => {
+            const channel: any = ChannelStore.getChannel(channelid);
+            if (channel) {
+              channel.name = oldName;
+              // changedChannelNames.length -= 1;
+            }
+          }
+        );
+      }
+    });
+  }
 }
 
 export function getChangedChannelNames(): any[] {

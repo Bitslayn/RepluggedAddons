@@ -40,8 +40,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3
       replugged:
-        specifier: ^4.7.10
-        version: 4.7.10(@codemirror/view@6.19.0)(@lezer/common@1.1.0)
+        specifier: ^4.7.13
+        version: 4.7.13(@codemirror/view@6.19.0)(@lezer/common@1.1.0)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -1511,8 +1511,8 @@ packages:
     resolution: {integrity: sha512-+crtS5QjFRqFCoQmvGduwYWEBng99ZvmFvF+cUJkGYF1L1BfU8C6Zp9T7f5vPAwyLkUExpvK+ANVZmGU49qi4Q==}
     engines: {node: '>=12'}
 
-  replugged@4.7.10:
-    resolution: {integrity: sha512-SPJwKWUZ6DCrdb7XBsbrhXSQmajOLVVxVB0LNAwHIR2tv3C+3pV8fbl8MaRLXU737BxJT+bnvRyaZwiY0EkOqw==}
+  replugged@4.7.13:
+    resolution: {integrity: sha512-SZn3N5hNX19dzCHpOFUqyXnZoAyZoOYlq8zlY4b5Iq0xy+t+QKPM1TMO4gN1Tb/8l8IS7zb8pDrE1A561PYeLQ==}
     engines: {node: '>=21.0.0', pnpm: '>=9.0.0'}
     hasBin: true
 
@@ -3371,7 +3371,7 @@ snapshots:
     dependencies:
       rc: 1.2.8
 
-  replugged@4.7.10(@codemirror/view@6.19.0)(@lezer/common@1.1.0):
+  replugged@4.7.13(@codemirror/view@6.19.0)(@lezer/common@1.1.0):
     dependencies:
       '@codemirror/lang-css': 6.2.1(@codemirror/view@6.19.0)
       '@codemirror/language': 6.9.2
