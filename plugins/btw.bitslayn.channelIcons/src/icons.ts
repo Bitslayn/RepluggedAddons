@@ -4,7 +4,8 @@ import { IconData, Settings } from "./types";
 export const config = await settings.init<Settings>("btw.bitslayn.channelIcons");
 
 async function fetchDataAndExtract(): Promise<IconData[]> {
-  const url = "https://github.com/Bitslayn/RepluggedPlugins/tree/main/assets/classicIcons.ts";
+  const url =
+    "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/assets/classicIcons.ts";
   try {
     // Fetch CSS file
     const response: Response = await fetch(url);
