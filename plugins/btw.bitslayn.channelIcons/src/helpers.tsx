@@ -53,7 +53,7 @@ export function injectNamedChannelStyles(name: string, icon: any): void {
   const styleElement = document.createElement("style");
   styleElement.setAttribute("data-channel-named-style", name);
   styleElement.textContent = `
-  [aria-label*="${name}" i] > div > div:not([aria-label^="Voice"], [aria-label^="Stage"], [class*="Folder"]) > svg > path {
+    div:not([class*="Voice"]) > div > [aria-label*="${name}" i]:not([class^="folder"]) > div > div > svg > path {
     d: path(
       "${iconBuffer}${icon}"
     );

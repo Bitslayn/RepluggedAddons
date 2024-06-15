@@ -99,12 +99,17 @@
   background-color: transparent;
 }
 
-[aria-label="Channel header"] > div > div > div > svg > [fill="#000000"],
-[aria-label="Channel header"] > div > div > div > svg > [fill="#ffffff"] {
+[class*="title"] > [class*="upperContainer"] > div > div > svg > [fill="#000000"],
+[class*="title"] > [class*="upperContainer"] > div > div > svg > [fill="#ffffff"] {
   fill: var(--channel-icon);
 }
-[aria-label="Channel header"] > div > div > div > h1 > [style^="color: rgb(0, 0, 0)"],
-[aria-label="Channel header"] > div > div > div > h1 > [style^="color: rgb(255, 255, 255)"] {
+[class*="title"] > [class*="upperContainer"] > div > div > h1 > [style^="color: rgb(0, 0, 0)"],
+[class*="title"]
+  > [class*="upperContainer"]
+  > div
+  > div
+  > h1
+  > [style^="color: rgb(255, 255, 255)"] {
   color: var(--font-display) !important;
 }
 

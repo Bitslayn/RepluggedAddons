@@ -287,7 +287,6 @@ function openEditor(data: any): void {
                 pointerEvents: "none",
               }}>
               <svg
-                aria-label="Search"
                 aria-hidden="false"
                 role="img"
                 xmlns="http://www.w3.org/2000/svg"
