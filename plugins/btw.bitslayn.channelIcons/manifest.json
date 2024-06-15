@@ -17,7 +17,7 @@
   "version": "1.0.0",
   "updater": {
     "type": "store",
-    "id": "btw.bitslayn"
+    "id": "btw.bitslayn.channelIcons"
   },
   "license": "MIT",
   "type": "replugged-plugin",
