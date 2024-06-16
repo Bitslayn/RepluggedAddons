@@ -1,4 +1,5 @@
-﻿import React from "react";
+﻿/* eslint-disable eqeqeq */
+import React from "react";
 import { webpack } from "replugged";
 import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
@@ -68,7 +69,7 @@ export function injectChannelPillStyle(): void {
     existingStyle.remove(); // Remove existing style if found
   }
 
-  if (config.get("coloredChannelPills")) {
+  if (config.get("coloredChannelPills", true)) {
     const styleElement = document.createElement("style");
     styleElement.setAttribute("colored-channel-pills", "owo");
     styleElement.textContent = `
@@ -264,6 +265,7 @@ export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({ channel })
 };
 
 export function generateInterface<T>(
+  // eslint-disable-next-line no-undefined
   data: T | undefined = undefined,
   maxDepth: number = 3,
   currentDepth: number = 0,
@@ -298,6 +300,7 @@ export function generateInterface<T>(
       valueType = "() => unknown";
     }
 
+    // eslint-disable-next-line no-undefined
     if (value === undefined || value === null) {
       interfaceString += `  ${key}: NonNullable<unknown>;\n`;
     } else if (valueType === "object" && !Array.isArray(value)) {

@@ -30,7 +30,7 @@ export interface IconClass {
 
 export interface Settings {
   coloredChannels: ColoredChannel[];
-  changeChannelNames: [];
+  changeChannelNames: boolean;
   presetChannelIcons: boolean;
   coloredChannelPills: boolean;
   suggestedColors: string[];

@@ -1,5 +1,5 @@
 ﻿import React, { useState } from "react";
-import { Divider, Text } from "replugged/components";
+import { Divider } from "replugged/components";
 
 export const TabBar = ({ tabs }) => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);

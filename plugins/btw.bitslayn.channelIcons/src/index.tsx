@@ -8,7 +8,7 @@ import {
   EditedChannelIcon,
   SelectedChannelStore,
   capitalizeWords,
-  generateInterface,
+  // generateInterface,
   getChannelObject,
   getCurrentChannelObject,
   injectChannelPillStyle,
@@ -20,7 +20,7 @@ import {
 import { Icons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialSVGs";
 import { TabBar } from "./TabBar";
-import CustomTooltip from "./Tooltip";
+// import CustomTooltip from "./Tooltip";
 import ChannelExample from "./ChannelExample";
 import {
   BrandColors,
@@ -47,9 +47,9 @@ export const ChannelStore: { getChannel: AnyFunction } & Store =
 export const iconBuffer = "M 0,0 V 0 "; // Strict Icon Changes
 const Header: { default: { Icon: any; Title: any } } =
   await webpack.getBySource("toolbar:function()");
-const ChannelMention = webpack.getBySource(
+/*const ChannelMention = webpack.getBySource(
   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
-);
+);*/
 
 /*const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
 console.log(ChannelAutocomplete);*/
@@ -305,7 +305,7 @@ function openEditor(data: any): void {
             display: "flex",
             flexDirection: "column",
             gap: "8px",
-            overflow: "hidden scroll",
+            overflow: "hidden",
             maxHeight: "362px",
             width: "252px",
           }}>
@@ -332,7 +332,7 @@ function isChannelIdExists(channelId: string): boolean {
 }
 
 function injectNamedChannelsStyles() {
-  if (config.get("presetChannelIcons")) {
+  if (config.get("presetChannelIcons", true)) {
     ChannelNames.forEach(channel => {
       if (channel.query !== "none") {
         channel.name.forEach(x =>
@@ -357,6 +357,7 @@ export function start(): void {
   injectSavedChannelsStyles();
   injectNamedChannelsStyles();
   injectChannelPillStyle();
+  // eslint-disable-next-line no-undefined
   if (Header !== undefined) {
     inject.after(Header.default, "Title", (a: any) => {
       const headerObj = a?.[0]?.children?.props?.children;
@@ -377,16 +378,24 @@ export function start(): void {
         .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
       //console.log(CurrentChannel?.name);
       //console.log(CustomIcon);
-      //console.log(CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons"));
+      //console.log(CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons", true));
       if (a && a[0] && ChannelObject?.icon) {
         a[0].icon = () => {
           return <EditedChannelIcon channel={getCurrentChannelObject()} />;
         };
-      } else if (CustomIcon && CustomIcon.icon !== "none" && config.get("presetChannelIcons")) {
+      } else if (
+        CustomIcon &&
+        CustomIcon.icon !== "none" &&
+        config.get("presetChannelIcons", true)
+      ) {
         a[0].icon = () => {
           return <CustomIcon.icon />;
         };
-      } else if (CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons")) {
+      } else if (
+        CustomIcon &&
+        CustomIcon.query !== "none" &&
+        config.get("presetChannelIcons", true)
+      ) {
         a[0].icon = () => {
           return (
             <svg
@@ -408,6 +417,7 @@ export function start(): void {
     });
   }
 
+  // eslint-disable-next-line no-undefined
   if (ContextMenuTypes.ChannelContext !== undefined) {
     // eslint-disable-next-line consistent-return
     inject.utils.addMenuItem(ContextMenuTypes.ChannelContext, (data: any) => {
@@ -436,10 +446,11 @@ export function start(): void {
     });
   }
 
+  // eslint-disable-next-line no-undefined
   if (ChannelClass !== undefined) {
     inject.after(ChannelClass, "default", (a: any) => {
       const channelInstance: any = a?.[0];
-      if (channelInstance && config.get("changeChannelNames", [])) {
+      if (channelInstance && config.get("changeChannelNames", true)) {
         const channel: any = ChannelStore.getChannel(channelInstance.channel.id);
         const oldName: string = channel.name;
         if (!isChannelIdExists(channel.id)) {
@@ -447,7 +458,7 @@ export function start(): void {
           changedChannelNames.push({ channelid: channel.id, oldName });
         }
       }
-      if (!config.get("changeChannelNames", [])) {
+      if (!config.get("changeChannelNames", true)) {
         changedChannelNames.forEach(
           ({ channelid, oldName }: { channelid: string; oldName: string }) => {
             const channel: any = ChannelStore.getChannel(channelid);
@@ -485,9 +496,17 @@ export function stop(): void {
 
 export function Settings(): JSX.Element {
   const [coloredChannels, setColoredChannels] = useState<any>(config.get("coloredChannels", []));
-  const presetChannelIcons: { value; onChange } = util.useSetting(config, "presetChannelIcons");
-  const coloredChannelPills: { value; onChange } = util.useSetting(config, "coloredChannelPills");
-  //const advancedChannelNames: WordConfig = config.get("advancedChannelNames");
+  const presetChannelIcons: { value; onChange } = util.useSetting(
+    config,
+    "presetChannelIcons",
+    true
+  );
+  const coloredChannelPills: { value; onChange } = util.useSetting(
+    config,
+    "coloredChannelPills",
+    true
+  );
+  //const advancedChannelNames: WordConfig = config.get("advancedChannelNames", []);
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels: any = { ...coloredChannels };
@@ -509,7 +528,7 @@ export function Settings(): JSX.Element {
         Recommended Icons
       </FormSwitch>
       <FormSwitch
-        {...util.useSetting(config, "changeChannelNames", [])}
+        {...util.useSetting(config, "changeChannelNames", true)}
         note={
           "Title every channel name in Pascal Case for a polished appearance. " +
           "𝗪𝗔𝗥𝗡𝗜𝗡𝗚 Sometimes caching will NOT work right. Refreshing always works."

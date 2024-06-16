@@ -7,12 +7,12 @@ const ChannelExample = ({ id, name }) => {
   let owo: any = ChannelStore.getChannel(id);
   if (id === name) {
     const uwu = owo.name;
-    if (config.get("changeChannelNames", [])) {
+    if (config.get("changeChannelNames", true)) {
       channelName = capitalizeWords(uwu, specialCases, lowercaseExceptions);
     } else {
       channelName = decapitalizeWords(uwu, specialCases);
     }
-  } else if (config.get("changeChannelNames", [])) {
+  } else if (config.get("changeChannelNames", true)) {
     channelName = capitalizeWords(name, specialCases, lowercaseExceptions);
   } else {
     channelName = decapitalizeWords(name, specialCases);
