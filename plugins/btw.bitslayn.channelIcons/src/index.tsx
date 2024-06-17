@@ -202,7 +202,6 @@ function openEditor(channel: Channel): void {
               onClear={() => setSearchQuery("")}
               size={SearchBar.Sizes.MEDIUM}
               className="channelEditorSearchBar"
-              style={{ backgroundColor: "var(--input-background)" }}
             />
             <TabBar
               selectedItem={selectedTab}
