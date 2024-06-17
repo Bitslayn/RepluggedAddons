@@ -1,17 +1,13 @@
-﻿/* eslint-disable eqeqeq */
-import React from "react";
 import { webpack } from "replugged";
-import { Store } from "replugged/dist/renderer/modules/common/flux";
 import { config } from "./icons";
-import { ColoredChannel, IconClass, SelectedChannel } from "./types";
-import { iconBuffer } from "./index";
+import type { ColoredChannel } from "./types";
+import { ColorUtils, iconBuffer } from "./index";
+import { channels } from "replugged/common";
 
-export const SelectedChannelStore: SelectedChannel & Store =
-  webpack.getByStoreName("SelectedChannelStore");
-const Classes: IconClass = await webpack.waitForProps(["icon", "hamburger"]);
+const Classes = await webpack.waitForProps(["icon", "hamburger"]);
 
 export function selectedIcon(channelColor: string, path: string): void {
-  const existingStyle = document.querySelector(`[selected-icon="owo"]`);
+  const existingStyle = document.querySelector(`[selected-icon=""]`);
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
   }
@@ -22,7 +18,7 @@ export function selectedIcon(channelColor: string, path: string): void {
   const selectors = splitPaths(path);
   //console.log(`.channelEditorIcons > div > span > svg${selectors.join("")}`);
   const styleElement = document.createElement("style");
-  styleElement.setAttribute("selected-icon", "owo");
+  styleElement.setAttribute("selected-icon", "");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
     .channelEditorIcons > div > span > svg${selectors.join("")} {
@@ -33,11 +29,11 @@ export function selectedIcon(channelColor: string, path: string): void {
   } else {
     styleElement.textContent = `
       .channelEditorIcons > div > span > svg${selectors.join("")} {
-        background: ${shadeColor(channelColor, 0.3)} !important;
+        background: ${ColorUtils.hex2rgb(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
       .channelEditorIcons > div > span > svg:hover {
-        background: ${shadeColor(channelColor, 0.15)};
+        background: ${ColorUtils.hex2rgb(channelColor, 0.15)};
         border-radius: var(--radius-xs);
       }
     `;
@@ -45,7 +41,7 @@ export function selectedIcon(channelColor: string, path: string): void {
   document.head.appendChild(styleElement);
 }
 
-export function injectNamedChannelStyles(name: string, icon: any): void {
+export function injectNamedChannelStyles(name: string, icon: string): void {
   const existingStyle = document.querySelector(`[data-channel-named-style="${name}"]`);
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
@@ -64,14 +60,14 @@ export function injectNamedChannelStyles(name: string, icon: any): void {
 }
 
 export function injectChannelPillStyle(): void {
-  const existingStyle = document.querySelector(`[colored-channel-pills="owo"]`);
+  const existingStyle = document.querySelector(`[colored-channel-pills=""]`);
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
   }
 
-  if (config.get("coloredChannelPills", true)) {
+  if (config.get("coloredChannelPills")) {
     const styleElement = document.createElement("style");
-    styleElement.setAttribute("colored-channel-pills", "owo");
+    styleElement.setAttribute("colored-channel-pills", "");
     styleElement.textContent = `
   /*=====Blue Pill=====*/
   [class^="iconVisibility_"]:has([style="color: var(--text-brand);"]) > [class^="unread_"] {
@@ -87,7 +83,7 @@ export function injectChannelPillStyle(): void {
 
 export function injectChannelStyle(channelId: string, channelColor: string, path: string): void {
   config.set("coloredChannels", {
-    ...config.get("coloredChannels", []),
+    ...config.get("coloredChannels"),
     [channelId]: { color: channelColor, icon: path },
   });
   const existingStyle = document.querySelector(`[data-channel-style="${channelId}"]`);
@@ -125,7 +121,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
 
       [data-list-item-id$="_${channelId}"] > div > [class^="children"] div > svg {
         /* Misc buttons color */
-        color: ${shadeColor(channelColor, 0.8)} !important;
+        color: ${ColorUtils.hex2rgb(channelColor, 0.8)} !important;
       }
 
       [data-list-item-id$="_${channelId}"] > div > [class^="children"] div > svg > path {
@@ -146,7 +142,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       [data-list-item-id$="_${channelId}"]:hover
       /*.channelEditorIcons > div > span > svg:hover*/ {
         /* Hovered background color */
-        background: ${shadeColor(channelColor, 0.15)} !important;
+        background: ${ColorUtils.hex2rgb(channelColor, 0.15)} !important;
         border-radius: var(--radius-xs);
       }
 
@@ -162,39 +158,20 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
 
       [class*="selected"] [data-list-item-id$="_${channelId}"] {
         /* Focused background color */
-        background: ${shadeColor(channelColor, 0.3)} !important;
+        background: ${ColorUtils.hex2rgb(channelColor, 0.3)} !important;
       }
     `;
   }
   document.head.appendChild(styleElement);
 }
 
-function shadeColor(color: string, transparency: number): string {
-  let R = parseInt(color.substring(1, 3), 16);
-  let G = parseInt(color.substring(3, 5), 16);
-  let B = parseInt(color.substring(5, 7), 16);
-
-  R = R < 255 ? R : 255;
-  G = G < 255 ? G : 255;
-  B = B < 255 ? B : 255;
-
-  let RR = R.toString(16).length === 1 ? `0${R.toString(16)}` : R.toString(16);
-  let GG = G.toString(16).length === 1 ? `0${G.toString(16)}` : G.toString(16);
-  let BB = B.toString(16).length === 1 ? `0${B.toString(16)}` : B.toString(16);
-
-  let alpha = Math.round(transparency * 255);
-  let alphaHex = alpha.toString(16).length === 1 ? `0${alpha.toString(16)}` : alpha.toString(16);
-
-  return `#${RR}${GG}${BB}${alphaHex}`;
-}
-
 export function capitalizeWords(
   sentence: string,
-  specialCases: any,
-  lowercaseExceptions: any
+  specialCases: Record<string, string>,
+  lowercaseExceptions: Set<string>
 ): string {
-  const words: string[] = sentence.split("-");
-  const capitalizedWords: string[] = words.map((word, index) => {
+  const words = sentence.split("-");
+  const capitalizedWords = words.map((word, index) => {
     if (specialCases[word]) {
       return specialCases[word];
     }
@@ -225,23 +202,19 @@ export function randomNumber(max: number): number {
 
 // eslint-disable-next-line consistent-return
 export function getCurrentChannelObject(): ColoredChannel {
-  if (config.get("coloredChannels")) {
-    return config.get("coloredChannels")[SelectedChannelStore.getCurrentlySelectedChannelId()];
-  }
+  const currentSelectedChannelId = channels.getCurrentlySelectedChannelId();
+  if (currentSelectedChannelId) return config.get("coloredChannels")[currentSelectedChannelId];
 }
 
-// eslint-disable-next-line consistent-return
 export function getChannelObject(channelId: string): ColoredChannel {
-  if (config.get("coloredChannels")) {
-    return config.get("coloredChannels")[channelId];
-  }
+  return config.get("coloredChannels")[channelId];
 }
 
 interface EditedChannelIconProps {
-  channel: ColoredChannel | undefined;
+  channel: ColoredChannel;
 }
 
-export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({ channel }) => {
+export const EditedChannelIcon = ({ channel }: EditedChannelIconProps) => {
   return (
     <svg
       x="0"
@@ -255,78 +228,11 @@ export const EditedChannelIcon: React.FC<EditedChannelIconProps> = ({ channel })
       fill="none"
       viewBox="0 0 24 24">
       <path
-        fill={channel?.color}
+        fill={channel.color}
         fillRule="evenodd"
-        d={channel?.icon}
+        d={channel.icon}
         clipRule="evenodd"
         className=""></path>
     </svg>
   );
 };
-
-export function generateInterface<T>(
-  // eslint-disable-next-line no-undefined
-  data: T | undefined = undefined,
-  maxDepth: number = 3,
-  currentDepth: number = 0,
-  visited = new Set<any>(),
-  isTopLevel = true
-): string {
-  if (data === null) {
-    return "";
-  }
-
-  if (visited.has(data) || currentDepth >= maxDepth) {
-    return "";
-  }
-
-  visited.add(data);
-
-  const keys = Object.keys(data || []);
-  let interfaceString = "";
-
-  keys.forEach(key => {
-    if (key.includes("-")) {
-      const parts = key.split("-");
-      parts[1] = parts[1].charAt(0).toUpperCase() + parts[1].slice(1);
-      key = parts.join("");
-    }
-
-    const value = data[key];
-
-    let valueType: string = typeof value;
-
-    if (valueType === "function") {
-      valueType = "() => unknown";
-    }
-
-    // eslint-disable-next-line no-undefined
-    if (value === undefined || value === null) {
-      interfaceString += `  ${key}: NonNullable<unknown>;\n`;
-    } else if (valueType === "object" && !Array.isArray(value)) {
-      interfaceString += `  ${key}: {\n`;
-      const nestedInterface = generateInterface(value, maxDepth, currentDepth + 1, visited, false);
-      interfaceString += nestedInterface;
-      interfaceString += "};\n";
-    } else if (Array.isArray(value)) {
-      interfaceString += `  ${key}: Array<{\n`;
-      const nestedInterface = generateInterface(value, maxDepth, currentDepth + 1, visited, false);
-      interfaceString += nestedInterface;
-      interfaceString += "}>;\n";
-    } else {
-      interfaceString += `  ${key}: ${valueType};\n`;
-    }
-  });
-
-  const proto = Object.getPrototypeOf(data || {});
-  if (proto !== null && currentDepth < maxDepth) {
-    interfaceString += generateInterface(proto, maxDepth, currentDepth + 1, visited, false);
-  }
-
-  if (isTopLevel) {
-    interfaceString = `interface MyInterface {\n${interfaceString}`;
-    interfaceString += "}";
-  }
-
-  return interfaceString;
-}
