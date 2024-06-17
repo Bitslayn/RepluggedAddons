@@ -146,6 +146,6 @@
   cursor: pointer;
 }
 
-/*[data-list-item-id^="NO_LIST_"] {
-  pointer-events: none;
-}*/
+div:has(.channelExample) > div > button:is([style^="background: transparent;"]):hover {
+  text-decoration: underline;
+}

@@ -559,15 +559,28 @@ export function Settings(): JSX.Element {
                   justifyContent: "space-between",
                 }}>
                 <ChannelExample id={channelId} name={channelId}></ChannelExample>
-                <button
-                  style={{
-                    background: "var(--old-red)",
-                    color: "var(--button-outline-danger-text)",
-                    borderRadius: "5px",
-                  }}
-                  onClick={() => removeColoredChannel(channelId)}>
-                  Remove
-                </button>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button
+                    style={{
+                      background: "transparent",
+                      color: "var(--white-500)",
+                      borderRadius: "5px",
+                      padding: "4px 16px",
+                    }}
+                    onClick={() => openEditor({ channel: ChannelStore.getChannel(channelId) })}>
+                    Edit
+                  </button>
+                  <button
+                    style={{
+                      background: "var(--button-outline-danger-border)",
+                      color: "var(--button-outline-danger-text)",
+                      borderRadius: "5px",
+                      padding: "4px 10px",
+                    }}
+                    onClick={() => removeColoredChannel(channelId)}>
+                    Remove
+                  </button>
+                </div>
               </div>
               <Divider style={{ marginTop: "20px" }}></Divider>
             </div>
