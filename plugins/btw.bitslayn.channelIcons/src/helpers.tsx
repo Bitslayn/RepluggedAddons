@@ -200,11 +200,10 @@ export function randomNumber(max: number): number {
   return buffer[0] % max;
 }
 
-export function getCurrentChannelObject(): ColoredChannel | void {
+// eslint-disable-next-line consistent-return
+export function getCurrentChannelObject(): ColoredChannel {
   const currentSelectedChannelId = channels.getCurrentlySelectedChannelId();
-  if (!currentSelectedChannelId) return;
-  // eslint-disable-next-line consistent-return
-  return config.get("coloredChannels")[currentSelectedChannelId];
+  if (currentSelectedChannelId) return config.get("coloredChannels")[currentSelectedChannelId];
 }
 
 export function getChannelObject(channelId: string): ColoredChannel {

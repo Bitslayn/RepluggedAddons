@@ -351,9 +351,9 @@ export function start(): void {
   if (headerBarCommonModule) {
     inject.after(headerBarCommonModule.default, "Title", ([props]) => {
       if (typeof props.children === "string") return;
+      const ChannelObject = getCurrentChannelObject();
       const headerObj = props.children?.props?.children;
-      if (headerObj && getCurrentChannelObject()?.color) {
-        const ChannelObject = getCurrentChannelObject();
+      if (headerObj && ChannelObject?.color) {
         headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
       }
     });
@@ -361,7 +361,7 @@ export function start(): void {
       const ChannelObject = getCurrentChannelObject();
       const CurrentSelectedChannelId = channels.getCurrentlySelectedChannelId();
 
-      if (!CurrentSelectedChannelId) return;
+      if (!CurrentSelectedChannelId && ChannelObject) return;
 
       const CurrentChannel = channels.getChannel(CurrentSelectedChannelId);
       const CustomIcon = ChannelNames?.slice()
@@ -387,7 +387,7 @@ export function start(): void {
               width="24"
               height="24"
               viewBox="0 0 24 24">
-              <g fill={getCurrentChannelObject()?.color ?? "var(--channel-icon)"}>
+              <g fill={ChannelObject?.color ?? "var(--channel-icon)"}>
                 <path
                   d={`${iconBuffer}${Icons.find(i => i.label === CustomIcon.query)?.value}`}
                   fillRule="evenodd"
@@ -399,6 +399,7 @@ export function start(): void {
       }
     });
   }
+  // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem<ChannelContextMenuProps>(ContextMenuTypes.ChannelContext, data => {
     const { channel } = data;
     // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
