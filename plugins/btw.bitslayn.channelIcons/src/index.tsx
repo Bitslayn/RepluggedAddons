@@ -190,7 +190,9 @@ function openEditor(channel: Channel): void {
     }, [onClose]);
 
     return (
-      <Modal.ModalRoot transitionState={transitionState} size="medium">
+      <Modal.ModalRoot
+        transitionState={transitionState}
+        /*size="medium"*/ style={{ width: "700px" }}>
         <Modal.ModalHeader separator={false}>
           <Text.H1 variant="heading-xl/semibold">{`Personalize #${channel.name}`}</Text.H1>
         </Modal.ModalHeader>
