@@ -12,8 +12,9 @@
 
 .channelEditorTabBar {
   display: flex;
-  justify-content: space-evenly;
-  height: 40px;
+  justify-content: center;
+  height: 32px;
+  gap: 24px;
 }
 
 .channelEditorTabBarItem {
@@ -49,7 +50,7 @@
 }
 .channelEditorIcons > div > span > svg:hover:has([fill="#000000"]),
 .channelEditorIcons > div > span > svg:hover:has([fill="#ffffff"]) {
-  background: var(--bg-overlay-hover, var(--background-modifier-hover));
+  background: var(--background-modifier-hover);
   border-radius: var(--radius-xs);
 }
 .channelEditorIcons > div > span > svg > [fill="#000000"],
@@ -58,10 +59,22 @@
   border-radius: var(--radius-xs);
 }
 
+.channelExample > div > a:hover {
+  /* Hovered background color */
+  background: var(--background-modifier-hover);
+  border-radius: var(--radius-xs);
+}
+
+.channelExample > div > a:hover > div > [class^="name"] {
+  /* Hovered name color */
+  color: var(--interactive-hover);
+}
+
 .channelEditorColorPicker {
   border: unset;
   box-shadow: unset;
   padding: 4px 16px 24px 16px;
+  background-color: transparent;
 }
 .channelEditorColorPicker [class^="suggestedColors"] {
   display: grid;
@@ -103,4 +116,8 @@
 
 .channelExample:active {
   pointer-events: none;
+}
+
+.personalizedChannelContainer > div > div > svg:hover {
+  color: var(--interactive-hover);
 }

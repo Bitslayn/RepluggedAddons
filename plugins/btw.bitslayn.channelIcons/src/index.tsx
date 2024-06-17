@@ -123,7 +123,10 @@ interface ModalProps {
 }
 
 function openEditor(channel: Channel): void {
-  selectedIcon("#000000", `${iconBuffer}${getChannelObject(channel.id)?.icon}`);
+  selectedIcon(
+    getChannelObject(channel.id)?.color ?? "#000000",
+    `${iconBuffer}${getChannelObject(channel.id)?.icon}`
+  );
 
   const Editor = (props: ModalProps) => {
     const { transitionState, onClose } = props;
@@ -199,6 +202,7 @@ function openEditor(channel: Channel): void {
               onClear={() => setSearchQuery("")}
               size={SearchBar.Sizes.MEDIUM}
               className="channelEditorSearchBar"
+              style={{ backgroundColor: "var(--input-background)" }}
             />
             <TabBar
               selectedItem={selectedTab}
@@ -524,19 +528,37 @@ export function Settings(): React.ReactElement {
                 ) : (
                   <Text>{channelId}</Text>
                 )}
-                <Flex direction={Flex.Direction.HORIZONTAL_REVERSE}>
-                  <Button
+                <Flex direction={Flex.Direction.HORIZONTAL_REVERSE} style={{ gap: "8px" }}>
+                  <Clickable // Remove
+                    onClick={() => removeColoredChannel(channelId)}>
+                    <svg
+                      aria-hidden="true"
+                      width="32"
+                      height="32"
+                      viewBox="-4 -4 32 32"
+                      color="var(--interactive-normal)">
+                      <path
+                        fill="currentColor"
+                        d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path>
+                    </svg>
+                  </Clickable>
+                  <Clickable // Edit
                     onClick={() => {
                       if (channel) openEditor(channel);
                     }}>
-                    Edit
-                  </Button>
-                  <Button
-                    color={Button.Colors.RED}
-                    look={Button.Looks.LINK}
-                    onClick={() => removeColoredChannel(channelId)}>
-                    Remove
-                  </Button>
+                    <svg
+                      aria-hidden="true"
+                      width="32"
+                      height="32"
+                      viewBox="-4 -4 32 32"
+                      color="var(--interactive-normal)">
+                      <path
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                        d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                  </Clickable>
                 </Flex>
               </div>
               <Divider style={{ marginBottom: "20px" }} />
