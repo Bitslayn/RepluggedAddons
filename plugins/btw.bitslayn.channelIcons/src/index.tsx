@@ -308,7 +308,10 @@ function openEditor(channel: Channel): void {
             suggestedColors={suggestedColors}
           />
         </Modal.ModalContent>
-        <Modal.ModalFooter direction={Flex.Direction.HORIZONTAL} justify={Flex.Justify.BETWEEN}>
+        <Modal.ModalFooter
+          direction={Flex.Direction.HORIZONTAL}
+          justify={Flex.Justify.BETWEEN}
+          align={Flex.Align.CENTER}>
           <ChannelItem channel={channel} className="channelExample" />
           <Flex direction={Flex.Direction.HORIZONTAL_REVERSE}>
             <Button onClick={() => onClose()} color={Button.Colors.BRAND}>

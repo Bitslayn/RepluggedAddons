@@ -40,7 +40,7 @@
   flex-wrap: wrap;
   align-content: flex-start;
   max-height: 246px;
-  padding: 4px 4px 0px 4px;
+  padding: 4px 0px 0px 4px;
   overflow: hidden scroll;
   scrollbar-gutter: stable both-edges;
 }
