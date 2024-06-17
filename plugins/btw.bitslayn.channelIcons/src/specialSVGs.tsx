@@ -149,7 +149,7 @@ export const ChannelNames = [
   { name: ["theme"], icon: "none", query: "Theme" },
   { name: ["css"], icon: "none", query: "Eyedropper" },
   { name: ["js"], icon: "none", query: "Science" },
-  { name: ["dev", "code"], icon: "none", query: "VerifiedDeveloperBadge" },
+  { name: ["dev", "code"], icon: "none", query: "MarkdownCode" },
   { name: ["meme"], icon: "none", query: "Sticker" },
   { name: ["music"], icon: "none", query: "Music" },
   { name: ["role"], icon: "none", query: "Shield" },
