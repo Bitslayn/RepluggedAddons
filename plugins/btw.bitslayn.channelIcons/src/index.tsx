@@ -305,7 +305,7 @@ function openEditor(channel: Channel): void {
           />
         </Modal.ModalContent>
         <Modal.ModalFooter direction={Flex.Direction.HORIZONTAL} justify={Flex.Justify.BETWEEN}>
-          <ChannelItem channel={channel} />
+          <ChannelItem channel={channel} className="channelExample" />
           <Flex direction={Flex.Direction.HORIZONTAL_REVERSE}>
             <Button onClick={() => onClose()} color={Button.Colors.BRAND}>
               Okay
@@ -519,7 +519,11 @@ export function Settings(): React.ReactElement {
           return (
             <>
               <div className="personalizedChannelContainer" key={channelId}>
-                {channel ? <ChannelItem channel={channel} /> : <Text>{channelId}</Text>}
+                {channel ? (
+                  <ChannelItem channel={channel} className="channelExample" />
+                ) : (
+                  <Text>{channelId}</Text>
+                )}
                 <Flex direction={Flex.Direction.HORIZONTAL_REVERSE}>
                   <Button
                     onClick={() => {
