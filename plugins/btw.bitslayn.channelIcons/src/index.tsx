@@ -215,27 +215,36 @@ function openEditor(channel: Channel): void {
             </TabBar>
             <div className="channelEditorIcons">
               {selectedTab === "legacy" &&
-                filteredClassicIcons.map(label => (
-                  <Clickable
-                    onClick={() => {
-                      setChannelIcon(label.value);
-                      injectChannelStyle(channel.id, ColorUtils.int2hex(channelColor), label.value);
-                      selectedIcon(ColorUtils.int2hex(channelColor), `${iconBuffer}${label.value}`);
-                    }}>
-                    <Tooltip text={label.label} spacing={24}>
-                      <svg
-                        className={label.label}
-                        viewBox="-4 -4 32 32"
-                        style={{ width: "32px", height: "32px" }}>
-                        <path
-                          fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
-                          d={`${iconBuffer}${label.value}`}
-                          fillRule="evenodd"
-                        />
-                      </svg>
-                    </Tooltip>
-                  </Clickable>
-                ))}
+                filteredClassicIcons.map(label => {
+                  return (
+                    <Clickable
+                      onClick={() => {
+                        setChannelIcon(label.value);
+                        injectChannelStyle(
+                          channel.id,
+                          ColorUtils.int2hex(channelColor),
+                          label.value
+                        );
+                        selectedIcon(
+                          ColorUtils.int2hex(channelColor),
+                          `${iconBuffer}${label.value}`
+                        );
+                      }}>
+                      <Tooltip text={label.label} spacing={24}>
+                        <svg
+                          className={label.label}
+                          viewBox="-4 -4 32 32"
+                          style={{ width: "32px", height: "32px" }}>
+                          <path
+                            fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
+                            d={`${iconBuffer}${label.value}`}
+                            fillRule="evenodd"
+                          />
+                        </svg>
+                      </Tooltip>
+                    </Clickable>
+                  );
+                })}
               {selectedTab === "modern" &&
                 filteredModernIcons.map((label, index) => {
                   const paths = Array.isArray(label.matches)
