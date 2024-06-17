@@ -190,9 +190,7 @@ function openEditor(channel: Channel): void {
     }, [onClose]);
 
     return (
-      <Modal.ModalRoot
-        transitionState={transitionState}
-        /*size="medium"*/ style={{ width: "700px" }}>
+      <Modal.ModalRoot transitionState={transitionState} size="medium" className="channelEditor">
         <Modal.ModalHeader separator={false}>
           <Text.H1 variant="heading-xl/semibold">{`Personalize #${channel.name}`}</Text.H1>
         </Modal.ModalHeader>
@@ -219,6 +217,7 @@ function openEditor(channel: Channel): void {
                 Modern Icons
               </TabBar.Item>
             </TabBar>
+            <Divider></Divider>
             <div className="channelEditorIcons">
               {selectedTab === "legacy" &&
                 filteredClassicIcons.map(label => {

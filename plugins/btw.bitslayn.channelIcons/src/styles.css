@@ -1,3 +1,7 @@
+.channelEditor {
+  width: 700px;
+}
+
 .channelEditorContent {
   display: flex;
   overflow: unset !important;
@@ -5,9 +9,7 @@
 
 .channelEditorSearchBar {
   flex-shrink: 0;
-  margin-bottom: 8px;
-  margin-left: 4px;
-  margin-right: 8px;
+  margin: 0px 8px 8px 4px;
 }
 
 .channelEditorTabBar {
@@ -27,13 +29,17 @@
 .channelEditorIconPicker {
   flex: 1;
 }
+.channelEditorIconPicker > [class^="divider"] {
+  width: 408px;
+  margin-left: 8px;
+}
 
 .channelEditorIcons {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  max-height: 238px;
-  padding: 6px 2px 0px 2px;
+  max-height: 246px;
+  padding: 4px 4px 0px 4px;
   overflow: hidden scroll;
   scrollbar-gutter: stable both-edges;
 }
