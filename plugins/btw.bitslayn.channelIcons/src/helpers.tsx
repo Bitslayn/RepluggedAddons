@@ -41,7 +41,7 @@ export function selectedIcon(channelColor: string, path: string): void {
   document.head.appendChild(styleElement);
 }
 
-export function injectNamedChannelStyles(name: string, icon: any): void {
+export function injectNamedChannelStyles(name: string, icon: string): void {
   const existingStyle = document.querySelector(`[data-channel-named-style="${name}"]`);
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
