@@ -47,20 +47,11 @@ interface ModernIconArray {
   name: string;
   matches: RegExpMatchArray[];
 }
-
-const UpdatedIcons = webpack.getBySource<Record<string, React.FC<GenericIconProps>>>(
-  "www.w3.org/2000/svg",
-  { all: true }
-);
+const UpdatedIcons = Object.keys(webpack.getByProps("Avatar")).filter(c => c.includes("Icon"));
 const group1Array: ModernIconArray[] = [];
-
-UpdatedIcons.forEach(iconObject => {
-  const iconKey = Object.keys(iconObject).find(key => key.includes("Icon"));
-  if (!iconKey) return;
-  const iconValueString = iconObject[iconKey]?.toString?.();
-  if (!iconValueString) return;
+UpdatedIcons.forEach(iconName => {
+  const iconValueString = webpack.getByProps("Avatar")[iconName]?.toString?.();
   const matches = [...iconValueString.matchAll(/,d:"([^"]*)"/g)];
-  if (matches.length) group1Array.push({ name: iconKey, matches });
+  if (matches.length) group1Array.push({ name: iconName, matches });
 });
-
 export { group1Array, Icons };
