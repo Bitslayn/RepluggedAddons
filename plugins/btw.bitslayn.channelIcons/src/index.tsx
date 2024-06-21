@@ -24,8 +24,7 @@ import {
   selectedIcon,
 } from "./helpers";
 import { Icons, config, group1Array } from "./icons";
-import { ChannelNames } from "./specialSVGs";
-// import CustomTooltip from "./Tooltip";
+import { ChannelNames } from "./specialIcons";
 import type {
   ChannelContextMenuProps,
   ChannelItemModule,
@@ -383,9 +382,6 @@ export function start(): void {
       const CustomIcon = ChannelNames?.slice()
         .reverse()
         .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
-      //console.log(CurrentChannel?.name);
-      //console.log(CustomIcon);
-      //console.log(CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons"));
       if (props && ChannelObject?.icon) {
         props.icon = () => {
           return <EditedChannelIcon channel={ChannelObject} />;

@@ -16,7 +16,6 @@ export function selectedIcon(channelColor: string, path: string): void {
     return paths.map(p => `:has(>[d*="${p}"])`);
   };
   const selectors = splitPaths(path);
-  //console.log(`.channelEditorIcons > div > span > svg${selectors.join("")}`);
   const styleElement = document.createElement("style");
   styleElement.setAttribute("selected-icon", "");
   if (channelColor === "#ffffff" || channelColor === "#000000") {

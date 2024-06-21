@@ -1,6 +1,5 @@
-﻿import type React from "react";
-import { settings, webpack } from "replugged";
-import type { GenericIconProps, IconData, Settings } from "./types";
+﻿import { settings, webpack } from "replugged";
+import type { IconData, Settings } from "./types";
 
 const defaultSettings = {
   coloredChannels: {},
