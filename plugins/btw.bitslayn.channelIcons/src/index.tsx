@@ -139,7 +139,7 @@ interface ModalProps {
 function openEditor(channel: Channel): void {
   selectedIcon(
     getChannelObject(channel.id)?.color ?? "#000000",
-    `${iconBuffer}${getChannelObject(channel.id)?.icon}`
+    `${getChannelObject(channel.id)?.icon}`
   );
 
   const ChannelEditor = (props: ModalProps) => {
