@@ -11,27 +11,22 @@ export function selectedIcon(channelColor: string, path: string): void {
   if (existingStyle) {
     existingStyle.remove(); // Remove existing style if found
   }
-  const splitPaths = (path: string): string[] => {
-    const paths = path.replaceAll("Z", "Z~").split("~").filter(Boolean); // This works but not Regex???
-    return paths.map(p => `:has(>[d*="${p}"])`);
-  };
-  const selectors = splitPaths(path);
   const styleElement = document.createElement("style");
   styleElement.setAttribute("selected-icon", "");
   if (channelColor === "#ffffff" || channelColor === "#000000") {
     styleElement.textContent = `
-    .channelEditorIcons > div > span > svg${selectors.join("")} {
+    .channelEditorIcons > span > div:has([d="${iconBuffer}${path}"]) {
       background: var(--bg-overlay-selected,var(--background-modifier-selected)) !important;
       border-radius: var(--radius-xs);
     }
   `;
   } else {
     styleElement.textContent = `
-      .channelEditorIcons > div > span > svg${selectors.join("")} {
+      .channelEditorIcons > span > div:has([d="${iconBuffer}${path}"]) {
         background: ${ColorUtils.hex2rgb(channelColor, 0.3)} !important;
         border-radius: var(--radius-xs);
       }
-      .channelEditorIcons > div > span > svg:hover {
+      .channelEditorIcons > span > div:hover {
         background: ${ColorUtils.hex2rgb(channelColor, 0.15)};
         border-radius: var(--radius-xs);
       }
@@ -139,7 +134,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
       }
 
       [data-list-item-id$="_${channelId}"]:hover
-      /*.channelEditorIcons > div > span > svg:hover*/ {
+      /*.channelEditorIcons > span > div > svg:hover*/ {
         /* Hovered background color */
         background: ${ColorUtils.hex2rgb(channelColor, 0.15)} !important;
         border-radius: var(--radius-xs);

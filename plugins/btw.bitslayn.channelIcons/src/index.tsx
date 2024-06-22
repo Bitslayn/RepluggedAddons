@@ -235,32 +235,29 @@ function openEditor(channel: Channel): void {
               {selectedTab === "legacy" &&
                 filteredClassicIcons.map(label => {
                   return (
-                    <Clickable
-                      onClick={() => {
-                        setChannelIcon(label.value);
-                        injectChannelStyle(
-                          channel.id,
-                          ColorUtils.int2hex(channelColor),
-                          label.value
-                        );
-                        selectedIcon(
-                          ColorUtils.int2hex(channelColor),
-                          `${iconBuffer}${label.value}`
-                        );
-                      }}>
-                      <Tooltip text={label.label} spacing={24}>
+                    <Tooltip text={label.label} spacing={4}>
+                      <Clickable
+                        onClick={() => {
+                          setChannelIcon(label.value);
+                          injectChannelStyle(
+                            channel.id,
+                            ColorUtils.int2hex(channelColor),
+                            label.value
+                          );
+                          selectedIcon(ColorUtils.int2hex(channelColor), `${label.value}`);
+                        }}>
                         <svg
                           className={label.label}
-                          viewBox="-4 -4 32 32"
-                          style={{ width: "32px", height: "32px" }}>
+                          viewBox="0 0 24 24"
+                          style={{ width: "24px", height: "24px" }}>
                           <path
                             fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
                             d={`${iconBuffer}${label.value}`}
                             fillRule="evenodd"
                           />
                         </svg>
-                      </Tooltip>
-                    </Clickable>
+                      </Clickable>
+                    </Tooltip>
                   );
                 })}
               {selectedTab === "modern" &&
@@ -270,47 +267,38 @@ function openEditor(channel: Channel): void {
                     : [label.matches];
 
                   return (
-                    <Clickable
-                      key={index}
-                      onClick={() => {
-                        let fullPathString = "";
-                        paths.forEach(x => {
-                          fullPathString += x;
-                        });
-                        setChannelIcon(fullPathString);
-                        injectChannelStyle(
-                          channel.id,
-                          ColorUtils.int2hex(channelColor),
-                          fullPathString
-                        );
-                        selectedIcon(ColorUtils.int2hex(channelColor), fullPathString);
-                      }}>
-                      <Tooltip text={label.name} spacing={24}>
+                    <Tooltip text={label.name.replace(/Icon$/, "")} spacing={4}>
+                      <Clickable
+                        key={index}
+                        onClick={() => {
+                          let fullPathString = "";
+                          paths.forEach(x => {
+                            fullPathString += x;
+                          });
+                          setChannelIcon(fullPathString);
+                          injectChannelStyle(
+                            channel.id,
+                            ColorUtils.int2hex(channelColor),
+                            fullPathString
+                          );
+                          selectedIcon(ColorUtils.int2hex(channelColor), fullPathString);
+                        }}>
                         <svg
                           key={index}
                           className={label.name}
-                          viewBox="-4 -4 32 32"
+                          viewBox="0 0 24 24"
                           style={{
-                            width: "32px",
-                            height: "32px",
+                            width: "24px",
+                            height: "24px",
                           }}>
-                          {paths.map((pathData, innerIndex) => {
-                            if (pathData && pathData.length > 0) {
-                              return (
-                                <path
-                                  key={innerIndex}
-                                  fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
-                                  fillRule="evenodd"
-                                  d={`${iconBuffer}${pathData}`}
-                                />
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
+                          <path
+                            fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
+                            fillRule="evenodd"
+                            d={`${iconBuffer}${paths.join("")}`}
+                          />
                         </svg>
-                      </Tooltip>
-                    </Clickable>
+                      </Clickable>
+                    </Tooltip>
                   );
                 })}
             </div>

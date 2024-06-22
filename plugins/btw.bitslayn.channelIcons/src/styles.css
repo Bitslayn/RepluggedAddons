@@ -51,17 +51,23 @@
   background: var(--scrollbar-thin-thumb);
   border-radius: 25px;
 }
-.channelEditorIcons > div {
+.channelEditorIcons > span {
   margin: 1px;
-  height: 32px;
 }
-.channelEditorIcons > div > span > svg:hover:has([fill="#000000"]),
-.channelEditorIcons > div > span > svg:hover:has([fill="#ffffff"]) {
+.channelEditorIcons > span > div {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.channelEditorIcons > span > div:hover:has([fill="#000000"]),
+.channelEditorIcons > span > div:hover:has([fill="#ffffff"]) {
   background: var(--background-modifier-hover);
   border-radius: var(--radius-xs);
 }
-.channelEditorIcons > div > span > svg > [fill="#000000"],
-.channelEditorIcons > div > span > svg > [fill="#ffffff"] {
+.channelEditorIcons > span > div > svg > [fill="#000000"],
+.channelEditorIcons > span > div > svg > [fill="#ffffff"] {
   fill: var(--channel-icon);
   border-radius: var(--radius-xs);
 }
