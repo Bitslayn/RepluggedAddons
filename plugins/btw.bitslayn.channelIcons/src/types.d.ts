@@ -1,5 +1,6 @@
 import type { Channel, Guild } from "discord-types/general";
 import type React from "react";
+import type { components as CommonComponents } from "replugged/common";
 
 export interface ColoredChannel {
   color: string;
@@ -86,7 +87,7 @@ interface ChannelItemProps {
 
 export interface ChannelItemModule {
   ChannelItemIcon: React.FC<ChannelItemIconProps>;
-  default: React.FC<React.PropsWithChildren<ChannelItemProps>>;
+  ChannelItem: React.FC<React.PropsWithChildren<ChannelItemProps>>;
 }
 
 interface HeaderBarDividerProps {
@@ -153,12 +154,6 @@ interface HeaderBarComponents {
   Caret: React.FC<HeaderBarCaretProps>;
 }
 
-export interface HeaderBarModule {
-  Divider: React.FC<HeaderBarDividerProps>;
-  Icon: React.FC<React.PropsWithChildren<HeaderBarIconProps>>;
-  default: React.FC<React.PropsWithChildren<HeaderBarProps>> & HeaderBarComponents;
-}
-
 type HeaderBarLoggedInProps = Pick<
   HeaderBarProps,
   | "className"
@@ -190,7 +185,7 @@ type HeaderBarContainerProps = React.PropsWithChildren<HeaderBarLoggedInProps> &
 
 export interface HeaderBarCommonModule {
   handleDoubleClick: () => Promise<void>;
-  default: React.FC<HeaderBarContainerProps> & HeaderBarComponents;
+  HeaderBar: React.FC<HeaderBarContainerProps> & HeaderBarComponents;
 }
 
 interface ColorResponse {
@@ -208,6 +203,7 @@ interface Color {
 export type GenericIconProps = React.ComponentPropsWithoutRef<"svg"> & {
   color?: string | Color;
   colorClass?: string;
+  size?: "xxs" | "xs" | "sm" | "md" | "lg" | "custom";
 };
 
 interface TabBarProps {
@@ -250,7 +246,7 @@ interface TabBarSeparatorProps {
 
 type TabBarPanelProps = React.ComponentPropsWithoutRef<"div">;
 
-export type TabBar = React.ComponentClass<React.PropsWithChildren<TabBarProps>> & {
+type TabBar = React.ComponentClass<React.PropsWithChildren<TabBarProps>> & {
   Header: React.FC<React.PropsWithChildren<TabBarHeaderProps>>;
   Item: React.ComponentClass<React.PropsWithChildren<TabBarItemProps>>;
   Separator: React.FC<TabBarSeparatorProps>;
@@ -329,9 +325,14 @@ interface CustomColorPickerProps {
   className?: string;
 }
 
-export interface ColorPickerModule {
+interface ColorPickerModule {
   ColorPicker: React.FC<ColorPickerProps>;
   ColorPickerCustomButton: React.ComponentClass<ColorPickerCustomButtonProps>;
   ColorPickerDefaultButton: React.ComponentClass<ColorPickerDefaultButtonProps>;
   CustomColorPicker: React.MemoExoticComponent<React.FC<CustomColorPickerProps>>;
 }
+
+export type CommonComponentsModule = typeof CommonComponents &
+  ColorPickerModule & {
+    TabBar: TabBar;
+  };
