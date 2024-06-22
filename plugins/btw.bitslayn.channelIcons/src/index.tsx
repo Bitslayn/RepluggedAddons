@@ -1,3 +1,4 @@
+import type { Channel } from "discord-types/general";
 import { Injector, types, util, webpack } from "replugged";
 import { React, channels, modal } from "replugged/common";
 import {
@@ -28,39 +29,53 @@ import { ChannelNames } from "./specialIcons";
 import type {
   ChannelContextMenuProps,
   ChannelItemModule,
-  ColorPickerModule,
   ColorUtilsModule,
+  CommonComponentsModule,
   GenericIconProps,
   HeaderBarCommonModule,
   SearchBar as SearchBarComponent,
-  TabBar as TabBarComponent,
 } from "./types";
 
-import { Channel } from "discord-types/general";
 import "./styles.css";
 
 const { ContextMenuTypes } = types;
 
-const ColorPicker = await webpack.waitForProps<ColorPickerModule>("CustomColorPicker");
-export const ColorUtils = await webpack.waitForProps<ColorUtilsModule>("int2hex");
-const channelItemModule = await webpack.waitForProps<ChannelItemModule>("ChannelItemIcon");
-const ChannelItem = channelItemModule.default;
-const headerBarCommonModule = await webpack.waitForModule<HeaderBarCommonModule>(
-  webpack.filters.bySource("toolbar:function()")
+const CommonComponents = await webpack.waitForProps<CommonComponentsModule>("CustomColorPicker");
+const { CustomColorPicker, TabBar } = CommonComponents;
+
+const colorUtilsModule = await webpack.waitForModule<ColorUtilsModule>(
+  webpack.filters.bySource("rgba?\\((\\d{1,3})")
 );
-const TabBar = await webpack
-  .waitForModule(webpack.filters.bySource("tabBarRef.current"))
-  .then(mod => webpack.getFunctionBySource<TabBarComponent>(mod, "tabBarRef.current")!);
+export const ColorUtils = {
+  // Not the full module, just the functions we need
+  hex2int: webpack.getFunctionBySource<ColorUtilsModule["hex2int"]>(colorUtilsModule, ").num()"),
+  int2hex: webpack.getFunctionBySource<ColorUtilsModule["int2hex"]>(colorUtilsModule, "16777215"),
+  hex2rgb: webpack.getFunctionBySource<ColorUtilsModule["hex2rgb"]>(
+    colorUtilsModule,
+    ".alpha()).css()"
+  ),
+};
+
+const channelItemModule = await webpack.waitForModule<ChannelItemModule>(
+  webpack.filters.bySource("UNREAD_LESS_IMPORTANT:")
+);
+const ChannelItem = webpack.getFunctionBySource<ChannelItemModule["ChannelItem"]>(
+  channelItemModule,
+  "UNREAD_LESS_IMPORTANT"
+);
+
+const headerBarCommonModule = await webpack.waitForModule<HeaderBarCommonModule>(
+  webpack.filters.bySource(".forumOrHome]")
+);
+const HeaderBar = webpack.getFunctionBySource<HeaderBarCommonModule["HeaderBar"]>(
+  headerBarCommonModule,
+  "forumOrHome"
+);
 const SearchBar = await webpack
   .waitForModule(webpack.filters.bySource(/inputProps:\w+,hideSearchIcon/))
   .then(
     mod => webpack.getFunctionBySource<SearchBarComponent>(mod, /inputProps:\w+,hideSearchIcon/)!
   );
-// const ChannelMention = webpack.getBySource(
-//   /let\{className:.*,message:.*,children:.*,content:.*,onUpdate:.*,contentRef:.*}=e/
-// );
-// const ChannelAutocomplete = webpack.getBySource("AutocompleteRowContent");
-// console.log(ChannelAutocomplete);
 
 const inject = new Injector();
 
@@ -127,7 +142,7 @@ function openEditor(channel: Channel): void {
     `${iconBuffer}${getChannelObject(channel.id)?.icon}`
   );
 
-  const Editor = (props: ModalProps) => {
+  const ChannelEditor = (props: ModalProps) => {
     const { transitionState, onClose } = props;
 
     const channelColorSetting = getChannelObject(channel.id);
@@ -215,7 +230,7 @@ function openEditor(channel: Channel): void {
                 Modern Icons
               </TabBar.Item>
             </TabBar>
-            <Divider></Divider>
+            <Divider />
             <div className="channelEditorIcons">
               {selectedTab === "legacy" &&
                 filteredClassicIcons.map(label => {
@@ -300,7 +315,7 @@ function openEditor(channel: Channel): void {
                 })}
             </div>
           </div>
-          <ColorPicker.CustomColorPicker
+          <CustomColorPicker
             className="channelEditorColorPicker"
             value={channelColor}
             onChange={handleColorChange}
@@ -325,7 +340,7 @@ function openEditor(channel: Channel): void {
     );
   };
 
-  modal.openModal(props => <Editor {...props} />);
+  modal.openModal(props => <ChannelEditor {...props} />);
 }
 
 interface ChangedChannelName {
@@ -364,7 +379,7 @@ export function start(): void {
   injectNamedChannelsStyles();
   injectChannelPillStyle();
   if (headerBarCommonModule) {
-    inject.after(headerBarCommonModule.default, "Title", ([props]) => {
+    inject.after(HeaderBar, "Title", ([props]) => {
       if (typeof props.children === "string") return;
       const ChannelObject = getCurrentChannelObject();
       const headerObj = props.children?.props?.children;
@@ -372,7 +387,7 @@ export function start(): void {
         headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
       }
     });
-    inject.before(headerBarCommonModule.default, "Icon", ([props]) => {
+    inject.before(HeaderBar, "Icon", ([props]) => {
       const ChannelObject = getCurrentChannelObject();
       const CurrentSelectedChannelId = channels.getCurrentlySelectedChannelId();
 
@@ -414,26 +429,27 @@ export function start(): void {
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem<ChannelContextMenuProps>(ContextMenuTypes.ChannelContext, data => {
     const { channel } = data;
-    // the code below gives a random modern icon uwu ;3 rawr x3 *waggles tail*
     const Object = group1Array[randomNumber(group1Array.length)];
     const iconMod = webpack.getByProps<Record<string, React.FC<GenericIconProps>>>(Object.name)!;
     const RandomIcon = iconMod[Object.name];
-    // the code above gives a random modern icon uwu ;3 rawr x3 *waggles tail*
     if (channel.type !== 4) {
       return (
         <ContextMenu.MenuItem
           id={`customize-channel-context`}
           label="Personalize Channel"
-          /* the code below gives discord an icon to display */
           icon={RandomIcon}
-          /* the code above gives discord an icon to display */
           action={() => openEditor(channel)}
         />
       );
     }
   });
   if (channelItemModule) {
-    inject.after(channelItemModule, "default", ([props]) => {
+    const channelItemKey = webpack.getFunctionKeyBySource(
+      channelItemModule,
+      "UNREAD_LESS_IMPORTANT"
+    ) as "ChannelItem"; // ! hack: mangled exports are bad
+
+    inject.after(channelItemModule, channelItemKey, ([props]) => {
       if (config.get("changeChannelNames")) {
         const oldName = props.channel.name;
         if (!isChannelIdExists(props.channel.id)) {
