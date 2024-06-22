@@ -139,7 +139,7 @@ interface ModalProps {
 function openEditor(channel: Channel): void {
   selectedIcon(
     getChannelObject(channel.id)?.color ?? "#000000",
-    `${getChannelObject(channel.id)?.icon}`
+    getChannelObject(channel.id)?.icon
   );
 
   const ChannelEditor = (props: ModalProps) => {
@@ -178,7 +178,7 @@ function openEditor(channel: Channel): void {
       const convertedColor = ColorUtils.int2hex(selectedColor);
       setChannelColor(selectedColor);
       injectChannelStyle(channel.id, convertedColor, channelIcon);
-      selectedIcon(convertedColor, `${iconBuffer}${channelIcon}`);
+      selectedIcon(convertedColor, channelIcon);
       const updatedColors = [
         convertedColor,
         ...suggestedColors.filter(color => color !== convertedColor),
@@ -244,7 +244,7 @@ function openEditor(channel: Channel): void {
                             ColorUtils.int2hex(channelColor),
                             label.value
                           );
-                          selectedIcon(ColorUtils.int2hex(channelColor), `${label.value}`);
+                          selectedIcon(ColorUtils.int2hex(channelColor), label.value);
                         }}>
                         <svg
                           className={label.label}
