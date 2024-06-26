@@ -544,13 +544,9 @@ export function Settings(): React.ReactElement {
                 )}
                 <Flex direction={Flex.Direction.HORIZONTAL_REVERSE} style={{ gap: "8px" }}>
                   <Clickable // Remove
-                    onClick={() => removeColoredChannel(channelId)}>
-                    <svg
-                      aria-hidden="true"
-                      width="32"
-                      height="32"
-                      viewBox="-4 -4 32 32"
-                      color="var(--interactive-normal)">
+                    onClick={() => removeColoredChannel(channelId)}
+                    style={{ height: "32px", width: "32px" }}>
+                    <svg aria-hidden="true" viewBox="-4 -4 32 32" color="var(--interactive-normal)">
                       <path
                         fill="currentColor"
                         d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path>
@@ -559,13 +555,9 @@ export function Settings(): React.ReactElement {
                   <Clickable // Edit
                     onClick={() => {
                       if (channel) openEditor(channel);
-                    }}>
-                    <svg
-                      aria-hidden="true"
-                      width="32"
-                      height="32"
-                      viewBox="-4 -4 32 32"
-                      color="var(--interactive-normal)">
+                    }}
+                    style={{ height: "32px", width: "32px" }}>
+                    <svg aria-hidden="true" viewBox="-4 -4 32 32" color="var(--interactive-normal)">
                       <path
                         fill="currentColor"
                         fill-rule="evenodd"
@@ -575,7 +567,7 @@ export function Settings(): React.ReactElement {
                   </Clickable>
                 </Flex>
               </div>
-              <Divider style={{ marginBottom: "20px" }} />
+              <Divider style={{ marginBottom: "12px" }} />
             </>
           );
         })}
