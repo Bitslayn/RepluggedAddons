@@ -224,7 +224,7 @@ export const EditedChannelIcon = ({ channel }: EditedChannelIconProps) => {
       <path
         fill={channel.color}
         fillRule="evenodd"
-        d={channel.icon}
+        d={iconBuffer + channel.icon}
         clipRule="evenodd"
         className=""></path>
     </svg>
