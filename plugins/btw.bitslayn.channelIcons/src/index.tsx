@@ -484,7 +484,13 @@ export function Settings(): React.ReactElement {
   const [coloredChannels, setColoredChannels] = React.useState(config.get("coloredChannels"));
   const presetChannelIcons = util.useSetting(config, "presetChannelIcons");
   const coloredChannelPills = util.useSetting(config, "coloredChannelPills");
-  //const advancedChannelNames = config.get("advancedChannelNames");
+
+  let guildsFromChannels = [];
+  // eslint-disable-next-line array-callback-return, consistent-return
+  Object.entries(coloredChannels).map(([channelId]) => {
+    if (!guildsFromChannels.includes(guilds.getGuild(channels.getChannel(channelId).guild_id).id))
+      return guildsFromChannels.push(guilds.getGuild(channels.getChannel(channelId).guild_id).id);
+  });
 
   const removeColoredChannel = (channelId: string): void => {
     const updatedChannels = { ...coloredChannels };
@@ -523,57 +529,66 @@ export function Settings(): React.ReactElement {
         Color Unread Indicators
       </SwitchItem>
       <Category title="Personalized Channels" note="View and modify your channel styles.">
-        {Object.entries(coloredChannels).map(([channelId]) => {
-          const channel = channels.getChannel(channelId);
-          const guild = guilds.getGuild(channels.getChannel(channelId).guild_id);
-          return (
-            <>
-              <div className="personalizedChannelContainer" key={channelId}>
-                <div style={{ marginRight: "8px" }}>
-                  <Tooltip text={guild.name} delay={500}>
-                    <div
-                      style={{
-                        borderRadius: "8px",
-                        width: "40px",
-                        height: "40px",
-                        backgroundImage: `url(${guild.getIconURL(40, false)})`,
-                      }}></div>
-                  </Tooltip>
+        <Flex direction={Flex.Direction.VERTICAL}>
+          {Object.entries(coloredChannels).map(([channelId]) => {
+            const channel = channels.getChannel(channelId);
+            const guild = guilds.getGuild(channels.getChannel(channelId).guild_id);
+            const index = guildsFromChannels.indexOf(guild.id);
+            return (
+              <div style={{ order: index * 500 + channel.position }}>
+                <div className="personalizedChannelContainer" key={channelId}>
+                  <div style={{ marginRight: "8px" }}>
+                    <Tooltip text={guild.name} delay={500}>
+                      <div
+                        style={{
+                          borderRadius: "8px",
+                          width: "40px",
+                          height: "40px",
+                          backgroundImage: `url(${guild.getIconURL(40, false)})`,
+                        }}></div>
+                    </Tooltip>
+                  </div>
+                  {channel ? (
+                    <ChannelItem channel={channel} className="channelExample" />
+                  ) : (
+                    <Text>{channelId}</Text>
+                  )}
+                  <Flex direction={Flex.Direction.HORIZONTAL_REVERSE} style={{ gap: "8px" }}>
+                    <Clickable // Remove
+                      onClick={() => removeColoredChannel(channelId)}
+                      style={{ height: "32px", width: "32px" }}>
+                      <svg
+                        aria-hidden="true"
+                        viewBox="-4 -4 32 32"
+                        color="var(--interactive-normal)">
+                        <path
+                          fill="currentColor"
+                          d="M17.3 18.7a1 1 0 0 0 1.4-1.4L13.42 12l5.3-5.3a1 1 0 0 0-1.42-1.4L12 10.58l-5.3-5.3a1 1 0 0 0-1.4 1.42L10.58 12l-5.3 5.3a1 1 0 1 0 1.42 1.4L12 13.42l5.3 5.3Z"></path>
+                      </svg>
+                    </Clickable>
+                    <Clickable // Edit
+                      onClick={() => {
+                        if (channel) openEditor(channel);
+                      }}
+                      style={{ height: "32px", width: "32px" }}>
+                      <svg
+                        aria-hidden="true"
+                        viewBox="-4 -4 32 32"
+                        color="var(--interactive-normal)">
+                        <path
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                          d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+                          clip-rule="evenodd"></path>
+                      </svg>
+                    </Clickable>
+                  </Flex>
                 </div>
-                {channel ? (
-                  <ChannelItem channel={channel} className="channelExample" />
-                ) : (
-                  <Text>{channelId}</Text>
-                )}
-                <Flex direction={Flex.Direction.HORIZONTAL_REVERSE} style={{ gap: "8px" }}>
-                  <Clickable // Remove
-                    onClick={() => removeColoredChannel(channelId)}
-                    style={{ height: "32px", width: "32px" }}>
-                    <svg aria-hidden="true" viewBox="-4 -4 32 32" color="var(--interactive-normal)">
-                      <path
-                        fill="currentColor"
-                        d="M17.3 18.7a1 1 0 0 0 1.4-1.4L13.42 12l5.3-5.3a1 1 0 0 0-1.42-1.4L12 10.58l-5.3-5.3a1 1 0 0 0-1.4 1.42L10.58 12l-5.3 5.3a1 1 0 1 0 1.42 1.4L12 13.42l5.3 5.3Z"></path>
-                    </svg>
-                  </Clickable>
-                  <Clickable // Edit
-                    onClick={() => {
-                      if (channel) openEditor(channel);
-                    }}
-                    style={{ height: "32px", width: "32px" }}>
-                    <svg aria-hidden="true" viewBox="-4 -4 32 32" color="var(--interactive-normal)">
-                      <path
-                        fill="currentColor"
-                        fill-rule="evenodd"
-                        d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-                        clip-rule="evenodd"></path>
-                    </svg>
-                  </Clickable>
-                </Flex>
+                <Divider style={{ marginBottom: "12px" }} />
               </div>
-              <Divider style={{ marginBottom: "12px" }} />
-            </>
-          );
-        })}
+            );
+          })}
+        </Flex>
       </Category>
     </>
   );

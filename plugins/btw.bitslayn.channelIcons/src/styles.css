@@ -134,3 +134,7 @@
 .personalizedChannelContainer > div > div > svg:hover {
   color: var(--interactive-hover);
 }
+
+[class*="forumPostTitle"] > span:last-child {
+  color: unset !important;
+}
