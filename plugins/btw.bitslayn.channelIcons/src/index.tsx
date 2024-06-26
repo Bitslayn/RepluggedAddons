@@ -235,7 +235,7 @@ function openEditor(channel: Channel): void {
               {selectedTab === "legacy" &&
                 filteredClassicIcons.map(label => {
                   return (
-                    <Tooltip text={label.label} spacing={4}>
+                    <Tooltip text={label.label} spacing={7} delay={500}>
                       <Clickable
                         onClick={() => {
                           setChannelIcon(label.value);
@@ -268,7 +268,7 @@ function openEditor(channel: Channel): void {
                     : [label.matches];
                   if (!blacklistIcons.includes(label.name)) {
                     return (
-                      <Tooltip text={label.name.replace(/Icon$/, "")} spacing={4}>
+                      <Tooltip text={label.name.replace(/Icon$/, "")} spacing={7} delay={500}>
                         <Clickable
                           key={index}
                           onClick={() => {
@@ -525,18 +525,21 @@ export function Settings(): React.ReactElement {
       <Category title="Personalized Channels" note="View and modify your channel styles.">
         {Object.entries(coloredChannels).map(([channelId]) => {
           const channel = channels.getChannel(channelId);
+          const guild = guilds.getGuild(channels.getChannel(channelId).guild_id);
           return (
             <>
               <div className="personalizedChannelContainer" key={channelId}>
-                <img
-                  src={`https://cdn.discordapp.com/icons/${channels.getChannel(channelId).guild_id}/${guilds.getGuild(channels.getChannel(channelId).guild_id).icon}.webp?size=96`}
-                  style={{
-                    borderRadius: "8px",
-                    pointerEvents: "none",
-                    marginRight: "8px",
-                    width: "40px",
-                    height: "40px",
-                  }}></img>
+                <div style={{ marginRight: "8px" }}>
+                  <Tooltip text={guild.name} delay={500}>
+                    <div
+                      style={{
+                        borderRadius: "8px",
+                        width: "40px",
+                        height: "40px",
+                        backgroundImage: `url(${guild.getIconURL(40, false)})`,
+                      }}></div>
+                  </Tooltip>
+                </div>
                 {channel ? (
                   <ChannelItem channel={channel} className="channelExample" />
                 ) : (
@@ -549,7 +552,7 @@ export function Settings(): React.ReactElement {
                     <svg aria-hidden="true" viewBox="-4 -4 32 32" color="var(--interactive-normal)">
                       <path
                         fill="currentColor"
-                        d="M18.4 4L12 10.4L5.6 4L4 5.6L10.4 12L4 18.4L5.6 20L12 13.6L18.4 20L20 18.4L13.6 12L20 5.6L18.4 4Z"></path>
+                        d="M17.3 18.7a1 1 0 0 0 1.4-1.4L13.42 12l5.3-5.3a1 1 0 0 0-1.42-1.4L12 10.58l-5.3-5.3a1 1 0 0 0-1.4 1.42L10.58 12l-5.3 5.3a1 1 0 1 0 1.42 1.4L12 13.42l5.3 5.3Z"></path>
                     </svg>
                   </Clickable>
                   <Clickable // Edit
