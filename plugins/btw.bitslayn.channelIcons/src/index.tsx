@@ -1,6 +1,6 @@
 import type { Channel } from "discord-types/general";
 import { Injector, types, util, webpack } from "replugged";
-import { React, channels, modal } from "replugged/common";
+import { React, channels, guilds, modal } from "replugged/common";
 import {
   Button,
   Category,
@@ -24,7 +24,7 @@ import {
   randomNumber,
   selectedIcon,
 } from "./helpers";
-import { Icons, config, group1Array } from "./icons";
+import { Icons, blacklistIcons, config, group1Array } from "./icons";
 import { ChannelNames } from "./specialIcons";
 import type {
   ChannelContextMenuProps,
@@ -171,7 +171,7 @@ function openEditor(channel: Channel): void {
       icon.label.toLowerCase().includes(searchQuery.toLowerCase())
     );
     const filteredModernIcons = group1Array.filter(icon =>
-      icon.name.toLowerCase().includes(searchQuery.toLowerCase())
+      icon.name.replace(/Icon$/, "").toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const handleColorChange = (selectedColor: number): void => {
@@ -261,45 +261,47 @@ function openEditor(channel: Channel): void {
                   );
                 })}
               {selectedTab === "modern" &&
+                // eslint-disable-next-line consistent-return, array-callback-return
                 filteredModernIcons.map((label, index) => {
                   const paths = Array.isArray(label.matches)
                     ? label.matches.map(item => item[1])
                     : [label.matches];
-
-                  return (
-                    <Tooltip text={label.name.replace(/Icon$/, "")} spacing={4}>
-                      <Clickable
-                        key={index}
-                        onClick={() => {
-                          let fullPathString = "";
-                          paths.forEach(x => {
-                            fullPathString += x;
-                          });
-                          setChannelIcon(fullPathString);
-                          injectChannelStyle(
-                            channel.id,
-                            ColorUtils.int2hex(channelColor),
-                            fullPathString
-                          );
-                          selectedIcon(ColorUtils.int2hex(channelColor), fullPathString);
-                        }}>
-                        <svg
+                  if (!blacklistIcons.includes(label.name)) {
+                    return (
+                      <Tooltip text={label.name.replace(/Icon$/, "")} spacing={4}>
+                        <Clickable
                           key={index}
-                          className={label.name}
-                          viewBox="0 0 24 24"
-                          style={{
-                            width: "24px",
-                            height: "24px",
+                          onClick={() => {
+                            let fullPathString = "";
+                            paths.forEach(x => {
+                              fullPathString += x;
+                            });
+                            setChannelIcon(fullPathString);
+                            injectChannelStyle(
+                              channel.id,
+                              ColorUtils.int2hex(channelColor),
+                              fullPathString
+                            );
+                            selectedIcon(ColorUtils.int2hex(channelColor), fullPathString);
                           }}>
-                          <path
-                            fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
-                            fillRule="evenodd"
-                            d={`${iconBuffer}${paths.join("")}`}
-                          />
-                        </svg>
-                      </Clickable>
-                    </Tooltip>
-                  );
+                          <svg
+                            key={index}
+                            className={label.name}
+                            viewBox="0 0 24 24"
+                            style={{
+                              width: "24px",
+                              height: "24px",
+                            }}>
+                            <path
+                              fill={ColorUtils.int2hex(channelColor) ?? "--channel-icon"}
+                              fillRule="evenodd"
+                              d={`${iconBuffer}${paths.join("")}`}
+                            />
+                          </svg>
+                        </Clickable>
+                      </Tooltip>
+                    );
+                  }
                 })}
             </div>
           </div>
@@ -526,6 +528,15 @@ export function Settings(): React.ReactElement {
           return (
             <>
               <div className="personalizedChannelContainer" key={channelId}>
+                <img
+                  src={`https://cdn.discordapp.com/icons/${channels.getChannel(channelId).guild_id}/${guilds.getGuild(channels.getChannel(channelId).guild_id).icon}.webp?size=96`}
+                  style={{
+                    borderRadius: "8px",
+                    pointerEvents: "none",
+                    marginRight: "8px",
+                    width: "40px",
+                    height: "40px",
+                  }}></img>
                 {channel ? (
                   <ChannelItem channel={channel} className="channelExample" />
                 ) : (

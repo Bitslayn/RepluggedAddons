@@ -54,3 +54,27 @@ UpdatedIcons.forEach(iconName => {
   if (matches.length) group1Array.push({ name: iconName, matches });
 });
 export { group1Array, Icons };
+
+export const blacklistIcons = [
+  "ThreadLockIcon",
+  "ThreadWarningIcon",
+  "SettingsInfoIcon",
+  "SettingsCircleIcon",
+  "SlashRetryIcon",
+  "StickerMinusIcon",
+  "StickerPlusIcon",
+  "StickerRetryIcon",
+  "AppleBrandLightIcon",
+  "AnnouncementsChatIcon",
+  "ChannelListMagnifyingGlassIcon",
+  "CalendarPlusIcon",
+  "CalendarRetryIcon",
+  "CalendarXIcon",
+  "ChatXIcon",
+  "CrunchyrollBrandLightIcon",
+  "FileWarningIcon",
+  "MobilePhoneSettingsIcon",
+  "SuperReactionIcon",
+  "StickerSmallIcon",
+  "StickerWinkAltIcon",
+];
