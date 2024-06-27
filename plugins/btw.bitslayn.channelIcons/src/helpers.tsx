@@ -100,7 +100,7 @@ export function injectChannelStyle(channelId: string, channelColor: string, path
     styleElement.textContent = `
       /* CSS for channel customization */
 
-      [data-list-item-id$="_${channelId}"] > div > div > svg > path {
+      [data-list-item-id$="_${channelId}"] svg[class^="icon"] > path {
         /* Icon */
         d: path(
           "${path}"

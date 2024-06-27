@@ -220,7 +220,7 @@ function openEditor(channel: Channel): void {
             <TabBar
               selectedItem={selectedTab}
               type="top"
-              look="brand"
+              look="grey"
               onItemSelect={id => id && setSelectedTab(id)}
               className="channelEditorTabBar">
               <TabBar.Item id="legacy" className="channelEditorTabBarItem">
@@ -488,8 +488,8 @@ export function Settings(): React.ReactElement {
   let guildsFromChannels = [];
   // eslint-disable-next-line array-callback-return, consistent-return
   Object.entries(coloredChannels).map(([channelId]) => {
-    if (!guildsFromChannels.includes(guilds.getGuild(channels.getChannel(channelId).guild_id).id))
-      return guildsFromChannels.push(guilds.getGuild(channels.getChannel(channelId).guild_id).id);
+    if (!guildsFromChannels.includes(guilds.getGuild(channels.getChannel(channelId)?.guild_id)?.id))
+      return guildsFromChannels.push(guilds.getGuild(channels.getChannel(channelId)?.guild_id)?.id);
   });
 
   const removeColoredChannel = (channelId: string): void => {
@@ -532,22 +532,31 @@ export function Settings(): React.ReactElement {
         <Flex direction={Flex.Direction.VERTICAL}>
           {Object.entries(coloredChannels).map(([channelId]) => {
             const channel = channels.getChannel(channelId);
-            const guild = guilds.getGuild(channels.getChannel(channelId).guild_id);
-            const index = guildsFromChannels.indexOf(guild.id);
+            const guild = guilds.getGuild(channels.getChannel(channelId)?.guild_id);
+            const index = guildsFromChannels.indexOf(guild?.id);
+            const channelPosition = channel ? channel?.position : 1000000;
+
             return (
-              <div style={{ order: index * 500 + channel.position }}>
+              <div
+                style={{
+                  order: index * 500 + channelPosition,
+                }}>
                 <div className="personalizedChannelContainer" key={channelId}>
-                  <div style={{ marginRight: "8px" }}>
-                    <Tooltip text={guild.name} delay={500}>
-                      <div
-                        style={{
-                          borderRadius: "8px",
-                          width: "40px",
-                          height: "40px",
-                          backgroundImage: `url(${guild.getIconURL(40, false)})`,
-                        }}></div>
-                    </Tooltip>
-                  </div>
+                  {guild ? (
+                    <div style={{ marginRight: "8px" }}>
+                      <Tooltip text={guild?.name} delay={500}>
+                        <div
+                          style={{
+                            borderRadius: "8px",
+                            width: "40px",
+                            height: "40px",
+                            backgroundImage: `url(${guild?.getIconURL(40, false)})`,
+                          }}></div>
+                      </Tooltip>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                   {channel ? (
                     <ChannelItem channel={channel} className="channelExample" />
                   ) : (
@@ -566,22 +575,26 @@ export function Settings(): React.ReactElement {
                           d="M17.3 18.7a1 1 0 0 0 1.4-1.4L13.42 12l5.3-5.3a1 1 0 0 0-1.42-1.4L12 10.58l-5.3-5.3a1 1 0 0 0-1.4 1.42L10.58 12l-5.3 5.3a1 1 0 1 0 1.42 1.4L12 13.42l5.3 5.3Z"></path>
                       </svg>
                     </Clickable>
-                    <Clickable // Edit
-                      onClick={() => {
-                        if (channel) openEditor(channel);
-                      }}
-                      style={{ height: "32px", width: "32px" }}>
-                      <svg
-                        aria-hidden="true"
-                        viewBox="-4 -4 32 32"
-                        color="var(--interactive-normal)">
-                        <path
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                          d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
-                          clip-rule="evenodd"></path>
-                      </svg>
-                    </Clickable>
+                    {guild ? (
+                      <Clickable // Edit
+                        onClick={() => {
+                          if (channel) openEditor(channel);
+                        }}
+                        style={{ height: "32px", width: "32px" }}>
+                        <svg
+                          aria-hidden="true"
+                          viewBox="-4 -4 32 32"
+                          color="var(--interactive-normal)">
+                          <path
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                            d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm10-2a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm8 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z"
+                            clip-rule="evenodd"></path>
+                        </svg>
+                      </Clickable>
+                    ) : (
+                      <></>
+                    )}
                   </Flex>
                 </div>
                 <Divider style={{ marginBottom: "12px" }} />
