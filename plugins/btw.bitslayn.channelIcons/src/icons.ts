@@ -48,8 +48,8 @@ interface ModernIconArray {
   Name: string;
   Matches: RegExpMatchArray[];
 }
-const UpdatedIcons = Object.keys(webpack.getByProps("Avatar")).filter(c => c.includes("Icon"));
 const CommonComponents = webpack.getByProps("Avatar");
+const UpdatedIcons = Object.keys(CommonComponents).filter(c => c.includes("Icon"));
 const group1Array: ModernIconArray[] = [];
 UpdatedIcons.forEach(iconName => {
   const iconValueString = CommonComponents[iconName]?.toString?.();
