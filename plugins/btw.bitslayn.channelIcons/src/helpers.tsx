@@ -1,10 +1,7 @@
-import { webpack } from "replugged";
 import { config } from "./icons";
 import type { ColoredChannel } from "./types";
 import { ColorUtils, iconBuffer } from "./index";
 import { channels } from "replugged/common";
-
-const Classes = await webpack.waitForProps(["icon", "hamburger"]);
 
 export function selectedIcon(channelColor: string, path: string): void {
   const existingStyle = document.querySelector(`[selected-icon=""]`);
@@ -213,7 +210,6 @@ export const EditedChannelIcon = ({ channel }: EditedChannelIconProps) => {
     <svg
       x="0"
       y="0"
-      className={Classes.icon}
       aria-hidden="true"
       role="img"
       xmlns="http://www.w3.org/2000/svg"

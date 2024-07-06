@@ -171,7 +171,7 @@ function openEditor(channel: Channel): void {
       icon.label.toLowerCase().includes(searchQuery.toLowerCase())
     );
     const filteredModernIcons = group1Array.filter(icon =>
-      icon.name.replace(/Icon$/, "").toLowerCase().includes(searchQuery.toLowerCase())
+      icon.Name.replace(/Icon$/, "").toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     const handleColorChange = (selectedColor: number): void => {
@@ -263,12 +263,12 @@ function openEditor(channel: Channel): void {
               {selectedTab === "modern" &&
                 // eslint-disable-next-line consistent-return, array-callback-return
                 filteredModernIcons.map((label, index) => {
-                  const paths = Array.isArray(label.matches)
-                    ? label.matches.map(item => item[1])
-                    : [label.matches];
-                  if (!blacklistIcons.includes(label.name)) {
+                  const paths = Array.isArray(label.Matches)
+                    ? label.Matches.map(item => item[1])
+                    : [label.Matches];
+                  if (!blacklistIcons.includes(label.Name)) {
                     return (
-                      <Tooltip text={label.name.replace(/Icon$/, "")} spacing={7} delay={500}>
+                      <Tooltip text={label.Name.replace(/Icon$/, "")} spacing={7} delay={500}>
                         <Clickable
                           key={index}
                           onClick={() => {
@@ -286,7 +286,7 @@ function openEditor(channel: Channel): void {
                           }}>
                           <svg
                             key={index}
-                            className={label.name}
+                            className={label.Name}
                             viewBox="0 0 24 24"
                             style={{
                               width: "24px",
@@ -368,60 +368,58 @@ export function start(): void {
   injectSavedChannelsStyles();
   injectNamedChannelsStyles();
   injectChannelPillStyle();
-  if (headerBarCommonModule) {
-    inject.after(HeaderBar, "Title", ([props]) => {
-      if (typeof props.children === "string") return;
-      const ChannelObject = getCurrentChannelObject();
-      const headerObj = props.children?.props?.children;
-      if (headerObj && ChannelObject?.color) {
-        headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
-      }
-    });
-    inject.before(HeaderBar, "Icon", ([props]) => {
-      const ChannelObject = getCurrentChannelObject();
-      const CurrentSelectedChannelId = channels.getCurrentlySelectedChannelId();
+  inject.after(HeaderBar, "Title", ([props]) => {
+    if (typeof props.children === "string") return;
+    const ChannelObject = getCurrentChannelObject();
+    const headerObj = props.children?.props?.children;
+    if (headerObj && ChannelObject?.color) {
+      headerObj[2] = <span style={{ color: ChannelObject.color }}>{headerObj[2]}</span>;
+    }
+  });
+  inject.before(HeaderBar, "Icon", ([props]) => {
+    const ChannelObject = getCurrentChannelObject();
+    const CurrentSelectedChannelId = channels.getCurrentlySelectedChannelId();
 
-      if (!CurrentSelectedChannelId && ChannelObject) return;
+    if (!CurrentSelectedChannelId && ChannelObject) return;
 
-      const CurrentChannel = channels.getChannel(CurrentSelectedChannelId);
-      const CustomIcon = ChannelNames?.slice()
-        .reverse()
-        .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
-      if (props && ChannelObject?.icon) {
-        props.icon = () => {
-          return <EditedChannelIcon channel={ChannelObject} />;
-        };
-      } else if (CustomIcon && CustomIcon.icon !== "none" && config.get("presetChannelIcons")) {
-        props.icon = () => {
-          return <CustomIcon.icon />;
-        };
-      } else if (CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons")) {
-        props.icon = () => {
-          return (
-            <svg
-              version="1.0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24">
-              <g fill={ChannelObject?.color ?? "var(--channel-icon)"}>
-                <path
-                  d={`${iconBuffer}${Icons.find(i => i.label === CustomIcon.query)?.value}`}
-                  fillRule="evenodd"
-                />
-              </g>
-            </svg>
-          );
-        };
-      }
-    });
-  }
+    const CurrentChannel = channels.getChannel(CurrentSelectedChannelId);
+    const CustomIcon = ChannelNames?.slice()
+      .reverse()
+      .find(x => x.name.some(agony => CurrentChannel?.name?.toLowerCase().includes(agony))); // CSS is rather silly with multiple styles
+    if (props && ChannelObject?.icon) {
+      props.icon = () => {
+        return <EditedChannelIcon channel={ChannelObject} />;
+      };
+    } else if (CustomIcon && CustomIcon.icon !== "none" && config.get("presetChannelIcons")) {
+      props.icon = () => {
+        return <CustomIcon.icon />;
+      };
+    } else if (CustomIcon && CustomIcon.query !== "none" && config.get("presetChannelIcons")) {
+      props.icon = () => {
+        return (
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24">
+            <g fill={ChannelObject?.color ?? "var(--channel-icon)"}>
+              <path
+                d={`${iconBuffer}${Icons.find(i => i.label === CustomIcon.query)?.value}`}
+                fillRule="evenodd"
+              />
+            </g>
+          </svg>
+        );
+      };
+    }
+  });
   // eslint-disable-next-line consistent-return
   inject.utils.addMenuItem<ChannelContextMenuProps>(ContextMenuTypes.ChannelContext, data => {
     const { channel } = data;
     const Object = group1Array[randomNumber(group1Array.length)];
-    const iconMod = webpack.getByProps<Record<string, React.FC<GenericIconProps>>>(Object.name)!;
-    const RandomIcon = iconMod[Object.name];
+    const iconMod = webpack.getByProps<Record<string, React.FC<GenericIconProps>>>(Object.Name)!;
+    const RandomIcon = iconMod[Object.Name];
     if (channel.type !== 4) {
       return (
         <ContextMenu.MenuItem

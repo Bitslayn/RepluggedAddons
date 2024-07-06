@@ -18,15 +18,16 @@ export const config = await settings.init<Settings, keyof typeof defaultSettings
 async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
   const url =
     "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/assets/classicIcons.ts";
+
   try {
     // Fetch CSS file
-    const response = await fetch(url);
-    const cssContent = await response.text();
+    const response: Response = await fetch(url);
+    const cssContent: string = await response.text();
 
     const pattern = /\/\*(.+?)\*\/ {[\s\S]*?d: path\("(.*?)"\);\}/g;
 
-    const extractedData = [];
-    let match;
+    const extractedData: IconData[] = [];
+    let match: RegExpExecArray | null;
     // eslint-disable-next-line no-cond-assign
     while ((match = pattern.exec(cssContent)) !== null) {
       extractedData.push({ label: match[1], value: match[2] });
@@ -38,20 +39,21 @@ async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
   }
 }
 
-const Icons = config.get("icons");
+let Icons: IconData[];
 
-config.set("icons", await fetchDataAndExtract());
+Icons = config.get("icons", await fetchDataAndExtract());
+console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
 
 interface ModernIconArray {
-  name: string;
-  matches: RegExpMatchArray[];
+  Name: string;
+  Matches: RegExpMatchArray[];
 }
 const UpdatedIcons = Object.keys(webpack.getByProps("Avatar")).filter(c => c.includes("Icon"));
 const group1Array: ModernIconArray[] = [];
 UpdatedIcons.forEach(iconName => {
   const iconValueString = webpack.getByProps("Avatar")[iconName]?.toString?.();
   const matches = [...iconValueString.matchAll(/,d:"([^"]*)"/g)];
-  if (matches.length) group1Array.push({ name: iconName, matches });
+  if (matches.length) group1Array.push({ Name: iconName, Matches: matches });
 });
 export { group1Array, Icons };
 
