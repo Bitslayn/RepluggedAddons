@@ -42,16 +42,17 @@ async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
 let Icons: IconData[];
 
 Icons = config.get("icons", await fetchDataAndExtract());
-console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
+//console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
 
 interface ModernIconArray {
   Name: string;
   Matches: RegExpMatchArray[];
 }
 const UpdatedIcons = Object.keys(webpack.getByProps("Avatar")).filter(c => c.includes("Icon"));
+const CommonComponents = webpack.getByProps("Avatar");
 const group1Array: ModernIconArray[] = [];
 UpdatedIcons.forEach(iconName => {
-  const iconValueString = webpack.getByProps("Avatar")[iconName]?.toString?.();
+  const iconValueString = CommonComponents[iconName]?.toString?.();
   const matches = [...iconValueString.matchAll(/,d:"([^"]*)"/g)];
   if (matches.length) group1Array.push({ Name: iconName, Matches: matches });
 });
