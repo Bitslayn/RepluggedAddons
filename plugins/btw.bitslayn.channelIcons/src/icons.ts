@@ -1,5 +1,6 @@
 ﻿import { settings, webpack } from "replugged";
 import type { IconData, Settings } from "./types";
+import { classicIcons } from "./classicIcons";
 
 const defaultSettings = {
   coloredChannels: {},
@@ -15,7 +16,7 @@ export const config = await settings.init<Settings, keyof typeof defaultSettings
   defaultSettings
 );
 
-async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
+/* async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
   const url =
     "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/assets/classicIcons.ts";
 
@@ -37,11 +38,30 @@ async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
   } catch (error) {
     console.error("Error fetching or parsing CSS:", error);
   }
+} */ // Don't delete this, I'm gonna reuse fetching from urls later
+
+function fetchDataAndExtract(): IconData[] {
+  try {
+    // Fetch CSS file
+
+    const pattern = /\/\*(.+?)\*\/ {[\s\S]*?d: path\("(.*?)"\);\}/g;
+
+    const extractedData: IconData[] = [];
+    let match: RegExpExecArray | null;
+    // eslint-disable-next-line no-cond-assign
+    while ((match = pattern.exec(classicIcons)) !== null) {
+      extractedData.push({ label: match[1], value: match[2] });
+    }
+
+    return extractedData;
+  } catch (error) {
+    console.error("Error fetching or parsing CSS:", error);
+  }
 }
 
 let Icons: IconData[];
 
-Icons = config.get("icons", await fetchDataAndExtract());
+Icons = config.get("icons", fetchDataAndExtract());
 //console.log(Icons ? "Fetched. using Cache" : "Unfetched. Saving");
 
 interface ModernIconArray {
