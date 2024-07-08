@@ -22,9 +22,9 @@
   "license": "MIT",
   "type": "replugged-plugin",
   "renderer": "src/index.tsx",
-  "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/plugins/btw.bitslayn.channelIcons",
+  "source": "https://github.com/Bitslayn/RepluggedAddons/tree/main/plugins/btw.bitslayn.channelIcons",
   "image": [
-    "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/plugins/btw.bitslayn.channelIcons/images/thumb-1.png",
-    "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/plugins/btw.bitslayn.channelIcons/images/thumb-2.png"
+    "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.channelIcons/images/thumb-1.png",
+    "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.channelIcons/images/thumb-2.png"
   ]
 }

@@ -15,6 +15,6 @@
   "license": "MIT",
   "type": "replugged-theme",
   "main": "src/main.scss",
-  "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/themes/btw.bitslayn.discordicons",
-  "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/plugins/btw.bitslayn.discordicons/images/thumb.png"
+  "source": "https://github.com/Bitslayn/RepluggedAddons/tree/main/themes/btw.bitslayn.discordicons",
+  "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.discordicons/images/thumb.png"
 }

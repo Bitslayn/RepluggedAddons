@@ -17,7 +17,7 @@ export const config = await settings.init<Settings, keyof typeof defaultSettings
 
 async function fetchDataAndExtract(): Promise<IconData[] | undefined> {
   const url =
-    "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/assets/classicIcons.ts";
+    "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/assets/classicIcons.ts";
 
   try {
     // Fetch CSS file
