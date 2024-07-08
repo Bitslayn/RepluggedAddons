@@ -1,0 +1,20 @@
+{
+  "id": "btw.bitslayn.discordicons",
+  "name": "Dis-Cons",
+  "description": "Add icons to context menus which don't have them",
+  "author": {
+    "name": "Bitslayn",
+    "discordID": "372268045927972864",
+    "github": "Bitslayn"
+  },
+  "version": "1.0.14",
+  "updater": {
+    "type": "store",
+    "id": "btw.bitslayn.discordicons"
+  },
+  "license": "MIT",
+  "type": "replugged-theme",
+  "main": "src/main.scss",
+  "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/themes/btw.bitslayn.discordicons",
+  "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/plugins/btw.bitslayn.discordicons/images/thumb.png"
+}

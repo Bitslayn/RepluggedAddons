@@ -24,7 +24,7 @@
   "renderer": "src/index.tsx",
   "source": "https://github.com/Bitslayn/RepluggedPlugins/tree/main/plugins/btw.bitslayn.channelIcons",
   "image": [
-    "https://i.imgur.com/QHLYa6q.png",
-    "https://i.imgur.com/9h3UiVb.png"
+    "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/plugins/btw.bitslayn.channelIcons/images/thumb-1.png",
+    "https://raw.githubusercontent.com/Bitslayn/RepluggedPlugins/main/plugins/btw.bitslayn.channelIcons/images/thumb-2.png"
   ]
 }
