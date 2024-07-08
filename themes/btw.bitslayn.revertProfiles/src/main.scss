@@ -1,0 +1,65 @@
+// Section headers
+@mixin eyebrow-font {
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+@mixin eyebrow($content, $margin-bottom) {
+  content: $content;
+  margin-bottom: $margin-bottom;
+  width: 100%;
+  @include eyebrow-font;
+}
+
+div {
+  [class^="activityBiteSizePopout"] > [class^="headerContainer"] > h1, /* Both these top two are for activity headers which use semibold instead of eyebrow */
+  [class^="activitySimplifiedProfile"] > [class^="headerContainer"] > h1,
+  [class^="userProfileModalInner"] [class^="section"] > h1 /* For headers in the full profile which use semibold instead of eyebrow */ {
+    @include eyebrow-font;
+  }
+
+  &:has(> [class^="descriptionClamp"])::before,
+  [class^="userProfileModalInner"] [class^="scroller"] > [class^="markup"]::before {
+    @include eyebrow("About Me", 6px);
+  }
+
+  &:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"]))::before {
+    @include eyebrow("Roles", 6px);
+  }
+
+  [class^="mutuals_"]::before {
+    @include eyebrow("Mutuals", 4px); // .mutuals_dc9488 has a row-gap of 2px [2 + 4 = 6]
+  }
+}
+
+// Unclamp About Me
+[class^="descriptionClamp"] {
+  -webkit-line-clamp: 6;
+  overflow: hidden scroll;
+  max-height: unset;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    background-color: var(--profile-body-divider-color);
+  }
+}
+[class^="viewFullBio"] {
+  display: none;
+}
+
+// Break apart
+[class^="activityBiteSizePopout"] {
+  padding: unset;
+  background: transparent !important;
+}

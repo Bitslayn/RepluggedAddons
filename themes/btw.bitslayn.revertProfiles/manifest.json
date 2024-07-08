@@ -1,0 +1,20 @@
+{
+  "id": "btw.bitslayn.revertProfiles",
+  "name": "Revert Profiles",
+  "description": "Reverts user profiles to how they used to look before Discord simplified them. This does not increase the amount of roles displayed in profiles.",
+  "author": {
+    "name": "Bitslayn",
+    "discordID": "372268045927972864",
+    "github": "Bitslayn"
+  },
+  "version": "1.0.0",
+  "updater": {
+    "type": "store",
+    "id": "btw.bitslayn.revertProfiles"
+  },
+  "license": "MIT",
+  "type": "replugged-theme",
+  "main": "src/main.scss",
+  "source": "https://github.com/Bitslayn/RepluggedAddons/tree/main/themes/btw.bitslayn.revertProfiles",
+  "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.revertProfiles/images/thumb.png"
+}
