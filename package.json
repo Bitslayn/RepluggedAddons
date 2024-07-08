@@ -9,9 +9,10 @@
   "scripts": {
     "build:plugin": "replugged build plugin",
     "watch:plugin": "replugged build plugin --watch",
+    "bundle:plugin": "replugged bundle plugin",
     "build:theme": "replugged build theme",
     "watch:theme": "replugged build theme --watch",
-    "bundle": "replugged bundle plugin",
+    "bundle:theme": "replugged bundle theme",
     "release": "replugged release",
     "check": "tsc --noEmit",
     "prettier:check": "prettier ./plugins --check && prettier ./themes --check",

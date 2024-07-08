@@ -29,7 +29,7 @@ jobs:
         run: pnpm install
 
       - name: Build TypeScript and bundle into asar
-        run: pnpm run bundle --all
+        run: pnpm run bundle:plugin --all && pnpm run bundle:theme --all
 
       - uses: ncipollo/release-action@v1
         with:
