@@ -11,7 +11,7 @@
     "watch:plugin": "replugged build plugin --watch",
     "build:theme": "replugged build theme",
     "watch:theme": "replugged build theme --watch",
-    "bundle": "replugged bundle",
+    "bundle": "replugged bundle plugin && replugged bundle theme",
     "release": "replugged release",
     "check": "tsc --noEmit",
     "prettier:check": "prettier ./plugins --check && prettier ./themes --check",
