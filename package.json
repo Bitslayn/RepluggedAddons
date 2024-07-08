@@ -16,9 +16,9 @@
     "release": "replugged release",
     "check": "tsc --noEmit",
     "prettier:check": "prettier ./plugins --check && prettier ./themes --check",
-    "eslint:check": "eslint ./plugins && eslint ./themes",
+    "eslint:check": "eslint ./plugins",
     "prettier:fix": "prettier ./plugins --write && prettier ./themes --write",
-    "eslint:fix": "eslint ./plugins --fix && eslint ./themes --fix",
+    "eslint:fix": "eslint ./plugins --fix",
     "lint": "pnpm run prettier:check && pnpm run eslint:check && pnpm run check",
     "lint:fix": "pnpm run prettier:fix && pnpm run eslint:fix"
   },
