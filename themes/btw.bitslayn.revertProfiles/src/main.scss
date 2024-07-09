@@ -38,28 +38,179 @@ div {
   }
 }
 
-// Unclamp About Me
-[class^="descriptionClamp"] {
-  -webkit-line-clamp: 6;
-  overflow: hidden scroll;
-  max-height: unset;
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background-clip: padding-box;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    background-color: var(--profile-body-divider-color);
-  }
-}
-[class^="viewFullBio"] {
-  display: none;
+[class^="accountProfilePopoutWrapper"],
+[class^="customizationSection"] {
+  transform: translate3d(0, 0, 0);
 }
 
-// Break apart
-[class^="activityBiteSizePopout"] {
-  padding: unset;
-  background: transparent !important;
+[class^="customizationSection"] [class*="userProfileInner"] {
+  > [class^="body"] > [class^="container"] {
+    top: 189px; // 44
+  }
+  [class^="tags"] > [class^="container"] {
+    top: calc(
+      35px + var(--custom-user-banner-height-bite-size) +
+        var(--custom-user-profile-themed-container-user-profile-themed-padding)
+    );
+  }
+}
+
+[class*="userProfileOuter"]:not([class*="custom-profile-theme"]) > [class*="userProfileInner"] {
+  background: unset;
+}
+
+[class*="userProfileOuterThemed"]
+  > [class*="userProfileInner"]
+  > [class^="body"]
+  > [class^="container"] {
+  margin: 0 20px 0;
+}
+
+[class*="userProfileInner"] {
+  gap: unset;
+  // Unclamp about me
+  [class^="descriptionClamp"] {
+    -webkit-line-clamp: 6;
+    overflow: hidden scroll;
+    max-height: unset;
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-clip: padding-box;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      background-color: var(--profile-body-divider-color);
+    }
+  }
+  [class^="viewFullBio"] {
+    display: none;
+  }
+
+  // OwO
+  [class^="activityBiteSizePopout"] {
+    padding: unset;
+    background: transparent !important;
+  }
+
+  // Popout profile
+  [class^="channelTextArea"] > [class^="inner"] {
+    background-color: transparent;
+    border: 1px solid var(--profile-message-input-border-color);
+  }
+  [class*="pill"] {
+    background-color: var(--profile-role-pill-background-color);
+    border: unset;
+    max-height: 22px;
+  }
+
+  [class^="header"] {
+    pointer-events: none;
+    > svg {
+      padding: 0 0 114px;
+      display: block;
+    }
+    div * {
+      pointer-events: initial;
+    }
+  }
+  &:has([class^="pronounsTooltip"]) [class^="header"] > svg {
+    padding: 0 0 134px;
+  }
+
+  > [class^="body"] {
+    gap: 12px;
+    margin: 0 16px 0;
+    padding: 0 12px 8px !important;
+    overflow: unset !important;
+    background-color: var(--profile-body-background-color);
+    &::before {
+      content: "";
+      display: block;
+      margin: 12px 0 0;
+      height: 1px;
+      background-color: var(--profile-body-divider-color);
+    }
+    > [class^="container"] {
+      position: fixed;
+      top: 161px;
+      left: 0px;
+      margin: 0 16px 0;
+      padding: 12px 12px 8px;
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+      background-color: var(--profile-body-background-color);
+      width: -webkit-fill-available;
+    }
+    &[class*="biteSizeInnerThemed"] {
+      gap: unset;
+    }
+  }
+
+  [class^="tags"] {
+    > [class^="container"] /* Badges */ {
+      position: fixed;
+      right: 18px;
+      top: calc(
+        7px + var(--custom-user-banner-height-bite-size) +
+          var(--custom-user-profile-themed-container-user-profile-themed-padding)
+      );
+      border: unset;
+      border-radius: 8px;
+      padding: 4px;
+      background-color: var(--profile-body-background-color);
+    }
+    > [class^="clickableUsername"] {
+      width: 100%;
+    }
+    > [class^="dotSpacer"] {
+      display: none;
+    }
+  }
+  > [class^="footer"] {
+    margin: 0 16px 12px;
+    padding: 0 12px 12px;
+    background-color: var(--profile-body-background-color);
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+  }
+  > [class^="body"]:has([class^="menus"]) {
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+  }
+
+  // Custom status
+  [class^="statusBubbleOuter"]::before,
+  [class^="statusBubbleOuter"]::after,
+  [class^="invisibleContainer"] {
+    display: none;
+  }
+  [class^="visibleContainer"] {
+    top: calc(55px + var(--custom-user-banner-height-bite-size)) !important;
+    left: 16px !important;
+    position: static;
+  }
+  [class*="statusBubble_"] {
+    min-width: unset;
+    max-width: unset;
+    padding: unset;
+    background: transparent;
+    [class^="content"] {
+      text-align: start;
+      -webkit-line-clamp: unset;
+      max-height: unset !important;
+    }
+  }
+  [class^="statusBubbleOuter"] {
+    border: unset !important;
+    background: var(--profile-body-background-color);
+    box-shadow: none;
+    margin: 0 16px 0;
+    padding: 0 12px 8px;
+    border-radius: unset;
+    max-width: unset;
+  }
 }
