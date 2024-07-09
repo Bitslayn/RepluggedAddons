@@ -107,7 +107,7 @@ div {
 
   [class^="header"] {
     pointer-events: none;
-    > svg {
+    > [class^="bannerSVGWrapper"] {
       padding: 0 0 114px;
       display: block;
     }
@@ -115,7 +115,7 @@ div {
       pointer-events: initial;
     }
   }
-  &:has([class^="pronounsTooltip"]) [class^="header"] > svg {
+  &:has([class^="pronounsTooltip"]) [class^="header"] > [class^="bannerSVGWrapper"] {
     padding: 0 0 134px;
   }
 
@@ -214,3 +214,5 @@ div {
     max-width: unset;
   }
 }
+
+// Banner widths are 340 x 60 for no banner and 340 x 120 for banners with images
