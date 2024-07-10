@@ -11,7 +11,7 @@
     --edge-padding: 4px;
   }
 
-  --badge-container-height: 0px;
+  --badge-container-height: 22px; // 0 rows (Minimal gap of 50px)
   &:has([class^="tags"] > [class^="container"] > div) {
     --badge-container-height: 30px; // 1 row
   }
@@ -79,7 +79,23 @@ div {
   }
 }
 
-// Banner widths are 340 x 60 for no banner and 340 x 120 for banners with images
+// Fix profiles with no body or footer
+[class*="biteSizeOuter"] > [class*="userProfileInner"] {
+  &:not(:has(> footer > *)) {
+    > footer {
+      display: none;
+    }
+    > [class^="body"] {
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      padding-bottom: 12px !important;
+      &:not(:has(> div:nth-child(2) > *))::before {
+        display: none;
+      }
+    }
+  }
+}
 
 // Header without thumbnail
 [class*="biteSizeOuter"]
@@ -126,6 +142,18 @@ div {
     mask circle {
       cx: 51.25;
       cy: 46;
+    }
+  }
+}
+
+// Headers with banners unthemed
+[class*="biteSizeOuter"]:not([class*="userProfileOuterThemed"]) > [class*="userProfileInner"] {
+  > [class^="header"]:has([style^="background-image"]) > [class^="bannerSVGWrapper"] {
+    min-width: unset !important;
+    min-height: unset !important;
+    mask circle {
+      cx: 54.5 !important;
+      cy: 102.5 !important;
     }
   }
 }
@@ -179,14 +207,22 @@ div {
   > [class^="header"] {
     pointer-events: none;
     min-height: unset;
-    [class^="avatar"] {
+    > [class^="avatar"] {
       pointer-events: initial;
+      top: 76px;
+      left: 22px;
     }
     > [class^="bannerSVGWrapper"] {
       padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
       display: block;
       &:has(foreignObject > [style^="background-image"]) {
         transform: scaleY(1.0084) translateY(1px);
+        mask circle {
+          cx: 51;
+          cy: 99;
+          r: 40.59;
+          transform: scaleY(0.9916);
+        }
       }
     }
   }
@@ -209,12 +245,6 @@ div {
       margin: 12px 0 0;
       height: 1px;
       background-color: var(--profile-body-divider-color);
-    }
-    &:has([class^="menus"]) {
-      border-bottom-left-radius: var(--radius-sm);
-      border-bottom-right-radius: var(--radius-sm);
-      margin-bottom: 12px;
-      padding-bottom: 12px;
     }
     > [class^="container"] {
       position: fixed;
