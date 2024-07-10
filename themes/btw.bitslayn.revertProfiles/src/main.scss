@@ -1,3 +1,28 @@
+// Values OwO
+[class*="biteSizeOuter"] {
+  --banner-height: 60px;
+  --banner-offset: calc(120px - var(--banner-height));
+  &:has(foreignObject > [style^="background-image"]) {
+    --banner-height: 120px;
+  }
+
+  --edge-padding: 0px;
+  &[class*="userProfileOuterThemed"] {
+    --edge-padding: 4px;
+  }
+
+  --badge-container-height: 0px;
+  &:has([class^="tags"] > [class^="container"] > div) {
+    --badge-container-height: 30px; // 1 row
+  }
+  &:has([class^="tags"] > [class^="container"] > div:nth-child(9)) {
+    --badge-container-height: 54px; // 2 rows
+  }
+  &:has([class^="tags"] > [class^="container"] > div:nth-child(17)) {
+    --badge-container-height: 78px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
+  }
+}
+
 // Section headers
 @mixin eyebrow-font {
   display: flex;
@@ -38,39 +63,85 @@ div {
   }
 }
 
+// Fix static profiles
 [class^="accountProfilePopoutWrapper"],
 [class^="customizationSection"] {
   transform: translate3d(0, 0, 0);
 }
 
+// Fix static badges
 [class^="customizationSection"] [class*="userProfileInner"] {
   > [class^="body"] > [class^="container"] {
     top: 189px; // 44
   }
   [class^="tags"] > [class^="container"] {
-    top: calc(
-      35px + var(--custom-user-banner-height-bite-size) +
-        var(--custom-user-profile-themed-container-user-profile-themed-padding)
-    );
+    top: calc(35px + var(--custom-user-banner-height-bite-size));
   }
 }
 
-[class*="userProfileOuter"]:not([class*="custom-profile-theme"]) > [class*="userProfileInner"] {
-  background: unset;
-}
+// Banner widths are 340 x 60 for no banner and 340 x 120 for banners with images
 
-[class*="userProfileOuterThemed"]
+// Header without thumbnail
+[class*="biteSizeOuter"]
   > [class*="userProfileInner"]
-  > [class^="body"]
-  > [class^="container"] {
-  margin: 0 20px 0;
+  > [class^="header"]:not(:has([style^="background-image"])) {
+  > [class^="avatar"] {
+    top: 16px;
+    left: 22px;
+  }
+  > [class^="bannerSVGWrapper"] {
+    min-width: unset !important;
+    min-height: unset !important;
+    mask {
+      rect {
+        width: 300px;
+        height: 52.94px;
+      }
+      circle {
+        cx: 54.5;
+        cy: 49.5;
+        r: 40.59;
+      }
+    }
+    foreignObject {
+      height: 52.95px;
+      div {
+        height: 52.94px;
+        &::before {
+          content: unset;
+        }
+      }
+    }
+  }
 }
 
-[class*="userProfileInner"] {
+// Themed, headers without banners
+[class*="biteSizeOuter"][class*="userProfileOuterThemed"] > [class*="userProfileInner"] {
+  > [class^="body"] > [class^="container"] {
+    margin: 0 20px 0;
+  }
+  > [class^="header"]:not(:has([style^="background-image"])) > [class^="bannerSVGWrapper"] {
+    min-width: unset !important;
+    min-height: unset !important;
+    mask circle {
+      cx: 51.25;
+      cy: 46;
+    }
+  }
+}
+
+// User profile
+[class*="biteSizeOuter"] {
+  width: 340px;
+  &:not([class*="custom-profile-theme"]) > [class*="userProfileInner"] {
+    background: unset;
+  }
+}
+[class*="biteSizeOuter"] > [class*="userProfileInner"] {
   gap: unset;
-  // Unclamp about me
+  // Unclamp
   [class^="descriptionClamp"] {
-    -webkit-line-clamp: 6;
+    -webkit-line-clamp: unset;
     overflow: hidden scroll;
     max-height: unset;
     &::-webkit-scrollbar {
@@ -88,7 +159,7 @@ div {
     display: none;
   }
 
-  // OwO
+  // Activities
   [class^="activityBiteSizePopout"] {
     padding: unset;
     background: transparent !important;
@@ -105,24 +176,31 @@ div {
     max-height: 22px;
   }
 
-  [class^="header"] {
+  > [class^="header"] {
     pointer-events: none;
-    > [class^="bannerSVGWrapper"] {
-      padding: 0 0 114px;
-      display: block;
-    }
-    div * {
+    min-height: unset;
+    [class^="avatar"] {
       pointer-events: initial;
     }
+    > [class^="bannerSVGWrapper"] {
+      padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
+      display: block;
+      &:has(foreignObject > [style^="background-image"]) {
+        transform: scaleY(1.0084) translateY(1px);
+      }
+    }
   }
-  &:has([class^="pronounsTooltip"]) [class^="header"] > [class^="bannerSVGWrapper"] {
-    padding: 0 0 134px;
+  &:has([class^="pronounsTooltip"]) [class^="header"] {
+    > [class^="bannerSVGWrapper"] {
+      padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+    }
   }
 
+  // Popout profile
   > [class^="body"] {
     gap: 12px;
     margin: 0 16px 0;
-    padding: 0 12px 8px !important;
+    padding: 0 12px !important;
     overflow: unset !important;
     background-color: var(--profile-body-background-color);
     &::before {
@@ -132,16 +210,34 @@ div {
       height: 1px;
       background-color: var(--profile-body-divider-color);
     }
+    &:has([class^="menus"]) {
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+    }
     > [class^="container"] {
       position: fixed;
-      top: 161px;
+      top: calc(28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
       left: 0px;
       margin: 0 16px 0;
-      padding: 12px 12px 8px;
+      padding: 12px 12px 0;
       border-top-left-radius: var(--radius-sm);
       border-top-right-radius: var(--radius-sm);
       background-color: var(--profile-body-background-color);
       width: -webkit-fill-available;
+      > [class^="usernameRow"] {
+        > [class^="clickableUsername"] > h1 {
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
+          word-break: break-all;
+          display: -webkit-box;
+          font-weight: 600;
+        }
+        > [class^="nicknameIcons"] {
+          display: none;
+        }
+      }
     }
     &[class*="biteSizeInnerThemed"] {
       gap: unset;
@@ -151,40 +247,44 @@ div {
   [class^="tags"] {
     > [class^="container"] /* Badges */ {
       position: fixed;
-      right: 18px;
-      top: calc(
-        7px + var(--custom-user-banner-height-bite-size) +
-          var(--custom-user-profile-themed-container-user-profile-themed-padding)
-      );
+      justify-content: flex-end;
+      right: 0px;
+      top: calc(12px + var(--banner-height) + var(--edge-padding));
+      margin: 0 calc(16px + var(--edge-padding)) 0 0;
       border: unset;
       border-radius: 8px;
+      box-sizing: content-box;
+      max-width: 190px;
       padding: 4px;
       background-color: var(--profile-body-background-color);
+      div > a {
+        > img,
+        > div {
+          width: 22px;
+          height: 22px;
+        }
+      }
     }
     > [class^="clickableUsername"] {
       width: 100%;
+      > [class^="info"] {
+        font-weight: 500;
+      }
     }
     > [class^="dotSpacer"] {
       display: none;
     }
   }
+
   > [class^="footer"] {
     margin: 0 16px 12px;
-    padding: 0 12px 12px;
+    padding: 12px;
     background-color: var(--profile-body-background-color);
     border-bottom-left-radius: var(--radius-sm);
     border-bottom-right-radius: var(--radius-sm);
   }
-  > [class^="body"]:has([class^="menus"]) {
-    border-bottom-left-radius: var(--radius-sm);
-    border-bottom-right-radius: var(--radius-sm);
-    margin-bottom: 12px;
-    padding-bottom: 12px;
-  }
 
   // Custom status
-  [class^="statusBubbleOuter"]::before,
-  [class^="statusBubbleOuter"]::after,
   [class^="invisibleContainer"] {
     display: none;
   }
@@ -192,27 +292,33 @@ div {
     top: calc(55px + var(--custom-user-banner-height-bite-size)) !important;
     left: 16px !important;
     position: static;
-  }
-  [class*="statusBubble_"] {
-    min-width: unset;
-    max-width: unset;
-    padding: unset;
-    background: transparent;
-    [class^="content"] {
-      text-align: start;
-      -webkit-line-clamp: unset;
-      max-height: unset !important;
-    }
+    pointer-events: initial;
   }
   [class^="statusBubbleOuter"] {
     border: unset !important;
     background: var(--profile-body-background-color);
     box-shadow: none;
     margin: 0 16px 0;
-    padding: 0 12px 8px;
+    padding: 12px 12px 0;
     border-radius: unset;
     max-width: unset;
+    &::before,
+    &::after {
+      display: none;
+    }
+    > [class*="statusBubble"] {
+      min-width: unset;
+      max-width: unset;
+      padding: unset;
+      background: transparent;
+      > [class^="content"] {
+        text-align: start;
+        -webkit-line-clamp: unset;
+        max-height: unset !important;
+        > [class*="statusText"] {
+          font-weight: 400;
+        }
+      }
+    }
   }
 }
-
-// Banner widths are 340 x 60 for no banner and 340 x 120 for banners with images
