@@ -163,6 +163,12 @@ div {
   }
 }
 
+[class*="biteSizeOuter"][class*="userProfileOuterThemed"]
+  > [class*="userProfileInner"]
+  [class*="pill"] {
+  border: 1px solid var(--profile-role-pill-border-color);
+}
+
 // User profile
 [class^="biteSizeOuter"] {
   // Layout
@@ -182,7 +188,7 @@ div {
       [class^="descriptionClamp"] {
         -webkit-line-clamp: unset;
         overflow: hidden scroll;
-        max-height: unset;
+        max-height: 20vh;
         &::-webkit-scrollbar {
           width: 8px;
           height: 8px;
@@ -218,6 +224,7 @@ div {
       background-color: var(--profile-role-pill-background-color);
       border: unset;
       max-height: 22px;
+      box-sizing: border-box;
     }
 
     > [class^="header"] {
@@ -383,8 +390,6 @@ div {
       display: none;
     }
     [class^="visibleContainer"] {
-      top: calc(55px + var(--custom-user-banner-height-bite-size)) !important;
-      left: 16px !important;
       position: static;
       pointer-events: initial;
     }
@@ -413,6 +418,8 @@ div {
             font-weight: 400;
           }
           > [class*="statusEmojiOnly"] {
+            user-select: none;
+            cursor: initial;
             width: 48px;
             height: 48px;
             // WHY DISCORD???
@@ -422,6 +429,9 @@ div {
             max-height: unset;
           }
           > [class*="statusEmojiInline"] {
+            user-select: none;
+            cursor: initial;
+            margin: -1px 4px -1px 0;
             width: 20px;
             height: 20px;
           }
