@@ -71,24 +71,29 @@ div {
 
 // Fix static badges
 [class^="customizationSection"] [class*="userProfileInner"] {
-  > [class^="body"] > [class^="container"] {
-    top: 189px; // 44
-  }
   [class^="tags"] > [class^="container"] {
-    top: calc(35px + var(--custom-user-banner-height-bite-size));
+    top: calc(40px + var(--banner-height)) !important;
+  }
+  > [class^="body"] > [class^="container"] {
+    top: calc(56px + var(--banner-height) + var(--badge-container-height)) !important;
   }
 }
 
 // Fix profiles with no body or footer
 [class*="biteSizeOuter"] > [class*="userProfileInner"] {
-  &:not(:has(> footer > *)) {
+  &:not(:has(> footer > *)),
+  &:has(footer > button [d^="m13.96 5.46 4.58 4.58a1"]):not(
+      footer > *:not(button [d^="m13.96 5.46 4.58 4.58a1"])
+    ) {
     > footer {
-      display: none;
+      visibility: hidden;
+      padding: unset !important;
+      margin: unset !important;
     }
     > [class^="body"] {
       border-bottom-left-radius: var(--radius-sm);
       border-bottom-right-radius: var(--radius-sm);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       padding-bottom: 12px !important;
       &:not(:has(> div:nth-child(2) > *))::before {
         display: none;
@@ -159,194 +164,267 @@ div {
 }
 
 // User profile
-[class*="biteSizeOuter"] {
+[class^="biteSizeOuter"] {
+  // Layout
   width: 340px;
-  &:not([class*="custom-profile-theme"]) > [class*="userProfileInner"] {
-    background: unset;
-  }
-}
-[class*="biteSizeOuter"] > [class*="userProfileInner"] {
-  gap: unset;
-  // Unclamp
-  [class^="descriptionClamp"] {
-    -webkit-line-clamp: unset;
-    overflow: hidden scroll;
-    max-height: unset;
-    &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    &::-webkit-scrollbar-thumb {
-      background-clip: padding-box;
-      border: 2px solid transparent;
-      border-radius: 4px;
-      background-color: var(--profile-body-divider-color);
-    }
-  }
-  [class^="viewFullBio"] {
-    display: none;
-  }
-
-  // Activities
-  [class^="activityBiteSizePopout"] {
+  box-sizing: unset;
+  > [class*="userProfileInner"] {
+    gap: unset;
     padding: unset;
-    background: transparent !important;
-  }
+    background: linear-gradient(
+      var(--profile-gradient-primary-color),
+      var(--profile-gradient-primary-color) var(--custom-user-banner-height-bite-size),
+      var(--profile-gradient-secondary-color)
+    );
 
-  // Popout profile
-  [class^="channelTextArea"] > [class^="inner"] {
-    background-color: transparent;
-    border: 1px solid var(--profile-message-input-border-color);
-  }
-  [class*="pill"] {
-    background-color: var(--profile-role-pill-background-color);
-    border: unset;
-    max-height: 22px;
-  }
-
-  > [class^="header"] {
-    pointer-events: none;
-    min-height: unset;
-    > [class^="avatar"] {
-      pointer-events: initial;
-      top: 76px;
-      left: 22px;
+    // About Me
+    > [class^="body"] > div > {
+      [class^="descriptionClamp"] {
+        -webkit-line-clamp: unset;
+        overflow: hidden scroll;
+        max-height: unset;
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-clip: padding-box;
+          border: 2px solid transparent;
+          border-radius: 4px;
+          background-color: var(--profile-body-divider-color);
+        }
+      }
+      [class^="viewFullBio"] {
+        display: none;
+      }
     }
-    > [class^="bannerSVGWrapper"] {
-      padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
-      display: block;
-      &:has(foreignObject > [style^="background-image"]) {
-        transform: scaleY(1.0084) translateY(1px);
-        mask circle {
-          cx: 51;
-          cy: 99;
-          r: 40.59;
-          transform: scaleY(0.9916);
+
+    // Activities
+    [class^="activityBiteSizePopout"] {
+      padding: unset;
+      background: transparent !important;
+      > img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    // Popout profile
+    [class^="channelTextArea"] > [class^="inner"] {
+      background-color: transparent;
+      border: 1px solid var(--profile-message-input-border-color);
+    }
+    [class*="pill"] {
+      background-color: var(--profile-role-pill-background-color);
+      border: unset;
+      max-height: 22px;
+    }
+
+    > [class^="header"] {
+      pointer-events: none;
+      min-height: unset;
+      z-index: unset;
+      > [class^="avatar"] {
+        pointer-events: initial;
+        top: 76px;
+        left: 22px;
+        /* [class^="avatarStack"]::after {
+          content: "View Profile";
+          box-sizing: border-box;
+          font-size: 10px;
+          line-height: 12px;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          text-transform: uppercase;
+          box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
+          color: var(--white-500);
+          transition: opacity 0.1s ease;
+          background-color: unset;
+        } */
+      }
+      > [class^="bannerSVGWrapper"] {
+        padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
+        display: block;
+        &:has(foreignObject > [style^="background-image"]) {
+          transform: scaleY(1.0084) translateY(1px);
+          mask circle {
+            cx: 51;
+            cy: 99;
+            r: 40.59;
+            transform: scaleY(0.9916);
+          }
         }
       }
     }
-  }
-  &:has([class^="pronounsTooltip"]) [class^="header"] {
-    > [class^="bannerSVGWrapper"] {
-      padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+    &:has([class^="pronounsTooltip"]) [class^="header"] {
+      > [class^="bannerSVGWrapper"] {
+        padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+      }
     }
-  }
 
-  // Popout profile
-  > [class^="body"] {
-    gap: 12px;
-    margin: 0 16px 0;
-    padding: 0 12px !important;
-    overflow: unset !important;
-    background-color: var(--profile-body-background-color);
-    &::before {
-      content: "";
-      display: block;
-      margin: 12px 0 0;
-      height: 1px;
-      background-color: var(--profile-body-divider-color);
+    // Popout profile
+    > [class^="body"] {
+      gap: 12px;
+      margin: 0 16px 0;
+      padding: 0 12px 12px !important;
+      overflow: unset !important;
+      background-color: var(--profile-body-background-color);
+      &::before {
+        content: "";
+        display: block;
+        margin: 12px 0 0;
+        height: 1px;
+        background-color: var(--profile-body-divider-color);
+      }
+      > [class^="container"] {
+        position: fixed;
+        top: calc(
+          28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding)
+        );
+        left: 0px;
+        margin: 0 16px 0;
+        padding: 12px 12px 0;
+        border-top-left-radius: var(--radius-sm);
+        border-top-right-radius: var(--radius-sm);
+        background-color: var(--profile-body-background-color);
+        width: -webkit-fill-available;
+        > [class^="usernameRow"] {
+          > [class^="clickableUsername"] > h1 {
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            display: -webkit-box;
+            font-weight: 600;
+          }
+          > [class^="nicknameIcons"] {
+            display: none;
+          }
+        }
+      }
+      &[class*="biteSizeInnerThemed"] {
+        gap: unset;
+      }
     }
-    > [class^="container"] {
-      position: fixed;
-      top: calc(28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
-      left: 0px;
+
+    [class^="tags"] {
+      > [class^="container"] /* Badges */ {
+        position: fixed;
+        justify-content: flex-end;
+        right: calc(16px + var(--edge-padding));
+        top: calc(12px + var(--banner-height) + var(--edge-padding));
+        margin: unset;
+        border: unset;
+        border-radius: 8px;
+        box-sizing: content-box;
+        max-width: 190px;
+        padding: 4px;
+        background-color: var(--profile-body-background-color);
+        div > a {
+          > img,
+          > div {
+            width: 22px;
+            height: 22px;
+          }
+        }
+      }
+      > [class^="clickableUsername"],
+      > [class*="userTag"] {
+        width: 100%;
+        > [class^="info"] {
+          font-weight: 500;
+        }
+      }
+      > [class^="dotSpacer"] {
+        display: none;
+      }
+    }
+
+    > [class^="footer"] {
+      margin: 0 16px 16px;
+      padding: 0 12px 12px;
+      background-color: var(--profile-body-background-color);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
+        visibility: visible;
+        width: 32px;
+        height: 32px;
+        font-size: 0;
+        padding: unset;
+        min-width: unset;
+        min-height: unset;
+        background: hsl(var(--black-500-hsl) / 0.7);
+        color: var(--white-500);
+        border-radius: var(--radius-round);
+        transition:
+          background-color var(--custom-button-transition-duration) ease,
+          color var(--custom-button-transition-duration) ease;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        [class^="contents"] {
+          margin: unset;
+          gap: unset;
+        }
+        &:hover {
+          background: hsl(var(--black-500-hsl) / 0.85);
+          opacity: unset;
+        }
+      }
+    }
+
+    // Custom status
+    [class^="invisibleContainer"] {
+      display: none;
+    }
+    [class^="visibleContainer"] {
+      top: calc(55px + var(--custom-user-banner-height-bite-size)) !important;
+      left: 16px !important;
+      position: static;
+      pointer-events: initial;
+    }
+    [class^="statusBubbleOuter"] {
+      border: unset !important;
+      background: var(--profile-body-background-color);
+      box-shadow: none;
       margin: 0 16px 0;
       padding: 12px 12px 0;
-      border-top-left-radius: var(--radius-sm);
-      border-top-right-radius: var(--radius-sm);
-      background-color: var(--profile-body-background-color);
-      width: -webkit-fill-available;
-      > [class^="usernameRow"] {
-        > [class^="clickableUsername"] > h1 {
-          -webkit-line-clamp: 1;
-          -webkit-box-orient: vertical;
-          word-break: break-all;
-          display: -webkit-box;
-          font-weight: 600;
-        }
-        > [class^="nicknameIcons"] {
-          display: none;
-        }
-      }
-    }
-    &[class*="biteSizeInnerThemed"] {
-      gap: unset;
-    }
-  }
-
-  [class^="tags"] {
-    > [class^="container"] /* Badges */ {
-      position: fixed;
-      justify-content: flex-end;
-      right: 0px;
-      top: calc(12px + var(--banner-height) + var(--edge-padding));
-      margin: 0 calc(16px + var(--edge-padding)) 0 0;
-      border: unset;
-      border-radius: 8px;
-      box-sizing: content-box;
-      max-width: 190px;
-      padding: 4px;
-      background-color: var(--profile-body-background-color);
-      div > a {
-        > img,
-        > div {
-          width: 22px;
-          height: 22px;
-        }
-      }
-    }
-    > [class^="clickableUsername"] {
-      width: 100%;
-      > [class^="info"] {
-        font-weight: 500;
-      }
-    }
-    > [class^="dotSpacer"] {
-      display: none;
-    }
-  }
-
-  > [class^="footer"] {
-    margin: 0 16px 12px;
-    padding: 12px;
-    background-color: var(--profile-body-background-color);
-    border-bottom-left-radius: var(--radius-sm);
-    border-bottom-right-radius: var(--radius-sm);
-  }
-
-  // Custom status
-  [class^="invisibleContainer"] {
-    display: none;
-  }
-  [class^="visibleContainer"] {
-    top: calc(55px + var(--custom-user-banner-height-bite-size)) !important;
-    left: 16px !important;
-    position: static;
-    pointer-events: initial;
-  }
-  [class^="statusBubbleOuter"] {
-    border: unset !important;
-    background: var(--profile-body-background-color);
-    box-shadow: none;
-    margin: 0 16px 0;
-    padding: 12px 12px 0;
-    border-radius: unset;
-    max-width: unset;
-    &::before,
-    &::after {
-      display: none;
-    }
-    > [class*="statusBubble"] {
-      min-width: unset;
+      border-radius: unset;
       max-width: unset;
-      padding: unset;
-      background: transparent;
-      > [class^="content"] {
-        text-align: start;
-        -webkit-line-clamp: unset;
-        max-height: unset !important;
-        > [class*="statusText"] {
-          font-weight: 400;
+      &::before,
+      &::after {
+        display: none;
+      }
+      > [class*="statusBubble"] {
+        min-width: unset;
+        max-width: unset;
+        padding: unset;
+        background: transparent;
+        > [class^="content"] {
+          text-align: start;
+          -webkit-line-clamp: unset;
+          max-height: unset !important;
+          > [class*="statusText"] {
+            font-weight: 400;
+          }
+          > [class*="statusEmojiOnly"] {
+            width: 48px;
+            height: 48px;
+            // WHY DISCORD???
+            min-width: unset;
+            min-height: unset;
+            max-width: unset;
+            max-height: unset;
+          }
+          > [class*="statusEmojiInline"] {
+            width: 20px;
+            height: 20px;
+          }
         }
       }
     }
