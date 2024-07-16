@@ -1,0 +1,6 @@
+// Themed role borders
+[class*="biteSizeOuter"][class*="userProfileOuterThemed"]
+  > [class*="userProfileInner"]
+  [class*="pill"] {
+  border: 1px solid var(--profile-role-pill-border-color);
+}

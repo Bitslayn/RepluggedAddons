@@ -1,0 +1,269 @@
+[class^="fullSizeOuter"] {
+  // Layout
+  width: 600px;
+  > [class^="userProfileModalInner"] {
+    background: linear-gradient(
+      var(--profile-gradient-start),
+      var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
+      var(--profile-gradient-end)
+    );
+    > [class^="wrapper"] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) {
+      top: calc(19px + var(--edge-padding) + var(--banner-height));
+      right: 16px;
+      position: fixed;
+      > button {
+        background: unset;
+        color: var(--interactive-normal);
+        &:hover {
+          color: var(--interactive-hover);
+        }
+        > div {
+          width: 24px;
+          height: 24px;
+          min-width: 24px;
+          min-height: 24px;
+          max-width: unset;
+          max-height: unset;
+          transform: rotate(90deg);
+          > svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+    > header {
+      height: 210px;
+      display: inline-table;
+      > [class^="bannerSVGWrapper"] {
+        // Banner
+        padding-bottom: calc(108px + var(--badge-container-height) - var(--banner-offset));
+        min-width: unset !important;
+        min-height: unset !important;
+        // transform: scaleX(1.98122) scaleY(2.0189) translateX(75px) translateY(26.5px);
+        mask {
+          rect {
+            width: 600px;
+            height: 210px;
+          }
+          circle {
+            transform: scaleY(0.9906);
+          }
+        }
+        foreignObject {
+          height: 210px;
+          div {
+            height: 210px;
+            &::before {
+              content: unset;
+            }
+          }
+        }
+      }
+      > [class^="headerInner"] {
+        padding: unset;
+        pointer-events: none;
+        min-height: unset;
+        // Buttons
+        button {
+          pointer-events: initial;
+        }
+        > [class^="buttons"] {
+          width: -webkit-fill-available;
+          position: fixed;
+          top: calc(16px + var(--edge-padding) + var(--banner-height));
+          padding-right: 36px;
+          margin: 0 16px;
+          > [class^="multipleButtons"] {
+            &:has(> button > div > svg > [d^="M19 14a1 1 0"]) > div {
+              display: none;
+            }
+            > button:has(> div > svg > [d^="M19 14a1 1 0"]) {
+              // Add Friend
+              opacity: unset;
+              background-color: var(--button-positive-background);
+              transition:
+                background-color var(--custom-button-transition-duration) ease,
+                color var(--custom-button-transition-duration) ease;
+              &:hover {
+                background-color: var(--button-positive-background-hover);
+              }
+              > div {
+                font-size: 0;
+                gap: unset;
+                &::before {
+                  content: "Send Friend Request";
+                  font-size: 14px;
+                }
+                > svg {
+                  display: none;
+                }
+              }
+            }
+          }
+          > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
+            visibility: visible;
+            width: 28px;
+            height: 28px;
+            font-size: 0;
+            padding: unset;
+            min-width: unset;
+            min-height: unset;
+            background: hsl(var(--black-500-hsl) / 0.3);
+            color: var(--white-500);
+            border-radius: var(--radius-round);
+            transition: background-color 0.2s ease;
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            > [class^="contents"],
+            > [class^="contents"] > svg {
+              width: 18px;
+              height: 18px;
+              gap: unset;
+            }
+            &:hover {
+              background: hsl(var(--black-500-hsl) / 0.6);
+              opacity: unset;
+            }
+          }
+        }
+        // Avatar
+        > [class^="avatar"] {
+          position: fixed;
+          left: 28px;
+          top: 149px;
+        }
+        // Status
+        > div {
+          > [class^="invisibleContainer"] {
+            display: none;
+          }
+          > [class^="visibleContainer"] {
+            position: unset;
+            > [class^="statusBubbleOuter"] {
+              border: unset;
+              background: var(--profile-body-background-color);
+              box-shadow: none;
+              margin: 0 16px;
+              padding: 12px 12px 0;
+              border-radius: unset;
+              max-width: unset;
+              &::before,
+              &::after {
+                display: none;
+              }
+              > [class^="statusBubble"] {
+                max-width: unset;
+                max-height: unset;
+                padding: unset;
+                background: transparent;
+                > div {
+                  text-align: unset;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    > [class^="body"] {
+      gap: unset;
+      padding: unset;
+      margin: 0 16px 16px 16px;
+      // Username and pronouns header
+      > [class^="container"] {
+        position: fixed;
+        top: calc(
+          51px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding)
+        );
+        left: 0px;
+        margin: 0 calc(16px + var(--edge-padding)) 0;
+        padding: 12px 12px 0;
+        border-top-left-radius: var(--radius-sm);
+        border-top-right-radius: var(--radius-sm);
+        background-color: var(--profile-body-background-color);
+        width: -webkit-fill-available;
+        > [class^="usernameRow"] {
+          > [class^="clickableUsername"] > h1 {
+            line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            display: -webkit-box;
+            font-weight: 600;
+          }
+          > [class^="nicknameIcons"] {
+            display: none;
+          }
+        }
+        > [class^="tags"] {
+          // Badges
+          > [class^="container"] {
+            position: fixed;
+            justify-content: flex-start;
+            left: calc(160px + var(--edge-padding));
+            top: calc(19px + var(--banner-height) + var(--edge-padding));
+            margin: unset;
+            border: unset;
+            border-radius: 8px;
+            box-sizing: content-box;
+            max-width: calc(calc(100 /* Colums - 1 */ * 26px) + 24px);
+            padding: 2px 4px;
+            background-color: var(--profile-body-background-color);
+            div > a {
+              > img,
+              > div {
+                width: 24px;
+                height: 24px;
+              }
+            }
+          }
+        }
+      }
+      > [class^="fullSizeOverlayBackground"] {
+        border-top-left-radius: unset;
+        border-top-right-radius: unset;
+        border: unset;
+        background-color: var(--profile-body-background-color);
+        // Tab bar
+        > [class^="container"] {
+          > [class^="tabBar"] {
+            gap: 40px;
+            margin: 20px 12px 0;
+            &:not(:has(> [class^="tabBarItem"]:nth-child(2))) {
+              display: none;
+            }
+            > [class^="tabBarItem"] {
+              height: 39px;
+              border-bottom-width: 2px;
+              div {
+                font-weight: 500;
+                line-height: 20px;
+                color: var(--interactive-normal);
+              }
+              &:hover > div {
+                color: var(--interactive-hover);
+              }
+              &[aria-selected="true"] > div {
+                color: var(--interactive-active);
+              }
+              &:nth-child(1) > div {
+                font-size: 0;
+                &::before {
+                  content: "User Info";
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+          > [class^="scroller"] {
+            // Roles
+            > [class^="section"] > [data-list-id^="roles"] {
+              width: 284px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

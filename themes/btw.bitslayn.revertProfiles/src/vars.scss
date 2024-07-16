@@ -1,0 +1,40 @@
+[class*="userProfileOuter"] {
+  &[class^="biteSizeOuter"] {
+    --banner-height: 60px;
+    --banner-offset: calc(120px - var(--banner-height));
+    &:has(foreignObject > [style^="background-image"]) {
+      --banner-height: 120px;
+    }
+    --badge-container-height: 22px; // 0 rows (Minimal gap of 50px)
+    &:has([class^="tags"] > [class^="container"] > div) {
+      --badge-container-height: 30px; // 1 row
+    }
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(9)) {
+      --badge-container-height: 54px; // 2 rows
+    }
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(17)) {
+      --badge-container-height: 78px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
+    }
+  }
+  &[class^="fullSizeOuter"] {
+    --banner-height: 105px; // Pretty sure this should be 206px
+    --banner-offset: calc(210px - var(--banner-height));
+    &:has(foreignObject > [style^="background-image"]) {
+      --banner-height: 210px; // Should be 212px but I got lazy
+    }
+    --badge-container-height: 22px; // 0 rows (Minimal gap of 50px)
+    &:has([class^="tags"] > [class^="container"] > div) {
+      --badge-container-height: 28px; // 1 row
+    }
+    /*&:has([class^="tags"] > [class^="container"] > div:nth-child(9)) {
+      --badge-container-height: 54px; // 2 rowsc
+    }
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(17)) {
+      --badge-container-height: 80px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
+    }*/
+  }
+  --edge-padding: 0px;
+  &[class*="userProfileOuterThemed"] {
+    --edge-padding: 4px;
+  }
+}

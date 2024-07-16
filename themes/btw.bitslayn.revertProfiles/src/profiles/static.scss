@@ -1,0 +1,39 @@
+// Fix static profiles
+[data-popout-animating="false"],
+[class^="accountProfilePopoutWrapper"],
+[class^="customizationSection"] {
+  transform: translate(0) !important;
+}
+
+// Fix static badges
+[class^="customizationSection"] [class*="userProfileInner"] {
+  [class^="tags"] > [class^="container"] {
+    top: calc(40px + var(--banner-height)) !important;
+  }
+  > [class^="body"] > [class^="container"] {
+    top: calc(56px + var(--banner-height) + var(--badge-container-height)) !important;
+  }
+}
+
+// Fix profiles with no body or footer
+[class*="biteSizeOuter"] > [class*="userProfileInner"] {
+  &:not(:has(> footer > *)),
+  &:has(footer > button [d^="m13.96 5.46 4.58 4.58a1"]):not(
+      footer > *:not(button [d^="m13.96 5.46 4.58 4.58a1"])
+    ) {
+    > footer {
+      visibility: hidden;
+      padding: unset !important;
+      margin: unset !important;
+    }
+    > [class^="body"] {
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      padding-bottom: 12px !important;
+      &:not(:has(> div:nth-child(2) > *))::before {
+        display: none;
+      }
+    }
+  }
+}

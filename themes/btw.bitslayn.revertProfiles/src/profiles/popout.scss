@@ -1,0 +1,266 @@
+[class^="biteSizeOuter"] {
+  // Themed role borders
+  [class*="biteSizeOuter"][class*="userProfileOuterThemed"]
+    > [class*="userProfileInner"]
+    [class*="pill"] {
+    border: 1px solid var(--profile-role-pill-border-color);
+  }
+
+  // Layout
+  width: 340px;
+  box-sizing: unset;
+
+  > [class*="userProfileInner"] {
+    gap: unset;
+    padding: unset;
+    background: linear-gradient(
+      var(--profile-gradient-start),
+      var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
+      var(--profile-gradient-end)
+    );
+
+    // About Me
+    > [class^="body"] > div > {
+      [class^="descriptionClamp"] {
+        -webkit-line-clamp: unset;
+        overflow: hidden scroll;
+        max-height: 20vh;
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-clip: padding-box;
+          border: 2px solid transparent;
+          border-radius: 4px;
+          background-color: var(--profile-body-divider-color);
+        }
+      }
+      [class^="viewFullBio"] {
+        display: none;
+      }
+    }
+
+    // Activities
+    [class^="activityBiteSizePopout"] {
+      padding: unset;
+      background: transparent !important;
+      > img {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    // Message box
+    [class^="channelTextArea"] > [class^="inner"] {
+      background-color: transparent;
+      border: 1px solid var(--profile-message-input-border-color);
+    }
+
+    // Roles
+    [class*="pill"] {
+      background-color: var(--profile-role-pill-background-color);
+      border: unset;
+      max-height: 22px;
+      box-sizing: border-box;
+    }
+
+    // Banner
+    > header {
+      pointer-events: none;
+      min-height: unset;
+      z-index: unset;
+      > [class^="avatar"] {
+        pointer-events: initial;
+        top: 76px;
+        left: 22px;
+      }
+      > [class^="bannerSVGWrapper"] {
+        padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
+        display: block;
+        &:has(foreignObject > [style^="background-image"]) {
+          transform: scaleY(1.0084) translateY(1px);
+          mask circle {
+            cx: 51;
+            cy: 99;
+            r: 40.59;
+            transform: scaleY(0.9916);
+          }
+        }
+      }
+    }
+
+    // Header
+    &:has([class^="pronounsTooltip"]) [class^="header"] {
+      > [class^="bannerSVGWrapper"] {
+        padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+      }
+    }
+
+    // Body
+    > [class^="body"] {
+      gap: 12px;
+      margin: 0 16px 0;
+      padding: 0 12px 12px !important;
+      overflow: unset !important;
+      background-color: var(--profile-body-background-color);
+
+      // Divider
+      &::before {
+        content: "";
+        display: block;
+        margin: 12px 0 0;
+        height: 1px;
+        background-color: var(--profile-body-divider-color);
+      }
+
+      // Header
+      > [class^="container"] {
+        position: fixed;
+        top: calc(
+          28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding)
+        );
+        left: 0px;
+        margin: 0 calc(16px + var(--edge-padding)) 0;
+        padding: 12px 12px 0;
+        border-top-left-radius: var(--radius-sm);
+        border-top-right-radius: var(--radius-sm);
+        background-color: var(--profile-body-background-color);
+        width: -webkit-fill-available;
+        > [class^="usernameRow"] {
+          > [class^="clickableUsername"] > h1 {
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+            display: -webkit-box;
+            font-weight: 600;
+          }
+          > [class^="nicknameIcons"] {
+            display: none;
+          }
+        }
+      }
+    }
+
+    [class^="tags"] {
+      > [class^="container"] /* Badges */ {
+        position: fixed;
+        justify-content: flex-end;
+        right: calc(16px + var(--edge-padding));
+        top: calc(12px + var(--banner-height) + var(--edge-padding));
+        margin: unset;
+        border: unset;
+        border-radius: 8px;
+        box-sizing: content-box;
+        max-width: calc(calc(7 /* Colums - 1 */ * 24px) + 22px);
+        padding: 4px;
+        background-color: var(--profile-body-background-color);
+        div > a {
+          > img,
+          > div {
+            width: 22px;
+            height: 22px;
+          }
+        }
+      }
+      > [class^="clickableUsername"],
+      > [class*="userTag"] {
+        width: 100%;
+        > [class^="info"] {
+          font-weight: 500;
+        }
+      }
+      > [class^="dotSpacer"] {
+        display: none;
+      }
+    }
+
+    > [class^="footer"] {
+      margin: 0 16px 16px;
+      padding: 0 12px 12px;
+      background-color: var(--profile-body-background-color);
+      border-bottom-left-radius: var(--radius-sm);
+      border-bottom-right-radius: var(--radius-sm);
+      > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
+        visibility: visible;
+        width: 28px;
+        height: 28px;
+        font-size: 0;
+        padding: unset;
+        min-width: unset;
+        min-height: unset;
+        background: hsl(var(--black-500-hsl) / 0.3);
+        color: var(--white-500);
+        border-radius: var(--radius-round);
+        transition: background-color 0.2s ease;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        > [class^="contents"],
+        > [class^="contents"] > svg {
+          width: 18px;
+          height: 18px;
+          gap: unset;
+        }
+        &:hover {
+          background: hsl(var(--black-500-hsl) / 0.6);
+          opacity: unset;
+        }
+      }
+    }
+
+    // Custom status
+    [class^="invisibleContainer"] {
+      display: none;
+    }
+    [class^="visibleContainer"] {
+      position: unset;
+      pointer-events: initial;
+    }
+    [class^="statusBubbleOuter"] {
+      border: unset !important;
+      background: var(--profile-body-background-color);
+      box-shadow: none;
+      margin: 0 16px 0;
+      padding: 12px 12px 0;
+      border-radius: unset;
+      max-width: unset;
+      &::before,
+      &::after {
+        display: none;
+      }
+      > [class*="statusBubble"] {
+        min-width: unset;
+        max-width: unset;
+        padding: unset;
+        background: transparent;
+        > [class^="content"] {
+          text-align: start;
+          -webkit-line-clamp: unset;
+          max-height: unset !important;
+          > [class*="statusText"] {
+            font-weight: 400;
+          }
+          > [class*="statusEmojiOnly"] {
+            user-select: none;
+            cursor: initial;
+            width: 48px;
+            height: 48px;
+            // WHY DISCORD???
+            min-width: unset;
+            min-height: unset;
+            max-width: unset;
+            max-height: unset;
+          }
+          > [class*="statusEmojiInline"] {
+            user-select: none;
+            cursor: initial;
+            margin: -1px 4px -1px 0;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}

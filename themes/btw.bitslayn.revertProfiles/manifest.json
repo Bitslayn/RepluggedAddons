@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "type": "replugged-theme",
-  "main": "src/main.scss",
+  "main": "src/index.scss",
   "source": "https://github.com/Bitslayn/RepluggedAddons/tree/main/themes/btw.bitslayn.revertProfiles",
   "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.revertProfiles/images/thumb.png"
 }
