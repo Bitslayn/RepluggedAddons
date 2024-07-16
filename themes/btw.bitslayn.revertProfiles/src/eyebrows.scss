@@ -32,7 +32,7 @@ div {
   > [class^="mutuals_"]::before {
     @include eyebrow("Mutuals", 4px); // .mutuals_dc9488 has a row-gap of 2px [2 + 4 = 6]
   }
-  > [class^="section"] > [class^="list"]::before {
+  > section[class^="section"] > ul[class^="list"]::before {
     @include eyebrow("Try my commands", 6px);
   }
   > [class^="section"]:has(> div > [data-list-id^="roles-"]) > h1, /* Bot roles */

@@ -44,7 +44,7 @@
     }
   }
 }
-[class*="SizeOuter"] > [class^="userPopoutInner"] > [class^="body"] {
+[class*="SizeOuter"] > [class*="userProfileInner"] > [class^="body"] {
   > [class^="container"] {
     gap: unset;
     > [class^="usernameRow"] {

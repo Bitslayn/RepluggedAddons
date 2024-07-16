@@ -1,7 +1,8 @@
 // Fix static profiles
-[data-popout-animating="false"],
+[data-popout-animating="false"]:has(> div > [class^="biteSizeOuter"]),
 [class^="accountProfilePopoutWrapper"],
-[class^="customizationSection"] {
+[class^="customizationSection"],
+[class^="previewContainer"] > [class^="biteSizeOuter"] {
   transform: translate(0) !important;
 }
 
