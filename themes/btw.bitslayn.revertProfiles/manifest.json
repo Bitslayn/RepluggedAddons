@@ -1,7 +1,7 @@
 {
   "id": "btw.bitslayn.revertProfiles",
   "name": "Revert Profiles",
-  "description": "Reverts user profiles to how they used to look before Discord simplified them. This does not increase the amount of roles displayed in profiles.",
+  "description": "Reverts user profiles to the layout before they were simplified. This does not increase how many roles are shown in popout profiles.",
   "author": {
     "name": "Bitslayn",
     "discordID": "372268045927972864",
