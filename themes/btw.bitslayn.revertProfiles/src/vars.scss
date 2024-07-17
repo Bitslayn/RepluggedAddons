@@ -26,12 +26,12 @@
     &:has([class^="tags"] > [class^="container"] > div) {
       --badge-container-height: 28px; // 1 row
     }
-    /*&:has([class^="tags"] > [class^="container"] > div:nth-child(9)) {
-      --badge-container-height: 54px; // 2 rowsc
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(10)) {
+      --badge-container-height: 54px; // 2 rows
     }
-    &:has([class^="tags"] > [class^="container"] > div:nth-child(17)) {
-      --badge-container-height: 80px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
-    }*/
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(19)) {
+      --badge-container-height: 80px; // 3 rows
+    }
   }
   --edge-padding: 0px;
   &[class*="userProfileOuterThemed"] {

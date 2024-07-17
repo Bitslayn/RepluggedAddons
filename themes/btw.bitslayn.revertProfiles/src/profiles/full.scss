@@ -241,7 +241,7 @@
             border: unset;
             border-radius: 8px;
             box-sizing: content-box;
-            max-width: calc(calc(9 /* Colums - 1 */ * 26px) + 24px);
+            max-width: calc(calc(8 /* Colums - 1 */ * 26px) + 24px);
             padding: 2px 4px;
             background-color: var(--profile-body-background-color);
             div > a {
@@ -317,12 +317,12 @@
             margin: 20px 12px 0;
             background-color: var(--profile-body-divider-color);
           }
-          > [class^="scroller"] {
-            // Roles
-            > [class^="section"] > [data-list-id^="roles"] {
-              width: 284px;
-            }
-          }
+          // > [class^="scroller"] {
+          //   // Roles
+          //   > [class^="section"] > [data-list-id^="roles"] {
+          //     width: 284px;
+          //   }
+          // }
         }
       }
     }
