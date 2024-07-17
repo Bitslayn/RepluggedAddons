@@ -10,7 +10,7 @@
   width: 340px;
   box-sizing: unset;
 
-  > [class*="userProfileInner"] {
+  > [class^="userPopoutInner"] {
     gap: unset;
     padding: unset;
     background: linear-gradient(
@@ -18,6 +18,16 @@
       var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
       var(--profile-gradient-end)
     );
+
+    > [class^="wrapper"]
+      > div:has(
+        > button > div > svg > path[d^="M4 14a2 2 0"], /* More */
+        > button > div > svg > path[d^="M19 14a1 1 0"], /* Add Friend */
+        > button > div > svg > path[d^="M12 10a4 4 0"], /* Friends */
+        > button > div > svg > path[d^="M5.26 12.45c.1.03.18.08.25.14l.52.44"] /* Mod View */
+      ) {
+      display: none;
+    }
 
     // About Me
     > [class^="body"] > div > {
@@ -143,7 +153,7 @@
     }
 
     [class^="tags"] {
-      > [class^="container"] /* Badges */ {
+      > div:is([class^="container"]) /* Badges */ {
         position: fixed;
         justify-content: flex-end;
         right: calc(16px + var(--edge-padding));
@@ -160,6 +170,26 @@
           > div {
             width: 22px;
             height: 22px;
+          }
+        }
+        & + div {
+          position: fixed;
+          justify-content: flex-end;
+          right: calc(96px + 16px + var(--edge-padding));
+          top: calc(24px + 12px + var(--banner-height) + var(--edge-padding));
+          margin: unset;
+          border: unset;
+          border-radius: 8px;
+          box-sizing: content-box;
+          max-width: calc(calc(3 /* Colums - 1 */ * 24px) + 22px);
+          padding: 4px;
+          background-color: transparent;
+          div > a {
+            > img,
+            > div {
+              width: 22px;
+              height: 22px;
+            }
           }
         }
       }
@@ -181,32 +211,32 @@
       background-color: var(--profile-body-background-color);
       border-bottom-left-radius: var(--radius-sm);
       border-bottom-right-radius: var(--radius-sm);
-      > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
-        visibility: visible;
-        width: 28px;
-        height: 28px;
-        font-size: 0;
-        padding: unset;
-        min-width: unset;
-        min-height: unset;
-        background: hsl(var(--black-500-hsl) / 0.3);
-        color: var(--white-500);
-        border-radius: var(--radius-round);
-        transition: background-color 0.2s ease;
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        > [class^="contents"],
-        > [class^="contents"] > svg {
-          width: 18px;
-          height: 18px;
-          gap: unset;
-        }
-        &:hover {
-          background: hsl(var(--black-500-hsl) / 0.6);
-          opacity: unset;
-        }
-      }
+      // > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
+      //   visibility: visible;
+      //   width: 28px;
+      //   height: 28px;
+      //   font-size: 0;
+      //   padding: unset;
+      //   min-width: unset;
+      //   min-height: unset;
+      //   background: hsl(var(--black-500-hsl) / 0.3);
+      //   color: var(--white-500);
+      //   border-radius: var(--radius-round);
+      //   transition: background-color 0.2s ease;
+      //   position: absolute;
+      //   top: 12px;
+      //   right: 12px;
+      //   > [class^="contents"],
+      //   > [class^="contents"] > svg {
+      //     width: 18px;
+      //     height: 18px;
+      //     gap: unset;
+      //   }
+      //   &:hover {
+      //     background: hsl(var(--black-500-hsl) / 0.6);
+      //     opacity: unset;
+      //   }
+      // }
     }
 
     // Custom status

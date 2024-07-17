@@ -32,12 +32,21 @@
         }
       }
     }
+    // Banner
+    &:has(> [class^="body"] > [class^="container"] > [class^="tags"] > [class^="pronounsTooltip"])
+      > header
+      > [class^="bannerSVGWrapper"] {
+      // With Pronouns
+      padding-bottom: calc(128px + var(--badge-container-height) - var(--banner-offset));
+    }
     > header {
       height: 210px;
       display: inline-table;
+      // Banner
       > [class^="bannerSVGWrapper"] {
-        // Banner
+        //Without pronouns
         padding-bottom: calc(108px + var(--badge-container-height) - var(--banner-offset));
+
         min-width: unset !important;
         min-height: unset !important;
         // transform: scaleX(1.98122) scaleY(2.0189) translateX(75px) translateY(26.5px);
@@ -46,9 +55,9 @@
             width: 600px;
             height: 210px;
           }
-          circle {
-            transform: scaleY(0.9906);
-          }
+          // circle {
+          //   transform: scaleY(0.9906);
+          // }
         }
         foreignObject {
           height: 210px;
@@ -88,45 +97,45 @@
               &:hover {
                 background-color: var(--button-positive-background-hover);
               }
-              > div {
-                font-size: 0;
-                gap: unset;
-                &::before {
-                  content: "Send Friend Request";
-                  font-size: 14px;
-                }
-                > svg {
-                  display: none;
-                }
-              }
+              // > div {
+              //   font-size: 0;
+              //   gap: unset;
+              //   &::before {
+              //     content: "Send Friend Request";
+              //     font-size: 14px;
+              //   }
+              //   > svg {
+              //     display: none;
+              //   }
+              // }
             }
           }
-          > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
-            visibility: visible;
-            width: 28px;
-            height: 28px;
-            font-size: 0;
-            padding: unset;
-            min-width: unset;
-            min-height: unset;
-            background: hsl(var(--black-500-hsl) / 0.3);
-            color: var(--white-500);
-            border-radius: var(--radius-round);
-            transition: background-color 0.2s ease;
-            position: fixed;
-            top: 12px;
-            right: 12px;
-            > [class^="contents"],
-            > [class^="contents"] > svg {
-              width: 18px;
-              height: 18px;
-              gap: unset;
-            }
-            &:hover {
-              background: hsl(var(--black-500-hsl) / 0.6);
-              opacity: unset;
-            }
-          }
+          // > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 4.58 4.58a1"]) {
+          //   visibility: visible;
+          //   width: 28px;
+          //   height: 28px;
+          //   font-size: 0;
+          //   padding: unset;
+          //   min-width: unset;
+          //   min-height: unset;
+          //   background: hsl(var(--black-500-hsl) / 0.3);
+          //   color: var(--white-500);
+          //   border-radius: var(--radius-round);
+          //   transition: background-color 0.2s ease;
+          //   position: fixed;
+          //   top: 12px;
+          //   right: 12px;
+          //   > [class^="contents"],
+          //   > [class^="contents"] > svg {
+          //     width: 18px;
+          //     height: 18px;
+          //     gap: unset;
+          //   }
+          //   &:hover {
+          //     background: hsl(var(--black-500-hsl) / 0.6);
+          //     opacity: unset;
+          //   }
+          // }
         }
         // Avatar
         > [class^="avatar"] {
@@ -208,11 +217,12 @@
         background-color: var(--profile-body-background-color);
         width: -webkit-fill-available;
         > [class^="usernameRow"] {
-          > [class^="clickableUsername"] > h1 {
-            line-clamp: 1;
+          > h1 {
             -webkit-box-orient: vertical;
             word-break: break-all;
             display: -webkit-box;
+            font-size: 20px;
+            line-height: 1.2;
             font-weight: 600;
           }
           > [class^="nicknameIcons"] {
@@ -220,6 +230,7 @@
           }
         }
         > [class^="tags"] {
+          gap: unset;
           // Badges
           > [class^="container"] {
             position: fixed;
@@ -230,7 +241,7 @@
             border: unset;
             border-radius: 8px;
             box-sizing: content-box;
-            max-width: calc(calc(100 /* Colums - 1 */ * 26px) + 24px);
+            max-width: calc(calc(9 /* Colums - 1 */ * 26px) + 24px);
             padding: 2px 4px;
             background-color: var(--profile-body-background-color);
             div > a {
@@ -240,6 +251,25 @@
                 height: 24px;
               }
             }
+          }
+          // User tag
+          > [class*="userTag"] {
+            width: 100%;
+            > span {
+              font-size: 14px;
+              line-height: 24px;
+              font-weight: 600;
+              color: var(--header-secondary);
+            }
+          }
+          > [class^="dotSpacer"] {
+            display: none;
+          }
+          > [class^="pronounsTooltip"] {
+            font-size: 14px;
+            line-height: 1.2857142857142858; // Don't ask
+            font-weight: 400;
+            padding-top: 2px;
           }
         }
       }
@@ -270,13 +300,13 @@
               &[aria-selected="true"] > div {
                 color: var(--interactive-active);
               }
-              &:nth-child(1) > div {
-                font-size: 0;
-                &::before {
-                  content: "User Info";
-                  font-size: 14px;
-                }
-              }
+              // &:nth-child(1) > div {
+              //   font-size: 0;
+              //   &::before {
+              //     content: "User Info";
+              //     font-size: 14px;
+              //   }
+              // }
             }
           }
           // Divider

@@ -99,5 +99,9 @@
   > header:has([style^="background-image"]) > svg {
     min-width: unset !important;
     min-height: unset !important;
+    mask circle {
+      cx: 88;
+      cy: 209;
+    }
   }
 }
