@@ -1,4 +1,4 @@
-[class*="userProfileOuter"] {
+[class^="fullSizeOuter"] {
   max-height: 586px; // 586px
   &:has([class*="fullSizeBannerPremium"]) {
     max-height: 692px; // 586px + 106px
