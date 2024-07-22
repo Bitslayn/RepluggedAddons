@@ -5,7 +5,7 @@
     &:has(foreignObject > [style^="background-image"]) {
       --banner-height: 120px;
     }
-    --badge-container-height: 22px; // 0 rows (Minimal gap of 50px)
+    --badge-container-height: 22px; // 0 rows (Minimal gap of 16px)
     &:has([class^="tags"] > [class^="container"] > div) {
       --badge-container-height: 30px; // 1 row
     }
@@ -22,15 +22,15 @@
     &:has(foreignObject > [style^="background-image"]) {
       --banner-height: 210px; // Should be 212px but I got lazy
     }
-    --badge-container-height: 22px; // 0 rows (Minimal gap of 50px)
+    --badge-container-height: 22px; // 0 rows (Minimal gap of 24px)
     &:has([class^="tags"] > [class^="container"] > div) {
       --badge-container-height: 28px; // 1 row
     }
     &:has([class^="tags"] > [class^="container"] > div:nth-child(10)) {
-      --badge-container-height: 54px; // 2 rows
+      --badge-container-height: 46px; // 2 rows
     }
     &:has([class^="tags"] > [class^="container"] > div:nth-child(19)) {
-      --badge-container-height: 80px; // 3 rows
+      --badge-container-height: 72px; // 3 rows
     }
   }
   --edge-padding: 0px;

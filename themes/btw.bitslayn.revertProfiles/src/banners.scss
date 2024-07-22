@@ -22,7 +22,7 @@
     }
     foreignObject {
       height: 52.95px;
-      div {
+      > [class^="banner"] {
         height: 52.94px;
         &::before {
           content: unset;
@@ -56,7 +56,7 @@
     }
     foreignObject {
       height: 105.01px;
-      div {
+      > [class^="banner"] {
         height: 105.01px;
         &::before {
           content: unset;

@@ -61,7 +61,7 @@
         }
         foreignObject {
           height: 210px;
-          div {
+          > [class^="banner"] {
             height: 210px;
             &::before {
               content: unset;
@@ -309,6 +309,13 @@
               // }
             }
           }
+          // Roles
+          [class*="pill"] {
+            background-color: var(--profile-role-pill-background-color);
+            border: unset;
+            max-height: 22px;
+            box-sizing: border-box;
+          }
           // Divider
           &:not(:has(> [class^="tabBar"] > [class^="tabBarItem"]:nth-child(2)))::before {
             content: "";
@@ -317,12 +324,6 @@
             margin: 20px 12px 0;
             background-color: var(--profile-body-divider-color);
           }
-          // > [class^="scroller"] {
-          //   // Roles
-          //   > [class^="section"] > [data-list-id^="roles"] {
-          //     width: 284px;
-          //   }
-          // }
         }
       }
     }

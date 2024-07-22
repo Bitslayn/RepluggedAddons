@@ -1,8 +1,10 @@
-@use "vars";
+@use "globals";
 @use "eyebrows";
 @use "banners";
-@use "botfix";
 @use "roles";
+
+@use "fixes/botfix";
+@use "fixes/menu";
 
 @use "profiles/popout";
 @use "profiles/full";
