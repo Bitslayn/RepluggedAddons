@@ -58,3 +58,13 @@
     }
   }
 }
+
+// Fix dropdown menu positioning
+[class^="accountProfilePopoutWrapper"]
+  [class^="biteSizeOverlayBackground"]
+  > [class^="menu"]
+  [class*="layer"] {
+  top: unset !important;
+  left: unset !important;
+  transform: translate(270px, -34px);
+}
