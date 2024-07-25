@@ -22,7 +22,7 @@
     gap: unset;
   }
   &:hover {
-    background: hsl(var(--black-500-hsl) / 0.6);
+    background: hsl(var(--black-500-hsl) / 0.6) !important;
     opacity: unset;
   }
 }

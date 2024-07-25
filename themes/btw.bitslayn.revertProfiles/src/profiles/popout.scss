@@ -1,4 +1,6 @@
 @use "../globals" as *;
+@use "../lang";
+@use "sass:map";
 
 [class^="biteSizeOuter"] {
   // Layout
@@ -91,6 +93,39 @@
             transform: scaleY(0.9916);
           }
         }
+      }
+    }
+
+    // Avatar hover
+    > header > [class^="avatar"] {
+      @each $lang, $string in lang.$view-profile {
+        :lang(#{$lang}):hover [class*="overlay"]::after {
+          content: $string;
+        }
+      }
+      &:hover [class*="overlay"]::after {
+        font-size: 10px;
+        line-height: 12px;
+        font-weight: 700;
+        width: 100%;
+        padding-top: 4px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        text-transform: uppercase;
+        box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
+        color: var(--white-500);
+        opacity: 1;
+      }
+      [class*="overlay"]::after {
+        transition: opacity 0.1s ease;
+        background-color: unset;
+        border-radius: unset;
+        opacity: 0;
       }
     }
 
