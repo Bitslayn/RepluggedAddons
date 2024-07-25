@@ -3,7 +3,8 @@
 [class^="accountProfilePopoutWrapper"],
 [class^="customizationSection"],
 [class^="previewContainer"] > [class^="biteSizeOuter"],
-[class^="previewsContainerInner"] > [class^="biteSizeOuter"] {
+[class^="previewsContainerInner"] > [class^="biteSizeOuter"],
+[class^="userProfilePreview"] > [class^="biteSizeOuter"] {
   transform: translate(0) !important;
 }
 
