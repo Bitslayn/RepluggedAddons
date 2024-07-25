@@ -1,3 +1,8 @@
+@use "lang";
+@use "sass:map";
+
+@debug map.get(lang.$about-me, "en-US");
+
 @mixin eyebrow-font {
   display: flex;
   font-weight: 700;
@@ -22,18 +27,34 @@ div {
     > [class^="userProfileModalInner"] [class^="section"] > h1 /* For headers in the full profile which use semibold instead of eyebrow */ {
     @include eyebrow-font;
   }
-  &:has(> [class^="descriptionClamp"])::before,
-  > [class^="userProfileModalInner"] [class^="scroller"] > [class^="markup"]::before {
-    @include eyebrow("About Me", 6px);
+  &:has(> [class^="descriptionClamp"]),
+  > [class^="userProfileModalInner"] [class^="scroller"] > [class^="markup"] {
+    @each $lang, $string in lang.$about-me {
+      &:lang(#{$lang})::before {
+        @include eyebrow($string, 6px);
+      }
+    }
   }
-  &:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"]))::before {
-    @include eyebrow("Roles", 6px);
+  &:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"])) {
+    @each $lang, $string in lang.$roles {
+      &:lang(#{$lang})::before {
+        @include eyebrow($string, 6px);
+      }
+    }
   }
-  > [class^="mutuals_"]::before {
-    @include eyebrow("Mutuals", 4px); // .mutuals_dc9488 has a row-gap of 2px [2 + 4 = 6]
+  > [class^="mutuals_"] {
+    @each $lang, $string in lang.$mutuals {
+      &:lang(#{$lang})::before {
+        @include eyebrow($string, 4px); // .mutuals_dc9488 has a row-gap of 2px [2 + 4 = 6]
+      }
+    }
   }
-  > section[class^="section"] > ul[class^="list"]::before {
-    @include eyebrow("Try my commands", 6px);
+  > section[class^="section"] > ul[class^="list"] {
+    @each $lang, $string in lang.$try-my-commands {
+      &:lang(#{$lang})::before {
+        @include eyebrow($string, 6px);
+      }
+    }
   }
   > [class^="section"]:has(> div > [data-list-id^="roles-"]) > h1, /* Bot roles */
     > [class^="section"]:has(> [class^="list"]) > h1 /* Bot commands */ {

@@ -38,3 +38,10 @@
     --edge-padding: 4px;
   }
 }
+
+@mixin dumbmaxing {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}

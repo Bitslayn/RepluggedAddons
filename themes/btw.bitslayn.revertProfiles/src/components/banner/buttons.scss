@@ -1,0 +1,85 @@
+@use "../../globals" as *;
+@use "../tooltip" as *;
+@use "../../lang";
+@use "sass:map";
+
+// Bitesize & Full banner button styles
+@mixin bubble-styles {
+  width: 28px;
+  height: 28px;
+  @include dumbmaxing;
+  padding: unset;
+  background: hsl(var(--black-500-hsl) / 0.3);
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > [class^="contents"],
+  > [class^="contents"] > svg {
+    width: 18px;
+    height: 18px;
+    @include dumbmaxing;
+    gap: unset;
+  }
+  &:hover {
+    background: hsl(var(--black-500-hsl) / 0.6);
+    opacity: unset;
+  }
+}
+
+@mixin fake-bubble-styles {
+  @include bubble-styles();
+  visibility: visible;
+  font-size: 0;
+  color: var(--white-500);
+  border-radius: var(--radius-round);
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+[class^="userPopoutInner"] {
+  > footer > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 "]) {
+    @include fake-bubble-styles();
+    &:hover {
+      @each $lang, $string in lang.$edit-profile {
+        &:lang(#{$lang}) {
+          @include tooltip($string);
+        }
+      }
+    }
+  }
+  &:has(> footer > button > [class^="contents"] > svg > [d^="m13.96 5.46 "]) {
+    > [class^="wrapper"] {
+      right: 46px; // Assume a gap of 6px
+    }
+  }
+}
+
+[class^="userPopoutInner"],
+[class^="userProfileModalInner"] {
+  > [class^="wrapper"] > div:has(
+  > button > div > svg > path[d^="M19 14a1 1 0"], /* Add Friend */
+  > button > div > svg > path[d^="M12 10a4 4 0"], /* Friends */
+  > button > div > svg > path[d^="M5.26 12.45c"] /* Mod View */
+  ) {
+    display: none;
+  }
+}
+[class^="userPopoutInner"] {
+  > [class^="wrapper"] > div:has(
+  > button > div > svg > path[d^="M4 14a2 2 0 "] /* More */
+  ) {
+    display: none;
+  }
+}
+
+[class^="userPopoutInner"],
+[class^="userProfileModalInner"] {
+  > [class^="wrapper"] {
+    gap: 6px;
+    > div > * {
+      @include bubble-styles();
+    }
+  }
+}

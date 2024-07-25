@@ -1,0 +1,26 @@
+@use "sass:map";
+
+//eyebrows.scss
+$about-me: (
+  // en-US, en-GB; omitted to avoid redundancy
+  "en": "About Me",
+  "pl": "O mnie"
+);
+$roles: (
+  "en": "Roles",
+  "pl": "Role",
+);
+$mutuals: (
+  "en": "Mutuals",
+  "pl": "Wzajemni",
+);
+$try-my-commands: (
+  "en": "Try my commands",
+  "pl": "Wypróbuj moje komendy",
+);
+
+//buttons.scss
+$edit-profile: (
+  "en": "Edit Profile",
+  "pl": "Edytuj Profil",
+);

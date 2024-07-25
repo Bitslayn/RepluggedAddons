@@ -16,32 +16,12 @@
   }
 }
 
-// // Fix profiles with no body or footer
-// [class*="biteSizeOuter"] > [class*="userProfileInner"] {
-//   &:not(:has(> footer > *)),
-//   &:has(footer > button [d^="m13.96 5.46 4.58 4.58a1"]):not(
-//       footer > *:not(button [d^="m13.96 5.46 4.58 4.58a1"])
-//     ) {
-//     > footer {
-//       visibility: hidden;
-//       padding: unset !important;
-//       margin: unset !important;
-//     }
-//     > [class^="body"] {
-//       border-bottom-left-radius: var(--radius-sm);
-//       border-bottom-right-radius: var(--radius-sm);
-//       margin-bottom: 16px;
-//       padding-bottom: 12px !important;
-//       &:not(:has(> div:nth-child(2) > *))::before {
-//         display: none;
-//       }
-//     }
-//   }
-// }
-
-// Fix profiles with no body or footer (Simplified)
+// Fix profiles with no body or footer
 [class*="biteSizeOuter"] > [class*="userProfileInner"] {
-  &:not(:has(> footer > *)) {
+  &:not(:has(> footer > *)),
+  &:has(footer > button [d^="m13.96 5.46 4.58 4.58a1"]):not(
+      footer > *:not(button [d^="m13.96 5.46 4.58 4.58a1"])
+    ) {
     > footer {
       visibility: hidden;
       padding: unset !important;
