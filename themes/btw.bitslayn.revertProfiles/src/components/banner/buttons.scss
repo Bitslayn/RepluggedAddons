@@ -8,8 +8,8 @@
   width: 28px;
   height: 28px;
   @include dumbmaxing;
-  padding: unset;
-  background: hsl(var(--black-500-hsl) / 0.3);
+  padding: unset !important;
+  background: hsl(var(--black-500-hsl) / 0.3) !important;
   transition: background-color 0.2s ease;
   display: flex;
   justify-content: center;

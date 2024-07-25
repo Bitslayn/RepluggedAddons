@@ -1,8 +1,6 @@
 @use "lang";
 @use "sass:map";
 
-@debug map.get(lang.$about-me, "en-US");
-
 @mixin eyebrow-font {
   display: flex;
   font-weight: 700;

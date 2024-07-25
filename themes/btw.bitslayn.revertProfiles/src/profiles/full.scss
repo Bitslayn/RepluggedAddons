@@ -14,7 +14,7 @@
       right: 16px;
       position: fixed;
       > button {
-        background: unset;
+        background: unset !important;
         color: var(--interactive-normal);
         &:hover {
           color: var(--interactive-hover);
