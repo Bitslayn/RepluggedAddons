@@ -97,7 +97,7 @@
     }
 
     // Avatar hover
-    > header > [class^="avatar"] {
+    > header > [class^="avatar"]:not(:has(> [class^="overlayIcon"])) {
       @each $lang, $string in lang.$view-profile {
         :lang(#{$lang}):hover [class*="overlay"]::after {
           content: $string;

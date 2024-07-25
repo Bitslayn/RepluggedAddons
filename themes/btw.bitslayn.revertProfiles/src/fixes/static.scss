@@ -2,7 +2,8 @@
 [data-popout-animating="false"]:has(> div > [class^="biteSizeOuter"]),
 [class^="accountProfilePopoutWrapper"],
 [class^="customizationSection"],
-[class^="previewContainer"] > [class^="biteSizeOuter"] {
+[class^="previewContainer"] > [class^="biteSizeOuter"],
+[class^="previewsContainerInner"] > [class^="biteSizeOuter"] {
   transform: translate(0) !important;
 }
 
