@@ -130,10 +130,17 @@
         background-color: unset;
         border-radius: unset;
         opacity: 0;
+        transform: scaleY(1.0084);
       }
       [class*="overlay"]::after {
         display: none;
       }
+    }
+    > header > [class^="avatar"] [class*="overlay"]::after {
+      transition: opacity 0.1s ease;
+      background-color: unset;
+      border-radius: unset;
+      box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
     }
 
     // Header
@@ -306,8 +313,7 @@
             user-select: none;
             cursor: initial;
             margin: -1px 4px -1px 0;
-            width: 20px;
-            height: 20px;
+            object-fit: contain;
           }
         }
       }
