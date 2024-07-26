@@ -138,6 +138,7 @@
         background-color: unset;
         opacity: 0;
         transform: scale(1.0084);
+        pointer-events: none;
       }
       [class*="overlay"]::after {
         display: none;
