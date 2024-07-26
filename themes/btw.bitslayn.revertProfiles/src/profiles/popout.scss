@@ -94,6 +94,10 @@
           }
         }
       }
+      [class^="clickable"] {
+        pointer-events: initial;
+        transform: scaleY(1.0084); // You're seeing things 👀
+      }
     }
 
     // Avatar hover

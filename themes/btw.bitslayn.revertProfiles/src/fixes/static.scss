@@ -4,8 +4,21 @@
 [class^="customizationSection"],
 [class^="previewContainer"] > [class^="biteSizeOuter"],
 [class^="previewsContainerInner"] > [class^="biteSizeOuter"],
+[class^="profileEffectPreviewsContainerInner"] > [class^="biteSizeOuter"],
 [class^="userProfilePreview"] > [class^="biteSizeOuter"] {
   transform: translate(0) !important;
+}
+
+// Discord istg how many different class names for profile previews do you need lmao
+[class^="previewsContainerInner"],
+[class^="profileEffectPreviewsContainerInner"],
+[class^="previewContainer"] {
+  > [class^="biteSizeOuter"]
+    > [class^="userPopoutInner"]
+    > header
+    > [class^="avatar"]:hover::after {
+    display: none;
+  }
 }
 
 // Fix static badges
