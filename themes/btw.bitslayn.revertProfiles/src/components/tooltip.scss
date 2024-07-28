@@ -1,6 +1,6 @@
-@mixin tooltip($tooltip-text) {
+@mixin tooltip {
   &::before {
-    content: $tooltip-text;
+    content: "";
     font-size: 14px;
     width: max-content;
     position: fixed;

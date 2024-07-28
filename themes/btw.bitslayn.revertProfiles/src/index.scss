@@ -1,6 +1,7 @@
 // Bulk of the profile modal styles.
 @use "profiles/popout";
 @use "profiles/full";
+@use "profiles/panel";
 
 @use "globals"; // Assigns profile padding for statuses and badges relative to the banner's height.
 @use "eyebrows"; // Styles for eyebrows. Self explanatory.
