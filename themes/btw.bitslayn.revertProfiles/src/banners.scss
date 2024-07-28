@@ -3,7 +3,7 @@
 // Solid color
 [class*="biteSizeOuter"]
   > [class*="userProfileInner"]
-  > header:not(:has([style^="background-image"])) {
+  > header:not(:has([style*="background-image"])) {
   > [class^="avatar"] {
     top: 16px;
     left: 22px;
@@ -34,7 +34,7 @@
 }
 [class*="fullSizeOuter"]
   > [class*="userProfileInner"]
-  > header:not(:has([style^="background-image"])) {
+  > header:not(:has([style*="background-image"])) {
   height: 106px;
   > [class^="headerInner"] > [class^="avatar"] {
     position: fixed;
@@ -68,7 +68,7 @@
 
 // Premium + solid color
 [class*="biteSizeOuter"][class*="userProfileOuterThemed"] > [class*="userProfileInner"] {
-  > header:not(:has([style^="background-image"])) > [class^="bannerSVGWrapper"] {
+  > header:not(:has([style*="background-image"])) > [class^="bannerSVGWrapper"] {
     @include dumbmaxing;
     mask circle {
       cx: 51.25;
@@ -77,7 +77,7 @@
   }
 }
 [class*="fullSizeOuter"][class*="userProfileOuterThemed"] > [class*="userProfileInner"] {
-  > header:not(:has([style^="background-image"])) > [class^="headerInner"] > [class^="avatar"] {
+  > header:not(:has([style*="background-image"])) > [class^="headerInner"] > [class^="avatar"] {
     top: 45px;
     left: 26px;
   }
@@ -85,7 +85,7 @@
 
 // USRBG
 [class*="biteSizeOuter"]:not([class*="userProfileOuterThemed"]) > [class*="userProfileInner"] {
-  > header:has([style^="background-image"]) > svg {
+  > header:has([style*="background-image"]) > svg {
     @include dumbmaxing;
     mask circle {
       cx: 54.5 !important;
@@ -94,7 +94,7 @@
   }
 }
 [class*="fullSizeOuter"]:not([class*="userProfileOuterThemed"]) > [class*="userProfileInner"] {
-  > header:has([style^="background-image"]) > svg {
+  > header:has([style*="background-image"]) > svg {
     @include dumbmaxing;
     mask circle {
       cx: 88;

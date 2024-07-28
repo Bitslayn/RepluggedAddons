@@ -266,6 +266,10 @@
         }
       }
       > [class^="fullSizeOverlayBackground"] {
+        // Accept friend request
+        &:is([class*="friendRequestBannerOverlay"]) {
+          display: none;
+        }
         border-top-left-radius: unset;
         border-top-right-radius: unset;
         border: unset;

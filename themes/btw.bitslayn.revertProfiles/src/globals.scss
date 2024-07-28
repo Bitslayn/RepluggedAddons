@@ -2,7 +2,7 @@
   &[class^="biteSizeOuter"] {
     --banner-height: 60px;
     --banner-offset: calc(120px - var(--banner-height));
-    &:has(foreignObject > [style^="background-image"]) {
+    &:has(foreignObject > [style*="background-image"]) {
       --banner-height: 120px;
     }
     --badge-container-height: 22px; // 0 rows (Minimal gap of 16px)
@@ -19,7 +19,7 @@
   &[class^="fullSizeOuter"] {
     --banner-height: 105px; // Pretty sure this should be 206px
     --banner-offset: calc(210px - var(--banner-height));
-    &:has(foreignObject > [style^="background-image"]) {
+    &:has(foreignObject > [style*="background-image"]) {
       --banner-height: 210px; // Should be 212px but I got lazy
     }
     --badge-container-height: 22px; // 0 rows (Minimal gap of 24px)

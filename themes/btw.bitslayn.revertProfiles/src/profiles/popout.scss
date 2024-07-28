@@ -84,7 +84,7 @@
       > [class^="bannerSVGWrapper"] {
         padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
         display: block;
-        &:has(foreignObject > [style^="background-image"]) {
+        &:has(foreignObject > [style*="background-image"]) {
           transform: scaleY(1.0084) translateY(1px);
           mask circle {
             cx: 51;
@@ -181,6 +181,11 @@
       padding: 13px 12px 12px 12px !important;
       //overflow: unset !important;
       background-color: var(--profile-body-background-color);
+
+      // Accept friend request
+      > [class^="biteSizeOverlayBackground"] {
+        display: none;
+      }
 
       // Divider
       &::before {

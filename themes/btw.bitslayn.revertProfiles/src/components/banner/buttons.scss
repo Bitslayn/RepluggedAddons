@@ -61,7 +61,8 @@
   > [class^="wrapper"] > div:has(
   > button > div > svg > path[d^="M19 14a1 1 0"], /* Add Friend */
   > button > div > svg > path[d^="M12 10a4 4 0"], /* Friends */
-  > button > div > svg > path[d^="M5.26 12.45c"] /* Mod View */
+  > button > div > svg > path[d^="M5.26 12.45c"], /* Mod View */
+  > button > div > svg > path[d^="M16 6a4 4 0 "] /* Pending */
   ) {
     display: none;
   }

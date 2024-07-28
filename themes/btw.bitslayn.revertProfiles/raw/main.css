@@ -1,0 +1,3302 @@
+@charset "UTF-8";
+
+/* themes/btw.bitslayn.revertProfiles/src/index.scss */
+[class*=userProfileOuter] {
+  --edge-padding: 0px;
+}
+[class*=userProfileOuter][class^=biteSizeOuter] {
+  --banner-height: 60px;
+  --banner-offset: calc(120px - var(--banner-height));
+  --badge-container-height: 22px;
+}
+[class*=userProfileOuter][class^=biteSizeOuter]:has(foreignObject > [style^=background-image]) {
+  --banner-height: 120px;
+}
+[class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div) {
+  --badge-container-height: 30px;
+}
+[class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(9)) {
+  --badge-container-height: 54px;
+}
+[class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(17)) {
+  --badge-container-height: 78px;
+}
+[class*=userProfileOuter][class^=fullSizeOuter] {
+  --banner-height: 105px;
+  --banner-offset: calc(210px - var(--banner-height));
+  --badge-container-height: 22px;
+}
+[class*=userProfileOuter][class^=fullSizeOuter]:has(foreignObject > [style^=background-image]) {
+  --banner-height: 210px;
+}
+[class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div) {
+  --badge-container-height: 28px;
+}
+[class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(10)) {
+  --badge-container-height: 46px;
+}
+[class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(19)) {
+  --badge-container-height: 72px;
+}
+[class*=userProfileOuter][class*=userProfileOuterThemed] {
+  --edge-padding: 4px;
+}
+[class^=biteSizeOuter] {
+  width: 340px;
+  box-sizing: unset;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] {
+  gap: unset;
+  padding: unset;
+  background:
+    linear-gradient(
+      var(--profile-gradient-start),
+      var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
+      var(--profile-gradient-end));
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body]::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body]::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  background-color: var(--profile-body-divider-color);
+  min-height: 40px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body]::-webkit-scrollbar-track {
+  margin-bottom: 4px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div > [class^=descriptionClamp] {
+  -webkit-line-clamp: unset;
+  overflow: hidden;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div > [class^=viewFullBio] {
+  display: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=activityBiteSizePopout] {
+  padding: unset;
+  background: transparent !important;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=activityBiteSizePopout] > img {
+  width: 24px;
+  height: 24px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=channelTextArea] > [class^=inner] {
+  background-color: transparent;
+  border: 1px solid var(--profile-message-input-border-color);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [data-list-id^=roles] [class*=pill],
+[class^=biteSizeOuter] > [class^=userPopoutInner] [data-list-id^=roles] > div > button {
+  background-color: var(--profile-role-pill-background-color);
+  border: unset;
+  max-height: 22px;
+  box-sizing: border-box;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header {
+  pointer-events: none;
+  min-height: unset;
+  z-index: unset;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar] {
+  pointer-events: initial;
+  top: 76px;
+  left: 22px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
+  display: block;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style^=background-image]) {
+  transform: scaleY(1.0084) translateY(1px);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style^=background-image]) mask circle {
+  cx: 51;
+  cy: 99;
+  r: 40.59;
+  transform: scaleY(0.9916);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header [class^=clickable] {
+  pointer-events: initial;
+  transform: scaleY(1.0084);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(da):hover::after {
+  content: "Se profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(de):hover::after {
+  content: "Profil ansehen";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-US):hover::after {
+  content: "View Profile";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-GB):hover::after {
+  content: "View Profile";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-ES):hover::after {
+  content: "Ver perfil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-419):hover::after {
+  content: "Ver perfil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fr):hover::after {
+  content: "Voir le profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hr):hover::after {
+  content: "Prika\17ei profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(it):hover::after {
+  content: "Mostra profilo";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(lt):hover::after {
+  content: "Per\17ei\16br\117ti Profil\12f";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hu):hover::after {
+  content: "Profil megtekint\e9se";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(nl):hover::after {
+  content: "Profiel bekijken";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(no):hover::after {
+  content: "Vis profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pl):hover::after {
+  content: "Zobacz profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pt-BR):hover::after {
+  content: "Ver perfil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ro):hover::after {
+  content: "Vezi profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fi):hover::after {
+  content: "N\e4yt\e4  profiili";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(sv-SE):hover::after {
+  content: "Visa profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(vi):hover::after {
+  content: "Xem H\1ed3  S\1a1";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(tr):hover::after {
+  content: "Profili G\f6r\fcnt\fcle";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(cs):hover::after {
+  content: "Zobrazit profil";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(el):hover::after {
+  content: "\3a0\3c1\3bf\3b2\3bf\3bb\3ae  \3c0\3c1\3bf\3c6\3af\3bb";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(bg):hover::after {
+  content: "\41f\440\435\433\43b\435\434  \43d\430  \43f\440\43e\444\438\43b";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ru):hover::after {
+  content: "\41f\440\43e\444\438\43b\44c";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(uk):hover::after {
+  content: "\41f\440\43e\444\456\43b\44c";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hi):hover::after {
+  content: "\92a\94d\930\94b\92b\93c\93e\907\932  \926\947\916\947\902";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(th):hover::after {
+  content: "\e14\e39\e42\e1b\e23\e44\e1f\e25\e4c";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-CN):hover::after {
+  content: "\67e5\770b\4e2a\4eba\8d44\6599";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ja):hover::after {
+  content: "\30d7\30ed\30d5\30a3\30fc\30eb\8868\793a";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-TW):hover::after {
+  content: "\6aa2\8996\500b\4eba\6a94\6848";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ko):hover::after {
+  content: "\d504\b85c\d544  \bcf4\ae30";
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):hover::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 700;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  color: var(--white-500);
+  width: 100%;
+  height: 100%;
+  box-shadow: inset 0 0 120px hsl(var(--black-500-hsl)/0.75);
+  opacity: 1;
+  mask-image: url(#svg-mask-avatar-default);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
+  mask-image: url(#svg-mask-avatar-status-round-80);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
+  mask-image: url(#svg-mask-avatar-status-mobile-80);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon]))::after {
+  transition: opacity 0.1s ease;
+  background-color: unset;
+  opacity: 0;
+  transform: scale(1.0084);
+  pointer-events: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])) [class*=overlay]::after {
+  display: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar] [class*=overlay]::after {
+  transition: opacity 0.1s ease;
+  background-color: unset;
+  border-radius: unset;
+  box-shadow: inset 0 0 120px hsl(var(--black-500-hsl)/0.75);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner]:has([class^=pronounsTooltip]) [class^=header] > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])) > header > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(95px + var(--badge-container-height) - var(--banner-offset));
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])):has([class^=pronounsTooltip]) > header > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(115px + var(--badge-container-height) - var(--banner-offset));
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])) > [class^=body] > [class^=container] {
+  padding: 12px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] {
+  gap: 12px;
+  margin: 0 16px 0;
+  padding: 13px 12px 12px 12px !important;
+  background-color: var(--profile-body-background-color);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=biteSizeOverlayBackground] {
+  display: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body]::before {
+  content: "";
+  display: block;
+  margin: -1px calc(28px + var(--edge-padding) / 2) 0;
+  min-height: 1px;
+  background-color: var(--profile-body-divider-color);
+  position: fixed;
+  width: -webkit-fill-available;
+  left: 0px;
+  transform: translateY(-12px);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=container] {
+  position: fixed;
+  top: calc(28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
+  left: 0px;
+  margin: 0 calc(16px + var(--edge-padding)) 0;
+  padding: 12px 12px 0;
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  background-color: var(--profile-body-background-color);
+  width: -webkit-fill-available;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=container] > [class^=usernameRow] > [class^=clickableUsername] > h1 {
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  display: -webkit-box;
+  font-weight: 600;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > div:is([class^=container]) {
+  position: fixed;
+  justify-content: flex-end;
+  right: calc(16px + var(--edge-padding));
+  top: calc(12px + var(--banner-height) + var(--edge-padding));
+  margin: unset;
+  border: unset;
+  border-radius: 8px;
+  box-sizing: content-box;
+  max-width: 190px;
+  padding: 4px;
+  background-color: var(--profile-body-background-color);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > div:is([class^=container]) div > a > img,
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > div:is([class^=container]) div > a > div {
+  width: 22px;
+  height: 22px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > div:is([class^=container]) + div {
+  position: fixed;
+  justify-content: flex-end;
+  right: calc(112px + var(--edge-padding));
+  top: calc(36px + var(--banner-height) + var(--edge-padding));
+  margin: unset;
+  border: unset;
+  border-radius: 8px;
+  box-sizing: content-box;
+  max-width: 94px;
+  padding: 4px;
+  background-color: transparent;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > div:is([class^=container]) + div div > a > img,
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > div:is([class^=container]) + div div > a > div {
+  width: 22px;
+  height: 22px;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > [class^=clickableUsername],
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > [class*=userTag] {
+  width: 100%;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > [class^=clickableUsername] > [class^=info],
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > [class*=userTag] > [class^=info] {
+  font-weight: 500;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > [class^=dotSpacer] {
+  display: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=footer] {
+  margin: 0 16px 16px;
+  padding: 0 12px 12px;
+  background-color: var(--profile-body-background-color);
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=invisibleContainer] {
+  display: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=visibleContainer] {
+  position: unset;
+  pointer-events: initial;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter] {
+  border: unset !important;
+  background: var(--profile-body-background-color);
+  box-shadow: none;
+  margin: 0 16px 0;
+  padding: 12px;
+  border-radius: unset;
+  max-width: unset;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter]::before,
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter]::after {
+  display: none;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter] > [class*=statusBubble] {
+  min-width: unset;
+  max-width: unset;
+  padding: unset;
+  background: transparent;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] {
+  text-align: start;
+  -webkit-line-clamp: unset;
+  max-height: unset !important;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusText] {
+  font-weight: 400;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusEmojiOnly] {
+  user-select: none;
+  cursor: initial;
+  width: 48px;
+  height: 48px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusEmojiInline] {
+  user-select: none;
+  cursor: initial;
+  margin: -1px 4px -1px 0;
+  object-fit: contain;
+}
+[class^=fullSizeOuter] {
+  width: 600px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] {
+  background:
+    linear-gradient(
+      var(--profile-gradient-start),
+      var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
+      var(--profile-gradient-end));
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=wrapper] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) {
+  top: calc(19px + var(--edge-padding) + var(--banner-height));
+  right: 16px;
+  position: fixed;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=wrapper] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) > button {
+  background: unset !important;
+  color: var(--interactive-normal);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=wrapper] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) > button:hover {
+  color: var(--interactive-hover);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=wrapper] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) > button > div {
+  width: 24px;
+  height: 24px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  transform: rotate(90deg);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=wrapper] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) > button > div > svg {
+  width: 24px;
+  height: 24px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner]:has(> [class^=body] > [class^=container] > [class^=tags] > [class^=pronounsTooltip]) > header > [class^=bannerSVGWrapper] {
+  padding-bottom: calc(128px + var(--badge-container-height) - var(--banner-offset));
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header {
+  height: 210px;
+  display: inline-table;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=bannerSVGWrapper] {
+  padding-bottom: calc(108px + var(--badge-container-height) - var(--banner-offset));
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=bannerSVGWrapper] mask rect {
+  width: 600px;
+  height: 210px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=bannerSVGWrapper] foreignObject {
+  height: 210px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
+  height: 210px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
+  content: unset;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] {
+  padding: unset;
+  pointer-events: none;
+  min-height: unset;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] button {
+  pointer-events: initial;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > [class^=buttons] {
+  width: -webkit-fill-available;
+  position: fixed;
+  top: calc(16px + var(--edge-padding) + var(--banner-height));
+  padding-right: 36px;
+  margin: 0 16px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > [class^=buttons] > [class^=multipleButtons]:has(> button > div > svg > [d^="M19 14a1 1 0"]) > div {
+  display: none;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > [class^=buttons] > [class^=multipleButtons] > button:has(> div > svg > [d^="M19 14a1 1 0"]) {
+  opacity: unset;
+  background-color: var(--button-positive-background);
+  transition: background-color var(--custom-button-transition-duration) ease, color var(--custom-button-transition-duration) ease;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > [class^=buttons] > [class^=multipleButtons] > button:has(> div > svg > [d^="M19 14a1 1 0"]):hover {
+  background-color: var(--button-positive-background-hover);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > [class^=avatar] {
+  position: fixed;
+  left: 28px;
+  top: 149px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=invisibleContainer] {
+  display: none;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] {
+  position: unset;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter] {
+  border: unset;
+  background: var(--profile-body-background-color);
+  box-shadow: none;
+  margin: 0 16px;
+  padding: 12px 12px 0;
+  border-radius: unset;
+  max-width: unset;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter]::before,
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter]::after {
+  display: none;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter] > [class^=statusBubble] {
+  max-width: fit-content;
+  max-height: unset;
+  padding: unset;
+  background: transparent;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter] > [class^=statusBubble] > div {
+  pointer-events: initial;
+  text-align: start;
+  -webkit-line-clamp: unset;
+  max-height: unset !important;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter] > [class^=statusBubble] > div > [class*=statusText] {
+  font-weight: 400;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter] > [class^=statusBubble] > div > [class*=statusEmojiOnly] {
+  user-select: none;
+  cursor: initial;
+  width: 48px;
+  height: 48px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=visibleContainer] > [class^=statusBubbleOuter] > [class^=statusBubble] > div > [class*=statusEmojiInline] {
+  user-select: none;
+  cursor: initial;
+  margin: -1px 4px -1px 0;
+  width: 20px;
+  height: 20px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] {
+  gap: unset;
+  padding: unset;
+  margin: 0 16px 16px 16px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] {
+  position: fixed;
+  top: calc(51px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
+  left: 0px;
+  margin: 0 calc(16px + var(--edge-padding)) 0;
+  padding: 12px 12px 0;
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  background-color: var(--profile-body-background-color);
+  width: -webkit-fill-available;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=usernameRow] > h1 {
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  display: -webkit-box;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] {
+  gap: unset;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=container] {
+  position: fixed;
+  justify-content: flex-start;
+  left: calc(160px + var(--edge-padding));
+  top: calc(19px + var(--banner-height) + var(--edge-padding));
+  margin: unset;
+  border: unset;
+  border-radius: 8px;
+  box-sizing: content-box;
+  max-width: 232px;
+  padding: 2px 4px;
+  background-color: var(--profile-body-background-color);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=container] div > a > img,
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=container] div > a > div {
+  width: 24px;
+  height: 24px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class*=userTag] {
+  width: 100%;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class*=userTag] > span {
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 600;
+  color: var(--header-secondary);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=dotSpacer] {
+  display: none;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=pronounsTooltip] {
+  font-size: 14px;
+  line-height: 1.2857142857;
+  font-weight: 400;
+  padding-top: 2px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] {
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+  border: unset;
+  background-color: var(--profile-body-background-color);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground]:is([class*=friendRequestBannerOverlay]) {
+  display: none;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] {
+  gap: 40px;
+  margin: 20px 12px 0;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar]:not(:has(> [class^=tabBarItem]:nth-child(2))) {
+  display: none;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem] {
+  height: 39px;
+  border-bottom-width: 2px;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem] div {
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--interactive-normal);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem]:hover > div {
+  color: var(--interactive-hover);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem][aria-selected=true] > div {
+  color: var(--interactive-active);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] [data-list-id^=roles] [class*=pill],
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] [data-list-id^=roles] > div > button {
+  background-color: var(--profile-role-pill-background-color);
+  border: unset;
+  max-height: 22px;
+  box-sizing: border-box;
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container]:not(:has(> [class^=tabBar] > [class^=tabBarItem]:nth-child(2)))::before {
+  content: "";
+  width: -webkit-fill-available;
+  height: 1px;
+  margin: 20px 12px 0;
+  background-color: var(--profile-body-divider-color);
+}
+[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] [class^=scroller]::-webkit-scrollbar-track {
+  margin-bottom: 4px;
+}
+div > [class^=activityBiteSizePopout] > [class^=headerContainer] > h1,
+div > [class^=activitySimplifiedProfile] > [class^=headerContainer] > h1,
+div > [class^=userProfileModalInner] [class^=section] > h1 {
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(da)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(da)::before {
+  content: "Om mig";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(de)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(de)::before {
+  content: "\dc ber mich";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(en-US)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(en-US)::before {
+  content: "About Me";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(en-GB)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(en-GB)::before {
+  content: "About Me";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(es-ES)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(es-ES)::before {
+  content: "Sobre m\ed";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(es-419)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(es-419)::before {
+  content: "Sobre m\ed";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(fr)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(fr)::before {
+  content: "\c0  propos de moi";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(hr)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(hr)::before {
+  content: "O meni";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(it)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(it)::before {
+  content: "Chi sono";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(lt)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(lt)::before {
+  content: "Apie mane";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(hu)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(hu)::before {
+  content: "Bemutatkoz\e1s";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(nl)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(nl)::before {
+  content: "Over mij";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(no)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(no)::before {
+  content: "Om meg";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(pl)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(pl)::before {
+  content: "O mnie";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(pt-BR)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(pt-BR)::before {
+  content: "Sobre mim";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(ro)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(ro)::before {
+  content: "Despre mine";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(fi)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(fi)::before {
+  content: "Tietoja minusta";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(sv-SE)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(sv-SE)::before {
+  content: "Om mig";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(vi)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(vi)::before {
+  content: "Gi\1edbi thi\1ec7u v\1ec1  t\f4i";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(tr)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(tr)::before {
+  content: "Hakk\131mda";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(cs)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(cs)::before {
+  content: "\10clenem od";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(el)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(el)::before {
+  content: "\3a3\3c7\3b5\3c4\3b9\3ba\3ac  \3bc\3b5  \3b5\3bc\3ad\3bd\3b1";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(bg)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(bg)::before {
+  content: "\417\430  \43c\435\43d";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(ru)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(ru)::before {
+  content: "\41e\431\43e  \43c\43d\435";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(uk)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(uk)::before {
+  content: "\41f\440\43e  \43c\435\43d\435";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(hi)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(hi)::before {
+  content: "\92e\947\930\947  \92c\93e\930\947  \92e\947\902";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(th)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(th)::before {
+  content: "\e40\e01\e35\e48\e22\e27\e01\e31\e1a\e09\e31\e19";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(zh-CN)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(zh-CN)::before {
+  content: "\81ea\6211\4ecb\7ecd";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(ja)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(ja)::before {
+  content: "\81ea\5df1\7d39\4ecb";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(zh-TW)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(zh-TW)::before {
+  content: "\95dc\65bc\6211";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [class^=descriptionClamp]):lang(ko)::before,
+div > [class^=userProfileModalInner] [class^=scroller] > [class^=markup]:lang(ko)::before {
+  content: "\b0b4  \c18c\ac1c";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(da)::before {
+  content: "Roller";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(de)::before {
+  content: "Rollen";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(en-US)::before {
+  content: "Roles";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(en-GB)::before {
+  content: "Roles";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(es-ES)::before {
+  content: "Roles";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(es-419)::before {
+  content: "Roles";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(fr)::before {
+  content: "R\f4les";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(hr)::before {
+  content: "Uloge";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(it)::before {
+  content: "Ruoli";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(lt)::before {
+  content: "Vaidmenys";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(hu)::before {
+  content: "Rang";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(nl)::before {
+  content: "Rollen";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(no)::before {
+  content: "Roller";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(pl)::before {
+  content: "Role";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(pt-BR)::before {
+  content: "Cargos";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(ro)::before {
+  content: "Roluri";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(fi)::before {
+  content: "Roolit";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(sv-SE)::before {
+  content: "Roller";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(vi)::before {
+  content: "Vai tr\f2";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(tr)::before {
+  content: "Roller";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(cs)::before {
+  content: "Rol\ed";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(el)::before {
+  content: "\3a1\3cc\3bb\3bf\3b9";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(bg)::before {
+  content: "\420\43e\43b\438";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(ru)::before {
+  content: "\420\43e\43b\438";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(uk)::before {
+  content: "\420\43e\43b\456";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(hi)::before {
+  content: "\930\94b\932";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(th)::before {
+  content: "\e15\e33\e41\e2b\e19\e48\e07";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(zh-CN)::before {
+  content: "\8eab\4efd\7ec4";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(ja)::before {
+  content: "\30ed\30fc\30eb";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(zh-TW)::before {
+  content: "\8eab\5206\7d44";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div:has(> [data-list-id^=roles-]):not(:has([data-text-variant=eyebrow])):lang(ko)::before {
+  content: "\c5ed\d560";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(da)::before {
+  content: "F\e6lles";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(de)::before {
+  content: "Freunde";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(en-US)::before {
+  content: "Mutuals";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(en-GB)::before {
+  content: "Mutuals";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(es-ES)::before {
+  content: "En com\fan";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(es-419)::before {
+  content: "Amigos en com\fan";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(fr)::before {
+  content: "En commun";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(hr)::before {
+  content: "Zajedni\10dki";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(it)::before {
+  content: "In comune";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(lt)::before {
+  content: "Bendri";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(hu)::before {
+  content: "K\f6z\f6sek";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(nl)::before {
+  content: "Gemeenschappelijk";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(no)::before {
+  content: "Felles";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(pl)::before {
+  content: "Wsp\f3lne";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(pt-BR)::before {
+  content: "En Comun";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(ro)::before {
+  content: "\cen comun";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(fi)::before {
+  content: "Yhteiset";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(sv-SE)::before {
+  content: "Gemensamma";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(vi)::before {
+  content: "B\1ea1n v\e0  m\e1y ch\1ee7  chung";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(tr)::before {
+  content: "Ortak arkada\15flar ve sunucular";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(cs)::before {
+  content: "Spole\10dn\e9";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(el)::before {
+  content: "\39a\3bf\3b9\3bd\3bf\3af";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(bg)::before {
+  content: "\41e\431\449\438  \43d\435\449\430";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(ru)::before {
+  content: "\41e\431\449\438\435";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(uk)::before {
+  content: "\417\430\433\430\43b\44c\43d\456";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(hi)::before {
+  content: "\92e\94d\92f\941\91a\941\905\932\94d\938";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(th)::before {
+  content: "\e40\e1e\e37\e48\e2d\e19\e41\e25\e30\e40\e0b\e34\e23\e4c\e1f\e40\e27\e2d\e23\e4c\e17\e35\e48\e21\e35\e23\e48\e27\e21\e01\e31\e19";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(zh-CN)::before {
+  content: "\5171\540c\597d\53cb/\670d\52a1\5668";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(ja)::before {
+  content: "\5171\901a\306e\30d5\30ec\30f3\30c9";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(zh-TW)::before {
+  content: "\5171\540c\597d\53cb\6216\4f3a\670d\5668";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=mutuals_]:lang(ko)::before {
+  content: "\acf5\d1b5";
+  margin-bottom: 4px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(da)::before {
+  content: "Pr\f8v mine kommandoer";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(de)::before {
+  content: "\dc ber mich";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(en-US)::before {
+  content: "Try my commands";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(en-GB)::before {
+  content: "Try my commands";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(es-ES)::before {
+  content: "Probar mis comandos";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(es-419)::before {
+  content: "Probar mis comandos";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(fr)::before {
+  content: "Essaie mes commandes";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(hr)::before {
+  content: "Isprobaj moje naredbe";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(it)::before {
+  content: "Prova i miei comandi";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(lt)::before {
+  content: "I\161 bandyk mano komandas";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(hu)::before {
+  content: "Pr\f3 b\e1ld ki a parancsaimat";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(nl)::before {
+  content: "Probeer mijn opdrachten";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(no)::before {
+  content: "Pr\f8v kommandoene mine";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(pl)::before {
+  content: "Wypr\f3 buj moje komendy";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(pt-BR)::before {
+  content: "Experimente meus comandos";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(ro)::before {
+  content: "\cencearc\103  comenzile mele";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(fi)::before {
+  content: "Kokeile komentojani";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(sv-SE)::before {
+  content: "Testa mina kommandon";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(vi)::before {
+  content: "Th\1eed  c\e1 c l\1ec7nh c\1ee7 a t\f4i";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(tr)::before {
+  content: "Komutlar\131m\131  dene";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(cs)::before {
+  content: "Zkus moje p\159\edkazy";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(el)::before {
+  content: "\394\3bf\3ba\3af\3bc\3b1\3c3\3b5  \3c4\3b9\3c2  \3b5\3bd\3c4\3bf\3bb\3ad\3c2  \3bc\3bf\3c5";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(bg)::before {
+  content: "\418\437\43f\440\43e\431\432\430\43d\435  \43d\430  \43c\43e\438\442\435  \43a\43e\43c\430\43d\434\438";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(ru)::before {
+  content: "\41e\43f\440\43e\431\443\439\442\435  \43c\43e\438  \43a\43e\43c\430\43d\434\44b";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(uk)::before {
+  content: "\421\43f\440\43e\431\443\439\442\435  \43c\43e\457  \43a\43e\43c\430\43d\434\438";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(hi)::before {
+  content: "\92e\947\930\940  \915\92e\93e\902\921  \91f\94d\930\93e\92f  \915\930\947\902";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(th)::before {
+  content: "\e25\e2d\e07\e43\e0a\e49\e04\e33\e2a\e31\e48\e07\e02\e2d\e07\e09\e31\e19\e14\e39\e2a\e34";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(zh-CN)::before {
+  content: "\8bd5\8bd5\6211\7684\6307\4ee4";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(ja)::before {
+  content: "\30b3\30de\30f3\30c9\3092\8a66\3057\3066\307f\3066\306d\ff01";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(zh-TW)::before {
+  content: "\8a66\8a66\770b\6211\7684\6307\4ee4";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > section[class^=section] > ul[class^=list]:lang(ko)::before {
+  content: "\c81c  \ba85\b839\c5b4\b97c  \c0ac\c6a9\d574\bcf4\c138\c694";
+  margin-bottom: 6px;
+  width: 100%;
+  display: flex;
+  font-weight: 700;
+  color: var(--header-primary) !important;
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.3333;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+div > [class^=section]:has(> div > [data-list-id^=roles-]) > h1,
+div > [class^=section]:has(> [class^=list]) > h1 {
+  display: none;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=avatar] {
+  top: 16px;
+  left: 22px;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask rect {
+  width: 300px;
+  height: 52.94px;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask circle {
+  cx: 54.5;
+  cy: 49.5;
+  r: 40.59;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject {
+  height: 52.95px;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
+  height: 52.94px;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
+  content: unset;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) {
+  height: 106px;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=headerInner] > [class^=avatar] {
+  position: fixed;
+  top: 41px;
+  left: 22px;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask rect {
+  width: 600px;
+  height: 104.02px;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask circle {
+  cx: 82;
+  cy: 101;
+  r: 68;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject {
+  height: 105.01px;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
+  height: 105.01px;
+}
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
+  content: unset;
+}
+[class*=biteSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class*=biteSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask circle {
+  cx: 51.25;
+  cy: 46;
+}
+[class*=fullSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=headerInner] > [class^=avatar] {
+  top: 45px;
+  left: 26px;
+}
+[class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg mask circle {
+  cx: 54.5 !important;
+  cy: 102.5 !important;
+}
+[class*=fullSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}
+[class*=fullSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg mask circle {
+  cx: 88;
+  cy: 209;
+}
+[class*=userProfileOuterThemed] > [class*=userProfileInner] [data-list-id^=roles] [class*=pill],
+[class*=userProfileOuterThemed] > [class*=userProfileInner] [data-list-id^=roles] > div > button {
+  border: 1px solid var(--profile-role-pill-border-color) !important;
+}
+[class^=fullSizeOuter] {
+  max-height: 586px;
+}
+[class^=fullSizeOuter]:has([class*=fullSizeBannerPremium]) {
+  max-height: 692px;
+}
+[class^=fullSizeOuter][class*=userProfileOuterThemed] {
+  max-height: 594px;
+}
+[class^=fullSizeOuter][class*=userProfileOuterThemed]:has([class*=fullSizeBannerPremium]) {
+  max-height: 700px;
+}
+[class^=biteSizeOuter] > [class^=userProfileModalInner]:not(:has(> footer > [class^=channelTextArea], > [class^=body] > [class^=container] > [class^=tags] > [class^=container])) > header > [class^=bannerSVGWrapper] {
+  padding: 0 0 3px;
+}
+[class^=biteSizeOuter] > [class^=userProfileModalInner]:not(:has(> footer > [class^=channelTextArea], > [class^=body] > [class^=container] > [class^=tags] > [class^=container])) > header::before {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='transparent' class=''%3E%3C/circle%3E%3Cpath fill='%23f0b132' fill-rule='evenodd' d='M12 23a11 11 0 1 0 0-22 11 11 0 0 0 0 22Zm1.44-15.94L13.06 14a1.06 1.06 0 0 1-2.12 0l-.38-6.94a1 1 0 0 1 1-1.06h.88a1 1 0 0 1 1 1.06Zm-.19 10.69a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z' clip-rule='evenodd' class=''%3E%3C/path%3E%3C/svg%3E");
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+}
+[class^=biteSizeOuter] > [class^=userProfileModalInner]:not(:has(> footer > [class^=channelTextArea], > [class^=body] > [class^=container] > [class^=tags] > [class^=container])) > header::after {
+  content: "";
+  display: block;
+  position: absolute;
+  transform: translateY(-12px);
+  width: 308px;
+  height: 12px;
+  margin: 0 16px;
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+  background-color: var(--profile-body-background-color);
+}
+[class^=biteSizeOuter] > [class^=userProfileModalInner]:not(:has(> footer > [class^=channelTextArea], > [class^=body] > [class^=container] > [class^=tags] > [class^=container])) > [class^=body] > [class^=container] {
+  position: static;
+  margin: unset;
+  padding: unset;
+}
+[class^=biteSizeOuter] > [class^=userProfileModalInner]:not(:has(> footer > [class^=channelTextArea], > [class^=body] > [class^=container] > [class^=tags] > [class^=container])) > [class^=body] > [class^=container] > [class^=tags] > [class^=userTag] > [class^=username] {
+  display: none;
+}
+[class*=SizeOuter] > [class*=userProfileInner] > [class^=body] > [class^=container] {
+  gap: unset;
+}
+[class*=SizeOuter] > [class*=userProfileInner] > [class^=body] > [class^=container] > [class^=usernameRow] > h1 {
+  color: var(--interactive-active);
+  font-weight: 600;
+}
+div[id^=popout] > [data-popout-animating=false],
+[class^=accountProfilePopoutWrapper],
+[class^=customizationSection],
+[class^=previewContainer] > [class^=biteSizeOuter],
+[class^=previewsContainerInner] > [class^=biteSizeOuter],
+[class^=profileEffectPreviewsContainerInner] > [class^=biteSizeOuter],
+[class^=userProfilePreview] > [class^=biteSizeOuter] {
+  transform: translate(0) !important;
+}
+[class^=previewsContainerInner] > [class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:hover::after,
+[class^=profileEffectPreviewsContainerInner] > [class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:hover::after,
+[class^=previewContainer] > [class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:hover::after {
+  display: none;
+}
+[class^=customizationSection] [class*=userProfileInner] [class^=tags] > [class^=container] {
+  top: calc(40px + var(--banner-height)) !important;
+}
+[class^=customizationSection] [class*=userProfileInner] > [class^=body] > [class^=container] {
+  top: calc(56px + var(--banner-height) + var(--badge-container-height)) !important;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > footer,
+[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > footer {
+  visibility: hidden;
+  padding: unset !important;
+  margin: unset !important;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body],
+[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body] {
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  padding-bottom: 12px !important;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body]:not(:has(> div:nth-child(2) > *))::before,
+[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body]:not(:has(> div:nth-child(2) > *))::before {
+  display: none;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body]:not(:has(> div:nth-child(2) > *)),
+[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body]:not(:has(> div:nth-child(2) > *)) {
+  padding: unset !important;
+}
+[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body]:not(:has(> div:nth-child(2) > *)) > [class^=container],
+[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body]:not(:has(> div:nth-child(2) > *)) > [class^=container] {
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+}
+[class^=nicknameIcons] > div[aria-label]:not([class^=clickTarget]) {
+  position: fixed;
+  top: 8px;
+  right: 16px;
+}
+[class^=nicknameIcons] > div[aria-label]:not([class^=clickTarget]) > svg {
+  width: 20px;
+  height: 20px;
+}
+[class^=accountProfilePopoutWrapper] [class^=biteSizeOverlayBackground] > [class^=menu] [class*=layer] {
+  top: unset !important;
+  left: unset !important;
+  transform: translate(267px, -34px);
+  padding-left: 3px;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]) {
+  width: 28px;
+  height: 28px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  padding: unset !important;
+  background: hsl(var(--black-500-hsl)/0.3) !important;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: visible;
+  font-size: 0;
+  color: var(--white-500);
+  border-radius: var(--radius-round);
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]) > [class^=contents],
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]) > [class^=contents] > svg {
+  width: 18px;
+  height: 18px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  gap: unset;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover {
+  background: hsl(var(--black-500-hsl)/0.6) !important;
+  opacity: unset;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(da)::before {
+  content: "Rediger profil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(da)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(de)::before {
+  content: "Profil bearbeiten";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(de)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(en-US)::before {
+  content: "Edit Profile";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(en-US)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(en-GB)::before {
+  content: "Edit Profile";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(en-GB)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(es-ES)::before {
+  content: "Editar perfil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(es-ES)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(es-419)::before {
+  content: "Editar perfil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(es-419)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(fr)::before {
+  content: "Modifier le profil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(fr)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hr)::before {
+  content: "Uredi profil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hr)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(it)::before {
+  content: "Modifica profilo";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(it)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(lt)::before {
+  content: "Redaguoti profil\12f";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(lt)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hu)::before {
+  content: "Profil szerkeszt\e9se";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hu)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(nl)::before {
+  content: "Profiel bewerken";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(nl)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(no)::before {
+  content: "Rediger profil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(no)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(pl)::before {
+  content: "Edytuj profil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(pl)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(pt-BR)::before {
+  content: "Editar perfil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(pt-BR)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ro)::before {
+  content: "Editeaz\103  profilul";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ro)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(fi)::before {
+  content: "Muokkaa profiilia";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(fi)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(sv-SE)::before {
+  content: "Redigera profilen";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(sv-SE)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(vi)::before {
+  content: "S\1eed a H\1ed3  S\1a1";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(vi)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(tr)::before {
+  content: "Profili D\fczenle";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(tr)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(cs)::before {
+  content: "Upravit profil";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(cs)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(el)::before {
+  content: "\395\3c0\3b5\3be\3b5\3c1\3b3\3b1\3c3\3af\3b1  \3c0\3c1\3bf\3c6\3af\3bb";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(el)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(bg)::before {
+  content: "\420\435\434\430\43a\442\438\440\430\43d\435  \43d\430  \43f\440\43e\444\438\43b";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(bg)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ru)::before {
+  content: "\420\435\434\430\43a\442\438\440\43e\432\430\442\44c  \43f\440\43e\444\438\43b\44c";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ru)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(uk)::before {
+  content: "\420\435\434\430\433\443\432\430\442\438  \43f\440\43e\444\456\43b\44c";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(uk)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hi)::before {
+  content: "\92a\94d\930\94b\95e\93e\907\932  \90f\921\93f\91f  \915\930\947\902";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hi)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(th)::before {
+  content: "\e41\e01\e49\e44\e02\e42\e1b\e23\e44\e1f\e25\e4c";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(th)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(zh-CN)::before {
+  content: "\7f16\8f91\4e2a\4eba\8d44\6599";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(zh-CN)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ja)::before {
+  content: "\30d7\30ed\30d5\30a3\30fc\30eb\3092\7de8\96c6";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ja)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(zh-TW)::before {
+  content: "\7de8\8f2f\500b\4eba\8cc7\6599";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(zh-TW)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ko)::before {
+  content: "\d504\b85c\d544  \d3b8\c9d1";
+  font-size: 14px;
+  width: max-content;
+  position: fixed;
+  transform: translateY(-38px);
+  background-color: var(--background-floating);
+  box-shadow: var(--shadow-high);
+  color: var(--text-normal);
+  padding: 8px 12px;
+  border-radius: 5px;
+  pointer-events: none;
+}
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ko)::after {
+  content: "";
+  position: fixed;
+  border-top-color: var(--background-floating) !important;
+  border: 0 solid transparent;
+  border-width: 5px;
+  transform: translateY(-17px);
+  pointer-events: none;
+}
+[class^=userPopoutInner]:has(> footer > button > [class^=contents] > svg > [d^="m13.96 5.46 "]) > [class^=wrapper] {
+  right: 46px;
+}
+[class^=userPopoutInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M19 14a1 1 0"], > button > div > svg > path[d^="M12 10a4 4 0"], > button > div > svg > path[d^="M5.26 12.45c"], > button > div > svg > path[d^="M16 6a4 4 0 "]),
+[class^=userProfileModalInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M19 14a1 1 0"], > button > div > svg > path[d^="M12 10a4 4 0"], > button > div > svg > path[d^="M5.26 12.45c"], > button > div > svg > path[d^="M16 6a4 4 0 "]) {
+  display: none;
+}
+[class^=userPopoutInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M4 14a2 2 0 "]) {
+  display: none;
+}
+[class^=userPopoutInner] > [class^=wrapper],
+[class^=userProfileModalInner] > [class^=wrapper] {
+  gap: 6px;
+}
+[class^=userPopoutInner] > [class^=wrapper] > div > *,
+[class^=userProfileModalInner] > [class^=wrapper] > div > * {
+  width: 28px;
+  height: 28px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  padding: unset !important;
+  background: hsl(var(--black-500-hsl)/0.3) !important;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+[class^=userPopoutInner] > [class^=wrapper] > div > * > [class^=contents],
+[class^=userPopoutInner] > [class^=wrapper] > div > * > [class^=contents] > svg,
+[class^=userProfileModalInner] > [class^=wrapper] > div > * > [class^=contents],
+[class^=userProfileModalInner] > [class^=wrapper] > div > * > [class^=contents] > svg {
+  width: 18px;
+  height: 18px;
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+  gap: unset;
+}
+[class^=userPopoutInner] > [class^=wrapper] > div > *:hover,
+[class^=userProfileModalInner] > [class^=wrapper] > div > *:hover {
+  background: hsl(var(--black-500-hsl)/0.6) !important;
+  opacity: unset;
+}
+/*# sourceMappingURL=main.css.map */

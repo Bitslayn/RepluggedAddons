@@ -1,5 +1,5 @@
 // Fix static profiles
-[data-popout-animating="false"]:has(> div > [class^="biteSizeOuter"]),
+div[id^="popout"] > [data-popout-animating="false"],
 [class^="accountProfilePopoutWrapper"],
 [class^="customizationSection"],
 [class^="previewContainer"] > [class^="biteSizeOuter"],
@@ -33,9 +33,10 @@
 
 // Fix profiles with no body or footer
 [class*="biteSizeOuter"] > [class*="userProfileInner"] {
-  &:not(:has(> footer > *)),
-  &:has(footer > button [d^="m13.96 5.46 4.58 4.58a1"]):not(
-      footer > *:not(button [d^="m13.96 5.46 4.58 4.58a1"])
+  &:not(:has(> footer > *)), // Includes my profile static, Discord's profile, and deleted users
+  // My bitesize profile edit button
+  &:has(footer > button [d^="m13.96 5.46 "]):not(
+      footer > *:not(button [d^="m13.96 5.46 "])
     ) {
     > footer {
       visibility: hidden;
@@ -50,7 +51,25 @@
       &:not(:has(> div:nth-child(2) > *))::before {
         display: none;
       }
+      &:not(:has(> div:nth-child(2) > *)) {
+        padding: unset !important;
+        > [class^="container"] {
+          border-bottom-left-radius: var(--radius-sm);
+          border-bottom-right-radius: var(--radius-sm);
+        }
+      }
     }
+  }
+}
+
+// "Unable to load profile banner, badges, and about me." indicator
+[class^="nicknameIcons"] > div[aria-label]:not([class^="clickTarget"]) {
+  position: fixed;
+  top: 8px;
+  right: 16px;
+  > svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
