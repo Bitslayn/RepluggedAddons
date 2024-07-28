@@ -9,7 +9,7 @@
   --banner-offset: calc(120px - var(--banner-height));
   --badge-container-height: 22px;
 }
-[class*=userProfileOuter][class^=biteSizeOuter]:has(foreignObject > [style^=background-image]) {
+[class*=userProfileOuter][class^=biteSizeOuter]:has(foreignObject > [style*=background-image]) {
   --banner-height: 120px;
 }
 [class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div) {
@@ -26,7 +26,7 @@
   --banner-offset: calc(210px - var(--banner-height));
   --badge-container-height: 22px;
 }
-[class*=userProfileOuter][class^=fullSizeOuter]:has(foreignObject > [style^=background-image]) {
+[class*=userProfileOuter][class^=fullSizeOuter]:has(foreignObject > [style*=background-image]) {
   --banner-height: 210px;
 }
 [class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div) {
@@ -108,10 +108,10 @@
   padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
   display: block;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style^=background-image]) {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) {
   transform: scaleY(1.0084) translateY(1px);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style^=background-image]) mask circle {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) mask circle {
   cx: 51;
   cy: 99;
   r: 40.59;
@@ -2326,97 +2326,97 @@ div > [class^=section]:has(> div > [data-list-id^=roles-]) > h1,
 div > [class^=section]:has(> [class^=list]) > h1 {
   display: none;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=avatar] {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=avatar] {
   top: 16px;
   left: 22px;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] {
   min-width: unset !important;
   min-height: unset !important;
   max-width: unset !important;
   max-height: unset !important;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask rect {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] mask rect {
   width: 300px;
   height: 52.94px;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask circle {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] mask circle {
   cx: 54.5;
   cy: 49.5;
   r: 40.59;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] foreignObject {
   height: 52.95px;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
   height: 52.94px;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
+[class*=biteSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
   content: unset;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) {
   height: 106px;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=headerInner] > [class^=avatar] {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=headerInner] > [class^=avatar] {
   position: fixed;
   top: 41px;
   left: 22px;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] {
   min-width: unset !important;
   min-height: unset !important;
   max-width: unset !important;
   max-height: unset !important;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask rect {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] mask rect {
   width: 600px;
   height: 104.02px;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask circle {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] mask circle {
   cx: 82;
   cy: 101;
   r: 68;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] foreignObject {
   height: 105.01px;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner] {
   height: 105.01px;
 }
-[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
+[class*=fullSizeOuter] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] foreignObject > [class^=banner]::before {
   content: unset;
 }
-[class*=biteSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] {
+[class*=biteSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] {
   min-width: unset !important;
   min-height: unset !important;
   max-width: unset !important;
   max-height: unset !important;
 }
-[class*=biteSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=bannerSVGWrapper] mask circle {
+[class*=biteSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=bannerSVGWrapper] mask circle {
   cx: 51.25;
   cy: 46;
 }
-[class*=fullSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style^=background-image])) > [class^=headerInner] > [class^=avatar] {
+[class*=fullSizeOuter][class*=userProfileOuterThemed] > [class*=userProfileInner] > header:not(:has([style*=background-image])) > [class^=headerInner] > [class^=avatar] {
   top: 45px;
   left: 26px;
 }
-[class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg {
+[class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style*=background-image]) > svg {
   min-width: unset !important;
   min-height: unset !important;
   max-width: unset !important;
   max-height: unset !important;
 }
-[class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg mask circle {
+[class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style*=background-image]) > svg mask circle {
   cx: 54.5 !important;
   cy: 102.5 !important;
 }
-[class*=fullSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg {
+[class*=fullSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style*=background-image]) > svg {
   min-width: unset !important;
   min-height: unset !important;
   max-width: unset !important;
   max-height: unset !important;
 }
-[class*=fullSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style^=background-image]) > svg mask circle {
+[class*=fullSizeOuter]:not([class*=userProfileOuterThemed]) > [class*=userProfileInner] > header:has([style*=background-image]) > svg mask circle {
   cx: 88;
   cy: 209;
 }
