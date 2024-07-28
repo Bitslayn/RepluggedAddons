@@ -1,5 +1,5 @@
 // Fix static profiles
-div[id^="popout"] > [data-popout-animating="false"],
+div[id^="popout"] > [data-popout-animating="false"]:has(> div > [class^="biteSizeOuter"]), // Required :has() to fix "Invite to Server" context menu button
 [class^="accountProfilePopoutWrapper"],
 [class^="customizationSection"],
 [class^="previewContainer"] > [class^="biteSizeOuter"],
