@@ -33,6 +33,30 @@
       }
     }
 
+    // Sort order
+    > [class^="body"] {
+      // Guild tag
+      > [class^="clickable"] {
+        order: -1;
+      }
+      // About me
+      > div:not([class], [style]) {
+        order: 1;
+      }
+      // Mutuals
+      > [class^="mutuals"] {
+        order: 2;
+      }
+      // Activities
+      > [class^="activityBiteSizePopout"] {
+        order: 3;
+      }
+      // Roles
+      > div[style="position: relative;"] {
+        order: 4;
+      }
+    }
+
     // About Me
     > [class^="body"] > div > {
       [class^="descriptionClamp"] {
@@ -307,7 +331,7 @@
       &::after {
         display: none;
       }
-      > [class*="statusBubble"] {
+      > [class*="statusBubble_"] {
         min-width: unset;
         max-width: unset;
         padding: unset;
@@ -316,6 +340,7 @@
           text-align: start;
           -webkit-line-clamp: unset;
           max-height: unset !important;
+          overflow: unset;
           > [class*="statusText"] {
             font-weight: 400;
           }
