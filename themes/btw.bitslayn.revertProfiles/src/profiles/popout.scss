@@ -72,7 +72,7 @@
     }
 
     // Banner
-    > header {
+    > [class^="header"] {
       pointer-events: none;
       min-height: unset;
       z-index: unset;
@@ -101,7 +101,7 @@
     }
 
     // Avatar hover
-    > header > [class^="avatar"]:not(:has(> [class^="overlayIcon"])) {
+    > [class^="header"] > [class^="avatar"]:not(:has(> [class^="overlayIcon"])) {
       @each $lang, $string in lang.$view-profile {
         &:lang(#{$lang}):hover::after {
           content: $string;
@@ -148,7 +148,7 @@
         display: none;
       }
     }
-    > header > [class^="avatar"] [class*="overlay"]::after {
+    > [class^="header"] > [class^="avatar"] [class*="overlay"]::after {
       transition: opacity 0.1s ease;
       background-color: unset;
       border-radius: unset;
@@ -156,7 +156,7 @@
     }
 
     // Header
-    &:has([class^="pronounsTooltip"]) [class^="header"] {
+    &:has([class^="pronounsTooltip"]) > [class^="header"] {
       > [class^="bannerSVGWrapper"] {
         padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
       }

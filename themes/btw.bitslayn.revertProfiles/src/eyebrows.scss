@@ -18,7 +18,8 @@
   @include eyebrow-font;
 }
 
-[class^="activityBiteSizePopout"] > [class^="headerContainer"] > h1, /* Both these top two are for activity headers which use semibold instead of eyebrow */
+[class^="activityBiteSizePopout"] > [class^="headerContainer"] > h1, /* These top three are for activity headers which use semibold instead of eyebrow */
+[class^="activityBiteSizePopout"] > [class^="headerContainer"] > h2,
 [class^="activitySimplifiedProfile"] > [class^="headerContainer"] > h1,
 [class^="userProfileModalInner"] [class^="section"] > h1, /* For headers in the full profile which use semibold instead of eyebrow */
 [class^="userPanelInner"] [class^="section"] > h2 /* For DM profile panels */ {

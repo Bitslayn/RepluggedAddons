@@ -5,7 +5,8 @@ div[id^="popout"] > [data-popout-animating="false"],
 [class^="previewContainer"] > [class^="biteSizeOuter"],
 [class^="previewsContainerInner"] > [class^="biteSizeOuter"],
 [class^="profileEffectPreviewsContainerInner"] > [class^="biteSizeOuter"],
-[class^="userProfilePreview"] > [class^="biteSizeOuter"] {
+[class^="userProfilePreview"] > [class^="biteSizeOuter"],
+[class^="userPanelOuter"] {
   transform: translate(0) !important;
 }
 

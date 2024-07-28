@@ -38,6 +38,20 @@
 [class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(19)) {
   --badge-container-height: 72px;
 }
+[class*=userProfileOuter][class^=userPanelOuter] {
+  --banner-height: 125px;
+  --banner-offset: 0px;
+  --badge-container-height: 22px;
+}
+[class*=userProfileOuter][class^=userPanelOuter]:has([class^=tags] > [class^=container] > div) {
+  --badge-container-height: 30px;
+}
+[class*=userProfileOuter][class^=userPanelOuter]:has([class^=tags] > [class^=container] > div:nth-child(9)) {
+  --badge-container-height: 54px;
+}
+[class*=userProfileOuter][class^=userPanelOuter]:has([class^=tags] > [class^=container] > div:nth-child(17)) {
+  --badge-container-height: 78px;
+}
 [class*=userProfileOuter][class*=userProfileOuterThemed] {
   --edge-padding: 4px;
 }
@@ -94,127 +108,127 @@
   max-height: 22px;
   box-sizing: border-box;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] {
   pointer-events: none;
   min-height: unset;
   z-index: unset;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar] {
   pointer-events: initial;
   top: 76px;
   left: 22px;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=bannerSVGWrapper] {
   padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
   display: block;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) {
   transform: scaleY(1.0084) translateY(1px);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) mask circle {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) mask circle {
   cx: 51;
   cy: 99;
   r: 40.59;
   transform: scaleY(0.9916);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header [class^=clickable] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] [class^=clickable] {
   pointer-events: initial;
   transform: scaleY(1.0084);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(da):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(da):hover::after {
   content: "Se profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(de):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(de):hover::after {
   content: "Profil ansehen";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-US):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-US):hover::after {
   content: "View Profile";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-GB):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-GB):hover::after {
   content: "View Profile";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-ES):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-ES):hover::after {
   content: "Ver perfil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-419):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-419):hover::after {
   content: "Ver perfil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fr):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fr):hover::after {
   content: "Voir le profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hr):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hr):hover::after {
   content: "Prika\17ei profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(it):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(it):hover::after {
   content: "Mostra profilo";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(lt):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(lt):hover::after {
   content: "Per\17ei\16br\117ti Profil\12f";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hu):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hu):hover::after {
   content: "Profil megtekint\e9se";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(nl):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(nl):hover::after {
   content: "Profiel bekijken";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(no):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(no):hover::after {
   content: "Vis profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pl):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pl):hover::after {
   content: "Zobacz profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pt-BR):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pt-BR):hover::after {
   content: "Ver perfil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ro):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ro):hover::after {
   content: "Vezi profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fi):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fi):hover::after {
   content: "N\e4yt\e4  profiili";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(sv-SE):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(sv-SE):hover::after {
   content: "Visa profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(vi):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(vi):hover::after {
   content: "Xem H\1ed3  S\1a1";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(tr):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(tr):hover::after {
   content: "Profili G\f6r\fcnt\fcle";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(cs):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(cs):hover::after {
   content: "Zobrazit profil";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(el):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(el):hover::after {
   content: "\3a0\3c1\3bf\3b2\3bf\3bb\3ae  \3c0\3c1\3bf\3c6\3af\3bb";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(bg):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(bg):hover::after {
   content: "\41f\440\435\433\43b\435\434  \43d\430  \43f\440\43e\444\438\43b";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ru):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ru):hover::after {
   content: "\41f\440\43e\444\438\43b\44c";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(uk):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(uk):hover::after {
   content: "\41f\440\43e\444\456\43b\44c";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hi):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hi):hover::after {
   content: "\92a\94d\930\94b\92b\93c\93e\907\932  \926\947\916\947\902";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(th):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(th):hover::after {
   content: "\e14\e39\e42\e1b\e23\e44\e1f\e25\e4c";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-CN):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-CN):hover::after {
   content: "\67e5\770b\4e2a\4eba\8d44\6599";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ja):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ja):hover::after {
   content: "\30d7\30ed\30d5\30a3\30fc\30eb\8868\793a";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-TW):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-TW):hover::after {
   content: "\6aa2\8996\500b\4eba\6a94\6848";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ko):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ko):hover::after {
   content: "\d504\b85c\d544  \bcf4\ae30";
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):hover::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):hover::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -236,29 +250,29 @@
   opacity: 1;
   mask-image: url(#svg-mask-avatar-default);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
   mask-image: url(#svg-mask-avatar-status-round-80);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
   mask-image: url(#svg-mask-avatar-status-mobile-80);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon]))::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon]))::after {
   transition: opacity 0.1s ease;
   background-color: unset;
   opacity: 0;
   transform: scale(1.0084);
   pointer-events: none;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])) [class*=overlay]::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar]:not(:has(> [class^=overlayIcon])) [class*=overlay]::after {
   display: none;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar] [class*=overlay]::after {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=avatar] [class*=overlay]::after {
   transition: opacity 0.1s ease;
   background-color: unset;
   border-radius: unset;
   box-shadow: inset 0 0 120px hsl(var(--black-500-hsl)/0.75);
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner]:has([class^=pronounsTooltip]) [class^=header] > [class^=bannerSVGWrapper] {
+[class^=biteSizeOuter] > [class^=userPopoutInner]:has([class^=pronounsTooltip]) > [class^=header] > [class^=bannerSVGWrapper] {
   padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])) > header > [class^=bannerSVGWrapper] {
@@ -667,11 +681,7 @@
 [class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] [class^=scroller]::-webkit-scrollbar-track {
   margin-bottom: 4px;
 }
-[class^=userPanelOuter] {
-  width: 340px;
-  box-sizing: unset;
-}
-[class^=userPanelOuter] > [class^=userPanelInner] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div {
   gap: unset;
   padding: unset;
   background:
@@ -680,167 +690,129 @@
       var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
       var(--profile-gradient-end));
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body]::-webkit-scrollbar {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body]::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body]::-webkit-scrollbar-thumb {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body]::-webkit-scrollbar-thumb {
   background-clip: padding-box;
   border: 2px solid transparent;
   border-radius: 4px;
   background-color: var(--profile-body-divider-color);
   min-height: 40px;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body]::-webkit-scrollbar-track {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body]::-webkit-scrollbar-track {
   margin-bottom: 4px;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body] > div > [class^=descriptionClamp] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] > div > [class^=descriptionClamp] {
   -webkit-line-clamp: unset;
   overflow: hidden;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body] > div > [class^=viewFullBio] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] > div > [class^=viewFullBio] {
   display: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=activityBiteSizePopout] {
-  padding: unset;
-  background: transparent !important;
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=activityBiteSizePopout] {
+  padding: 12px;
+  order: 1;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=activityBiteSizePopout] > img {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=activityBiteSizePopout] > img {
   width: 24px;
   height: 24px;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=channelTextArea] > [class^=inner] {
-  background-color: transparent;
-  border: 1px solid var(--profile-message-input-border-color);
-}
-[class^=userPanelOuter] > [class^=userPanelInner] [data-list-id^=roles] [class*=pill],
-[class^=userPanelOuter] > [class^=userPanelInner] [data-list-id^=roles] > div > button {
-  background-color: var(--profile-role-pill-background-color);
-  border: unset;
-  max-height: 22px;
-  box-sizing: border-box;
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header {
-  pointer-events: none;
-  min-height: unset;
-  z-index: unset;
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar] {
-  pointer-events: initial;
-  top: 76px;
-  left: 22px;
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
-  display: block;
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) {
-  transform: scaleY(1.0084) translateY(1px);
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) mask circle {
-  cx: 51;
-  cy: 99;
-  r: 40.59;
-  transform: scaleY(0.9916);
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header [class^=clickable] {
-  pointer-events: initial;
-  transform: scaleY(1.0084);
-}
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(da):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(da):hover::after {
   content: "Se profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(de):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(de):hover::after {
   content: "Profil ansehen";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-US):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-US):hover::after {
   content: "View Profile";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-GB):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(en-GB):hover::after {
   content: "View Profile";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-ES):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-ES):hover::after {
   content: "Ver perfil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-419):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(es-419):hover::after {
   content: "Ver perfil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fr):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fr):hover::after {
   content: "Voir le profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hr):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hr):hover::after {
   content: "Prika\17ei profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(it):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(it):hover::after {
   content: "Mostra profilo";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(lt):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(lt):hover::after {
   content: "Per\17ei\16br\117ti Profil\12f";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hu):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hu):hover::after {
   content: "Profil megtekint\e9se";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(nl):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(nl):hover::after {
   content: "Profiel bekijken";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(no):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(no):hover::after {
   content: "Vis profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pl):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pl):hover::after {
   content: "Zobacz profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pt-BR):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(pt-BR):hover::after {
   content: "Ver perfil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ro):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ro):hover::after {
   content: "Vezi profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fi):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(fi):hover::after {
   content: "N\e4yt\e4  profiili";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(sv-SE):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(sv-SE):hover::after {
   content: "Visa profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(vi):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(vi):hover::after {
   content: "Xem H\1ed3  S\1a1";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(tr):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(tr):hover::after {
   content: "Profili G\f6r\fcnt\fcle";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(cs):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(cs):hover::after {
   content: "Zobrazit profil";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(el):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(el):hover::after {
   content: "\3a0\3c1\3bf\3b2\3bf\3bb\3ae  \3c0\3c1\3bf\3c6\3af\3bb";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(bg):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(bg):hover::after {
   content: "\41f\440\435\433\43b\435\434  \43d\430  \43f\440\43e\444\438\43b";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ru):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ru):hover::after {
   content: "\41f\440\43e\444\438\43b\44c";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(uk):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(uk):hover::after {
   content: "\41f\440\43e\444\456\43b\44c";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hi):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(hi):hover::after {
   content: "\92a\94d\930\94b\92b\93c\93e\907\932  \926\947\916\947\902";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(th):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(th):hover::after {
   content: "\e14\e39\e42\e1b\e23\e44\e1f\e25\e4c";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-CN):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-CN):hover::after {
   content: "\67e5\770b\4e2a\4eba\8d44\6599";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ja):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ja):hover::after {
   content: "\30d7\30ed\30d5\30a3\30fc\30eb\8868\793a";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-TW):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(zh-TW):hover::after {
   content: "\6aa2\8996\500b\4eba\6a94\6848";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ko):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):lang(ko):hover::after {
   content: "\d504\b85c\d544  \bcf4\ae30";
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):hover::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):hover::after {
   position: absolute;
   top: 0;
   right: 0;
@@ -862,83 +834,91 @@
   opacity: 1;
   mask-image: url(#svg-mask-avatar-default);
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
   mask-image: url(#svg-mask-avatar-status-round-80);
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])):has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
   mask-image: url(#svg-mask-avatar-status-mobile-80);
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon]))::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon]))::after {
   transition: opacity 0.1s ease;
   background-color: unset;
   opacity: 0;
   transform: scale(1.0084);
   pointer-events: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar]:not(:has(> [class^=overlayIcon])) [class*=overlay]::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > header > [class^=avatar]:not(:has(> [class^=overlayIcon])) [class*=overlay]::after {
   display: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > header > [class^=avatar] [class*=overlay]::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=header] > [class^=avatar] [class*=overlay]::after {
   transition: opacity 0.1s ease;
   background-color: unset;
   border-radius: unset;
   box-shadow: inset 0 0 120px hsl(var(--black-500-hsl)/0.75);
 }
-[class^=userPanelOuter] > [class^=userPanelInner]:has([class^=pronounsTooltip]) [class^=header] > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=header] {
+  margin-bottom: unset;
 }
-[class^=userPanelOuter] > [class^=userPanelInner]:not(:has([class^=statusBubbleOuter])) > header > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(95px + var(--badge-container-height) - var(--banner-offset));
+[class^=userPanelOuter] > [class^=userPanelInner] > div:has([class^=pronounsTooltip]) > [class^=header] > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(104px + var(--badge-container-height) - var(--banner-offset));
 }
-[class^=userPanelOuter] > [class^=userPanelInner]:not(:has([class^=statusBubbleOuter])):has([class^=pronounsTooltip]) > header > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(115px + var(--badge-container-height) - var(--banner-offset));
+[class^=userPanelOuter] > [class^=userPanelInner] > div:not(:has([class^=statusBubbleOuter])) > header > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(96px + var(--badge-container-height) - var(--banner-offset));
 }
-[class^=userPanelOuter] > [class^=userPanelInner]:not(:has([class^=statusBubbleOuter])) > [class^=body] > [class^=container] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div:not(:has([class^=statusBubbleOuter])):has([class^=pronounsTooltip]) > header > [class^=bannerSVGWrapper] {
+  padding: 0 0 calc(116px + var(--badge-container-height) - var(--banner-offset));
+}
+[class^=userPanelOuter] > [class^=userPanelInner] > div:not(:has([class^=statusBubbleOuter])) > [class^=body] > [class^=container] {
   padding: 12px;
+  z-index: 2;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] {
   gap: 12px;
   margin: 0 16px 0;
-  padding: 13px 12px 12px 12px !important;
-  background-color: var(--profile-body-background-color);
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body] > [class^=biteSizeOverlayBackground] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] > [class^=biteSizeOverlayBackground] {
   display: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body]::before {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body]::before {
   content: "";
   display: block;
-  margin: -1px calc(28px + var(--edge-padding) / 2) 0;
+  margin: -1px 28px 0;
   min-height: 1px;
   background-color: var(--profile-body-divider-color);
   position: fixed;
   width: -webkit-fill-available;
   left: 0px;
-  transform: translateY(-12px);
+  z-index: 3;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body] > [class^=container] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] > [class^=overlayBackground] {
+  border-top-right-radius: unset;
+  border-top-left-radius: unset;
+}
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] > [class^=container] {
   position: fixed;
-  top: calc(28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
+  top: calc(28px + var(--banner-height) + var(--badge-container-height));
   left: 0px;
-  margin: 0 calc(16px + var(--edge-padding)) 0;
+  margin: 0 16px 0;
   padding: 12px 12px 0;
   border-top-left-radius: var(--radius-sm);
   border-top-right-radius: var(--radius-sm);
   background-color: var(--profile-body-background-color);
   width: -webkit-fill-available;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=body] > [class^=container] > [class^=usernameRow] > [class^=clickableUsername] > h1 {
+[class^=userPanelOuter] > [class^=userPanelInner] > div > [class^=body] > [class^=container] > [class^=usernameRow] > [class^=clickableUsername] > h1 {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   word-break: break-all;
   display: -webkit-box;
   font-weight: 600;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > div:is([class^=container]) {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > div:is([class^=container]) {
   position: fixed;
   justify-content: flex-end;
-  right: calc(16px + var(--edge-padding));
-  top: calc(12px + var(--banner-height) + var(--edge-padding));
+  right: 16px;
+  top: calc(12px + var(--banner-height));
   margin: unset;
   border: unset;
   border-radius: 8px;
@@ -947,16 +927,16 @@
   padding: 4px;
   background-color: var(--profile-body-background-color);
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > div:is([class^=container]) div > a > img,
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > div:is([class^=container]) div > a > div {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > div:is([class^=container]) div > a > img,
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > div:is([class^=container]) div > a > div {
   width: 22px;
   height: 22px;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > div:is([class^=container]) + div {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > div:is([class^=container]) + div {
   position: fixed;
   justify-content: flex-end;
-  right: calc(112px + var(--edge-padding));
-  top: calc(36px + var(--banner-height) + var(--edge-padding));
+  right: 112px;
+  top: calc(36px + var(--banner-height));
   margin: unset;
   border: unset;
   border-radius: 8px;
@@ -965,37 +945,30 @@
   padding: 4px;
   background-color: transparent;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > div:is([class^=container]) + div div > a > img,
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > div:is([class^=container]) + div div > a > div {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > div:is([class^=container]) + div div > a > img,
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > div:is([class^=container]) + div div > a > div {
   width: 22px;
   height: 22px;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > [class^=clickableUsername],
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > [class*=userTag] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > [class^=clickableUsername],
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > [class*=userTag] {
   width: 100%;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > [class^=clickableUsername] > [class^=info],
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > [class*=userTag] > [class^=info] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > [class^=clickableUsername] > [class^=info],
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > [class*=userTag] > [class^=info] {
   font-weight: 500;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=tags] > [class^=dotSpacer] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=tags] > [class^=dotSpacer] {
   display: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] > [class^=footer] {
-  margin: 0 16px 16px;
-  padding: 0 12px 12px;
-  background-color: var(--profile-body-background-color);
-  border-bottom-left-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
-}
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=invisibleContainer] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=invisibleContainer] {
   display: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=visibleContainer] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=visibleContainer] {
   position: unset;
   pointer-events: initial;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter] {
   border: unset !important;
   background: var(--profile-body-background-color);
   box-shadow: none;
@@ -1004,25 +977,25 @@
   border-radius: unset;
   max-width: unset;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter]::before,
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter]::after {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter]::before,
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter]::after {
   display: none;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter] > [class*=statusBubble] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter] > [class*=statusBubble] {
   min-width: unset;
   max-width: unset;
   padding: unset;
   background: transparent;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] {
   text-align: start;
   -webkit-line-clamp: unset;
   max-height: unset !important;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusText] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusText] {
   font-weight: 400;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusEmojiOnly] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusEmojiOnly] {
   user-select: none;
   cursor: initial;
   width: 48px;
@@ -1032,13 +1005,17 @@
   max-width: unset !important;
   max-height: unset !important;
 }
-[class^=userPanelOuter] > [class^=userPanelInner] [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusEmojiInline] {
+[class^=userPanelOuter] > [class^=userPanelInner] > div [class^=statusBubbleOuter] > [class*=statusBubble] > [class^=content] > [class*=statusEmojiInline] {
   user-select: none;
   cursor: initial;
   margin: -1px 4px -1px 0;
   object-fit: contain;
 }
+[class^=userPanelOuter] > [class^=userPanelInner] > footer {
+  display: none;
+}
 [class^=activityBiteSizePopout] > [class^=headerContainer] > h1,
+[class^=activityBiteSizePopout] > [class^=headerContainer] > h2,
 [class^=activitySimplifiedProfile] > [class^=headerContainer] > h1,
 [class^=userProfileModalInner] [class^=section] > h1,
 [class^=userPanelInner] [class^=section] > h2 {
@@ -1662,7 +1639,8 @@ div[id^=popout] > [data-popout-animating=false],
 [class^=previewContainer] > [class^=biteSizeOuter],
 [class^=previewsContainerInner] > [class^=biteSizeOuter],
 [class^=profileEffectPreviewsContainerInner] > [class^=biteSizeOuter],
-[class^=userProfilePreview] > [class^=biteSizeOuter] {
+[class^=userProfilePreview] > [class^=biteSizeOuter],
+[class^=userPanelOuter] {
   transform: translate(0) !important;
 }
 [class^=previewsContainerInner] > [class^=biteSizeOuter] > [class^=userPopoutInner] > header > [class^=avatar]:hover::after,
@@ -1752,98 +1730,98 @@ div[id^=popout] > [data-popout-animating=false],
   background: hsl(var(--black-500-hsl)/0.6) !important;
   opacity: unset;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(da) {
-  content: "Rediger profil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(da)::before {
+  content: "Rediger profil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(de) {
-  content: "Profil bearbeiten";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(de)::before {
+  content: "Profil bearbeiten" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(en-US) {
-  content: "Edit Profile";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(en-US)::before {
+  content: "Edit Profile" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(en-GB) {
-  content: "Edit Profile";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(en-GB)::before {
+  content: "Edit Profile" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(es-ES) {
-  content: "Editar perfil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(es-ES)::before {
+  content: "Editar perfil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(es-419) {
-  content: "Editar perfil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(es-419)::before {
+  content: "Editar perfil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(fr) {
-  content: "Modifier le profil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(fr)::before {
+  content: "Modifier le profil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(hr) {
-  content: "Uredi profil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hr)::before {
+  content: "Uredi profil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(it) {
-  content: "Modifica profilo";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(it)::before {
+  content: "Modifica profilo" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(lt) {
-  content: "Redaguoti profil\12f";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(lt)::before {
+  content: "Redaguoti profil\12f" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(hu) {
-  content: "Profil szerkeszt\e9se";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hu)::before {
+  content: "Profil szerkeszt\e9se" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(nl) {
-  content: "Profiel bewerken";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(nl)::before {
+  content: "Profiel bewerken" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(no) {
-  content: "Rediger profil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(no)::before {
+  content: "Rediger profil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(pl) {
-  content: "Edytuj profil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(pl)::before {
+  content: "Edytuj profil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(pt-BR) {
-  content: "Editar perfil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(pt-BR)::before {
+  content: "Editar perfil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(ro) {
-  content: "Editeaz\103  profilul";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ro)::before {
+  content: "Editeaz\103  profilul" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(fi) {
-  content: "Muokkaa profiilia";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(fi)::before {
+  content: "Muokkaa profiilia" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(sv-SE) {
-  content: "Redigera profilen";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(sv-SE)::before {
+  content: "Redigera profilen" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(vi) {
-  content: "S\1eed a H\1ed3  S\1a1";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(vi)::before {
+  content: "S\1eed a H\1ed3  S\1a1" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(tr) {
-  content: "Profili D\fczenle";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(tr)::before {
+  content: "Profili D\fczenle" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(cs) {
-  content: "Upravit profil";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(cs)::before {
+  content: "Upravit profil" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(el) {
-  content: "\395\3c0\3b5\3be\3b5\3c1\3b3\3b1\3c3\3af\3b1  \3c0\3c1\3bf\3c6\3af\3bb";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(el)::before {
+  content: "\395\3c0\3b5\3be\3b5\3c1\3b3\3b1\3c3\3af\3b1  \3c0\3c1\3bf\3c6\3af\3bb" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(bg) {
-  content: "\420\435\434\430\43a\442\438\440\430\43d\435  \43d\430  \43f\440\43e\444\438\43b";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(bg)::before {
+  content: "\420\435\434\430\43a\442\438\440\430\43d\435  \43d\430  \43f\440\43e\444\438\43b" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(ru) {
-  content: "\420\435\434\430\43a\442\438\440\43e\432\430\442\44c  \43f\440\43e\444\438\43b\44c";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ru)::before {
+  content: "\420\435\434\430\43a\442\438\440\43e\432\430\442\44c  \43f\440\43e\444\438\43b\44c" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(uk) {
-  content: "\420\435\434\430\433\443\432\430\442\438  \43f\440\43e\444\456\43b\44c";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(uk)::before {
+  content: "\420\435\434\430\433\443\432\430\442\438  \43f\440\43e\444\456\43b\44c" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(hi) {
-  content: "\92a\94d\930\94b\95e\93e\907\932  \90f\921\93f\91f  \915\930\947\902";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(hi)::before {
+  content: "\92a\94d\930\94b\95e\93e\907\932  \90f\921\93f\91f  \915\930\947\902" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(th) {
-  content: "\e41\e01\e49\e44\e02\e42\e1b\e23\e44\e1f\e25\e4c";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(th)::before {
+  content: "\e41\e01\e49\e44\e02\e42\e1b\e23\e44\e1f\e25\e4c" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(zh-CN) {
-  content: "\7f16\8f91\4e2a\4eba\8d44\6599";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(zh-CN)::before {
+  content: "\7f16\8f91\4e2a\4eba\8d44\6599" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(ja) {
-  content: "\30d7\30ed\30d5\30a3\30fc\30eb\3092\7de8\96c6";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ja)::before {
+  content: "\30d7\30ed\30d5\30a3\30fc\30eb\3092\7de8\96c6" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(zh-TW) {
-  content: "\7de8\8f2f\500b\4eba\8cc7\6599";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(zh-TW)::before {
+  content: "\7de8\8f2f\500b\4eba\8cc7\6599" !important;
 }
-[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before:lang(ko) {
-  content: "\d504\b85c\d544  \d3b8\c9d1";
+[class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover:lang(ko)::before {
+  content: "\d504\b85c\d544  \d3b8\c9d1" !important;
 }
 [class^=userPopoutInner] > footer > button:has(> [class^=contents] > svg > [d^="m13.96 5.46 "]):hover::before {
   content: "";
@@ -1871,18 +1849,22 @@ div[id^=popout] > [data-popout-animating=false],
   right: 46px;
 }
 [class^=userPopoutInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M19 14a1 1 0"], > button > div > svg > path[d^="M12 10a4 4 0"], > button > div > svg > path[d^="M5.26 12.45c"], > button > div > svg > path[d^="M16 6a4 4 0 "]),
-[class^=userProfileModalInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M19 14a1 1 0"], > button > div > svg > path[d^="M12 10a4 4 0"], > button > div > svg > path[d^="M5.26 12.45c"], > button > div > svg > path[d^="M16 6a4 4 0 "]) {
+[class^=userProfileModalInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M19 14a1 1 0"], > button > div > svg > path[d^="M12 10a4 4 0"], > button > div > svg > path[d^="M5.26 12.45c"], > button > div > svg > path[d^="M16 6a4 4 0 "]),
+[class^=userPanelInner] > div > [class^=wrapper] > div:has(> button > div > svg > path[d^="M19 14a1 1 0"], > button > div > svg > path[d^="M12 10a4 4 0"], > button > div > svg > path[d^="M5.26 12.45c"], > button > div > svg > path[d^="M16 6a4 4 0 "]) {
   display: none;
 }
-[class^=userPopoutInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M4 14a2 2 0 "]) {
+[class^=userPopoutInner] > [class^=wrapper] > div:has(> button > div > svg > path[d^="M4 14a2 2 0 "]),
+[class^=userPanelInner] > div > [class^=wrapper] > div:has(> button > div > svg > path[d^="M4 14a2 2 0 "]) {
   display: none;
 }
 [class^=userPopoutInner] > [class^=wrapper],
-[class^=userProfileModalInner] > [class^=wrapper] {
+[class^=userProfileModalInner] > [class^=wrapper],
+[class^=userPanelInner] > div > [class^=wrapper] {
   gap: 6px;
 }
 [class^=userPopoutInner] > [class^=wrapper] > div > *,
-[class^=userProfileModalInner] > [class^=wrapper] > div > * {
+[class^=userProfileModalInner] > [class^=wrapper] > div > *,
+[class^=userPanelInner] > div > [class^=wrapper] > div > * {
   width: 28px;
   height: 28px;
   min-width: unset !important;
@@ -1899,7 +1881,9 @@ div[id^=popout] > [data-popout-animating=false],
 [class^=userPopoutInner] > [class^=wrapper] > div > * > [class^=contents],
 [class^=userPopoutInner] > [class^=wrapper] > div > * > [class^=contents] > svg,
 [class^=userProfileModalInner] > [class^=wrapper] > div > * > [class^=contents],
-[class^=userProfileModalInner] > [class^=wrapper] > div > * > [class^=contents] > svg {
+[class^=userProfileModalInner] > [class^=wrapper] > div > * > [class^=contents] > svg,
+[class^=userPanelInner] > div > [class^=wrapper] > div > * > [class^=contents],
+[class^=userPanelInner] > div > [class^=wrapper] > div > * > [class^=contents] > svg {
   width: 18px;
   height: 18px;
   min-width: unset !important;
@@ -1909,7 +1893,8 @@ div[id^=popout] > [data-popout-animating=false],
   gap: unset;
 }
 [class^=userPopoutInner] > [class^=wrapper] > div > *:hover,
-[class^=userProfileModalInner] > [class^=wrapper] > div > *:hover {
+[class^=userProfileModalInner] > [class^=wrapper] > div > *:hover,
+[class^=userPanelInner] > div > [class^=wrapper] > div > *:hover {
   background: hsl(var(--black-500-hsl)/0.6) !important;
   opacity: unset;
 }

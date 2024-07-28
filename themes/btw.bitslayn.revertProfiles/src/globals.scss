@@ -33,6 +33,20 @@
       --badge-container-height: 72px; // 3 rows
     }
   }
+  &[class^="userPanelOuter"] {
+    --banner-height: 125px;
+    --banner-offset: 0px;
+    --badge-container-height: 22px; // 0 rows (Minimal gap of 16px)
+    &:has([class^="tags"] > [class^="container"] > div) {
+      --badge-container-height: 30px; // 1 row
+    }
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(9)) {
+      --badge-container-height: 54px; // 2 rows
+    }
+    &:has([class^="tags"] > [class^="container"] > div:nth-child(17)) {
+      --badge-container-height: 78px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
+    }
+  }
   --edge-padding: 0px;
   &[class*="userProfileOuterThemed"] {
     --edge-padding: 4px;
