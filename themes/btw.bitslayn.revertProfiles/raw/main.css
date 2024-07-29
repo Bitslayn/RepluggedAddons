@@ -85,21 +85,25 @@
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=clickable] {
   order: -1;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div:not([class], [style]) {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=buttons] {
   order: 1;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=mutuals] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div:not([class], [style]) {
   order: 2;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=activityBiteSizePopout] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=mutuals] {
   order: 3;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div[style="position: relative;"] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=activityBiteSizePopout] {
   order: 4;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div[style="position: relative;"],
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] section {
+  order: 5;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div > [class^=descriptionClamp] {
   -webkit-line-clamp: unset;
-  overflow: hidden;
+  max-height: unset;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div > [class^=viewFullBio] {
   display: none;
