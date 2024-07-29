@@ -1,56 +1,60 @@
 @charset "UTF-8";
 
 /* themes/btw.bitslayn.revertProfiles/src/index.scss */
-[class*=userProfileOuter] {
-  --edge-padding: 0px;
-}
-[class*=userProfileOuter][class^=biteSizeOuter] {
+[class^=biteSizeOuter] {
   --banner-height: 60px;
   --banner-offset: calc(120px - var(--banner-height));
   --badge-container-height: 22px;
+  --guild-tag-offset: 0px;
 }
-[class*=userProfileOuter][class^=biteSizeOuter]:has(foreignObject > [style*=background-image]) {
+[class^=biteSizeOuter]:has(foreignObject > [style*=background-image]) {
   --banner-height: 120px;
 }
-[class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div) {
+[class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div) {
   --badge-container-height: 30px;
 }
-[class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(9)) {
+[class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(9)) {
   --badge-container-height: 54px;
 }
-[class*=userProfileOuter][class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(17)) {
+[class^=biteSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(17)) {
   --badge-container-height: 78px;
 }
-[class*=userProfileOuter][class^=fullSizeOuter] {
+[class^=biteSizeOuter]:has([class^=body] > span[class^=clickable]) {
+  --guild-tag-offset: 17px;
+}
+[class^=fullSizeOuter] {
   --banner-height: 105px;
   --banner-offset: calc(210px - var(--banner-height));
   --badge-container-height: 22px;
 }
-[class*=userProfileOuter][class^=fullSizeOuter]:has(foreignObject > [style*=background-image]) {
+[class^=fullSizeOuter]:has(foreignObject > [style*=background-image]) {
   --banner-height: 210px;
 }
-[class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div) {
+[class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div) {
   --badge-container-height: 28px;
 }
-[class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(10)) {
+[class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(10)) {
   --badge-container-height: 46px;
 }
-[class*=userProfileOuter][class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(19)) {
+[class^=fullSizeOuter]:has([class^=tags] > [class^=container] > div:nth-child(19)) {
   --badge-container-height: 72px;
 }
-[class*=userProfileOuter][class^=userPanelOuter] {
+[class^=userPanelOuter] {
   --banner-height: 125px;
   --banner-offset: 0px;
   --badge-container-height: 22px;
 }
-[class*=userProfileOuter][class^=userPanelOuter]:has([class^=tags] > [class^=container] > div) {
+[class^=userPanelOuter]:has([class^=tags] > [class^=container] > div) {
   --badge-container-height: 30px;
 }
-[class*=userProfileOuter][class^=userPanelOuter]:has([class^=tags] > [class^=container] > div:nth-child(9)) {
+[class^=userPanelOuter]:has([class^=tags] > [class^=container] > div:nth-child(9)) {
   --badge-container-height: 54px;
 }
-[class*=userProfileOuter][class^=userPanelOuter]:has([class^=tags] > [class^=container] > div:nth-child(17)) {
+[class^=userPanelOuter]:has([class^=tags] > [class^=container] > div:nth-child(17)) {
   --badge-container-height: 78px;
+}
+[class*=userProfileOuter] {
+  --edge-padding: 0px;
 }
 [class*=userProfileOuter][class*=userProfileOuterThemed] {
   --edge-padding: 4px;
@@ -101,6 +105,23 @@
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] section {
   order: 5;
 }
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=menus] {
+  order: 6;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > span[class^=clickable] {
+  transform: translateY(-38px);
+  position: fixed;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner]:has(> [class^=header] > div:not([class])):not(:has([class^=pronounsTooltip])) > [class^=body] > span[class^=clickable] {
+  transform: unset;
+  top: calc(86px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height));
+  position: fixed;
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner]:has(> [class^=header] > div:not([class])):has([class^=pronounsTooltip]) > [class^=body] > span[class^=clickable] {
+  transform: unset;
+  top: calc(107px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height));
+  position: fixed;
+}
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div > [class^=descriptionClamp] {
   -webkit-line-clamp: unset;
   max-height: unset;
@@ -138,7 +159,7 @@
   left: 22px;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
+  padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset));
   display: block;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=header] > [class^=bannerSVGWrapper]:has(foreignObject > [style*=background-image]) {
@@ -292,16 +313,16 @@
   box-shadow: inset 0 0 120px hsl(var(--black-500-hsl)/0.75);
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner]:has([class^=pronounsTooltip]) > [class^=header] > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+  padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset));
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])) > header > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(95px + var(--badge-container-height) - var(--banner-offset));
+  padding: 0 0 calc(95px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset));
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])):has([class^=pronounsTooltip]) > header > [class^=bannerSVGWrapper] {
-  padding: 0 0 calc(115px + var(--badge-container-height) - var(--banner-offset));
+  padding: 0 0 calc(115px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset));
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner]:not(:has([class^=statusBubbleOuter])) > [class^=body] > [class^=container] {
-  padding: 12px;
+  padding: 12px 12px calc(12px + var(--guild-tag-offset)) 12px;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] {
   gap: 12px;
@@ -328,7 +349,7 @@
   top: calc(28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
   left: 0px;
   margin: 0 calc(16px + var(--edge-padding)) 0;
-  padding: 12px 12px 0;
+  padding: 12px 12px calc(0px + var(--guild-tag-offset));
   border-top-left-radius: var(--radius-sm);
   border-top-right-radius: var(--radius-sm);
   background-color: var(--profile-body-background-color);

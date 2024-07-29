@@ -68,8 +68,22 @@
 
     // Guild tag
     > [class^="body"] > span[class^="clickable"] {
-      transform: translateY(-10px);
-      position: absolute;
+      transform: translateY(-38px);
+      position: fixed;
+    }
+    &:has(> [class^="header"] > div:not([class])):not(:has([class^="pronounsTooltip"]))
+      > [class^="body"]
+      > span[class^="clickable"] {
+      transform: unset;
+      top: calc(86px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height));
+      position: fixed;
+    }
+    &:has(> [class^="header"] > div:not([class])):has([class^="pronounsTooltip"])
+      > [class^="body"]
+      > span[class^="clickable"] {
+      transform: unset;
+      top: calc(107px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height));
+      position: fixed;
     }
 
     // About Me
@@ -121,7 +135,10 @@
         left: 22px;
       }
       > [class^="bannerSVGWrapper"] {
-        padding: 0 0 calc(83px + var(--badge-container-height) - var(--banner-offset));
+        padding: 0 0
+          calc(
+            83px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+          );
         display: block;
         &:has(foreignObject > [style*="background-image"]) {
           transform: scaleY(1.0084) translateY(1px);
@@ -197,19 +214,28 @@
     // Header
     &:has([class^="pronounsTooltip"]) > [class^="header"] {
       > [class^="bannerSVGWrapper"] {
-        padding: 0 0 calc(103px + var(--badge-container-height) - var(--banner-offset));
+        padding: 0 0
+          calc(
+            103px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+          );
       }
     }
 
     &:not(:has([class^="statusBubbleOuter"])) {
       > header > [class^="bannerSVGWrapper"] {
-        padding: 0 0 calc(95px + var(--badge-container-height) - var(--banner-offset));
+        padding: 0 0
+          calc(
+            95px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+          );
       }
       &:has([class^="pronounsTooltip"]) > header > [class^="bannerSVGWrapper"] {
-        padding: 0 0 calc(115px + var(--badge-container-height) - var(--banner-offset));
+        padding: 0 0
+          calc(
+            115px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+          );
       }
       > [class^="body"] > [class^="container"] {
-        padding: 12px;
+        padding: 12px 12px calc(12px + var(--guild-tag-offset)) 12px;
       }
     }
 
@@ -248,7 +274,7 @@
         );
         left: 0px;
         margin: 0 calc(16px + var(--edge-padding)) 0;
-        padding: 12px 12px 0;
+        padding: 12px 12px calc(0px + var(--guild-tag-offset));
         border-top-left-radius: var(--radius-sm);
         border-top-right-radius: var(--radius-sm);
         background-color: var(--profile-body-background-color);
