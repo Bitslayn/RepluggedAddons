@@ -39,21 +39,26 @@
       > [class^="clickable"] {
         order: -1;
       }
+      // Bot buttons
+      > [class^="buttons"] {
+        order: 1;
+      }
       // About me
       > div:not([class], [style]) {
-        order: 1;
+        order: 2;
       }
       // Mutuals
       > [class^="mutuals"] {
-        order: 2;
+        order: 3;
       }
       // Activities
       > [class^="activityBiteSizePopout"] {
-        order: 3;
-      }
-      // Roles
-      > div[style="position: relative;"] {
         order: 4;
+      }
+      // Try my commands & roles
+      > div[style="position: relative;"],
+      section {
+        order: 5;
       }
     }
 
@@ -61,7 +66,7 @@
     > [class^="body"] > div > {
       [class^="descriptionClamp"] {
         -webkit-line-clamp: unset;
-        overflow: hidden;
+        max-height: unset;
       }
       [class^="viewFullBio"] {
         display: none;
