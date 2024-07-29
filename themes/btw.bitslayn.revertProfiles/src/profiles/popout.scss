@@ -60,6 +60,16 @@
       section {
         order: 5;
       }
+      // My profile buttons
+      > [class^="menus"] {
+        order: 6;
+      }
+    }
+
+    // Guild tag
+    > [class^="body"] > span[class^="clickable"] {
+      transform: translateY(-10px);
+      position: absolute;
     }
 
     // About Me
