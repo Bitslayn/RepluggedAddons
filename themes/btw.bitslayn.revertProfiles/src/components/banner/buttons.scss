@@ -42,11 +42,11 @@
   > footer > button:has(> [class^="contents"] > svg > [d^="m13.96 5.46 "]) {
     @include fake-bubble-styles();
     &:hover {
-      @each $lang, $string in lang.$edit-profile {
-        &:lang(#{$lang})::before {
-          content: $string !important;
-        }
-      }
+      // @each $lang, $string in lang.$edit-profile {
+      //   &:lang(#{$lang})::before {
+      //     content: $string !important;
+      //   }
+      // }
       @include tooltip;
     }
   }

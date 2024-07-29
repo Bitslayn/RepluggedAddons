@@ -1,6 +1,6 @@
 @mixin tooltip {
   &::before {
-    content: "";
+    content: attr(aria-label);
     font-size: 14px;
     width: max-content;
     position: fixed;
