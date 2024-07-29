@@ -534,6 +534,7 @@
   position: fixed;
   left: 28px;
   top: 149px;
+  pointer-events: all;
 }
 [class^=fullSizeOuter] > [class^=userProfileModalInner] > header > [class^=headerInner] > div > [class^=invisibleContainer] {
   display: none;
