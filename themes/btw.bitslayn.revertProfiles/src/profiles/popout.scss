@@ -137,7 +137,7 @@
       > [class^="bannerSVGWrapper"] {
         padding: 0 0
           calc(
-            83px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+            83px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
           );
         display: block;
         &:has(foreignObject > [style*="background-image"]) {
@@ -216,7 +216,7 @@
       > [class^="bannerSVGWrapper"] {
         padding: 0 0
           calc(
-            103px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+            103px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
           );
       }
     }
@@ -225,17 +225,17 @@
       > header > [class^="bannerSVGWrapper"] {
         padding: 0 0
           calc(
-            95px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+            95px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
           );
       }
       &:has([class^="pronounsTooltip"]) > header > [class^="bannerSVGWrapper"] {
         padding: 0 0
           calc(
-            115px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-offset)
+            115px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
           );
       }
       > [class^="body"] > [class^="container"] {
-        padding: 12px 12px calc(12px + var(--guild-tag-offset)) 12px;
+        padding: 12px 12px calc(12px + var(--guild-tag-height)) 12px;
       }
     }
 
@@ -274,7 +274,7 @@
         );
         left: 0px;
         margin: 0 calc(16px + var(--edge-padding)) 0;
-        padding: 12px 12px calc(0px + var(--guild-tag-offset));
+        padding: 12px 12px calc(0px + var(--guild-tag-height));
         border-top-left-radius: var(--radius-sm);
         border-top-right-radius: var(--radius-sm);
         background-color: var(--profile-body-background-color);
@@ -359,11 +359,20 @@
     [class^="invisibleContainer"] {
       display: none;
     }
-    [class^="visibleContainer"] {
+    > header > div:not([class]) > [class^="visibleContainer"] {
       position: unset;
       pointer-events: initial;
       > [class^="popover"] {
-        // AAAAAAAAAAAA
+        position: fixed;
+        z-index: 2;
+        left: calc(23px + var(--edge-padding));
+        right: unset;
+        transform: translateY(
+          calc(
+            83px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height) +
+              var(--pronouns-height) + var(--guild-tag-height)
+          )
+        );
       }
     }
     [class^="statusBubbleOuter"] {
