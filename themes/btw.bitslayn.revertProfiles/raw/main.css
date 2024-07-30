@@ -327,7 +327,7 @@
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] {
   gap: 12px;
   margin: 0 16px 0;
-  padding: 13px 12px 12px 12px !important;
+  padding: 13px 12px 0 12px;
   background-color: var(--profile-body-background-color);
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=biteSizeOverlayBackground] {
@@ -409,12 +409,15 @@
 [class^=biteSizeOuter] > [class^=userPopoutInner] [class^=tags] > [class^=dotSpacer] {
   display: none;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=footer] {
+[class^=biteSizeOuter] > [class^=userPopoutInner] > footer {
   margin: 0 16px 16px;
-  padding: 0 12px 12px;
+  padding: 12px;
   background-color: var(--profile-body-background-color);
   border-bottom-left-radius: var(--radius-sm);
   border-bottom-right-radius: var(--radius-sm);
+}
+[class^=biteSizeOuter] > [class^=userPopoutInner] > footer:has(> button) {
+  padding-top: 0;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] [class^=invisibleContainer] {
   display: none;
@@ -1696,29 +1699,29 @@ div[id^=popout] > [data-popout-animating=false]:has(> div > [class^=biteSizeOute
 [class^=customizationSection] [class*=userProfileInner] > [class^=body] > [class^=container] {
   top: calc(56px + var(--banner-height) + var(--badge-container-height)) !important;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > footer,
-[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > footer {
+[aria-label=discord] [class*=biteSizeOuter] > [class*=userProfileInner] > footer,
+[aria-label="Deleted User"] [class*=biteSizeOuter] > [class*=userProfileInner] > footer {
   visibility: hidden;
   padding: unset !important;
   margin: unset !important;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body],
-[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body] {
-  border-bottom-left-radius: var(--radius-sm);
-  border-bottom-right-radius: var(--radius-sm);
+[aria-label=discord] [class*=biteSizeOuter] > [class*=userProfileInner] > [class^=body],
+[aria-label="Deleted User"] [class*=biteSizeOuter] > [class*=userProfileInner] > [class^=body] {
   margin-bottom: 16px;
-  padding-bottom: 12px !important;
-}
-[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body]:not(:has(> div:nth-child(2) > *))::before,
-[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body]:not(:has(> div:nth-child(2) > *))::before {
-  display: none;
-}
-[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body]:not(:has(> div:nth-child(2) > *)),
-[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body]:not(:has(> div:nth-child(2) > *)) {
   padding: unset !important;
 }
-[class*=biteSizeOuter] > [class*=userProfileInner]:not(:has(> footer > *)) > [class^=body]:not(:has(> div:nth-child(2) > *)) > [class^=container],
-[class*=biteSizeOuter] > [class*=userProfileInner]:has(footer > button [d^="m13.96 5.46 "]):not(footer > *:not(button [d^="m13.96 5.46 "])) > [class^=body]:not(:has(> div:nth-child(2) > *)) > [class^=container] {
+[aria-label=discord] [class*=biteSizeOuter] > [class*=userProfileInner] > [class^=body]::before,
+[aria-label="Deleted User"] [class*=biteSizeOuter] > [class*=userProfileInner] > [class^=body]::before {
+  display: none;
+}
+[aria-label=discord] [class*=biteSizeOuter] > [class*=userProfileInner] > [class^=body] > [class^=container],
+[aria-label="Deleted User"] [class*=biteSizeOuter] > [class*=userProfileInner] > [class^=body] > [class^=container] {
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+}
+[class^=userPopoutInner] > [class^=body]:not([class*=fade]) {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom-left-radius: var(--radius-sm);
   border-bottom-right-radius: var(--radius-sm);
 }

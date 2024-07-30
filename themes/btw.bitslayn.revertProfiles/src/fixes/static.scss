@@ -33,33 +33,35 @@ div[id^="popout"] > [data-popout-animating="false"]:has(> div > [class^="biteSiz
 }
 
 // Fix profiles with no body or footer
-[class*="biteSizeOuter"] > [class*="userProfileInner"] {
-  &:not(:has(> footer > *)), // Includes my profile static, Discord's profile, and deleted users
-  // My bitesize profile edit button
-  &:has(footer > button [d^="m13.96 5.46 "]):not(
-      footer > *:not(button [d^="m13.96 5.46 "])
-    ) {
+// Oddly enough, aria-label profile names are consistent across different languages
+[aria-label="discord"],
+[aria-label="Deleted User"] {
+  [class*="biteSizeOuter"] > [class*="userProfileInner"] {
     > footer {
       visibility: hidden;
       padding: unset !important;
       margin: unset !important;
     }
     > [class^="body"] {
-      border-bottom-left-radius: var(--radius-sm);
-      border-bottom-right-radius: var(--radius-sm);
       margin-bottom: 16px;
-      padding-bottom: 12px !important;
-      &:not(:has(> div:nth-child(2) > *))::before {
+      padding: unset !important;
+      &::before {
         display: none;
       }
-      &:not(:has(> div:nth-child(2) > *)) {
-        padding: unset !important;
-        > [class^="container"] {
-          border-bottom-left-radius: var(--radius-sm);
-          border-bottom-right-radius: var(--radius-sm);
-        }
+      > [class^="container"] {
+        border-bottom-left-radius: var(--radius-sm);
+        border-bottom-right-radius: var(--radius-sm);
       }
     }
+  }
+}
+// Your static profile
+[class^="userPopoutInner"] {
+  > [class^="body"]:not([class*="fade"]) {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
   }
 }
 
