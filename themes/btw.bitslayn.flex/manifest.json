@@ -1,0 +1,20 @@
+{
+  "id": "btw.bitslayn.flex",
+  "name": "Flex",
+  "description": "Makes Discord look like its old Android theme.",
+  "author": {
+    "name": "Bitslayn",
+    "discordID": "372268045927972864",
+    "github": "Bitslayn"
+  },
+  "version": "1.0.0",
+  "updater": {
+    "type": "store",
+    "id": "btw.bitslayn.flex"
+  },
+  "license": "MIT",
+  "type": "replugged-theme",
+  "main": "src/index.scss",
+  "source": "https://github.com/Bitslayn/RepluggedAddons/tree/main/themes/btw.bitslayn.flex",
+  "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.flex/images/thumb.png"
+}

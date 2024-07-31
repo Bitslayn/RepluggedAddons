@@ -1,24 +1,30 @@
-@mixin tooltip {
+@mixin tooltip($label, $offset) {
+  // Content
   &::before {
-    content: attr(aria-label);
-    font-size: 14px;
-    width: max-content;
+    content: $label;
     position: fixed;
-    transform: translateY(-38px);
+    font-size: 14px;
+    transform: translateY(calc($offset - 21px));
     background-color: var(--background-floating);
     box-shadow: var(--shadow-high);
     color: var(--text-normal);
     padding: 8px 12px;
     border-radius: 5px;
     pointer-events: none;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 190px;
+    word-wrap: break-word;
   }
+  // Pointer
   &::after {
     content: "";
     position: fixed;
-    border-top-color: var(--background-floating) !important;
-    border: 0 solid transparent;
-    border-width: 5px;
-    transform: translateY(-17px);
+    border-top: 5px solid var(--background-floating);
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    transform: translateY($offset);
     pointer-events: none;
   }
 }

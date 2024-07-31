@@ -1,0 +1,65 @@
+// calc(Apx / 2.5) = px OR px * 2.5 = Apx
+
+[class^="chatContent"] > form {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-left: unset;
+  padding-right: unset;
+  &::before {
+    display: none;
+  }
+  > [class^="typing"] {
+    position: unset;
+    background: var(--background-secondary);
+  }
+  > [class^="channelBottomBarArea"] > [class^="channelTextArea"] {
+    margin: unset;
+    border-radius: unset;
+    > [class^="scrollableContainer"] {
+      margin: calc(20px / 2.5);
+      margin-left: calc(149px / 2.5);
+      border-radius: calc(61px / 2.5);
+      > [class^="inner"] {
+        padding-left: unset;
+        > [class^="uploadInput"] {
+          padding-left: 16px;
+        }
+        > [class^="attachWrapper"] > button {
+          position: absolute;
+          left: -56px;
+        }
+      }
+    }
+    [class^="clipContainer"] {
+      padding-top: unset;
+      margin-top: unset;
+      [class^="replyBar"] {
+        border-top-left-radius: unset;
+        border-top-right-radius: unset;
+      }
+    }
+  }
+}
+[class^="jumpToPresentBar"] {
+  width: calc(102px / 2.5);
+  height: calc(102px / 2.5);
+  padding-bottom: unset;
+  margin-bottom: calc(41px / 2.5) !important;
+  left: unset;
+
+  opacity: 1;
+  border-radius: 50%;
+  > button:first-child {
+    display: none;
+  }
+  > button:last-child {
+    font-size: 0px;
+    padding: 0;
+    > svg {
+      top: unset;
+      margin-left: unset;
+      width: calc(102px / 2.5);
+      height: calc(102px / 2.5);
+    }
+  }
+}

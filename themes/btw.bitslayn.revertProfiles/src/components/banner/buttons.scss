@@ -47,7 +47,7 @@
       //     content: $string !important;
       //   }
       // }
-      @include tooltip;
+      @include tooltip(attr(aria-label), -17px);
     }
   }
   &:has(> footer > button > [class^="contents"] > svg > [d^="m13.96 5.46 "]) {
