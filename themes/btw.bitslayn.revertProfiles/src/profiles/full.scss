@@ -9,12 +9,12 @@
       var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
       var(--profile-gradient-end)
     );
-    > [class^="wrapper"] > div:has(button > div > svg > [d^="M4 14a2 2 0 1"]) {
+    > [class^="wrapper"] > div:has(> button > div > svg > [d^="M4 14a2 2 0 1"]) {
       top: calc(19px + var(--edge-padding) + var(--banner-height));
       right: 16px;
       position: fixed;
       > button {
-        background: unset !important;
+        background: transparent !important;
         color: var(--interactive-normal);
         &:hover {
           color: var(--interactive-hover);
@@ -80,6 +80,7 @@
           position: fixed;
           top: calc(16px + var(--edge-padding) + var(--banner-height));
           padding-right: 36px;
+          box-sizing: border-box;
           margin: 0 16px;
           > [class^="multipleButtons"] {
             &:has(> button > div > svg > [d^="M19 14a1 1 0"]) > div {
@@ -170,6 +171,7 @@
                   pointer-events: initial;
                   text-align: start;
                   -webkit-line-clamp: unset;
+                  line-clamp: unset;
                   max-height: unset !important;
                   > [class*="statusText"] {
                     font-weight: 400;
@@ -212,6 +214,7 @@
         border-top-right-radius: var(--radius-sm);
         background-color: var(--profile-body-background-color);
         width: -webkit-fill-available;
+        box-sizing: border-box;
         > [class^="usernameRow"] {
           > h1 {
             -webkit-box-orient: vertical;
@@ -286,6 +289,7 @@
             > [class^="tabBarItem"] {
               height: 39px;
               border-bottom-width: 2px;
+              box-sizing: border-box;
               div {
                 font-weight: 500;
                 line-height: 20px;

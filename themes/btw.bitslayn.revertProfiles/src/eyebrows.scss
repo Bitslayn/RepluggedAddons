@@ -36,7 +36,7 @@ div:has(> [class^="descriptionClamp"]),
     @include eyebrow(6px);
   }
 }
-div:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"])) {
+div:has(> [data-list-id^="roles"]) {
   @each $lang, $string in lang.$roles {
     &:lang(#{$lang})::before {
       content: $string;
@@ -44,6 +44,10 @@ div:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"])) {
   }
   &::before {
     @include eyebrow(6px);
+  }
+  // Hides duplicate/preexisting roles eyebrow. Remove after simple bot profiles experiment rolls out
+  h2 {
+    display: none;
   }
 }
 [class^="mutuals_"] {

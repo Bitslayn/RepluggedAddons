@@ -1,6 +1,6 @@
-@use "../../globals" as *;
-@use "../tooltip" as *;
-@use "../../lang";
+@use "globals" as *;
+@use "mixins/tooltip" as *;
+@use "lang";
 @use "sass:map";
 
 // Bitesize & Full banner button styles
@@ -47,7 +47,7 @@
       //     content: $string !important;
       //   }
       // }
-      @include tooltip;
+      @include tooltip(attr(aria-label), -17px);
     }
   }
   &:has(> footer > button > [class^="contents"] > svg > [d^="m13.96 5.46 "]) {
@@ -57,16 +57,26 @@
   }
 }
 
+$svg-paths: (
+  // Add Friend
+  "M19 14a1 1 0",
+  // Friends
+  "M12 10a4 4 0",
+  // Mod View
+  "M5.26 12.45c",
+  // Pending
+  "M16 6a4 4 0 "
+);
+
 [class^="userPopoutInner"],
 [class^="userProfileModalInner"],
 [class^="userPanelInner"] > div {
-  > [class^="wrapper"] > div:has(
-  > button > div > svg > path[d^="M19 14a1 1 0"], /* Add Friend */
-  > button > div > svg > path[d^="M12 10a4 4 0"], /* Friends */
-  > button > div > svg > path[d^="M5.26 12.45c"], /* Mod View */
-  > button > div > svg > path[d^="M16 6a4 4 0 "] /* Pending */
-  ) {
-    display: none;
+  > [class^="wrapper"] > div {
+    @each $path in $svg-paths {
+      &:has(> button > div > svg > path[d^="#{$path}"]) {
+        display: none;
+      }
+    }
   }
 }
 [class^="userPopoutInner"],

@@ -10,11 +10,7 @@
   > [class^="userPopoutInner"] {
     gap: unset;
     padding: unset;
-    background: linear-gradient(
-      var(--profile-gradient-start),
-      var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
-      var(--profile-gradient-end)
-    );
+    background: linear-gradient(var(--profile-gradient-start), var(--profile-gradient-start) var(--custom-user-banner-height-bite-size), var(--profile-gradient-end));
 
     > [class^="body"] {
       &::-webkit-scrollbar {
@@ -71,16 +67,12 @@
       transform: translateY(-38px);
       position: fixed;
     }
-    &:has(> [class^="header"] > div:not([class])):not(:has([class^="pronounsTooltip"]))
-      > [class^="body"]
-      > span[class^="clickable"] {
+    &:has(> [class^="header"] > div:not([class])):not(:has([class^="pronounsTooltip"])) > [class^="body"] > span[class^="clickable"] {
       transform: unset;
       top: calc(86px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height));
       position: fixed;
     }
-    &:has(> [class^="header"] > div:not([class])):has([class^="pronounsTooltip"])
-      > [class^="body"]
-      > span[class^="clickable"] {
+    &:has(> [class^="header"] > div:not([class])):has([class^="pronounsTooltip"]) > [class^="body"] > span[class^="clickable"] {
       transform: unset;
       top: calc(107px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height));
       position: fixed;
@@ -90,6 +82,7 @@
     > [class^="body"] > div > {
       [class^="descriptionClamp"] {
         -webkit-line-clamp: unset;
+        line-clamp: unset;
         max-height: unset;
       }
       [class^="viewFullBio"] {
@@ -135,10 +128,6 @@
         left: 22px;
       }
       > [class^="bannerSVGWrapper"] {
-        padding: 0 0
-          calc(
-            83px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
-          );
         display: block;
         &:has(foreignObject > [style*="background-image"]) {
           transform: scaleY(1.0084) translateY(1px);
@@ -179,8 +168,6 @@
         text-overflow: ellipsis;
         text-transform: uppercase;
         color: var(--white-500);
-        width: 100%;
-        height: 100%;
         box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
         opacity: 1;
         mask-image: url(#svg-mask-avatar-default);
@@ -188,9 +175,7 @@
       &:has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
         mask-image: url(#svg-mask-avatar-status-round-80);
       }
-      &:has(
-          > div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"])
-        )::after {
+      &:has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
         mask-image: url(#svg-mask-avatar-status-mobile-80);
       }
       &::after {
@@ -212,28 +197,12 @@
     }
 
     // Header
-    &:has([class^="pronounsTooltip"]) > [class^="header"] {
+    > [class^="header"] {
       > [class^="bannerSVGWrapper"] {
-        padding: 0 0
-          calc(
-            103px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
-          );
+        padding-bottom: calc(83px + var(--badge-container-height) - var(--banner-offset) + var(--pronouns-offset) + var(--guild-tag-height) + var(--status-offset));
       }
     }
-
     &:not(:has([class^="statusBubbleOuter"])) {
-      > header > [class^="bannerSVGWrapper"] {
-        padding: 0 0
-          calc(
-            95px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
-          );
-      }
-      &:has([class^="pronounsTooltip"]) > header > [class^="bannerSVGWrapper"] {
-        padding: 0 0
-          calc(
-            115px + var(--badge-container-height) - var(--banner-offset) + var(--guild-tag-height)
-          );
-      }
       > [class^="body"] > [class^="container"] {
         padding: 12px 12px calc(12px + var(--guild-tag-height)) 12px;
       }
@@ -269,9 +238,7 @@
       // Header
       > [class^="container"] {
         position: fixed;
-        top: calc(
-          28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding)
-        );
+        top: calc(28px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
         left: 0px;
         margin: 0 calc(16px + var(--edge-padding)) 0;
         padding: 12px 12px calc(0px + var(--guild-tag-height));
@@ -279,9 +246,11 @@
         border-top-right-radius: var(--radius-sm);
         background-color: var(--profile-body-background-color);
         width: -webkit-fill-available;
+        box-sizing: border-box;
         > [class^="usernameRow"] {
           > [class^="clickableUsername"] > h1 {
             -webkit-line-clamp: 1;
+            line-clamp: 1;
             -webkit-box-orient: vertical;
             word-break: break-all;
             display: -webkit-box;
@@ -365,14 +334,8 @@
       > [class^="popover"] {
         position: fixed;
         z-index: 2;
-        left: calc(23px + var(--edge-padding));
-        right: unset;
-        transform: translateY(
-          calc(
-            83px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height) +
-              var(--pronouns-height) + var(--guild-tag-height)
-          )
-        );
+        right: calc(23px + var(--edge-padding));
+        transform: translateY(calc(85px + var(--edge-padding) + var(--banner-height) + var(--badge-container-height) + var(--pronouns-height) + var(--guild-tag-height)));
       }
     }
     [class^="statusBubbleOuter"] {
@@ -395,6 +358,7 @@
         > [class^="content"] {
           text-align: start;
           -webkit-line-clamp: unset;
+          line-clamp: unset;
           max-height: unset !important;
           overflow: unset;
           > [class*="statusText"] {
