@@ -6,7 +6,7 @@
 @use "header";
 
 // Sort order
-[class*="userProfileOuter"] [class^="body"] {
+[class*="biteSizeOuter"] [class^="body"] {
   // Username container
   > [class^="container"] {
     order: -8;
@@ -28,7 +28,8 @@
     order: -4;
   }
   // Activities
-  > [class^="activityBiteSizePopout"] {
+  > [class^="activityBiteSizePopout"],
+  > div:has([class^="activityBiteSizePopout"]) {
     order: -3;
   }
   // Try my commands & roles
