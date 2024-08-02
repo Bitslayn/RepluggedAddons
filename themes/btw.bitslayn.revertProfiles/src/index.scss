@@ -1,17 +1,90 @@
-// Bulk of the profile modal styles.
-@use "profiles/popout";
-@use "profiles/full";
-@use "profiles/panel";
+@use "mixins" as *;
+@use "lang";
+@use "sass:map";
 
-@use "globals"; // Assigns profile padding for statuses and badges relative to the banner's height.
-@use "eyebrows"; // Styles for eyebrows. Self explanatory.
-@use "banners"; // Makes banners smaller with svg adjustments.
-@use "roles"; // Also self explanatory.
-@use "heights"; // Full profile heights.
+@use "buttons";
+@use "header";
 
-@use "fixes/botfix"; // Fixes related to bot profiles, Discord's official profile, and deleted user profiles.
-@use "fixes/static"; // Fixes for static profile modals such as the one in settings.
+// Sort order
+[class*="userProfileOuter"] [class^="body"] {
+  // Username container
+  > [class^="container"] {
+    order: -8;
+  }
+  // Guild tag
+  > [class^="clickable"] {
+    order: -7;
+  }
+  // Bot buttons
+  > [class^="buttons"] {
+    order: -6;
+  }
+  // About me
+  > div:not([class], [style]) {
+    order: -5;
+  }
+  // Mutuals
+  > [class^="mutuals"] {
+    order: -4;
+  }
+  // Activities
+  > [class^="activityBiteSizePopout"] {
+    order: -3;
+  }
+  // Try my commands & roles
+  > div[style="position: relative;"],
+  section {
+    order: -2;
+  }
+  // My profile buttons
+  > [class^="menus"] {
+    order: -1;
+  }
+}
 
-// IN NEED OF A DEEP CLEAN AAAAA
+// Description
+[class*="userProfileOuter"] {
+  [class^="descriptionClamp"] {
+    display: unset;
+  }
+  [class^="viewFullBio"] {
+    display: none;
+  }
+}
 
-@use "components/banner/buttons";
+// Status
+[class^="visibleContainer"] {
+  position: unset;
+}
+[class^="invisibleContainer"] {
+  display: none;
+}
+[class^="statusBubbleOuter"] {
+  border: unset !important;
+  box-shadow: unset;
+  max-width: fit-content;
+  &::before,
+  &::after {
+    display: none;
+  }
+  [class^="content"] {
+    text-align: unset;
+  }
+  .emoji {
+    cursor: default;
+  }
+}
+[class^="statusBubble"] {
+  // Intentionally also selects statusBubbleOuter
+  min-width: unset;
+  padding: 0 8px;
+  border-radius: unset;
+  background: unset;
+}
+
+// Activities
+[class*="userProfileOuter"] [class^="activityBiteSizePopout"] {
+  padding: unset;
+  border-radius: unset;
+  background: unset;
+}

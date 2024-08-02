@@ -1,0 +1,34 @@
+@use "mixins" as *;
+@use "lang";
+@use "sass:map";
+
+@mixin header-button {
+  width: 28px;
+  height: 28px;
+  padding: unset !important;
+  background: hsl(var(--black-500-hsl) / 0.3) !important;
+  transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    width: 18px !important;
+    height: 18px !important;
+    gap: unset;
+  }
+  &:hover {
+    background: hsl(var(--black-500-hsl) / 0.6) !important;
+    opacity: unset;
+  }
+}
+
+[class*="userProfileOuter"] > div > [class^="wrapper"] {
+  &,
+  .platform-indicators {
+    gap: 7px; // Seems arbitrary right? WRONG I mathematically determined this is the correct spacing relative to the original 8px
+  }
+  button,
+  span {
+    @include header-button;
+  }
+}

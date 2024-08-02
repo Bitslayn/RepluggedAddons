@@ -28,3 +28,20 @@
     pointer-events: none;
   }
 }
+
+@mixin dumbmaxing {
+  min-width: unset !important;
+  max-width: unset !important;
+  min-height: unset !important;
+  max-height: unset !important;
+}
+
+@mixin dumbwidth {
+  min-width: unset !important;
+  max-width: unset !important;
+}
+
+@mixin dumbheight {
+  min-height: unset !important;
+  max-height: unset !important;
+}

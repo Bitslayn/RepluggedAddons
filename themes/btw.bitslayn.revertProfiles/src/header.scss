@@ -1,0 +1,23 @@
+[class*="biteSizeOuter"] {
+  > div {
+    padding-top: calc(45px + var(--custom-user-banner-height-bite-size));
+  }
+  header {
+    position: fixed;
+    transform: translateY(calc(-45px + -1 * var(--custom-user-banner-height-bite-size)));
+    width: 300px;
+  }
+  // Unthemed
+  &:not([class*="userProfileOuterThemed"]) header {
+    > svg {
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+  }
+  // Themed/Nitro
+  &[class*="userProfileOuterThemed"] header {
+    > [class^="avatar"] {
+      transform: translate(-4px, -4px);
+    }
+  }
+}
