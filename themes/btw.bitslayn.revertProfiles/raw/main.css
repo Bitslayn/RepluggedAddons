@@ -90,27 +90,31 @@
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body]::-webkit-scrollbar-track {
   margin-bottom: 4px;
 }
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=container] {
+  order: -8;
+}
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=clickable] {
-  order: -1;
+  order: -7;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=buttons] {
-  order: 1;
+  order: -6;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div:not([class], [style]) {
-  order: 2;
+  order: -5;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=mutuals] {
-  order: 3;
+  order: -4;
 }
-[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=activityBiteSizePopout] {
-  order: 4;
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=activityBiteSizePopout],
+[class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div:has([class^=activityBiteSizePopout]) {
+  order: -3;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > div[style="position: relative;"],
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] section {
-  order: 5;
+  order: -2;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > [class^=menus] {
-  order: 6;
+  order: -1;
 }
 [class^=biteSizeOuter] > [class^=userPopoutInner] > [class^=body] > span[class^=clickable] {
   transform: translateY(-38px);

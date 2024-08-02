@@ -35,34 +35,39 @@
 
     // Sort order
     > [class^="body"] {
+      // Username container
+      > [class^="container"] {
+        order: -8;
+      }
       // Guild tag
       > [class^="clickable"] {
-        order: -1;
+        order: -7;
       }
       // Bot buttons
       > [class^="buttons"] {
-        order: 1;
+        order: -6;
       }
       // About me
       > div:not([class], [style]) {
-        order: 2;
+        order: -5;
       }
       // Mutuals
       > [class^="mutuals"] {
-        order: 3;
+        order: -4;
       }
       // Activities
-      > [class^="activityBiteSizePopout"] {
-        order: 4;
+      > [class^="activityBiteSizePopout"],
+      > div:has([class^="activityBiteSizePopout"]) {
+        order: -3;
       }
       // Try my commands & roles
       > div[style="position: relative;"],
       section {
-        order: 5;
+        order: -2;
       }
       // My profile buttons
       > [class^="menus"] {
-        order: 6;
+        order: -1;
       }
     }
 
