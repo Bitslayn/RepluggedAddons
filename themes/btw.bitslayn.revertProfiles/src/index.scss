@@ -1,36 +1,9 @@
-@use "mixins" as *;
-@use "lang";
-@use "sass:map";
-
-@use "header";
-
-// Body
-[class*="biteSizeOuter"] {
-  > div {
-    gap: unset;
-    overflow: hidden auto;
-    > header [class^="visibleContainer"] {
-      margin-left: 16px;
-      margin-right: 16px;
-      z-index: 1;
-    }
-    > [class^="body"] {
-      overflow: unset;
-      min-height: unset;
-      padding-top: 12px;
-    }
-  }
-}
-
-// Username container
-// [class*="biteSizeOuter"] [class^="body"] > [class^="container"] {
-// }
-
-// Status
+// Debubble status
 [class^="visibleContainer"] {
   position: relative;
   top: unset !important;
   left: unset !important;
+  padding: 0 16px;
 }
 [class^="invisibleContainer"] {
   display: none;
@@ -45,6 +18,8 @@
   }
   [class^="content"] {
     text-align: unset;
+    max-height: unset !important;
+    -webkit-line-clamp: unset;
   }
   .emoji {
     cursor: default;
@@ -57,7 +32,65 @@
   background: unset;
 }
 
-// Footer
-[class*="biteSizeOuter"] footer {
-  padding-top: 8px;
+// Prep header
+$fancy-padding: 146px;
+$negative-fancy-padding: calc($fancy-padding * -1);
+
+[class*="biteSizeOuter"] {
+  > div {
+    padding-top: $fancy-padding;
+    max-height: calc(
+      100vh - 28px - var(--custom-user-popout-outside-components-height) - $fancy-padding
+    );
+  }
+  header {
+    min-height: unset !important;
+    > svg {
+      position: fixed;
+      width: 300px;
+      transform: translateY($negative-fancy-padding);
+    }
+    > [class^="avatar"] {
+      position: fixed;
+      top: unset;
+      left: unset;
+    }
+  }
+  &:not([class*="userProfileOuterThemed"]) header {
+    > svg {
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+    > [class^="avatar"] {
+      transform: translate(16px, calc(61px + $negative-fancy-padding));
+    }
+  }
+  &[class*="userProfileOuterThemed"] header {
+    > [class^="avatar"] {
+      transform: translate(12px, calc(57px + $negative-fancy-padding));
+    }
+  }
+}
+
+// Prep body
+[class*="userProfileOuter"] {
+  > div {
+    display: grid;
+    > header {
+      display: contents;
+      > div:has([class^="invisibleContainer"]) {
+        order: -1;
+      }
+    }
+    > [class^="body"] {
+      display: contents;
+      > [class^="container"] {
+        order: -2;
+      }
+      > * {
+        margin: 0 16px;
+        max-width: -webkit-fill-available;
+      }
+    }
+  }
 }

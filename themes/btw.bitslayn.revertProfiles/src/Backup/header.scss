@@ -1,6 +1,12 @@
 $fancy-padding: 146px;
 $negative-fancy-padding: calc($fancy-padding * -1);
 
+// Username container
+[class*="biteSizeOuter"] [class^="body"] > [class^="container"] {
+  // position: fixed;
+  // top: 0;
+}
+
 [class*="biteSizeOuter"] {
   > div {
     padding-top: $fancy-padding;
