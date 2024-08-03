@@ -2,60 +2,35 @@
 @use "lang";
 @use "sass:map";
 
-@use "buttons";
 @use "header";
 
-// Sort order
-[class*="biteSizeOuter"] [class^="body"] {
-  // Username container
-  > [class^="container"] {
-    order: -8;
-  }
-  // Guild tag
-  > [class^="clickable"] {
-    order: -7;
-  }
-  // Bot buttons
-  > [class^="buttons"] {
-    order: -6;
-  }
-  // About me
-  > div:not([class], [style]) {
-    order: -5;
-  }
-  // Mutuals
-  > [class^="mutuals"] {
-    order: -4;
-  }
-  // Activities
-  > [class^="activityBiteSizePopout"],
-  > div:has([class^="activityBiteSizePopout"]) {
-    order: -3;
-  }
-  // Try my commands & roles
-  > div[style="position: relative;"],
-  section {
-    order: -2;
-  }
-  // My profile buttons
-  > [class^="menus"] {
-    order: -1;
+// Body
+[class*="biteSizeOuter"] {
+  > div {
+    gap: unset;
+    overflow: hidden auto;
+    > header [class^="visibleContainer"] {
+      margin-left: 16px;
+      margin-right: 16px;
+      z-index: 1;
+    }
+    > [class^="body"] {
+      overflow: unset;
+      min-height: unset;
+      padding-top: 12px;
+    }
   }
 }
 
-// Description
-[class*="userProfileOuter"] {
-  [class^="descriptionClamp"] {
-    display: unset;
-  }
-  [class^="viewFullBio"] {
-    display: none;
-  }
-}
+// Username container
+// [class*="biteSizeOuter"] [class^="body"] > [class^="container"] {
+// }
 
 // Status
 [class^="visibleContainer"] {
-  position: unset;
+  position: relative;
+  top: unset !important;
+  left: unset !important;
 }
 [class^="invisibleContainer"] {
   display: none;
@@ -76,16 +51,13 @@
   }
 }
 [class^="statusBubble"] {
-  // Intentionally also selects statusBubbleOuter
   min-width: unset;
-  padding: 0 8px;
+  padding: unset;
   border-radius: unset;
   background: unset;
 }
 
-// Activities
-[class*="userProfileOuter"] [class^="activityBiteSizePopout"] {
-  padding: unset;
-  border-radius: unset;
-  background: unset;
+// Footer
+[class*="biteSizeOuter"] footer {
+  padding-top: 8px;
 }
