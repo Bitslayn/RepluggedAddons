@@ -1,6 +1,6 @@
 {
   "id": "btw.bitslayn.inlineStatus",
-  "name": "Inline Custom Status",
+  "name": "Inline Status",
   "description": "Removes status bubbles and places the status inside the profile.",
   "author": {
     "name": "Bitslayn",
