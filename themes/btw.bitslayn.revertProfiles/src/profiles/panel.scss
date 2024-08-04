@@ -1,0 +1,300 @@
+@use "../globals" as *;
+@use "../lang";
+@use "sass:map";
+
+[class^="userPanelOuter"] {
+  // Layout
+
+  > [class^="userPanelInner"] {
+    > div {
+      gap: unset;
+      padding: unset;
+      background: linear-gradient(
+        var(--profile-gradient-start),
+        var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
+        var(--profile-gradient-end)
+      );
+
+      > [class^="body"] {
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background-clip: padding-box;
+          border: 2px solid transparent;
+          border-radius: 4px;
+          background-color: var(--profile-body-divider-color);
+          min-height: 40px;
+        }
+        &::-webkit-scrollbar-track {
+          margin-bottom: 4px;
+        }
+      }
+
+      // About Me
+      > [class^="body"] > div > {
+        [class^="descriptionClamp"] {
+          -webkit-line-clamp: unset;
+          overflow: hidden;
+        }
+        [class^="viewFullBio"] {
+          display: none;
+        }
+      }
+
+      // Activities
+      [class^="activityBiteSizePopout"] {
+        padding: 12px;
+        order: 1;
+        > img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      // Avatar hover
+      > header > [class^="avatar"]:not(:has(> [class^="overlayIcon"])) {
+        @each $lang, $string in lang.$view-profile {
+          &:lang(#{$lang}):hover::after {
+            content: $string;
+          }
+        }
+        &:hover::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 10px;
+          line-height: 12px;
+          font-weight: 700;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          text-transform: uppercase;
+          color: var(--white-500);
+          width: 100%;
+          height: 100%;
+          box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
+          opacity: 1;
+          mask-image: url(#svg-mask-avatar-default);
+        }
+        &:has(
+            > div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"])
+          )::after {
+          mask-image: url(#svg-mask-avatar-status-round-80);
+        }
+        &:has(
+            > div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"])
+          )::after {
+          mask-image: url(#svg-mask-avatar-status-mobile-80);
+        }
+        &::after {
+          transition: opacity 0.1s ease;
+          background-color: unset;
+          opacity: 0;
+          transform: scale(1.0084);
+          pointer-events: none;
+        }
+        [class*="overlay"]::after {
+          display: none;
+        }
+      }
+      > [class^="header"] > [class^="avatar"] [class*="overlay"]::after {
+        transition: opacity 0.1s ease;
+        background-color: unset;
+        border-radius: unset;
+        box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
+      }
+
+      > [class^="header"] {
+        margin-bottom: unset;
+      }
+
+      // Header
+      &:has([class^="pronounsTooltip"]) > [class^="header"] {
+        > [class^="bannerSVGWrapper"] {
+          padding: 0 0 calc(104px + var(--badge-container-height) - var(--banner-offset));
+        }
+      }
+
+      &:not(:has([class^="statusBubbleOuter"])) {
+        > header > [class^="bannerSVGWrapper"] {
+          padding: 0 0 calc(96px + var(--badge-container-height) - var(--banner-offset));
+        }
+        &:has([class^="pronounsTooltip"]) > header > [class^="bannerSVGWrapper"] {
+          padding: 0 0 calc(116px + var(--badge-container-height) - var(--banner-offset));
+        }
+        > [class^="body"] > [class^="container"] {
+          padding: 12px;
+          z-index: 2;
+        }
+      }
+
+      // Body
+      > [class^="body"] {
+        gap: 12px;
+        margin: 0 16px 0;
+        //overflow: unset !important;
+        //background-color: var(--profile-body-background-color);
+
+        border-bottom-left-radius: var(--radius-sm);
+        border-bottom-right-radius: var(--radius-sm);
+
+        // Accept friend request
+        > [class^="biteSizeOverlayBackground"] {
+          display: none;
+        }
+
+        // Divider
+        &::before {
+          content: "";
+          display: block;
+          margin: -1px calc(12px + 16px) 0;
+          min-height: 1px;
+          background-color: var(--profile-body-divider-color);
+
+          position: fixed;
+          width: -webkit-fill-available;
+          left: 0px;
+          z-index: 3;
+        }
+
+        > [class^="overlayBackground"] {
+          border-top-right-radius: unset;
+          border-top-left-radius: unset;
+        }
+
+        // Header
+        > [class^="container"] {
+          position: fixed;
+          top: calc(28px + var(--banner-height) + var(--badge-container-height));
+          left: 0px;
+          margin: 0 16px 0;
+          padding: 12px 12px 0;
+          border-top-left-radius: var(--radius-sm);
+          border-top-right-radius: var(--radius-sm);
+          background-color: var(--profile-body-background-color);
+          width: -webkit-fill-available;
+          > [class^="usernameRow"] {
+            > [class^="clickableUsername"] > h1 {
+              -webkit-line-clamp: 1;
+              -webkit-box-orient: vertical;
+              word-break: break-all;
+              display: -webkit-box;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+
+      [class^="tags"] {
+        > div:is([class^="container"]) /* Badges */ {
+          position: fixed;
+          justify-content: flex-end;
+          right: 16px;
+          top: calc(12px + var(--banner-height));
+          margin: unset;
+          border: unset;
+          border-radius: 8px;
+          box-sizing: content-box;
+          max-width: calc(calc(7 /* Colums - 1 */ * 24px) + 22px);
+          padding: 4px;
+          background-color: var(--profile-body-background-color);
+          div > a {
+            > img,
+            > div {
+              width: 22px;
+              height: 22px;
+            }
+          }
+          & + div {
+            position: fixed;
+            justify-content: flex-end;
+            right: calc(96px + 16px);
+            top: calc(24px + 12px + var(--banner-height));
+            margin: unset;
+            border: unset;
+            border-radius: 8px;
+            box-sizing: content-box;
+            max-width: calc(calc(3 /* Colums - 1 */ * 24px) + 22px);
+            padding: 4px;
+            background-color: transparent;
+            div > a {
+              > img,
+              > div {
+                width: 22px;
+                height: 22px;
+              }
+            }
+          }
+        }
+        > [class^="clickableUsername"],
+        > [class*="userTag"] {
+          width: 100%;
+          > [class^="info"] {
+            font-weight: 500;
+          }
+        }
+        > [class^="dotSpacer"] {
+          display: none;
+        }
+      }
+
+      // Custom status
+      [class^="invisibleContainer"] {
+        display: none;
+      }
+      [class^="visibleContainer"] {
+        position: unset;
+        pointer-events: initial;
+      }
+      [class^="statusBubbleOuter"] {
+        border: unset !important;
+        background: var(--profile-body-background-color);
+        box-shadow: none;
+        margin: 0 16px 0;
+        padding: 12px;
+        border-radius: unset;
+        max-width: unset;
+        &::before,
+        &::after {
+          display: none;
+        }
+        > [class*="statusBubble"] {
+          min-width: unset;
+          max-width: unset;
+          padding: unset;
+          background: transparent;
+          > [class^="content"] {
+            text-align: start;
+            -webkit-line-clamp: unset;
+            max-height: unset !important;
+            > [class*="statusText"] {
+              font-weight: 400;
+            }
+            > [class*="statusEmojiOnly"] {
+              user-select: none;
+              cursor: initial;
+              width: 48px;
+              height: 48px;
+              @include dumbmaxing;
+            }
+            > [class*="statusEmojiInline"] {
+              user-select: none;
+              cursor: initial;
+              margin: -1px 4px -1px 0;
+              object-fit: contain;
+            }
+          }
+        }
+      }
+    }
+    > footer {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,88 @@
+// Fix static profiles
+div[id^="popout"] > [data-popout-animating="false"]:has(> div > [class^="biteSizeOuter"]), // Required :has() to fix "Invite to Server" context menu button
+[class^="accountProfilePopoutWrapper"],
+[class^="customizationSection"],
+[class^="previewContainer"] > [class^="biteSizeOuter"],
+[class^="previewsContainerInner"] > [class^="biteSizeOuter"],
+[class^="profileEffectPreviewsContainerInner"] > [class^="biteSizeOuter"],
+[class^="userProfilePreview"] > [class^="biteSizeOuter"],
+[class^="userPanelOuter"] {
+  transform: translate(0) !important;
+}
+
+// Discord istg how many different class names for profile previews do you need lmao
+[class^="previewsContainerInner"],
+[class^="profileEffectPreviewsContainerInner"],
+[class^="previewContainer"] {
+  > [class^="biteSizeOuter"]
+    > [class^="userPopoutInner"]
+    > header
+    > [class^="avatar"]:hover::after {
+    display: none;
+  }
+}
+
+// Fix static badges
+[class^="customizationSection"] [class*="userProfileInner"] {
+  [class^="tags"] > [class^="container"] {
+    top: calc(40px + var(--banner-height)) !important;
+  }
+  > [class^="body"] > [class^="container"] {
+    top: calc(56px + var(--banner-height) + var(--badge-container-height)) !important;
+  }
+}
+
+// Fix profiles with no body or footer
+// Oddly enough, aria-label profile names are consistent across different languages
+[aria-label="discord"],
+[aria-label="Deleted User"] {
+  [class*="biteSizeOuter"] > [class*="userProfileInner"] {
+    > footer {
+      visibility: hidden;
+      padding: unset !important;
+      margin: unset !important;
+    }
+    > [class^="body"] {
+      margin-bottom: 16px;
+      padding: unset !important;
+      &::before {
+        display: none;
+      }
+      > [class^="container"] {
+        border-bottom-left-radius: var(--radius-sm);
+        border-bottom-right-radius: var(--radius-sm);
+      }
+    }
+  }
+}
+// Your static profile
+[class^="userPopoutInner"] {
+  > [class^="body"]:not([class*="fade"]) {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom-left-radius: var(--radius-sm);
+    border-bottom-right-radius: var(--radius-sm);
+  }
+}
+
+// "Unable to load profile banner, badges, and about me." indicator
+[class^="nicknameIcons"] > div[aria-label]:not([class^="clickTarget"]) {
+  position: fixed;
+  top: 8px;
+  right: 16px;
+  > svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Fix dropdown menu positioning
+[class^="accountProfilePopoutWrapper"]
+  [class^="biteSizeOverlayBackground"]
+  > [class^="menu"]
+  [class*="layer"] {
+  top: unset !important;
+  left: unset !important;
+  transform: translate(267px, -34px);
+  padding-left: 3px;
+}

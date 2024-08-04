@@ -1,0 +1,104 @@
+@use "globals" as *;
+
+// Solid color
+[class*="biteSizeOuter"]
+  > [class*="userProfileInner"]
+  > header:not(:has([style*="background-image"])) {
+  > [class^="avatar"] {
+    top: 16px;
+    left: 22px;
+  }
+  > [class^="bannerSVGWrapper"] {
+    @include dumbmaxing;
+    mask {
+      rect {
+        width: 300px;
+        height: 52.94px;
+      }
+      circle {
+        cx: 54.5;
+        cy: 49.5;
+        r: 40.59;
+      }
+    }
+    foreignObject {
+      height: 52.95px;
+      > [class^="banner"] {
+        height: 52.94px;
+        &::before {
+          content: unset;
+        }
+      }
+    }
+  }
+}
+[class*="fullSizeOuter"]
+  > [class*="userProfileInner"]
+  > header:not(:has([style*="background-image"])) {
+  height: 106px;
+  > [class^="headerInner"] > [class^="avatar"] {
+    position: fixed;
+    top: 41px;
+    left: 22px;
+  }
+  > [class^="bannerSVGWrapper"] {
+    @include dumbmaxing;
+    mask {
+      rect {
+        width: 600px;
+        height: 104.02px;
+      }
+      circle {
+        cx: 82;
+        cy: 101;
+        r: 68;
+      }
+    }
+    foreignObject {
+      height: 105.01px;
+      > [class^="banner"] {
+        height: 105.01px;
+        &::before {
+          content: unset;
+        }
+      }
+    }
+  }
+}
+
+// Premium + solid color
+[class*="biteSizeOuter"][class*="userProfileOuterThemed"] > [class*="userProfileInner"] {
+  > header:not(:has([style*="background-image"])) > [class^="bannerSVGWrapper"] {
+    @include dumbmaxing;
+    mask circle {
+      cx: 51.25;
+      cy: 46;
+    }
+  }
+}
+[class*="fullSizeOuter"][class*="userProfileOuterThemed"] > [class*="userProfileInner"] {
+  > header:not(:has([style*="background-image"])) > [class^="headerInner"] > [class^="avatar"] {
+    top: 45px;
+    left: 26px;
+  }
+}
+
+// USRBG
+[class*="biteSizeOuter"]:not([class*="userProfileOuterThemed"]) > [class*="userProfileInner"] {
+  > header:has([style*="background-image"]) > svg {
+    @include dumbmaxing;
+    mask circle {
+      cx: 54.5 !important;
+      cy: 102.5 !important;
+    }
+  }
+}
+[class*="fullSizeOuter"]:not([class*="userProfileOuterThemed"]) > [class*="userProfileInner"] {
+  > header:has([style*="background-image"]) > svg {
+    @include dumbmaxing;
+    mask circle {
+      cx: 88;
+      cy: 209;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+// Themed role borders
+[class*="userProfileOuterThemed"] > [class*="userProfileInner"] [data-list-id^="roles"] {
+  [class*="pill"],
+  > div > button {
+    border: 1px solid var(--profile-role-pill-border-color) !important;
+  }
+}

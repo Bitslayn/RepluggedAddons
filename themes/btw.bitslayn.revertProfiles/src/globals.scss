@@ -1,0 +1,148 @@
+[class^="biteSizeOuter"] {
+  --banner-height: 60px;
+  --banner-offset: calc(120px - var(--banner-height));
+  &:has(> [class^="userPopoutInner"] > header > svg > foreignObject > [style*="background-image"]) {
+    --banner-height: 120px;
+  }
+  --badge-container-height: 22px; // 0 rows (Minimal gap of 16px)
+  &:has(
+      > [class^="userPopoutInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div
+    ) {
+    --badge-container-height: 30px; // 1 row
+  }
+  &:has(
+      > [class^="userPopoutInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div:nth-child(9)
+    ) {
+    --badge-container-height: 54px; // 2 rows
+  }
+  &:has(
+      > [class^="userPopoutInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div:nth-child(17)
+    ) {
+    --badge-container-height: 78px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
+  }
+  --guild-tag-height: 0px;
+  &:has(> [class^="userPopoutInner"] > [class^="body"] > span[class^="clickable"]) {
+    --guild-tag-height: 17px;
+  }
+
+  --pronouns-height: 0px;
+  &:has(
+      > [class^="userPopoutInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="pronounsTooltip"]
+    ) {
+    --pronouns-height: 20px;
+  }
+}
+
+[class^="fullSizeOuter"] {
+  --banner-height: 105px; // Pretty sure this should be 206px
+  --banner-offset: calc(210px - var(--banner-height));
+  &:has(
+      > [class^="userProfileModalInner"]
+        > header
+        > svg
+        > foreignObject
+        > [style*="background-image"]
+    ) {
+    --banner-height: 210px; // Should be 212px but I got lazy
+  }
+  --badge-container-height: 22px; // 0 rows (Minimal gap of 24px)
+  &:has(
+      > [class^="userProfileModalInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div
+    ) {
+    --badge-container-height: 28px; // 1 row
+  }
+  &:has(
+      > [class^="userProfileModalInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div:nth-child(10)
+    ) {
+    --badge-container-height: 46px; // 2 rows
+  }
+  &:has(
+      > [class^="userProfileModalInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div:nth-child(19)
+    ) {
+    --badge-container-height: 72px; // 3 rows
+  }
+}
+
+[class^="userPanelOuter"] {
+  --banner-height: 125px;
+  --banner-offset: 0px;
+  --badge-container-height: 22px; // 0 rows (Minimal gap of 16px)
+  &:has(
+      > [class^="userPanelInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div
+    ) {
+    --badge-container-height: 30px; // 1 row
+  }
+  &:has(
+      > [class^="userPanelInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div:nth-child(9)
+    ) {
+    --badge-container-height: 54px; // 2 rows
+  }
+  &:has(
+      > [class^="userPanelInner"]
+        > [class^="body"]
+        > [class^="container"]
+        > [class^="tags"]
+        > [class^="container"]
+        > div:nth-child(17)
+    ) {
+    --badge-container-height: 78px; // 3 rows, if anyone has more than 24 badges then tf are you doing with your life?
+  }
+}
+
+[class*="userProfileOuter"] {
+  --edge-padding: 0px;
+  &[class*="userProfileOuterThemed"] {
+    --edge-padding: 4px;
+  }
+}
+
+@mixin dumbmaxing {
+  min-width: unset !important;
+  min-height: unset !important;
+  max-width: unset !important;
+  max-height: unset !important;
+}

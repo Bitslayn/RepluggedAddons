@@ -1,0 +1,12 @@
+[class^="fullSizeOuter"] {
+  max-height: 586px; // 586px
+  &:has([class*="fullSizeBannerPremium"]) {
+    max-height: 692px; // 586px + 106px
+  }
+  &[class*="userProfileOuterThemed"] {
+    max-height: 594px; // 586px + 8px
+    &:has([class*="fullSizeBannerPremium"]) {
+      max-height: 700px; // 586px + 8px + 106px
+    }
+  }
+}
