@@ -1,0 +1,34 @@
+All
+userProfileOuter
+
+Panels
+userPanelOuter
+
+Bite size
+biteSizeOuter
+
+Full size
+fullSizeOuter
+
+Main static
+themeContainer
+
+Nitro
+is userProfileOuterThemed
+not userProfileOuterUnthemed
+
+Heights
+
+
+19.25px Emoji and text 1 line
+
+
+
+18px Just text
+
+
+
+37.25 Emoji and text 2 lines
+
+statusBubbleShape_e6ac4a statusBubbleEmojiOnlyPadding_e6ac4a
+32 Just emoji

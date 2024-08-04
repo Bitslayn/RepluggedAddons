@@ -1,0 +1,50 @@
+// Avatar hover
+> [class^="header"] > [class^="avatar"]:not(:has(> [class^="overlayIcon"])) {
+  @each $lang, $string in lang.$view-profile {
+    &:lang(#{$lang}):hover::after {
+      content: $string;
+    }
+  }
+  &:hover::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    color: var(--white-500);
+    box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
+    opacity: 1;
+    mask-image: url(#svg-mask-avatar-default);
+  }
+  &:has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
+    mask-image: url(#svg-mask-avatar-status-round-80);
+  }
+  &:has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
+    mask-image: url(#svg-mask-avatar-status-mobile-80);
+  }
+  &::after {
+    transition: opacity 0.1s ease;
+    background-color: unset;
+    opacity: 0;
+    transform: scale(1.0084);
+    pointer-events: none;
+  }
+  [class*="overlay"]::after {
+    display: none;
+  }
+}
+> [class^="header"] > [class^="avatar"] [class*="overlay"]::after {
+  transition: opacity 0.1s ease;
+  background-color: unset;
+  border-radius: unset;
+  box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
+}

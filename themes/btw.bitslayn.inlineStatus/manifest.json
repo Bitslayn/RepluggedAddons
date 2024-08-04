@@ -1,0 +1,20 @@
+{
+  "id": "btw.bitslayn.inlineStatus",
+  "name": "Inline Custom Status",
+  "description": "Removes status bubbles and places the status inside the profile.",
+  "author": {
+    "name": "Bitslayn",
+    "discordID": "372268045927972864",
+    "github": "Bitslayn"
+  },
+  "version": "1.0.0",
+  "updater": {
+    "type": "store",
+    "id": "btw.bitslayn.inlineStatus"
+  },
+  "license": "MIT",
+  "type": "replugged-theme",
+  "main": "src/index.scss",
+  "source": "https://github.com/Bitslayn/RepluggedAddons/tree/main/themes/btw.bitslayn.inlineStatus",
+  "image": "https://raw.githubusercontent.com/Bitslayn/RepluggedAddons/main/plugins/btw.bitslayn.inlineStatus/images/thumb.png"
+}
