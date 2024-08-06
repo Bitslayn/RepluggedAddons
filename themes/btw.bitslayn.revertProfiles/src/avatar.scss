@@ -1,5 +1,13 @@
+@use "lang";
+@use "sass:map";
+
+@debug map.get(lang.$view-profile, en-US);
+
 // Avatar hover
-> [class^="header"] > [class^="avatar"]:not(:has(> [class^="overlayIcon"])) {
+div:not([class^="customizationSection"])
+  > [class^="biteSizeOuter"]
+  [class^="header"]
+  > [class^="avatar"] {
   @each $lang, $string in lang.$view-profile {
     &:lang(#{$lang}):hover::after {
       content: $string;
@@ -25,10 +33,10 @@
     opacity: 1;
     mask-image: url(#svg-mask-avatar-default);
   }
-  &:has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-round-80)"]))::after {
+  &:has([mask="url(#svg-mask-avatar-status-round-80)"])::after {
     mask-image: url(#svg-mask-avatar-status-round-80);
   }
-  &:has(> div > svg > foreignObject:is([mask="url(#svg-mask-avatar-status-mobile-80)"]))::after {
+  &:has([mask="url(#svg-mask-avatar-status-mobile-80)"])::after {
     mask-image: url(#svg-mask-avatar-status-mobile-80);
   }
   &::after {
@@ -42,7 +50,7 @@
     display: none;
   }
 }
-> [class^="header"] > [class^="avatar"] [class*="overlay"]::after {
+[class^="header"] > [class^="avatar"] [class*="overlay"]::after {
   transition: opacity 0.1s ease;
   background-color: unset;
   border-radius: unset;

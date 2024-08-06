@@ -32,17 +32,17 @@
   background: unset;
 }
 [class*=biteSizeOuter] > div {
-  max-height: calc(100vh - 28px - var(--custom-user-popout-outside-components-height) - 146px);
-  padding-top: 146px;
+  max-height: calc(100vh - 28px - var(--custom-user-popout-outside-components-height) - 158px);
+  padding-top: 158px;
 }
 [class*=biteSizeOuter] header > svg {
-  transform: translateY(-146px);
+  transform: translateY(-158px);
 }
 [class*=biteSizeOuter]:not([class*=userProfileOuterThemed]) header > [class^=avatar] {
-  transform: translate(16px, -85px);
+  transform: translate(16px, -97px);
 }
 [class*=biteSizeOuter][class*=userProfileOuterThemed] header > [class^=avatar] {
-  transform: translate(12px, -89px);
+  transform: translate(12px, -101px);
 }
 [class^=userPanelOuter] > div > [class^=none] {
   padding-top: 165px;
@@ -136,6 +136,10 @@
 [class*=userProfileOuter] > div > [class^=body] > *,
 [class*=userProfileOuter] > div > [class^=none] > [class^=body] > * {
   margin: 0 16px;
+}
+[class*=userProfileOuter] > div > footer,
+[class*=userProfileOuter] > div > [class^=none] > footer {
+  padding-top: 4px;
 }
 [class*=userProfileOuter] > div > [class^=overlayBackground],
 [class*=userProfileOuter] > div > [class^=none] > [class^=overlayBackground] {

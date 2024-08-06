@@ -1,0 +1,45 @@
+// Sort order
+[class*="biteSizeOuter"] {
+  // Username container
+  [class^="body"] > [class^="container"] {
+    order: -9 !important;
+  }
+  // Guild tag
+  [class^="body"] > [class^="clickable"] {
+    order: -8;
+  }
+  // Status
+  header > div:not([class]) {
+    order: -7 !important;
+  }
+  // Bot buttons
+  [class^="body"] > [class^="buttons"] {
+    order: -6;
+  }
+  // About me
+  [class^="body"] > div:not([class], [style]) {
+    order: -5;
+  }
+  // Mutuals
+  [class^="body"] > [class^="mutuals"] {
+    order: -4;
+  }
+  // Activities
+  [class^="body"] > [class^="activityBiteSizePopout"],
+  [class^="body"] > div:has([class^="activityBiteSizePopout"]) {
+    order: -3;
+  }
+  // Try my commands & roles
+  [class^="body"] > div[style="position: relative;"],
+  section {
+    order: -2;
+  }
+  // My profile buttons
+  [class^="body"] > [class^="menus"] {
+    order: -1;
+  }
+  // SimplifiedProfileNotes (plugin)
+  [class^="body"] > section:has([class^="note"]) {
+    order: 1;
+  }
+}

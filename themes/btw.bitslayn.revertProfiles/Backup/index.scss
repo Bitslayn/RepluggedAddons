@@ -1,0 +1,17 @@
+// Bulk of the profile modal styles.
+@use "profiles/popout";
+@use "profiles/full";
+@use "profiles/panel";
+
+@use "globals"; // Assigns profile padding for statuses and badges relative to the banner's height.
+@use "eyebrows"; // Styles for eyebrows. Self explanatory.
+@use "banners"; // Makes banners smaller with svg adjustments.
+@use "roles"; // Also self explanatory.
+@use "heights"; // Full profile heights.
+
+@use "fixes/botfix"; // Fixes related to bot profiles, Discord's official profile, and deleted user profiles.
+@use "fixes/static"; // Fixes for static profile modals such as the one in settings.
+
+// IN NEED OF A DEEP CLEAN AAAAA
+
+@use "components/banner/buttons";

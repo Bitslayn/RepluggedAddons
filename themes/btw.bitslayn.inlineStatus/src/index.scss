@@ -36,7 +36,7 @@
 // #endregion
 
 // #region Prep header
-$bitesize-padding: 146px;
+$bitesize-padding: 158px;
 $panel-padding: 165px;
 $fullsize-padding: 273px;
 
@@ -173,6 +173,9 @@ $fullsize-padding: 273px;
       > * {
         margin: 0 16px;
       }
+    }
+    > footer {
+      padding-top: 4px;
     }
     > [class^="overlayBackground"] {
       margin-top: unset;
