@@ -56,14 +56,14 @@
   transform: translate(16px, -93px);
 }
 [class*=fullSizeOuter] > div {
-  padding-top: 273px;
+  padding-top: 283px;
   padding-bottom: 16px;
 }
 [class*=fullSizeOuter] header > svg {
-  transform: translateY(-273px);
+  transform: translateY(-283px);
 }
 [class*=fullSizeOuter] header > [class^=headerInner] > [class^=avatar] {
-  transform: translate(24px, -128px);
+  transform: translate(24px, -138px);
 }
 [class*=userProfileOuter] header {
   min-height: unset !important;
