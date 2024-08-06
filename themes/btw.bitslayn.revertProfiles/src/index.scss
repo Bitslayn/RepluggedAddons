@@ -43,7 +43,7 @@
 // #region Prep header
 $bitesize-padding: 158px;
 $panel-padding: 165px;
-$fullsize-padding: 273px;
+$fullsize-padding: 283px;
 
 [class*="biteSizeOuter"] {
   > div {
@@ -123,7 +123,7 @@ $fullsize-padding: 273px;
         margin-right: 16px;
         top: 0;
         right: 0;
-        transform: translateY($fullsize-padding - 44px);
+        transform: translateY($fullsize-padding - 54px);
       }
     }
   }
