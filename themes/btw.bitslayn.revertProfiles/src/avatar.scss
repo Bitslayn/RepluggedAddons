@@ -1,11 +1,11 @@
+// #region @use
 @use "lang";
 @use "sass:map";
+// #endregion
 
-@debug map.get(lang.$view-profile, en-US);
-
-// Avatar hover
-div:not([class^="customizationSection"])
-  > [class^="biteSizeOuter"]
+// #region Avatar hover
+div:not([class^="customizationSection"], [class*="preview"])
+  > div:is([class^="biteSizeOuter"], [class^="userPanelOuter"])
   [class^="header"]
   > [class^="avatar"] {
   @each $lang, $string in lang.$view-profile {
@@ -56,3 +56,4 @@ div:not([class^="customizationSection"])
   border-radius: unset;
   box-shadow: inset 0 0 120px hsl(var(--black-500-hsl) / 0.75);
 }
+// #endregion

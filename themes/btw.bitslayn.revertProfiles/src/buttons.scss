@@ -1,6 +1,8 @@
+// #region @use
 @use "mixins" as *;
 @use "lang";
 @use "sass:map";
+// #endregion
 
 @mixin header-button {
   width: 28px;
@@ -15,6 +17,7 @@
     width: 18px !important;
     height: 18px !important;
     gap: unset;
+    color: var(--white-500);
   }
   &:hover {
     background: hsl(var(--black-500-hsl) / 0.6) !important;

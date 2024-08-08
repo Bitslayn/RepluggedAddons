@@ -1,3 +1,4 @@
+// #region Tooltip
 @mixin tooltip($label, $offset) {
   // Content
   &::before {
@@ -28,7 +29,9 @@
     pointer-events: none;
   }
 }
+// #endregion
 
+// #region Dumb width/height unset
 @mixin dumbmaxing {
   min-width: unset !important;
   max-width: unset !important;
@@ -45,3 +48,4 @@
   min-height: unset !important;
   max-height: unset !important;
 }
+// #endregion

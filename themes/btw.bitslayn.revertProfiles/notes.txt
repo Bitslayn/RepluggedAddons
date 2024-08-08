@@ -1,17 +1,17 @@
 All
-userProfileOuter
+* userProfileOuter
 
 Panels
-userPanelOuter
+^ userPanelOuter
 
 Bite size
-biteSizeOuter
+^ biteSizeOuter
 
 Full size
-fullSizeOuter
+^ fullSizeOuter
 
 Main static
-themeContainer
+* themeContainer
 
 Nitro
 is userProfileOuterThemed

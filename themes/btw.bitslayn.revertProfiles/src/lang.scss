@@ -1,5 +1,8 @@
+// #region @use
 @use "sass:map";
+// #endregion
 
+// #region "About Me"
 // eyebrows.scss
 $about-me: (
   "da": "Om mig",
@@ -34,6 +37,9 @@ $about-me: (
   "zh-TW": "關於我",
   "ko": "내 소개",
 );
+// #endregion
+
+// #region "Roles"
 $roles: (
   "da": "Roller",
   "de": "Rollen",
@@ -67,6 +73,9 @@ $roles: (
   "zh-TW": "身分組",
   "ko": "역할",
 );
+// #endregion
+
+// #region "Mutuals"
 $mutuals: (
   "da": "Fælles",
   "de": "Freunde",
@@ -100,6 +109,9 @@ $mutuals: (
   "zh-TW": "共同好友或伺服器",
   "ko": "공통",
 );
+// #endregion
+
+// #region "Try my commands"
 $try-my-commands: (
   "da": "Prøv mine kommandoer",
   "de": "Über mich",
@@ -133,7 +145,9 @@ $try-my-commands: (
   "zh-TW": "試試看我的指令",
   "ko": "제 명령어를 사용해보세요",
 );
+// #endregion
 
+// #region "Edit Profile"
 // buttons.scss
 // $edit-profile: (
 //   "da": "Rediger profil",
@@ -168,7 +182,9 @@ $try-my-commands: (
 //   "zh-TW": "編輯個人資料",
 //   "ko": "프로필 편집",
 // );
+// #endregion
 
+// #region "View Profile"
 // popout.scss
 $view-profile: (
   "da": "Se profil",
@@ -203,3 +219,4 @@ $view-profile: (
   "zh-TW": "檢視個人檔案",
   "ko": "프로필 보기",
 );
+// #endregion
