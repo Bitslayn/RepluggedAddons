@@ -95,7 +95,7 @@ $fullsize-padding: 283px;
   }
 }
 
-[class*="userProfileOuter"] {
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) {
   header {
     min-height: unset !important;
     > svg {
@@ -138,7 +138,7 @@ $fullsize-padding: 283px;
 // #endregion
 
 // #region Prep body
-[class*="userProfileOuter"] {
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) {
   &[class*="themeContainer"] {
     > div {
       gap: 16px;
@@ -170,7 +170,7 @@ $fullsize-padding: 283px;
         order: -2;
         max-height: max-content;
       }
-      > * {
+      > *:not([aria-hidden]) {
         margin: 0 16px;
       }
     }
