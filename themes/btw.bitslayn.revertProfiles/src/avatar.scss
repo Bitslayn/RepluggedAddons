@@ -4,6 +4,9 @@
 // #endregion
 
 // #region Avatar hover
+[class^="header"] > [class^="avatar"] {
+  z-index: 1;
+}
 div:not([class^="customizationSection"], [class*="preview"])
   > div:is([class^="biteSizeOuter"], [class^="userPanelOuter"])
   [class^="header"]

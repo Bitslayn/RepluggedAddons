@@ -1,16 +1,22 @@
 // Sort order
 [class*="biteSizeOuter"] {
+  // Badges
+
   // Username container
   [class^="body"] > [class^="container"] {
-    order: -9 !important;
+    order: -10 !important;
   }
   // Guild tag
   [class^="body"] > [class^="clickable"] {
-    order: -8;
+    order: -9;
   }
   // Status
   header > div:not([class]) {
-    order: -7 !important;
+    order: -8 !important;
+  }
+  // Divider
+  [class^="body"]::before {
+    order: -7;
   }
   // Bot buttons
   [class^="body"] > [class^="buttons"] {

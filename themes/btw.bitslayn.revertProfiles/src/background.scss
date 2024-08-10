@@ -1,0 +1,51 @@
+[class^="biteSizeOuter"] {
+  > div::before {
+    content: "";
+    position: absolute;
+    background-color: var(--profile-body-background-color);
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    border-radius: 8px;
+  }
+  &[class*="userProfileOuterThemed"] > div::before {
+    margin: 16px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  }
+  &[class*="userProfileOuterUnthemed"] > div::before {
+    margin: 16px;
+  }
+}
+
+[class^="biteSizeOuter"] {
+  > div::before {
+    margin-top: 46px !important;
+  }
+  &:has([class^="tags"] > [class^="container"] > div:nth-child(9)) > div::before {
+    margin-top: 70px !important;
+  }
+  &:has([class^="tags"] > [class^="container"] ~ [class^="container"] > div:nth-child(5))
+    > div::before {
+    margin-top: 94px !important;
+  }
+  &:has(
+      [class^="tags"]
+        > [class^="container"]
+        ~ [class^="container"]
+        ~ [class^="container"]
+        > div:nth-child(1)
+    )
+    > div::before {
+    margin-top: 118px !important;
+  }
+  &:has(
+      [class^="tags"]
+        > [class^="container"]
+        ~ [class^="container"]
+        ~ [class^="container"]
+        > div:nth-child(9)
+    )
+    > div::before {
+    margin-top: 142px !important;
+  }
+}

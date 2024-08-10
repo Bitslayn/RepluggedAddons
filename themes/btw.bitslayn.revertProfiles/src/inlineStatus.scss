@@ -37,14 +37,14 @@
 
 // #region Prep header
 // $bitesize-padding: 158px;
-$bitesize-padding: 177px;
-$panel-padding: 165px;
+$bitesize-padding: 131px;
+$panel-padding: 124px;
 $fullsize-padding: 283px;
 
 [class*="biteSizeOuter"] {
   > div {
     max-height: calc(
-      100vh - 28px - var(--custom-user-popout-outside-components-height) - $bitesize-padding
+      100vh - 28px - 16px - var(--custom-user-popout-outside-components-height) - $bitesize-padding
     );
     padding-top: $bitesize-padding;
   }
@@ -99,7 +99,7 @@ $fullsize-padding: 283px;
   }
 }
 
-[class*="userProfileOuter"] {
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) {
   header {
     min-height: unset !important;
     > svg {
@@ -142,7 +142,7 @@ $fullsize-padding: 283px;
 // #endregion
 
 // #region Prep body
-[class*="userProfileOuter"] {
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) {
   &[class*="themeContainer"] {
     > div {
       gap: 16px;
@@ -158,7 +158,7 @@ $fullsize-padding: 283px;
     gap: 12px;
     display: flex;
     flex-direction: column;
-    max-height: -webkit-fill-available;
+    // max-height: -webkit-fill-available;
     > header {
       &,
       > [class^="headerInner"] {
@@ -174,7 +174,7 @@ $fullsize-padding: 283px;
         order: -2;
         max-height: max-content;
       }
-      > * {
+      > *:not([aria-hidden]) {
         margin: 0 16px;
       }
     }
