@@ -5,7 +5,11 @@
 @use "avatar";
 @use "background";
 
+@use "eyebrows";
+@use "roles";
 @use "inlineStatus";
+
+@use "full";
 // #endregion
 
 // #region Tags & split username/pronouns
@@ -125,13 +129,13 @@
 [class*="biteSizeOuter"] {
   > div {
     gap: unset !important;
-    padding-bottom: 16px;
+    // padding-bottom: 16px;
     background: linear-gradient(
       var(--profile-gradient-start),
       var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
       var(--profile-gradient-end)
     );
-    overflow: hidden auto;
+    overflow: scroll auto;
     > [class^="body"] > [class^="container"] {
       > [class^="usernameRow"] {
         padding-top: 12px;
@@ -161,12 +165,37 @@
     > [class^="body"]::before {
       content: "";
       height: 1px;
+      min-height: 1px;
       background-color: var(--profile-body-divider-color);
       margin-bottom: 12px;
       margin-left: 28px;
       margin-right: 28px;
       position: sticky;
       z-index: 1;
+    }
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 16px;
+    }
+    &::-webkit-scrollbar-corner {
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--profile-body-divider-color);
+
+      background-clip: padding-box;
+      border: 2px solid transparent;
+      border-radius: 4px;
+      // background-color: var(--scrollbar-thin-thumb);
+      min-height: 40px;
+    }
+    &::-webkit-scrollbar-track {
+      margin-top: inlineStatus.$bitesize-padding;
+      margin-bottom: 4px;
+
+      border: 2px solid var(--scrollbar-thin-track);
+      background-color: var(--scrollbar-thin-track);
+      border-color: var(--scrollbar-thin-track);
     }
   }
 }
@@ -208,3 +237,15 @@
 //   }
 // }
 // #endregion
+
+// Message box
+[class^="channelTextArea"] > [class^="inner"] {
+  background-color: transparent;
+  border: 1px solid var(--profile-message-input-border-color);
+}
+
+// Activities
+[class^="activityBiteSizePopout"] > img {
+  width: 24px !important;
+  height: 24px !important;
+}

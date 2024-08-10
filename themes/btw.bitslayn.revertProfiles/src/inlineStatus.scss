@@ -94,7 +94,7 @@ $fullsize-padding: 283px;
     }
     > [class^="headerInner"] > [class^="avatar"] {
       // transform: translate(24px, calc(145px + $fullsize-padding * -1));
-      transform: translate(22px, calc(145px + $fullsize-padding * -1));
+      transform: translate(24px, calc(145px + $fullsize-padding * -1));
     }
   }
 }

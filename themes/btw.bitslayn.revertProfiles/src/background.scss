@@ -18,6 +18,9 @@
 }
 
 [class^="biteSizeOuter"] {
+  &:not(:has([class^="tags"] > [class^="container"])) > div::before {
+    margin-top: 62px !important;
+  }
   > div::before {
     margin-top: 46px !important;
   }

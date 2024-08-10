@@ -1,5 +1,7 @@
+// #region @use
 @use "lang";
 @use "sass:map";
+// #endregion
 
 @mixin eyebrow-font {
   display: flex;
@@ -25,7 +27,7 @@
 [class^="userPanelInner"] [class^="section"] > h2 /* For DM profile panels */ {
   @include eyebrow-font;
 }
-div:has(> [class^="descriptionClamp"]),
+[class^="body"] > div:not([class], [style]),
 [class^="userProfileModalInner"] [class^="scroller"] > [class^="markup"] {
   @each $lang, $string in lang.$about-me {
     &:lang(#{$lang})::before {
@@ -36,14 +38,15 @@ div:has(> [class^="descriptionClamp"]),
     @include eyebrow(6px);
   }
 }
-div:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"])) {
-  @each $lang, $string in lang.$roles {
-    &:lang(#{$lang})::before {
-      content: $string;
-    }
-  }
+[class^="body"] > [style="position: relative;"] > [class^="root"] {
+  // @each $lang, $string in lang.$roles {
+  //   &:lang(#{$lang})::before {
+  //     content: $string;
+  //   }
+  // }
   &::before {
-    @include eyebrow(6px);
+    content: attr(aria-label);
+    @include eyebrow(2px);
   }
 }
 [class^="mutuals_"] {
@@ -65,8 +68,4 @@ div:has(> [data-list-id^="roles-"]):not(:has([data-text-variant="eyebrow"])) {
   &::before {
     @include eyebrow(6px);
   }
-}
-[class^="section"]:has(> div > [data-list-id^="roles-"]) > h1, /* Bot roles */
-[class^="section"]:has(> [class^="list"]) > h1 /* Bot commands */ {
-  display: none;
 }

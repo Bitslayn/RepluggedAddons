@@ -1,0 +1,17 @@
+[class*="userProfileInner"] [data-list-id^="roles"] {
+  [class*="pill"],
+  > div > button {
+    background-color: var(--profile-role-pill-background-color);
+    border: unset;
+    max-height: 22px;
+    box-sizing: border-box;
+  }
+}
+
+// Themed role borders
+[class*="userProfileOuterThemed"] > [class*="userProfileInner"] [data-list-id^="roles"] {
+  [class*="pill"],
+  > div > button {
+    border: 1px solid var(--profile-role-pill-border-color) !important;
+  }
+}
