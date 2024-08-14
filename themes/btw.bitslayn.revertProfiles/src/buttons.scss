@@ -25,7 +25,8 @@
   }
 }
 
-[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) > div > [class^="wrapper"] {
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) > div > [class^="wrapper"],
+[class^="userPanelOuter"] > div > div > [class^="wrapper"] {
   &,
   .platform-indicators {
     gap: 7px; // Seems arbitrary right? WRONG I mathematically determined this is the correct spacing relative to the original 8px

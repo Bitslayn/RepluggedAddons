@@ -37,8 +37,9 @@
 
 // #region Prep header
 // $bitesize-padding: 158px;
-$bitesize-padding: 131px;
-$panel-padding: 124px;
+$bitesize-padding: 158px;
+// $panel-padding: 124px;
+$panel-padding: 158px;
 $fullsize-padding: 283px;
 
 [class*="biteSizeOuter"] {
@@ -72,10 +73,10 @@ $fullsize-padding: 283px;
     padding-top: $panel-padding;
   }
   header {
-    > svg {
-      position: fixed !important;
-      transform: translateY(calc($panel-padding * -1));
-    }
+    // > svg {
+    //   position: fixed !important;
+    //   transform: translateY(calc($panel-padding * -1));
+    // }
     > [class^="avatar"] {
       position: fixed !important;
       transform: translate(16px, calc(72px + $panel-padding * -1));

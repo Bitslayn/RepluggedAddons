@@ -12,55 +12,117 @@
 @use "full";
 // #endregion
 
+// #region Panel
+[class^="userPanelOuter"] {
+  header [class^="visibleContainer"] {
+    padding: 0 12px;
+    margin: 0 16px;
+    padding-bottom: 12px;
+    background-color: var(--profile-body-background-color);
+  }
+  [class^="body"] {
+    > [class^="container"] {
+      padding: 12px;
+      margin-top: 16px !important;
+      background-color: var(--profile-body-background-color);
+      border-top-left-radius: var(--radius-sm);
+      border-top-right-radius: var(--radius-sm);
+    }
+    > [class^="overlayBackground"] {
+      gap: 0px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      margin-bottom: 12px !important;
+      border-top-left-radius: unset;
+      border-top-right-radius: unset;
+      > * {
+        // padding: 0 12px;
+        padding-bottom: 12px;
+        gap: 6px;
+      }
+      // Divider
+      &::before {
+        content: "";
+        height: 1px;
+        min-height: 1px;
+        background-color: var(--profile-body-divider-color);
+        margin-bottom: 12px;
+        position: sticky;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+[class^="userPanelOuter"] > div > [class^="none"] {
+  gap: unset !important;
+  > [class^="body"] {
+    > [class^="activityBiteSizePopout"] {
+      order: 1;
+
+      padding: 12px !important;
+      background: var(--profile-body-background-color) !important;
+      border-radius: 8px;
+      margin-bottom: 12px !important;
+    }
+  }
+  > [class^="overlayBackground"] {
+    order: 2;
+  }
+}
+// #endregion
+
 // #region Tags & split username/pronouns
-[class^="biteSizeOuter"] {
+[class^="biteSizeOuter"],
+[class^="userPanelOuter"] {
   [class^="body"] > [class^="container"] {
     display: flex;
     flex-direction: column;
     > [class^="tags"] {
-      background-color: var(--profile-body-background-color);
-      border-radius: 8px;
-      padding: 4px;
-      gap: 2px;
-      order: -1;
+      // background-color: var(--profile-body-background-color);
+      // border-radius: 8px;
+      // padding: 4px;
+      // gap: 2px;
+      // order: -1;
 
       display: flex;
-      justify-content: flex-end;
-      width: max-content;
-      max-width: 190px;
-      align-self: flex-end;
-      transform: translateX(12px);
-      a > * {
-        width: 22px;
-        height: 22px;
-      }
-      > [class^="clickableUsername"],
-      > [class*="userTag"],
-      > [class^="pronounsTooltip"] {
-        position: absolute;
-        top: 100%;
-        margin-right: 8px;
-        width: 284px;
-        max-width: 284px;
-      }
-      > [class^="clickableUsername"],
-      > [class*="userTag"] {
-        transform: translateY(52px);
-      }
-      > [class^="pronounsTooltip"] {
-        transform: translateY(72px);
-      }
+      flex-direction: column;
+      align-items: flex-start;
+      // width: max-content;
+      // max-width: 190px;
+      // align-self: flex-end;
+      // transform: translateX(12px);
+      // a > * {
+      //   width: 22px;
+      //   height: 22px;
+      // }
+      // > [class^="clickableUsername"],
+      // > [class*="userTag"],
+      // > [class^="pronounsTooltip"] {
+      //   position: absolute;
+      //   top: 100%;
+      //   margin-right: 8px;
+      //   width: 284px;
+      //   max-width: 284px;
+      // }
+      // > [class^="clickableUsername"],
+      // > [class*="userTag"] {
+      //   transform: translateY(52px);
+      // }
+      // > [class^="pronounsTooltip"] {
+      //   transform: translateY(72px);
+      // }
       > [class^="dotSpacer"] {
         display: none;
       }
       > [class^="container_"] {
-        display: contents;
+        // position: absolute;
       }
-      &:not(:has(a)) {
-        padding: unset;
-        margin-top: 46px;
-        transform: translateX(8px);
-      }
+      // &:not(:has(a)) {
+      //   padding: unset;
+      //   margin-top: 46px;
+      //   transform: translateX(8px);
+      // }
     }
   }
 }
@@ -140,12 +202,12 @@
       > [class^="usernameRow"] {
         padding-top: 12px;
         margin-top: 16px;
-        order: 1;
-        padding-bottom: 38px; // Padding for username and pronouns
+        // order: 1;
+        // padding-bottom: 38px; // Padding for username and pronouns
       }
-      &:not(:has([class^="pronounsTooltip"])) > [class^="usernameRow"] {
-        padding-bottom: 18px; // Padding for username
-      }
+      // &:not(:has([class^="pronounsTooltip"])) > [class^="usernameRow"] {
+      //   padding-bottom: 18px; // Padding for username
+      // }
     }
     // Inner body gap
     > header [class^="visibleContainer"],
@@ -205,6 +267,18 @@
   top: 0px;
 }
 
+// Username clamp
+[class*="userProfileOuter"] {
+  &:not(:hover) [class^="nicknameIcons_"] {
+    display: none;
+  }
+  [class^="clickableUsername_"] > :is(h1, h2) {
+    -webkit-line-clamp: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+  }
+}
 // #region
 // [class*="biteSizeOuter"] {
 //   header {
