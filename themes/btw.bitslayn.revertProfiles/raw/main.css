@@ -1,3 +1,11 @@
+/*
+* @name Revert Profiles
+* @author Bitslayn
+* @version 1.1.0a
+* @updated 8/23/2024
+* @description Reverts user profiles to the layout before they were simplified. This does not increase how many roles are shown in popout profiles."
+*/
+
 @charset "UTF-8";
 
 /* themes/btw.bitslayn.revertProfiles/src/index.scss */
@@ -658,6 +666,10 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 [class^=userPanelOuter] > div > [class^=none] {
   padding-top: 158px;
 }
+[class^=userPanelOuter] header > svg {
+  position: fixed !important;
+  transform: translateY(-158px);
+}
 [class^=userPanelOuter] header > [class^=avatar] {
   position: fixed !important;
   transform: translate(16px, -86px);
@@ -690,7 +702,7 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
   position: absolute;
   padding: unset;
 }
-[class*=userProfileOuter]:not([class^=userProfileModalOuter]) header > [class^=headerInner] > [class^=buttons] {
+[class*=userProfileOuter]:not([class^=userProfileModalOuter]) header > [class^=headerInner] > [class^=headerButtons] {
   position: absolute;
   padding-right: 4px;
   margin-right: 16px;
@@ -909,6 +921,12 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 [class^=userPanelOuter] > div > [class^=none] > [class^=overlayBackground] {
   order: 2;
 }
+[class*=userProfileOuter] [class*=hoisted_] {
+  z-index: 5 !important;
+}
+[class^=userPanelOuter] [class^=body] > [class^=container] > [class^=tags] > [class^=container_] {
+  border-radius: 4px !important;
+}
 [class^=biteSizeOuter] [class^=body] > [class^=container],
 [class^=userPanelOuter] [class^=body] > [class^=container] {
   display: flex;
@@ -923,6 +941,18 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 [class^=biteSizeOuter] [class^=body] > [class^=container] > [class^=tags] > [class^=dotSpacer],
 [class^=userPanelOuter] [class^=body] > [class^=container] > [class^=tags] > [class^=dotSpacer] {
   display: none;
+}
+[class^=biteSizeOuter] [class^=body] > [class^=container] > [class^=tags] > [class^=container_],
+[class^=userPanelOuter] [class^=body] > [class^=container] > [class^=tags] > [class^=container_] {
+  position: absolute;
+  background-color: var(--profile-body-background-color);
+  border: unset;
+  border-radius: 8px;
+  padding: 4px;
+  gap: 2px;
+  transform: translate(12px, -81px);
+  max-width: 182px;
+  align-self: end;
 }
 [class^=biteSizeOuter] {
   width: 340px;

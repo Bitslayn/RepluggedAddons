@@ -73,10 +73,10 @@ $fullsize-padding: 283px;
     padding-top: $panel-padding;
   }
   header {
-    // > svg {
-    //   position: fixed !important;
-    //   transform: translateY(calc($panel-padding * -1));
-    // }
+    > svg {
+      position: fixed !important;
+      transform: translateY(calc($panel-padding * -1));
+    }
     > [class^="avatar"] {
       position: fixed !important;
       transform: translate(16px, calc(72px + $panel-padding * -1));
@@ -117,7 +117,7 @@ $fullsize-padding: 283px;
     > [class^="headerInner"] {
       position: absolute;
       padding: unset;
-      > [class^="buttons"] {
+      > [class^="headerButtons"] {
         position: absolute;
         padding-right: 4px;
         margin-right: 16px;

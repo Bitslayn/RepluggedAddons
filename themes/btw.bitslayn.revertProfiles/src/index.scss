@@ -72,7 +72,20 @@
 }
 // #endregion
 
+// #region Hoist status/avatar reply/react
+[class*="userProfileOuter"] [class*="hoisted_"] {
+  z-index: 5 !important;
+}
+// #endregion
+
 // #region Tags & split username/pronouns
+[class^="userPanelOuter"]
+  [class^="body"]
+  > [class^="container"]
+  > [class^="tags"]
+  > [class^="container_"] {
+  border-radius: 4px !important;
+}
 [class^="biteSizeOuter"],
 [class^="userPanelOuter"] {
   [class^="body"] > [class^="container"] {
@@ -116,7 +129,15 @@
         display: none;
       }
       > [class^="container_"] {
-        // position: absolute;
+        position: absolute;
+        background-color: var(--profile-body-background-color);
+        border: unset;
+        border-radius: 8px;
+        padding: 4px;
+        gap: 2px;
+        transform: translate(12px, -81px);
+        max-width: 182px;
+        align-self: end;
       }
       // &:not(:has(a)) {
       //   padding: unset;

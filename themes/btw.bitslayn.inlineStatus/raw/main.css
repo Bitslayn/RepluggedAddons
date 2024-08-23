@@ -1,3 +1,11 @@
+/*
+* @name Inline Status
+* @author Bitslayn
+* @version 1.0.2
+* @updated 8/9/2024
+* @description Removes status bubbles and places the status inside the profile."
+*/
+
 /* themes/btw.bitslayn.inlineStatus/src/index.scss */
 [class^=visibleContainer] {
   position: relative;
