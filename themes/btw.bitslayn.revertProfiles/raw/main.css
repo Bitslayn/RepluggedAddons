@@ -1,7 +1,7 @@
 /*
 * @name Revert Profiles
 * @author Bitslayn
-* @version 1.1.0a
+* @version 1.1.0b
 * @updated 8/23/2024
 * @description Reverts user profiles to the layout before they were simplified. This does not increase how many roles are shown in popout profiles."
 */
@@ -237,7 +237,8 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 [class^=activityBiteSizePopout] > [class^=headerContainer] > h2,
 [class^=activitySimplifiedProfile] > [class^=headerContainer] > h1,
 [class^=userProfileModalInner] [class^=section] > h1,
-[class^=userPanelInner] [class^=section] > h2 {
+[class^=userPanelInner] [class^=section] > h2,
+[class^=biteSizeOuter_] [class^=section] > h1 {
   display: flex;
   font-weight: 700;
   color: var(--header-primary) !important;
@@ -607,6 +608,11 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
+[class*=userProfileOuter] [class^=scroller] > section:first-of-type > h1,
+[class*=userProfileOuter] [class^=body_] > section:first-of-type > h1,
+[class*=userProfileOuter] [class^=overlayBackground_] > section:nth-of-type(2) > h2 {
+  display: none;
+}
 [class*=userProfileInner] [data-list-id^=roles] [class*=pill],
 [class*=userProfileInner] [data-list-id^=roles] > div > button {
   background-color: var(--profile-role-pill-background-color);
@@ -931,6 +937,7 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 [class^=userPanelOuter] [class^=body] > [class^=container] {
   display: flex;
   flex-direction: column;
+  gap: unset;
 }
 [class^=biteSizeOuter] [class^=body] > [class^=container] > [class^=tags],
 [class^=userPanelOuter] [class^=body] > [class^=container] > [class^=tags] {

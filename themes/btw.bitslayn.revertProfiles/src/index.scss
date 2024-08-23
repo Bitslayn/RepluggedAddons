@@ -91,6 +91,7 @@
   [class^="body"] > [class^="container"] {
     display: flex;
     flex-direction: column;
+    gap: unset; // For bots
     > [class^="tags"] {
       // background-color: var(--profile-body-background-color);
       // border-radius: 8px;

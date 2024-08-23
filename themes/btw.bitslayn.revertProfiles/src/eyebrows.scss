@@ -24,7 +24,8 @@
 [class^="activityBiteSizePopout"] > [class^="headerContainer"] > h2,
 [class^="activitySimplifiedProfile"] > [class^="headerContainer"] > h1,
 [class^="userProfileModalInner"] [class^="section"] > h1, /* For headers in the full profile which use semibold instead of eyebrow */
-[class^="userPanelInner"] [class^="section"] > h2 /* For DM profile panels */ {
+[class^="userPanelInner"] [class^="section"] > h2, /* For DM profile panels */
+[class^="biteSizeOuter_"] [class^="section"] > h1 {
   @include eyebrow-font;
 }
 [class^="body"] > div:not([class], [style]),
@@ -67,5 +68,13 @@
   }
   &::before {
     @include eyebrow(6px);
+  }
+}
+
+[class*="userProfileOuter"] {
+  [class^="scroller"] > section:first-of-type > h1,
+  [class^="body_"] > section:first-of-type > h1,
+  [class^="overlayBackground_"] > section:nth-of-type(2) > h2 {
+    display: none;
   }
 }
