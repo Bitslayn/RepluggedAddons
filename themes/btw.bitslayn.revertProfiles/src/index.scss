@@ -48,10 +48,16 @@
       color: var(--interactive-active);
     }
   }
-  [class^="body_"] > [class^="container_"] {
-    z-index: 1;
-    margin: 0 16px;
-    padding: 0 16px;
+  [class^="body_"] {
+    > [class^="container_"],
+    > [class^="clickable_"] {
+      z-index: 1;
+      margin: 0 16px;
+      padding: 0 16px;
+    }
+    > [class^="clickable_"] {
+      padding-top: 12px;
+    }
   }
   [class^="visibleContainer"] {
     margin: 0 16px;

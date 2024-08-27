@@ -1,5 +1,5 @@
 // Sort order
-[class*="biteSizeOuter"] {
+[class^="biteSizeOuter"] {
   // Badges
 
   // Username container
@@ -51,4 +51,17 @@
   [class^="body_"] > section:has([class^="note"]) {
     order: 1;
   }
+}
+
+[class^="fullSizeOuter"] {
+  // Badges
+
+  // Username container
+
+  // Guild tag
+  [class^="body_"] > [class^="clickable_"] {
+    order: -2;
+  }
+
+  // Status
 }

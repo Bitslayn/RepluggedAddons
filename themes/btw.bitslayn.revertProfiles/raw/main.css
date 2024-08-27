@@ -9,41 +9,44 @@
 @charset "UTF-8";
 
 /* themes/btw.bitslayn.revertProfiles/src/index.scss */
-[class*=biteSizeOuter] [class^=body_] > [class^=container_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=container_] {
   order: -11 !important;
 }
-[class*=biteSizeOuter] [class^=body_] > [class^=clickable_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=clickable_] {
   order: -10;
 }
-[class*=biteSizeOuter] header > div:nth-of-type(2) {
+[class^=biteSizeOuter] header > div:nth-of-type(2) {
   order: -9 !important;
 }
-[class*=biteSizeOuter] [class^=body_]::before {
+[class^=biteSizeOuter] [class^=body_]::before {
   order: -8;
 }
-[class*=biteSizeOuter] [class^=body_] > [class^=buttons_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=buttons_] {
   order: -7;
 }
-[class*=biteSizeOuter] [class^=body] > div:has(> [class^=descriptionClamp_]) {
+[class^=biteSizeOuter] [class^=body] > div:has(> [class^=descriptionClamp_]) {
   order: -6;
 }
-[class*=biteSizeOuter] [class^=body_] > [class^=mutuals_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=mutuals_] {
   order: -5;
 }
-[class*=biteSizeOuter] [class^=body_] > [class^=activityBiteSizePopout_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=activityBiteSizePopout_] {
   order: -4;
 }
-[class*=biteSizeOuter] [class^=body_] > section {
+[class^=biteSizeOuter] [class^=body_] > section {
   order: -3;
 }
-[class*=biteSizeOuter] [class^=body_] > div:has(> [data-list-id^=roles-]) {
+[class^=biteSizeOuter] [class^=body_] > div:has(> [data-list-id^=roles-]) {
   order: -2;
 }
-[class*=biteSizeOuter] [class^=body_] > [class^=menus_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=menus_] {
   order: -1;
 }
-[class*=biteSizeOuter] [class^=body_] > section:has([class^=note]) {
+[class^=biteSizeOuter] [class^=body_] > section:has([class^=note]) {
   order: 1;
+}
+[class^=fullSizeOuter] [class^=body_] > [class^=clickable_] {
+  order: -2;
 }
 [class*=userProfileOuter]:not([class^=userProfileModalOuter]) > div > [class^=wrapper],
 [class*=userProfileOuter]:not([class^=userProfileModalOuter]) > div > [class^=wrapper] .platform-indicators,
@@ -812,10 +815,14 @@ section > [class^=root_]::before {
 [class^=fullSizeOuter_] [class^=tabBarItem_][aria-selected=true] > div {
   color: var(--interactive-active);
 }
-[class^=fullSizeOuter_] [class^=body_] > [class^=container_] {
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_],
+[class^=fullSizeOuter_] [class^=body_] > [class^=clickable_] {
   z-index: 1;
   margin: 0 16px;
   padding: 0 16px;
+}
+[class^=fullSizeOuter_] [class^=body_] > [class^=clickable_] {
+  padding-top: 12px;
 }
 [class^=fullSizeOuter_] [class^=visibleContainer] {
   margin: 0 16px;
