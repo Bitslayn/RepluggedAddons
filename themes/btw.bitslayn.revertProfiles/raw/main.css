@@ -2,46 +2,47 @@
 * @name Revert Profiles
 * @author Bitslayn
 * @version 1.1.0b
-* @updated 8/23/2024
+* @updated 8/27/2024
 * @description Reverts user profiles to the layout before they were simplified. This does not increase how many roles are shown in popout profiles."
 */
 
 @charset "UTF-8";
 
 /* themes/btw.bitslayn.revertProfiles/src/index.scss */
-[class*=biteSizeOuter] [class^=body] > [class^=container] {
-  order: -10 !important;
+[class*=biteSizeOuter] [class^=body_] > [class^=container_] {
+  order: -11 !important;
 }
-[class*=biteSizeOuter] [class^=body] > [class^=clickable] {
-  order: -9;
+[class*=biteSizeOuter] [class^=body_] > [class^=clickable_] {
+  order: -10;
 }
-[class*=biteSizeOuter] header > div:not([class]) {
-  order: -8 !important;
+[class*=biteSizeOuter] header > div:nth-of-type(2) {
+  order: -9 !important;
 }
-[class*=biteSizeOuter] [class^=body]::before {
+[class*=biteSizeOuter] [class^=body_]::before {
+  order: -8;
+}
+[class*=biteSizeOuter] [class^=body_] > [class^=buttons_] {
   order: -7;
 }
-[class*=biteSizeOuter] [class^=body] > [class^=buttons] {
+[class*=biteSizeOuter] [class^=body] > div:has(> [class^=descriptionClamp_]) {
   order: -6;
 }
-[class*=biteSizeOuter] [class^=body] > div:not([class], [style]) {
+[class*=biteSizeOuter] [class^=body_] > [class^=mutuals_] {
   order: -5;
 }
-[class*=biteSizeOuter] [class^=body] > [class^=mutuals] {
+[class*=biteSizeOuter] [class^=body_] > [class^=activityBiteSizePopout_] {
   order: -4;
 }
-[class*=biteSizeOuter] [class^=body] > [class^=activityBiteSizePopout],
-[class*=biteSizeOuter] [class^=body] > div:has([class^=activityBiteSizePopout]) {
+[class*=biteSizeOuter] [class^=body_] > section {
   order: -3;
 }
-[class*=biteSizeOuter] [class^=body] > div[style="position: relative;"],
-[class*=biteSizeOuter] section {
+[class*=biteSizeOuter] [class^=body_] > div:has(> [data-list-id^=roles-]) {
   order: -2;
 }
-[class*=biteSizeOuter] [class^=body] > [class^=menus] {
+[class*=biteSizeOuter] [class^=body_] > [class^=menus_] {
   order: -1;
 }
-[class*=biteSizeOuter] [class^=body] > section:has([class^=note]) {
+[class*=biteSizeOuter] [class^=body_] > section:has([class^=note]) {
   order: 1;
 }
 [class*=userProfileOuter]:not([class^=userProfileModalOuter]) > div > [class^=wrapper],
@@ -385,7 +386,12 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
   text-transform: uppercase;
   letter-spacing: 0.02em;
 }
-[class^=body] > [style="position: relative;"] > [class^=root]::before {
+[class^=body_] > div:has(> [data-list-id^=roles-])::before,
+section::before {
+  display: none;
+}
+[class^=body_] > div:has(> [data-list-id^=roles-]) > [class^=root_]::before,
+section > [class^=root_]::before {
   content: attr(aria-label);
   margin-bottom: 2px;
   width: 100%;
@@ -610,7 +616,8 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 }
 [class*=userProfileOuter] [class^=scroller] > section:first-of-type > h1,
 [class*=userProfileOuter] [class^=body_] > section:first-of-type > h1,
-[class*=userProfileOuter] [class^=overlayBackground_] > section:nth-of-type(2) > h2 {
+[class*=userProfileOuter] [class^=overlayBackground_] > section:nth-of-type(2) > h2,
+[class*=userProfileOuter] [class^=scroller] > section:has(> [data-list-id^=roles-]) > h1 {
   display: none;
 }
 [class*=userProfileInner] [data-list-id^=roles] [class*=pill],

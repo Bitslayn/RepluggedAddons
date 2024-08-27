@@ -39,13 +39,17 @@
     @include eyebrow(6px);
   }
 }
-[class^="body"] > [style="position: relative;"] > [class^="root"] {
+[class^="body_"] > div:has(> [data-list-id^="roles-"]),
+section {
   // @each $lang, $string in lang.$roles {
   //   &:lang(#{$lang})::before {
   //     content: $string;
   //   }
   // }
   &::before {
+    display: none;
+  }
+  > [class^="root_"]::before {
     content: attr(aria-label);
     @include eyebrow(2px);
   }
@@ -74,7 +78,8 @@
 [class*="userProfileOuter"] {
   [class^="scroller"] > section:first-of-type > h1,
   [class^="body_"] > section:first-of-type > h1,
-  [class^="overlayBackground_"] > section:nth-of-type(2) > h2 {
+  [class^="overlayBackground_"] > section:nth-of-type(2) > h2,
+  [class^="scroller"] > section:has(> [data-list-id^="roles-"]) > h1 {
     display: none;
   }
 }

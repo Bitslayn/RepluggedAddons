@@ -3,49 +3,52 @@
   // Badges
 
   // Username container
-  [class^="body"] > [class^="container"] {
-    order: -10 !important;
+  [class^="body_"] > [class^="container_"] {
+    order: -11 !important;
   }
   // Guild tag
-  [class^="body"] > [class^="clickable"] {
-    order: -9;
+  [class^="body_"] > [class^="clickable_"] {
+    order: -10;
   }
   // Status
-  header > div:not([class]) {
-    order: -8 !important;
+  header > div:nth-of-type(2) {
+    order: -9 !important;
   }
   // Divider
-  [class^="body"]::before {
-    order: -7;
+  [class^="body_"]::before {
+    order: -8;
   }
   // Bot buttons
-  [class^="body"] > [class^="buttons"] {
-    order: -6;
+  [class^="body_"] > [class^="buttons_"] {
+    order: -7;
   }
   // About me
-  [class^="body"] > div:not([class], [style]) {
-    order: -5;
+  [class^="body"] > div:has(> [class^="descriptionClamp_"]) {
+    order: -6;
   }
   // Mutuals
-  [class^="body"] > [class^="mutuals"] {
-    order: -4;
+  [class^="body_"] > [class^="mutuals_"] {
+    order: -5;
   }
   // Activities
-  [class^="body"] > [class^="activityBiteSizePopout"],
-  [class^="body"] > div:has([class^="activityBiteSizePopout"]) {
+  [class^="body_"] > [class^="activityBiteSizePopout_"] {
+    // [class^="body_"] > div:has([class^="activityBiteSizePopout_"]) {
+    order: -4;
+  }
+  // Try my commands & bot roles
+  [class^="body_"] > section {
     order: -3;
   }
-  // Try my commands & roles
-  [class^="body"] > div[style="position: relative;"],
-  section {
+  // Roles
+  [class^="body_"] > div:has(> [data-list-id^="roles-"]) {
     order: -2;
   }
   // My profile buttons
-  [class^="body"] > [class^="menus"] {
+  [class^="body_"] > [class^="menus_"] {
     order: -1;
   }
   // SimplifiedProfileNotes (plugin)
-  [class^="body"] > section:has([class^="note"]) {
+  [class^="body_"] > section:has([class^="note"]) {
     order: 1;
   }
 }
