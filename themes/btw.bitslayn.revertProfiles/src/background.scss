@@ -1,4 +1,5 @@
-[class^="biteSizeOuter"] {
+[class^="biteSizeOuter"],
+[class^="fullSizeOuter"] {
   > div::before {
     content: "";
     position: absolute;

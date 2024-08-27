@@ -9,7 +9,100 @@
 @use "roles";
 @use "inlineStatus";
 
-@use "full";
+// @use "full";
+// #endregion
+
+// #region Fullsize
+[class^="root_"]:has(> [class^="fullSizeOuter_"]) {
+  max-height: 720px;
+}
+[class^="fullSizeOuter_"] {
+  > div {
+    background: linear-gradient(
+      var(--profile-gradient-start),
+      var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
+      var(--profile-gradient-end)
+    );
+    gap: unset !important;
+    &::before {
+      margin-top: 6px !important;
+    }
+  }
+  [class^="fullSizeOverlayBackground_"] {
+    background: unset !important;
+    background-color: unset !important;
+    border: unset !important;
+  }
+  [class^="tabBarItem_"] {
+    height: 39px;
+    border-bottom-width: 2px;
+    div {
+      font-weight: 500;
+      line-height: 20px;
+      color: var(--interactive-normal);
+    }
+    &:hover > div {
+      color: var(--interactive-hover);
+    }
+    &[aria-selected="true"] > div {
+      color: var(--interactive-active);
+    }
+  }
+  [class^="body_"] > [class^="container_"] {
+    z-index: 1;
+    margin: 0 16px;
+    padding: 0 16px;
+  }
+  [class^="visibleContainer"] {
+    margin: 0 16px;
+    padding-top: 12px;
+  }
+  &:not(:has([class^="banner"][style*="background-image"])) {
+    > div {
+      padding-top: calc(inlineStatus.$fullsize-padding - 104px);
+    }
+    [class^="headerInner_"] > [class^="headerButtons_"] {
+      transform: translateY(122px);
+    }
+    [class^="body_"] > [class^="container_"] > [class^="tags"] > [class^="container_"] {
+      top: calc(inlineStatus.$fullsize-padding - 158px) !important;
+    }
+  }
+  [class^="body_"] > [class^="container_"] {
+    margin-top: 6px !important;
+    padding-top: 12px;
+    > [class^="tags"] {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      row-gap: 2px;
+      > [class^="dotSpacer"] {
+        display: none;
+      }
+      // Badges
+      > [class^="container_"] {
+        position: absolute;
+        justify-content: flex-start;
+        left: calc(160px);
+        top: calc(inlineStatus.$fullsize-padding - 50px);
+        margin: unset;
+        border: unset;
+        border-radius: 8px;
+        box-sizing: content-box;
+        max-width: calc(calc(8 /* Colums - 1 */ * 26px) + 24px);
+        padding: 2px 4px;
+        background-color: var(--profile-body-background-color);
+        div > a {
+          > img,
+          > div {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+}
 // #endregion
 
 // #region Panel
@@ -93,39 +186,9 @@
     flex-direction: column;
     gap: unset; // For bots
     > [class^="tags"] {
-      // background-color: var(--profile-body-background-color);
-      // border-radius: 8px;
-      // padding: 4px;
-      // gap: 2px;
-      // order: -1;
-
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      // width: max-content;
-      // max-width: 190px;
-      // align-self: flex-end;
-      // transform: translateX(12px);
-      // a > * {
-      //   width: 22px;
-      //   height: 22px;
-      // }
-      // > [class^="clickableUsername"],
-      // > [class*="userTag"],
-      // > [class^="pronounsTooltip"] {
-      //   position: absolute;
-      //   top: 100%;
-      //   margin-right: 8px;
-      //   width: 284px;
-      //   max-width: 284px;
-      // }
-      // > [class^="clickableUsername"],
-      // > [class*="userTag"] {
-      //   transform: translateY(52px);
-      // }
-      // > [class^="pronounsTooltip"] {
-      //   transform: translateY(72px);
-      // }
       > [class^="dotSpacer"] {
         display: none;
       }
@@ -140,11 +203,6 @@
         max-width: 182px;
         align-self: end;
       }
-      // &:not(:has(a)) {
-      //   padding: unset;
-      //   margin-top: 46px;
-      //   transform: translateX(8px);
-      // }
     }
   }
 }
@@ -301,38 +359,6 @@
     word-break: break-all;
   }
 }
-// #region
-// [class*="biteSizeOuter"] {
-//   header {
-//     &:not(:has([style*="background-image"])) {
-//       > svg {
-//         > foreignObject {
-//           transform: translateY(calc(-105px + 60px));
-//         }
-//       }
-//       > [class^="avatar"] > div {
-//         transform: translateY(-45px);
-//       }
-//     }
-//   }
-//   // Unthemed
-//   &:not([class*="userProfileOuterThemed"]) header {
-//     > svg {
-//       border-top-left-radius: var(--radius-sm);
-//       border-top-right-radius: var(--radius-sm);
-//     }
-//     > [class^="avatar"] {
-//       transform: translateY(calc(61px + inlineStatus.$bitesize-padding * -1));
-//     }
-//   }
-//   // Themed/Nitro
-//   &[class*="userProfileOuterThemed"] header {
-//     > [class^="avatar"] {
-//       transform: translateY(calc(57px + inlineStatus.$bitesize-padding * -1));
-//     }
-//   }
-// }
-// #endregion
 
 // Message box
 [class^="channelTextArea"] > [class^="inner"] {

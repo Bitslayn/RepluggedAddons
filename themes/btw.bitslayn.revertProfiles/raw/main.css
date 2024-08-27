@@ -218,7 +218,8 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
   border-radius: unset;
   box-shadow: inset 0 0 120px hsl(var(--black-500-hsl)/0.75);
 }
-[class^=biteSizeOuter] > div::before {
+[class^=biteSizeOuter] > div::before,
+[class^=fullSizeOuter] > div::before {
   content: "";
   position: absolute;
   background-color: var(--profile-body-background-color);
@@ -226,12 +227,14 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
   height: -webkit-fill-available;
   border-radius: 8px;
 }
-[class^=biteSizeOuter][class*=userProfileOuterThemed] > div::before {
+[class^=biteSizeOuter][class*=userProfileOuterThemed] > div::before,
+[class^=fullSizeOuter][class*=userProfileOuterThemed] > div::before {
   margin: 16px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
-[class^=biteSizeOuter][class*=userProfileOuterUnthemed] > div::before {
+[class^=biteSizeOuter][class*=userProfileOuterUnthemed] > div::before,
+[class^=fullSizeOuter][class*=userProfileOuterUnthemed] > div::before {
   margin: 16px;
 }
 [class^=activityBiteSizePopout] > [class^=headerContainer] > h1,
@@ -775,36 +778,72 @@ section > [class^=root_]::before {
 [class^=userPanelOuter] > div > [class^=none] {
   min-width: 340px;
 }
-[class^=fullSizeOuter] > [class^=userProfileModalInner] {
-  gap: unset !important;
+[class^=root_]:has(> [class^=fullSizeOuter_]) {
+  max-height: 720px;
+}
+[class^=fullSizeOuter_] > div {
   background:
     linear-gradient(
       var(--profile-gradient-start),
       var(--profile-gradient-start) var(--custom-user-banner-height-bite-size),
       var(--profile-gradient-end));
+  gap: unset !important;
 }
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] {
-  top: calc(51px + var(--banner-height) + var(--badge-container-height) + var(--edge-padding));
-  left: 0px;
-  margin: 0 calc(16px + var(--edge-padding)) 0;
-  padding: 12px 12px 0;
-  border-top-left-radius: var(--radius-sm);
-  border-top-right-radius: var(--radius-sm);
-  background-color: var(--profile-body-background-color);
-  width: -webkit-fill-available;
+[class^=fullSizeOuter_] > div::before {
+  margin-top: 6px !important;
 }
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=usernameRow] > h1 {
-  -webkit-box-orient: vertical;
-  word-break: break-all;
-  display: -webkit-box;
-  font-size: 20px;
-  line-height: 1.2;
-  font-weight: 600;
+[class^=fullSizeOuter_] [class^=fullSizeOverlayBackground_] {
+  background: unset !important;
+  background-color: unset !important;
+  border: unset !important;
 }
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] {
-  gap: unset;
+[class^=fullSizeOuter_] [class^=tabBarItem_] {
+  height: 39px;
+  border-bottom-width: 2px;
 }
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=container] {
+[class^=fullSizeOuter_] [class^=tabBarItem_] div {
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--interactive-normal);
+}
+[class^=fullSizeOuter_] [class^=tabBarItem_]:hover > div {
+  color: var(--interactive-hover);
+}
+[class^=fullSizeOuter_] [class^=tabBarItem_][aria-selected=true] > div {
+  color: var(--interactive-active);
+}
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] {
+  z-index: 1;
+  margin: 0 16px;
+  padding: 0 16px;
+}
+[class^=fullSizeOuter_] [class^=visibleContainer] {
+  margin: 0 16px;
+  padding-top: 12px;
+}
+[class^=fullSizeOuter_]:not(:has([class^=banner][style*=background-image])) > div {
+  padding-top: 179px;
+}
+[class^=fullSizeOuter_]:not(:has([class^=banner][style*=background-image])) [class^=headerInner_] > [class^=headerButtons_] {
+  transform: translateY(122px);
+}
+[class^=fullSizeOuter_]:not(:has([class^=banner][style*=background-image])) [class^=body_] > [class^=container_] > [class^=tags] > [class^=container_] {
+  top: 125px !important;
+}
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] {
+  margin-top: 6px !important;
+  padding-top: 12px;
+}
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] > [class^=tags] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 2px;
+}
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] > [class^=tags] > [class^=dotSpacer] {
+  display: none;
+}
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] > [class^=tags] > [class^=container_] {
   position: absolute;
   justify-content: flex-start;
   left: 160px;
@@ -817,75 +856,10 @@ section > [class^=root_]::before {
   padding: 2px 4px;
   background-color: var(--profile-body-background-color);
 }
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=container] div > a > img,
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=container] div > a > div {
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] > [class^=tags] > [class^=container_] div > a > img,
+[class^=fullSizeOuter_] [class^=body_] > [class^=container_] > [class^=tags] > [class^=container_] div > a > div {
   width: 24px;
   height: 24px;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class*=userTag] {
-  width: 100%;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class*=userTag] > span {
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 600;
-  color: var(--header-secondary);
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=dotSpacer] {
-  display: none;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=container] > [class^=tags] > [class^=pronounsTooltip] {
-  font-size: 14px;
-  line-height: 1.2857142857;
-  font-weight: 400;
-  padding-top: 2px;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] {
-  border-top-left-radius: unset;
-  border-top-right-radius: unset;
-  border: unset;
-  background-color: var(--profile-body-background-color);
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground]:is([class*=friendRequestBannerOverlay]) {
-  display: none;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] {
-  gap: 40px;
-  margin: 20px 12px 0;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar]:not(:has(> [class^=tabBarItem]:nth-child(2))) {
-  display: none;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem] {
-  height: 39px;
-  border-bottom-width: 2px;
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem] div {
-  font-weight: 500;
-  line-height: 20px;
-  color: var(--interactive-normal);
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem]:hover > div {
-  color: var(--interactive-hover);
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] > [class^=tabBar] > [class^=tabBarItem][aria-selected=true] > div {
-  color: var(--interactive-active);
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container]:not(:has(> [class^=tabBar] > [class^=tabBarItem]:nth-child(2)))::before {
-  content: "";
-  width: -webkit-fill-available;
-  height: 1px;
-  margin: 20px 12px 0;
-  background-color: var(--profile-body-divider-color);
-}
-[class^=fullSizeOuter] > [class^=userProfileModalInner] > [class^=body] > [class^=fullSizeOverlayBackground] > [class^=container] [class^=scroller]::-webkit-scrollbar-track {
-  margin-bottom: 4px;
-}
-[class^=fullSizeOuter] [class^=visibleContainer] {
-  background-color: var(--profile-body-background-color);
-  margin: 0 16px;
-  padding: 0 12px;
-  padding-top: 12px;
 }
 [class^=userPanelOuter] header [class^=visibleContainer] {
   padding: 0 12px;
