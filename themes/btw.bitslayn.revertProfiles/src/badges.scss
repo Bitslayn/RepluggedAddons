@@ -1,0 +1,18 @@
+[class^="tags_"] > [class^="container_"] + [class^="container_"] {
+  width: 182px;
+  min-height: 50px;
+  > div:first-child {
+    padding-left: 88px;
+  }
+  > div:nth-child(-n + 4) {
+    padding-top: 22px;
+  }
+}
+[class^="tags_"] > [class^="container_"]:not(:last-of-type) {
+  background-color: unset !important;
+  z-index: 1;
+  pointer-events: none;
+  > * {
+    pointer-events: initial;
+  }
+}

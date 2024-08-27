@@ -781,6 +781,24 @@ section > [class^=root_]::before {
 [class^=userPanelOuter] > div > [class^=none] {
   min-width: 340px;
 }
+[class^=tags_] > [class^=container_] + [class^=container_] {
+  width: 182px;
+  min-height: 50px;
+}
+[class^=tags_] > [class^=container_] + [class^=container_] > div:first-child {
+  padding-left: 88px;
+}
+[class^=tags_] > [class^=container_] + [class^=container_] > div:nth-child(-n+4) {
+  padding-top: 22px;
+}
+[class^=tags_] > [class^=container_]:not(:last-of-type) {
+  background-color: unset !important;
+  z-index: 1;
+  pointer-events: none;
+}
+[class^=tags_] > [class^=container_]:not(:last-of-type) > * {
+  pointer-events: initial;
+}
 [class^=root_]:has(> [class^=fullSizeOuter_]) {
   max-height: 720px;
 }

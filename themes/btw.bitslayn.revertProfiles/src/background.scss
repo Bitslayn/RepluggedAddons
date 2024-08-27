@@ -17,39 +17,3 @@
     margin: 16px;
   }
 }
-
-// [class^="biteSizeOuter"] {
-//   &:not(:has([class^="tags"] > [class^="container"])) > div::before {
-//     margin-top: 62px !important;
-//   }
-//   > div::before {
-//     margin-top: 46px !important;
-//   }
-//   &:has([class^="tags"] > [class^="container"] > div:nth-child(9)) > div::before {
-//     margin-top: 70px !important;
-//   }
-//   &:has([class^="tags"] > [class^="container"] ~ [class^="container"] > div:nth-child(5))
-//     > div::before {
-//     margin-top: 94px !important;
-//   }
-//   &:has(
-//       [class^="tags"]
-//         > [class^="container"]
-//         ~ [class^="container"]
-//         ~ [class^="container"]
-//         > div:nth-child(1)
-//     )
-//     > div::before {
-//     margin-top: 118px !important;
-//   }
-//   &:has(
-//       [class^="tags"]
-//         > [class^="container"]
-//         ~ [class^="container"]
-//         ~ [class^="container"]
-//         > div:nth-child(9)
-//     )
-//     > div::before {
-//     margin-top: 142px !important;
-//   }
-// }
