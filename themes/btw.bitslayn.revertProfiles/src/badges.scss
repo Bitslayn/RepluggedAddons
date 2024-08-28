@@ -1,18 +1,61 @@
-[class^="tags_"] > [class^="container_"] + [class^="container_"] {
-  width: 182px;
-  min-height: 50px;
-  > div:first-child {
-    padding-left: 88px;
-  }
-  > div:nth-child(-n + 4) {
-    padding-top: 22px;
+@use "sass:math";
+
+$margin-left: 88px;
+$max-containers-merged: 1; // Excluding first container DO NOT GO OVERBOARD WITH THIS THIS WILL CREATE A LOT OF STYLES WITH :HAS
+
+// Function to calculate margin-top values
+@function calculateMarginTop($index, $offset) {
+  @return 22px + 22px * ($index - 4) + 22px * math.div(($index - 4), 2) + (11px * $offset);
+}
+
+// Mixin to handle margin-top
+@mixin setMarginTop($index, $n, $offset) {
+  > div:nth-child(-n + #{$n}) {
+    margin-top: calculateMarginTop($index, $offset);
   }
 }
-[class^="tags_"] > [class^="container_"]:not(:last-of-type) {
-  background-color: unset !important;
-  z-index: 1;
-  pointer-events: none;
-  > * {
-    pointer-events: initial;
+
+// Container styles with margin adjustments
+@mixin containerStyles($start, $end, $offsetEven, $offsetOdd) {
+  @for $i from $start through $end {
+    > [class^="container_"]:nth-child(#{$i}) {
+      @if $i % 2 == 1 {
+        > div:first-child {
+          margin-left: $margin-left;
+        }
+        @include setMarginTop($i, 4, $offsetEven);
+      } @else {
+        @include setMarginTop($i, 8, $offsetOdd);
+      }
+    }
+  }
+}
+
+// Main rules
+[class^="tags_"] {
+  &:not(:has(> [class^="pronounsTooltip_"])) {
+    @include containerStyles(4, $max-containers-merged + 3, 1, 0);
+  }
+
+  &:has(> [class^="pronounsTooltip_"]) {
+    @include containerStyles(5, $max-containers-merged + 4, -3, -2);
+  }
+
+  > [class^="container_"]:not(:last-of-type) {
+    background-color: unset !important;
+    min-width: 182px;
+    z-index: 1;
+  }
+
+  > [class^="container_"] + [class^="container_"]:last-of-type {
+    min-width: 182px;
+  }
+
+  > [class^="container_"] {
+    pointer-events: none;
+
+    > * {
+      pointer-events: initial;
+    }
   }
 }
