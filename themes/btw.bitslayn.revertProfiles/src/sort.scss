@@ -11,7 +11,7 @@
     order: -10;
   }
   // Status
-  header > div:last-of-type {
+  > div > header > div:last-of-type {
     order: -9 !important;
   }
   // Divider
