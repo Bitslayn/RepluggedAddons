@@ -59,3 +59,37 @@ $max-containers-merged: 1; // Excluding first container DO NOT GO OVERBOARD WITH
     }
   }
 }
+
+// #region Header gap
+// Not dynamic like above but will be in a future update if needed
+// Bitesize
+[class^="biteSizeOuter_"] {
+  &:has([class^="container_"] > div:nth-child(9)) {
+    > div::before,
+    [class^="container_"] > [class^="usernameRow"] {
+      margin-top: calc(16px + 22px);
+    }
+    [class^="tags_"] > [class^="container_"] {
+      transform: translate(12px, calc(-81px - 22px));
+    }
+  }
+  &:has([class^="container_"] + [class^="container_"] > div:nth-child(5)) {
+    > div::before,
+    [class^="container_"] > [class^="usernameRow"] {
+      margin-top: calc(16px + 44px);
+    }
+    [class^="tags_"] > [class^="container_"] {
+      transform: translate(12px, calc(-81px - 44px));
+    }
+  }
+}
+// Fullsize
+[class^="fullSizeOuter_"] {
+  &:has([class^="container_"] > div:nth-child(10)) {
+    > div::before,
+    [class^="body_"] > [class^="container_"] {
+      margin-top: calc(6px + 18px) !important;
+    }
+  }
+}
+//#endregion

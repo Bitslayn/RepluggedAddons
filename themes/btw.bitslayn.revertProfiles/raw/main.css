@@ -1,7 +1,7 @@
 /*
 * @name Revert Profiles
 * @author Bitslayn
-* @version 1.1.0b
+* @version 1.1.0
 * @updated 8/27/2024
 * @description Reverts user profiles to the layout before they were simplified. This does not increase how many roles are shown in popout profiles."
 */
@@ -781,23 +781,46 @@ section > [class^=root_]::before {
 [class^=userPanelOuter] > div > [class^=none] {
   min-width: 340px;
 }
-[class^=tags_] > [class^=container_] + [class^=container_] {
-  width: 182px;
-  min-height: 50px;
+[class^=tags_]:not(:has(> [class^=pronounsTooltip_])) > [class^=container_]:nth-child(4) > div:nth-child(-n+8) {
+  margin-top: 22px;
 }
-[class^=tags_] > [class^=container_] + [class^=container_] > div:first-child {
-  padding-left: 88px;
+[class^=tags_]:has(> [class^=pronounsTooltip_]) > [class^=container_]:nth-child(5) > div:first-child {
+  margin-left: 88px;
 }
-[class^=tags_] > [class^=container_] + [class^=container_] > div:nth-child(-n+4) {
-  padding-top: 22px;
+[class^=tags_]:has(> [class^=pronounsTooltip_]) > [class^=container_]:nth-child(5) > div:nth-child(-n+4) {
+  margin-top: 22px;
 }
 [class^=tags_] > [class^=container_]:not(:last-of-type) {
   background-color: unset !important;
+  min-width: 182px;
   z-index: 1;
+}
+[class^=tags_] > [class^=container_] + [class^=container_]:last-of-type {
+  min-width: 182px;
+}
+[class^=tags_] > [class^=container_] {
   pointer-events: none;
 }
-[class^=tags_] > [class^=container_]:not(:last-of-type) > * {
+[class^=tags_] > [class^=container_] > * {
   pointer-events: initial;
+}
+[class^=biteSizeOuter_]:has([class^=container_] > div:nth-child(9)) > div::before,
+[class^=biteSizeOuter_]:has([class^=container_] > div:nth-child(9)) [class^=container_] > [class^=usernameRow] {
+  margin-top: 38px;
+}
+[class^=biteSizeOuter_]:has([class^=container_] > div:nth-child(9)) [class^=tags_] > [class^=container_] {
+  transform: translate(12px, -103px);
+}
+[class^=biteSizeOuter_]:has([class^=container_] + [class^=container_] > div:nth-child(5)) > div::before,
+[class^=biteSizeOuter_]:has([class^=container_] + [class^=container_] > div:nth-child(5)) [class^=container_] > [class^=usernameRow] {
+  margin-top: 60px;
+}
+[class^=biteSizeOuter_]:has([class^=container_] + [class^=container_] > div:nth-child(5)) [class^=tags_] > [class^=container_] {
+  transform: translate(12px, -125px);
+}
+[class^=fullSizeOuter_]:has([class^=container_] > div:nth-child(10)) > div::before,
+[class^=fullSizeOuter_]:has([class^=container_] > div:nth-child(10)) [class^=body_] > [class^=container_] {
+  margin-top: 24px !important;
 }
 [class^=root_]:has(> [class^=fullSizeOuter_]) {
   max-height: 720px;
