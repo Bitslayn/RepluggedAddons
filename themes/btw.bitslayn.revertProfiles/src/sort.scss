@@ -31,7 +31,8 @@
     order: -5;
   }
   // Activities
-  [class^="body_"] > [class^="activityBiteSizePopout_"] {
+  [class^="body_"] > [class^="activityBiteSizePopout_"],
+  [class^="body_"] > [class*="activity_"] {
     // [class^="body_"] > div:has([class^="activityBiteSizePopout_"]) {
     order: -4;
   }

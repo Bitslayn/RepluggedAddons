@@ -20,6 +20,8 @@
   @include eyebrow-font;
 }
 
+[class*="activity_"] > header > h1,
+[class^="fullSizeOuter_"] [class*="card_"] > header > h1,
 [class^="activityBiteSizePopout"] > [class^="headerContainer"] > h1, /* These top three are for activity headers which use semibold instead of eyebrow */
 [class^="activityBiteSizePopout"] > [class^="headerContainer"] > h2,
 [class^="activitySimplifiedProfile"] > [class^="headerContainer"] > h1,

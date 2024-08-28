@@ -155,17 +155,13 @@
 [class^="userPanelOuter"] > div > [class^="none"] {
   gap: unset !important;
   > [class^="body"] {
-    > [class^="activityBiteSizePopout"] {
-      order: 1;
-
+    > [class^="activityBiteSizePopout"],
+    > [class^="activity_"] {
       padding: 12px !important;
       background: var(--profile-body-background-color) !important;
       border-radius: 8px;
       margin-bottom: 12px !important;
     }
-  }
-  > [class^="overlayBackground"] {
-    order: 2;
   }
 }
 // #endregion
@@ -254,8 +250,8 @@
 }
 
 // Activities
-[class*="userProfileOuter"]:not([class^="userProfileModalOuter"])
-  [class^="activityBiteSizePopout"] {
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) [class^="activityBiteSizePopout"],
+[class*="userProfileOuter"]:not([class^="userProfileModalOuter"]) [class*="activity_"] {
   padding: unset;
   border-radius: unset;
   background: unset !important;
@@ -372,7 +368,8 @@
 }
 
 // Activities
-[class^="activityBiteSizePopout"] > img {
+[class^="activityBiteSizePopout"] > img,
+[class^="activity_"] > img {
   width: 24px !important;
   height: 24px !important;
 }

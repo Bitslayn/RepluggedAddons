@@ -1,7 +1,7 @@
 /*
 * @name Revert Profiles
 * @author Bitslayn
-* @version 1.1.0
+* @version 1.1.1
 * @updated 8/27/2024
 * @description Reverts user profiles to the layout before they were simplified. This does not increase how many roles are shown in popout profiles."
 */
@@ -30,7 +30,8 @@
 [class^=biteSizeOuter] [class^=body_] > [class^=mutuals_] {
   order: -5;
 }
-[class^=biteSizeOuter] [class^=body_] > [class^=activityBiteSizePopout_] {
+[class^=biteSizeOuter] [class^=body_] > [class^=activityBiteSizePopout_],
+[class^=biteSizeOuter] [class^=body_] > [class*=activity_] {
   order: -4;
 }
 [class^=biteSizeOuter] [class^=body_] > section {
@@ -240,6 +241,8 @@ div:not([class^=customizationSection], [class*=preview]) > div:is([class^=biteSi
 [class^=fullSizeOuter][class*=userProfileOuterUnthemed] > div::before {
   margin: 16px;
 }
+[class*=activity_] > header > h1,
+[class^=fullSizeOuter_] [class*=card_] > header > h1,
 [class^=activityBiteSizePopout] > [class^=headerContainer] > h1,
 [class^=activityBiteSizePopout] > [class^=headerContainer] > h2,
 [class^=activitySimplifiedProfile] > [class^=headerContainer] > h1,
@@ -946,15 +949,12 @@ section > [class^=root_]::before {
 [class^=userPanelOuter] > div > [class^=none] {
   gap: unset !important;
 }
-[class^=userPanelOuter] > div > [class^=none] > [class^=body] > [class^=activityBiteSizePopout] {
-  order: 1;
+[class^=userPanelOuter] > div > [class^=none] > [class^=body] > [class^=activityBiteSizePopout],
+[class^=userPanelOuter] > div > [class^=none] > [class^=body] > [class^=activity_] {
   padding: 12px !important;
   background: var(--profile-body-background-color) !important;
   border-radius: 8px;
   margin-bottom: 12px !important;
-}
-[class^=userPanelOuter] > div > [class^=none] > [class^=overlayBackground] {
-  order: 2;
 }
 [class*=userProfileOuter] [class*=hoisted_] {
   z-index: 5 !important;
@@ -1017,7 +1017,8 @@ section > [class^=root_]::before {
   cy: 101.5;
   r: 40.59;
 }
-[class*=userProfileOuter]:not([class^=userProfileModalOuter]) [class^=activityBiteSizePopout] {
+[class*=userProfileOuter]:not([class^=userProfileModalOuter]) [class^=activityBiteSizePopout],
+[class*=userProfileOuter]:not([class^=userProfileModalOuter]) [class*=activity_] {
   padding: unset;
   border-radius: unset;
   background: unset !important;
@@ -1104,7 +1105,8 @@ section > [class^=root_]::before {
   background-color: transparent;
   border: 1px solid var(--profile-message-input-border-color);
 }
-[class^=activityBiteSizePopout] > img {
+[class^=activityBiteSizePopout] > img,
+[class^=activity_] > img {
   width: 24px !important;
   height: 24px !important;
 }
