@@ -1,5 +1,7 @@
-[class^="biteSizeOuter"],
-[class^="fullSizeOuter"] {
+// biteSizeOuter ==> outer & biteSize
+
+[class^="outer_"][class*="biteSize_"],
+[class^="outer_"][class*="fullSize_"] {
   > div::before {
     content: "";
     position: absolute;

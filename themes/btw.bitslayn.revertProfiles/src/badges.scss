@@ -63,7 +63,7 @@ $max-containers-merged: 1; // Excluding first container DO NOT GO OVERBOARD WITH
 // #region Header gap
 // Not dynamic like above but will be in a future update if needed
 // Bitesize
-[class^="biteSizeOuter_"] {
+[class^="outer_"][class*="biteSize_"] {
   &:has([class^="container_"] > div:nth-child(9)) {
     > div::before,
     [class^="container_"] > [class^="usernameRow"] {
@@ -84,7 +84,7 @@ $max-containers-merged: 1; // Excluding first container DO NOT GO OVERBOARD WITH
   }
 }
 // Fullsize
-[class^="fullSizeOuter_"] {
+[class^="outer_"][class*="fullSize_"] {
   &:has([class^="container_"] > div:nth-child(10)) {
     > div::before,
     [class^="body_"] > [class^="container_"] {

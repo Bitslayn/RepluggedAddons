@@ -8,7 +8,7 @@
   z-index: 1;
 }
 div:not([class^="customizationSection"], [class*="preview"])
-  > div:is([class^="biteSizeOuter"], [class^="userPanelOuter"])
+  > div:is([class^="outer_"][class*="biteSize_"], [class^="userPanelOuter"])
   [class^="header"]
   > [class^="avatar"] {
   @each $lang, $string in lang.$view-profile {

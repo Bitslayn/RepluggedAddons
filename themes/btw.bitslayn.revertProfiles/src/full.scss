@@ -5,7 +5,7 @@
 @use "inlineStatus";
 // #endregion
 
-[class^="fullSizeOuter"] {
+[class^="outer_"][class*="fullSize_"] {
   // Layout
   > [class^="userProfileModalInner"] {
     gap: unset !important;
@@ -340,7 +340,7 @@
   }
 }
 
-[class^="fullSizeOuter"] [class^="visibleContainer"] {
+[class^="outer_"][class*="fullSize_"] [class^="visibleContainer"] {
   background-color: var(--profile-body-background-color);
   margin: 0 16px;
   padding: 0 12px;

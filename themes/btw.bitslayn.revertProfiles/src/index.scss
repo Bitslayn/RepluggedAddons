@@ -180,7 +180,7 @@
   > [class^="container_"] {
   border-radius: 4px !important;
 }
-[class^="biteSizeOuter"],
+[class^="outer_"][class*="biteSize_"],
 [class^="userPanelOuter"] {
   [class^="body"] > [class^="container"] {
     display: flex;
@@ -227,7 +227,7 @@
     }
   }
 }
-[class^="fullSizeOuter"] > div {
+[class^="outer_"][class*="fullSize_"] > div {
   height: -webkit-fill-available;
 }
 

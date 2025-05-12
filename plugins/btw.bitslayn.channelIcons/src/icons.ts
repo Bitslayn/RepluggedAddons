@@ -68,7 +68,19 @@ interface ModernIconArray {
   Name: string;
   Matches: RegExpMatchArray[];
 }
-const CommonComponents = webpack.getByProps("Avatar");
+// const CommonComponents = webpack.getByProps("Avatar");
+// const UpdatedIcons = Object.keys(CommonComponents).filter(c => c.endsWith("Icon"));
+// const group1Array: ModernIconArray[] = [];
+// UpdatedIcons.forEach(iconName => {
+//   const iconValueString = CommonComponents[iconName]?.toString?.();
+//   const matches = [...iconValueString.matchAll(/,d:"([^"]*)"/g)];
+//   if (matches.length) group1Array.push({ Name: iconName, Matches: matches });
+// });
+
+const CommonComponents = webpack.getBySource(
+  /"svg".{10,50}xmlns:"http:\/\/www\.w3\.org\/2000\/svg/,
+  { all: true }
+);
 const UpdatedIcons = Object.keys(CommonComponents).filter(c => c.endsWith("Icon"));
 const group1Array: ModernIconArray[] = [];
 UpdatedIcons.forEach(iconName => {
@@ -76,8 +88,10 @@ UpdatedIcons.forEach(iconName => {
   const matches = [...iconValueString.matchAll(/,d:"([^"]*)"/g)];
   if (matches.length) group1Array.push({ Name: iconName, Matches: matches });
 });
+
 export { group1Array, Icons };
 
+// Deleting this when I get the chance
 export const blacklistIcons = [
   "ThreadLockIcon",
   "ThreadWarningIcon",
